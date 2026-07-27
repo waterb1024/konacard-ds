@@ -3,6 +3,9 @@
 <img width="1200" height="630" alt="image" src="https://github.com/user-attachments/assets/648e12a2-bbde-4f9b-88d6-c4855401edec" />
 
 
+
+
+
 KONACARD 모바일 앱(AOS) 공통 디자인 시스템의 **AI 참조용 문서 세트**.
 Figma DS 원본(`Nv4o6ozSx5W4w10uFnQIs5` — KONACARD COMMON)을 코드-컨텍스트로 번역해, Claude Code + Figma MCP 환경에서 AI 에이전트가 "KONACARD답게" 화면을 자동 재현할 수 있도록 유지합니다.
 
