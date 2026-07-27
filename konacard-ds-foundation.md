@@ -1,359 +1,362 @@
 ---
-version: "1.1"
+version: "1.2-wip"
 name: KONACARD Design Foundation
 description: >
   KONACARD 모바일 앱(AOS) 공통 디자인 시스템 — Foundation (토큰) 문서.
   Figma DS 파일(Nv4o6ozSx5W4w10uFnQIs5)을 원본 소스로 하며,
   Claude AI 코딩 에이전트가 Figma Plugin API로 화면을 제작할 때 참조합니다.
-verified_against_figma: "2025-07-24 (COMMON 파일 Foundation 페이지, node 295:3042)"
-verification_result: |
-  ✅ Colors — 모든 토큰 일치 (brand/base/font/neutral/background/divider/accent/gradient/banner + 원자 팔레트 9단계)
-  ✅ Typography — 모든 사이즈·라인하이트·자간 일치 (heading 1~3, body 1~4, button large/medium/small)
-  ✅ Spacing — 모든 스케일 토큰 일치 (2·4·8·12·16·20·24·32·40)
-  ✅ Radius — 모든 스케일 및 button/layout alias 일치
-  ⚠️ Elevation — Figma는 $shadow-pressed/button/navigation/card/deep/active 6단 토큰 정의 (웹 전용, 앱 미적용, 2월말 정리 예정). 이 문서는 narrative만 있음. § Elevation & Depth 참조.
-changelog:
-  - "1.1 (2025-07-24): Figma DS 원본과 대조 검증 완료. 파일명을 konacard-ds-foundation.md로 변경. Elevation 웹 전용 토큰 TODO 추가."
-  - "1.0 (초안): 회원가입 플로우 디자인 토큰 정리"
+  토큰 키는 Figma variable 원본 이름을 그대로 사용합니다 (get_variable_defs 반환값과 1:1 매칭).
+verified_against_figma: "부분 검증 - 실 컴포넌트 인스턴스에서 get_variable_defs API 호출 결과와 대조"
+verification_status: |
+  ✅ API 확인됨 (get_variable_defs 결과와 일치) - 아래 항목에 체크로 표시
+  ⚠️ 미확인 - Foundation 문서 페이지(node 296:3042) 기재값만 확인. 실 컴포넌트 사용 여부 미확인
+  🎨 Palette - Figma variable로 등록되지 않은 원자 팔레트 (문서용)
 
 colors:
-  # ──────────────────────────────────────────────────────────────
-  # Semantic tokens (의미 기반 — 화면 제작 시 우선 사용)
-  # ──────────────────────────────────────────────────────────────
-  brand:
-    primary:     "#805AE9"   # color/brand/primary — CTA, 강조 (= purple-500)
-    secondary:   "#F4F0FD"   # color/brand/secondary — 브랜드 배지 배경 (= purple-100)
-    tertiary:    "#F8F6FE"   # 브랜드 약 배경 (= purple-50)
-  base:
-    black:       "#000000"   # color/black
-    white:       "#FFFFFF"   # color/white
-  font:
-    primary:     "#000000"   # color/font/primary — 최상위 텍스트
-    secondary:   "#333333"   # color/font/secondary — 서브 텍스트
-  neutral:
-    primary:     "#333333"   # color/neutral/primary    (= gray-800)
-    secondary:   "#666666"   # color/neutral/secondary  (= gray-700)
-    tertiary:    "#999999"   # color/neutral/tertiary   (= gray-500)
-    quaternary:  "#DDDDDD"   # color/neutral/quaternary (= gray-300)
-  background:
-    primary:     "#FFFFFF"   # color/background/primary — 기본 화면
-    secondary:   "#F8F9FB"   # color/background/secondary (= coolgray-50)
-    tertiary:    "#F8F6FE"   # color/background/tertiary  (= purple-50)
-  divider:
-    primary:     "#0000000F" # color/divider/primary  — black 6%
-    secondary:   "#00000014" # color/divider/secondary — black 8%
-    tertiary:    "#0000001F" # color/divider/tertiary — black 12%
-    white:       "#FFFFFF"   # color/divider/white
-  accent:
-    primary:     "#FF364B"   # color/accent/primary   (= red-500)   — 오류, 취소
-    secondary:   "#589CF6"   # color/accent/secondary (= blue-500)  — 정보
-    tertiary:    "#1CCEA5"   # color/accent/tertiary  (= green-500) — 성공
-  gradient:
-    primary:     ["#804EE2", "#526ED3"]   # 보라 → 청보라
-    secondary:   ["#00BB5A", "#5978EA"]   # 초록 → 파랑
-    tertiary:    ["#FF364B", "#FF1493"]   # 레드 → 핑크
-  banner:
-    brand:       "#F8F6FE"   # color/banner brand (= purple-50)
-    gray:        "#F8F9FB"   # color/banner/gray  (= coolgray-50)
-    blue:        "#F0F6FE"   # color/banner/blue  (= blue-50)
-    green:       "#EFFCF9"   # color/banner/green (= green-50)
-    yellow:      "#FFFBDF"   # color/banner/yellow (= yellow-50)
-    pink:        "#FFEFF1"   # color/banner/pink  (= red-50)
+  # ═══════════════════════════════════════════════════════════════
+  # Figma variable 원본 이름을 key로 사용. semantic 카테고리로 그루핑.
+  # 값 좌측 상태: ✅ API 확인 · ⚠️ 문서 기재만 · 🎨 팔레트(원자)
+  # ═══════════════════════════════════════════════════════════════
 
-  # ──────────────────────────────────────────────────────────────
-  # Color palette (원자 토큰 — 50 → 900, 9단계)
-  # 의미 기반 토큰이 없을 때만 직접 참조
-  # ──────────────────────────────────────────────────────────────
-  purple:
-    "50":  "#F8F6FE"
-    "100": "#F4F0FD"
-    "200": "#ECE6FC"
-    "300": "#BFADF4"
-    "400": "#997BED"
-    "500": "#805AE9"   # ★ brand
-    "600": "#6648BA"
-    "700": "#523A95"
-    "800": "#33245D"
-    "900": "#1B1138"
-  red:
-    "50":  "#FFEFF1"
-    "100": "#FFE2E5"
-    "200": "#FFCCD1"
-    "300": "#FF9BA5"
-    "400": "#FF5E6F"
-    "500": "#FF364B"   # ★ accent
-    "600": "#CC2B3C"
-    "700": "#99202D"
-    "800": "#59131A"
-    "900": "#330B0F"
-  blue:
-    "50":  "#F0F6FE"
-    "100": "#E6F0FE"
-    "200": "#D5E6FD"
-    "300": "#B9D6FB"
-    "400": "#8ABAF9"
-    "500": "#589CF6"   # ★ accent
-    "600": "#4F8CDD"
-    "700": "#3965A0"
-    "800": "#233E62"
-    "900": "#121F31"
-  green:
-    "50":  "#EFFCF9"
-    "100": "#DEF8F2"
-    "200": "#C8F3E9"
-    "300": "#A4EBDB"
-    "400": "#77E2C9"
-    "500": "#1CCEA5"   # ★ accent
-    "600": "#159A7C"
-    "700": "#0D634F"
-    "800": "#083E31"
-    "900": "#041F19"
-  yellow:
-    "50":  "#FFFBDF"
-    "100": "#FEF9C3"
-    "200": "#FEF08A"
-    "300": "#FDE047"
-    "400": "#FACC15"
-    "500": "#EAB308"
-    "600": "#CA8A04"
-    "700": "#A16207"
-    "800": "#764004"
-    "900": "#462304"
-  gray:
-    "50":  "#F8F8F8"
-    "100": "#F4F4F4"
-    "200": "#EEEEEE"
-    "300": "#DDDDDD"   # ★ neutral/quaternary
-    "400": "#BDBDBD"
-    "500": "#999999"   # ★ neutral/tertiary
-    "600": "#757575"
-    "700": "#666666"   # ★ neutral/secondary
-    "800": "#333333"   # ★ neutral/primary, font/secondary
-    "900": "#1C1C1C"
-  coolgray:
-    "50":  "#F8F9FB"   # ★ background/secondary, banner/gray
-    "100": "#F0F1F3"
-    "200": "#DADDE0"
-    "300": "#C7CBD0"
-    "400": "#A9AEB5"
-    "500": "#92989D"
-    "600": "#6E7276"
-    "700": "#585B5E"
-    "800": "#333537"
-    "900": "#1D1E1F"
+  # ─── color/brand/* — 브랜드 ────────────────────────────────
+  brand:
+    "color/brand/primary":   "#805AE9"   # ✅ CTA · 강조 전용 (= purple-500)
+    "color/brand/secondary": "#F4F0FD"   # ⚠️ 브랜드 배지 배경 (= purple-100)
+    "color/brand/tertiary":  "#F8F6FE"   # ⚠️ 브랜드 약 배경 (= purple-50)
+
+  # ─── color/base/* — 기본 흑백 및 관찰된 base 계열 ─────────
+  base:
+    "color/black":     "#000000"   # ⚠️
+    "color/white":     "#FFFFFF"   # ⚠️
+    "base/green":      "#1CCEA5"   # ✅ (Actionbar에서 관측 - 로고 accent)
+    "base/bg_brand":   "#F4F0FD"   # ✅ (Banner에서 관측 - 브랜드 옅은 배경)
+
+  # ─── color/font/* — 텍스트 색 ─────────────────────────────
+  font:
+    "color/font/primary":     "#000000"   # ✅ 본문 최상위
+    "color/font/secondary":   "#333333"   # ✅ 서브 텍스트
+    "color/font/tertiary":    "#666666"   # ✅ 부가·설명
+    "color/font/quaternary":  "#999999"   # ✅ 힌트·비활성 라벨
+    "color/font/placeholder": "#999999"   # ✅ Input placeholder (quaternary와 값 동일)
+    "color/font/error":       "#FF364B"   # ✅ 오류 문구
+    "color/font/brand":       "#805AE9"   # ✅ 브랜드 강조 텍스트
+    "color/font/white":       "#FFFFFF"   # ✅ 채움 CTA 위 흰 텍스트
+
+  # ─── color/neutral/* — 그레이스케일 위계 ──────────────────
+  neutral:
+    "color/neutral/primary":    "#333333"   # ⚠️ = gray-800
+    "color/neutral/secondary":  "#666666"   # ⚠️ = gray-700
+    "color/neutral/tertiary":   "#999999"   # ⚠️ = gray-500
+    "color/neutral/quaternary": "#DDDDDD"   # ⚠️ = gray-300
+
+  # ─── color/background/* — 배경 ────────────────────────────
+  background:
+    "color/background/primary":      "#FFFFFF"   # ✅ 기본 화면
+    "color/background/secondary":    "#F8F9FB"   # ⚠️ 회색 카드 배경 (= coolgray-50)
+    "color/background/tertiary":     "#F8F6FE"   # ⚠️ 브랜드 약 배경 (= purple-50)
+    "color/background/button-brand": "#805AE9"   # ✅ 채움 CTA 배경
+
+  # ─── color/surface/* — 신규 명명 규칙 (관측됨) ────────────
+  surface:
+    "color-surface-background-banner-brand": "#F8F6FE"   # ✅ (신규 명명 - 병행 존재 확인)
+
+  # ─── color/button/* — 버튼 색조 별칭 ─────────────────────
+  button:
+    "color/button/secondary":   "#F4F0FD"   # ✅ Brand_Light 채움
+    "color/button/tertiary":    "#DDDDDD"   # ✅ Gray_Line 아웃라인
+    "color/button/quarternary": "#999999"   # ✅ ⚠️ Figma 원본 오타 "quarternary" 그대로 유지
+    "color/button/white":       "#FFFFFF"   # ✅
+
+  # ─── color/border/* — 테두리 ──────────────────────────────
+  border:
+    "color/border/default": "#DDDDDD"   # ✅ Input·Select 기본 테두리
+    "color/border/focus":   "#805AE9"   # ✅ Focus·Active·Selected 테두리
+    # "color/border/error": "#FF364B"   # 렌더링상 존재하나 아직 API 미확인
+
+  # ─── color/icon/* — 아이콘 색조 ──────────────────────────
+  icon:
+    "color/icon/secondary":  "#333333"   # ✅ 기본 아이콘
+    "color/icon/quaternary": "#999999"   # ✅ 비활성·힌트
+    "color/icon/quinary":    "#DDDDDD"   # ✅ 매우 옅은 아이콘 (clear 원형 배경 등)
+    "color/icon/brand":      "#805AE9"   # ✅ 브랜드 아이콘
+    "color/icon/white":      "#FFFFFF"   # ✅ 채움 배경 위 흰 아이콘
+    "color/icon/accent-red": "#FF364B"   # ✅ 오류 아이콘
+    # "color/icon/primary":  "#000000"   # 문서 기재값. API 미확인
+    # "color/icon/tertiary": "#666666"   # 문서 기재값. API 미확인
+
+  # ─── color/divider/* — 구분선 ─────────────────────────────
+  divider:
+    "color/divider/primary":   "#0000000F"   # ✅ black 6%
+    "color/divider/secondary": "#00000014"   # ✅ black 8%
+    "color/divider/tertiary":  "#0000001F"   # ⚠️ black 12%
+    "color/divider/white":     "#FFFFFF"     # ⚠️
+
+  # ─── color/accent/* — 상태 색상 ───────────────────────────
+  accent:
+    "color/accent/primary":   "#FF364B"   # ⚠️ 오류·취소 (= red-500)
+    "color/accent/secondary": "#589CF6"   # ⚠️ 정보 (= blue-500)
+    "color/accent/tertiary":  "#1CCEA5"   # ⚠️ 성공 (= green-500)
+
+  # ─── color/gradient/* — 그라디언트 ────────────────────
+  gradient:
+    "color/gradient/primary":   ["#804EE2", "#526ED3"]   # ⚠️ 보라 → 청보라
+    "color/gradient/secondary": ["#00BB5A", "#5978EA"]   # ⚠️ 초록 → 파랑
+    "color/gradient/tertiary":  ["#FF364B", "#FF1493"]   # ⚠️ 레드 → 핑크
+    # "gradient/primary":       ""   # ✅ (Button에서 관측 - 값 empty로 노출)
+
+  # ─── color/banner/* — 배너 파스텔 배경 ──────────────────
+  banner:
+    "color/banner/brand":  "#F8F6FE"   # ⚠️ (= purple-50)
+    "color/banner/gray":   "#F8F9FB"   # ⚠️ (= coolgray-50)
+    "color/banner/blue":   "#F0F6FE"   # ⚠️ (= blue-50)
+    "color/banner/green":  "#EFFCF9"   # ⚠️ (= green-50)
+    "color/banner/yellow": "#FFFBDF"   # ✅
+    "color/banner/pink":   "#FFEFF1"   # ⚠️ (= red-50)
+
+  # ═══════════════════════════════════════════════════════════════
+  # 🎨 Palette (원자 토큰 — 50 → 900, 9단계)
+  # ⚠️ Figma variable로 등록 확인 안 됨 (Foundation 문서 페이지에만 기재).
+  # semantic 토큰이 없을 때만 직접 참조하며, 코드에서 palette 이름으로
+  # variable 조회 시 실패할 가능성 있음.
+  # ═══════════════════════════════════════════════════════════════
+  palette:
+    purple:
+      "50":  "#F8F6FE"
+      "100": "#F4F0FD"
+      "200": "#ECE6FC"
+      "300": "#BFADF4"
+      "400": "#997BED"
+      "500": "#805AE9"   # ★ = color/brand/primary
+      "600": "#6648BA"
+      "700": "#523A95"
+      "800": "#33245D"
+      "900": "#1B1138"
+    red:
+      "50":  "#FFEFF1"
+      "100": "#FFE2E5"
+      "200": "#FFCCD1"
+      "300": "#FF9BA5"
+      "400": "#FF5E6F"
+      "500": "#FF364B"   # ★ = color/accent/primary, color/font/error
+      "600": "#CC2B3C"
+      "700": "#99202D"
+      "800": "#59131A"
+      "900": "#330B0F"
+    blue:
+      "50":  "#F0F6FE"
+      "100": "#E6F0FE"
+      "200": "#D5E6FD"
+      "300": "#B9D6FB"
+      "400": "#8ABAF9"
+      "500": "#589CF6"   # ★ = color/accent/secondary
+      "600": "#4F8CDD"
+      "700": "#3965A0"
+      "800": "#233E62"
+      "900": "#121F31"
+    green:
+      "50":  "#EFFCF9"
+      "100": "#DEF8F2"
+      "200": "#C8F3E9"
+      "300": "#A4EBDB"
+      "400": "#77E2C9"
+      "500": "#1CCEA5"   # ★ = color/accent/tertiary, base/green
+      "600": "#159A7C"
+      "700": "#0D634F"
+      "800": "#083E31"
+      "900": "#041F19"
+    yellow:
+      "50":  "#FFFBDF"   # ★ = color/banner/yellow
+      "100": "#FEF9C3"
+      "200": "#FEF08A"
+      "300": "#FDE047"
+      "400": "#FACC15"
+      "500": "#EAB308"
+      "600": "#CA8A04"
+      "700": "#A16207"
+      "800": "#764004"
+      "900": "#462304"
+    gray:
+      "50":  "#F8F8F8"
+      "100": "#F4F4F4"
+      "200": "#EEEEEE"
+      "300": "#DDDDDD"   # ★ = color/neutral/quaternary, color/border/default
+      "400": "#BDBDBD"
+      "500": "#999999"   # ★ = color/neutral/tertiary, color/font/placeholder
+      "600": "#757575"
+      "700": "#666666"   # ★ = color/neutral/secondary, color/font/tertiary
+      "800": "#333333"   # ★ = color/neutral/primary, color/font/secondary
+      "900": "#1C1C1C"
+    coolgray:
+      "50":  "#F8F9FB"   # ★ = color/background/secondary, color/banner/gray
+      "100": "#F0F1F3"
+      "200": "#DADDE0"
+      "300": "#C7CBD0"
+      "400": "#A9AEB5"
+      "500": "#92989D"
+      "600": "#6E7276"
+      "700": "#585B5E"
+      "800": "#333537"
+      "900": "#1D1E1F"
 
 typography:
-  # ──────────────────────────────────────────────────────────────
-  # Typeface stack
-  # 웹·디자인 컨텐츠 전반은 Pretendard 단일 사용
-  # OS 네이티브 폰트 매핑은 참고용 (네이티브 앱 빌드 시점에 적용)
-  # ──────────────────────────────────────────────────────────────
-  fontFamily:
-    primary:   Pretendard                     # 웹·Figma 디자인 기본
-    android:   "Noto Sans KR | Roboto"        # KR | EN/Number
+  # ═══════════════════════════════════════════════════════════════
+  # Figma variable 원본 이름을 key로. 계층별 하위 그루핑.
+  # ═══════════════════════════════════════════════════════════════
+
+  # ─── font/family/* ────────────────────────────────────────
+  family:
+    "font/family/body":    "pretendard"   # ✅ 웹·Figma 기본
+    "font/family/heading": "pretendard"   # ✅
+
+  # OS 네이티브 폰트 매핑 (Figma 변수 아님, 참고용)
+  osNativeFallback:
+    android:   "Noto Sans KR | Roboto"          # KR | EN/Number
     ios:       "Apple SD Gothic Neo | San Francisco"
-  fontWeight:
-    regular: 400
-    bold:    700
 
-  # ──────────────────────────────────────────────────────────────
-  # Size scale (Figma font/size 변수와 1:1 매핑)
-  # lineHeight = px, letterSpacing = px (음수)
-  # ──────────────────────────────────────────────────────────────
-  sizeScale:
-    "display-medium": { size: 32, lineHeight: 40, letterSpacing: -0.64 }   # font/size/display/medium
-    "2xlarge":        { size: 24, lineHeight: 32, letterSpacing: -0.48 }   # font/size/2xlarge
-    "xlarge":         { size: 20, lineHeight: 28, letterSpacing: -0.40 }   # font/size/xlarge
-    "large":          { size: 18, lineHeight: 26, letterSpacing: -0.36 }   # font/size/large
-    "medium":         { size: 15, lineHeight: 24, letterSpacing: -0.30 }   # font/size/medium
-    "small":          { size: 14, lineHeight: 22, letterSpacing: -0.28 }   # font/size/small
-    "xsmall":         { size: 12, lineHeight: 18, letterSpacing: -0.24 }   # font/size/xsmall
-    "2xsmall":        { size: 11, lineHeight: 16, letterSpacing: -0.22 }   # font/size/2xsmall
+  # ─── font/weight/* ────────────────────────────────────────
+  weight:
+    "font/weight/regular": 400   # ✅
+    "font/weight/bold":    700   # ✅
 
-  # ──────────────────────────────────────────────────────────────
-  # Text styles (Figma textStyle → 코드 매핑)
-  # ──────────────────────────────────────────────────────────────
-  display-1-bold:
-    fontFamily: Pretendard
-    fontSize: 40px
-    fontWeight: 700
-  display-2-bold:
-    fontFamily: Pretendard
-    fontSize: 36px
-    fontWeight: 700
-  display-3-bold:
-    fontFamily: Pretendard
-    fontSize: 32px
-    lineHeight: 40px
-    letterSpacing: -0.64
-    fontWeight: 700
-  display-4-bold:
-    fontFamily: Pretendard
-    fontSize: 28px
-    fontWeight: 700
-  heading-1-bold:
-    fontFamily: Pretendard
-    fontSize: 24px
-    lineHeight: 32px
-    letterSpacing: -0.48
-    fontWeight: 700
-  heading-1-regular:
-    fontFamily: Pretendard
-    fontSize: 24px
-    lineHeight: 32px
-    letterSpacing: -0.48
-    fontWeight: 400
-  heading-2-bold:
-    fontFamily: Pretendard
-    fontSize: 20px
-    lineHeight: 28px
-    letterSpacing: -0.40
-    fontWeight: 700
-  heading-2-regular:
-    fontFamily: Pretendard
-    fontSize: 20px
-    lineHeight: 28px
-    letterSpacing: -0.40
-    fontWeight: 400
-  heading-3-bold:
-    fontFamily: Pretendard
-    fontSize: 18px
-    lineHeight: 26px
-    letterSpacing: -0.36
-    fontWeight: 700
-  heading-3-regular:
-    fontFamily: Pretendard
-    fontSize: 18px
-    lineHeight: 26px
-    letterSpacing: -0.36
-    fontWeight: 400
-    # ※ Figma 변수에는 정의됨 — styleKey 미확정, 사용 시 verify 필요
-  body-1-bold:
-    fontFamily: Pretendard
-    fontSize: 15px
-    lineHeight: 24px
-    letterSpacing: -0.30
-    fontWeight: 700
-  body-1-regular:
-    fontFamily: Pretendard
-    fontSize: 15px
-    lineHeight: 24px
-    letterSpacing: -0.30
-    fontWeight: 400
-  body-2-bold:
-    fontFamily: Pretendard
-    fontSize: 14px
-    lineHeight: 22px
-    letterSpacing: -0.28
-    fontWeight: 700
-  body-2-regular:
-    fontFamily: Pretendard
-    fontSize: 14px
-    lineHeight: 22px
-    letterSpacing: -0.28
-    fontWeight: 400
-  body-3-bold:
-    fontFamily: Pretendard
-    fontSize: 12px
-    lineHeight: 18px
-    letterSpacing: -0.24
-    fontWeight: 700
-  body-3-regular:
-    fontFamily: Pretendard
-    fontSize: 12px
-    lineHeight: 18px
-    letterSpacing: -0.24
-    fontWeight: 400
-  body-4-bold:
-    fontFamily: Pretendard
-    fontSize: 11px
-    lineHeight: 16px
-    letterSpacing: -0.22
-    fontWeight: 700
-  body-4-regular:
-    fontFamily: Pretendard
-    fontSize: 11px
-    lineHeight: 16px
-    letterSpacing: -0.22
-    fontWeight: 400
-  button-large:
-    fontFamily: Pretendard
-    fontSize: 15px
-    lineHeight: 24px
-    letterSpacing: -0.30
-    fontWeight: 700
-  button-medium:
-    fontFamily: Pretendard
-    fontSize: 14px
-    lineHeight: 22px
-    letterSpacing: -0.28
-    fontWeight: 700
-  button-small:
-    fontFamily: Pretendard
-    fontSize: 12px
-    lineHeight: 18px
-    letterSpacing: -0.24
-    fontWeight: 700
+  # ─── font/size/* — 사이즈 스케일 ─────────────────────────
+  size:
+    "font/size/2xsmall":         11   # ⚠️
+    "font/size/xsmall":          12   # ✅
+    "font/size/small":           14   # ✅
+    "font/size/medium":          15   # ✅
+    "font/size/large":           18   # ⚠️
+    "font/size/xlarge":          20   # ⚠️
+    "font/size/2xlarge":         24   # ✅
+    "font/size/display/medium":  32   # ⚠️
+
+  # ─── font/lineheight/* ────────────────────────────────────
+  lineheight:
+    "font/lineheight/2xsmall":         16   # ⚠️
+    "font/lineheight/xsmall":          18   # ✅
+    "font/lineheight/small":           22   # ✅
+    "font/lineheight/medium":          24   # ✅
+    "font/lineheight/large":           26   # ⚠️
+    "font/lineheight/xlarge":          28   # ⚠️
+    "font/lineheight/2xlarge":         32   # ✅
+    "font/lineheight/display/medium":  40   # ⚠️
+
+  # ─── font/letterspacing/* (px 단위 음수) ────────────────
+  letterspacing:
+    "font/letterspacing/2xsmall":         -0.22   # ⚠️
+    "font/letterspacing/xsmall":          -0.24   # ✅
+    "font/letterspacing/small":           -0.28   # ✅
+    "font/letterspacing/medium":          -0.30   # ✅
+    "font/letterspacing/large":           -0.36   # ⚠️
+    "font/letterspacing/xlarge":          -0.40   # ⚠️
+    "font/letterspacing/2xlarge":         -0.48   # ✅
+    "font/letterspacing/display/medium":  -0.64   # ⚠️
+  # 규칙: letterSpacing = size × -0.02
+
+  # ─── Text style composite tokens (Figma 조합 스타일) ────
+  # get_variable_defs에서 이 key로 노출됨. 하위 변수 조합값.
+  styles:
+    "heading/1-bold":     { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 700 }   # ✅
+    "heading/1-regular":  { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 400 }   # ⚠️
+    "heading/2-bold":     { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 700 }   # ⚠️
+    "heading/2-regular":  { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 400 }   # ⚠️
+    "heading/3-bold":     { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 700 }   # ⚠️
+    "heading/3-regular":  { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 400 }   # ⚠️
+    "body/1-Bold":        { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
+    "body/1-regular":     { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 400 }   # ✅
+    "body/2-bold":        { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 700 }   # ✅
+    "body/2-Regular":     { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅
+    "body/3-Bold":        { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ✅
+    "body/3-Regular":     { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 400 }   # ✅
+    "body/4-bold":        { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 700 }   # ⚠️
+    "body/4-regular":     { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ⚠️
+    "button/large-bold":  { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
+    "button/medium-bold": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 700 }   # ✅
+    "button/small-bold":  { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ⚠️
+    # ⚠️ heading/*, body/*, button/* 이름은 API 반환값 기준 (대소문자 혼용 그대로 유지 — "body/1-Bold" vs "body/2-bold")
 
 spacing:
-  # ──────────────────────────────────────────────────────────────
-  # Scale tokens — 4·8 배수 기반 + 금융앱 특성상 최소 2dp 허용
-  # 의미: 두 컨텐츠 사이의 gap / padding 단위로 사용
-  # ──────────────────────────────────────────────────────────────
-  none:     0     # spacing-none      — 컨텐츠 간격 없음
-  3xsmall:  2     # spacing-3xsmall   — 매우 좁은 간격
-  2xsmall:  4     # spacing-2xsmall   — 좁은 간격
-  xsmall:   8     # spacing-xsmall    — 일반 간격
-  small:    12    # spacing-small     ★ base — 컨텐츠 구분
-  medium:   16    # spacing-medium    — 컨텐츠/그룹 구분
-  large:    20    # spacing-large     ★ layout margin (변경불가)
-  xlarge:   24    # spacing-xlarge    ★ base — 컨텐츠/본문 여백
-  2xlarge:  32    # spacing-2xlarge   — 넓은 여백
-  3xlarge:  40    # spacing-3xlarge   — 그룹 명확 구분
+  # ═══════════════════════════════════════════════════════════════
+  # Scale tokens — Figma variable 원본 이름 그대로.
+  # kebab-case로 flat 네임스페이스 (color/font/*와 다른 명명 규칙).
+  # ═══════════════════════════════════════════════════════════════
+  scale:
+    "spacing-none":     0    # ✅ 간격 없음
+    "spacing-3xsmall":  2    # ✅ 매우 좁은 간격
+    "spacing-2xsmall":  4    # ✅ 좁은 간격
+    "spacing-xsmall":   8    # ✅ 일반 간격
+    "spacing-small":    12   # ✅ ★ base — 컨텐츠 구분
+    "spacing-medium":   16   # ✅ 컨텐츠/그룹 구분
+    "spacing-large":    20   # ✅ ★ layout margin (변경불가)
+    "spacing-xlarge":   24   # ✅ ★ base — 컨텐츠/본문 여백
+    "spacing-2xlarge":  32   # ✅ 넓은 여백
+    "spacing-3xlarge":  40   # ⚠️ 그룹 명확 구분
 
-  # 디스플레이용 큰 마진 (배너·인트로 등)
-  display-margin-l:  60   # spacing-display-margin-l
-  display-margin-xl: 80   # spacing-display-margin-xl
+    # 디스플레이용 큰 마진 (배너·인트로 등)
+    "spacing-display-margin-l":  60   # ⚠️
+    "spacing-display-margin-xl": 80   # ⚠️
 
-  # ──────────────────────────────────────────────────────────────
-  # Layout aliases — 스케일 토큰을 가리키는 시맨틱 별칭
-  # ──────────────────────────────────────────────────────────────
-  screen-h-padding: 20px    # = spacing-large (변경불가)
-  content-width: 320px      # = 360 - (spacing-large × 2)
-  input-gap: 40px           # = spacing-3xlarge — 텍스트 필드 간 세로 간격
-  list-item-height: 65px    # list/list 컴포넌트 기본 높이
-  card-padding: 24px        # = spacing-xlarge — 정보 박스 내부 패딩
+  # ─── layout/* — 시맨틱 별칭 ──────────────────────────────
+  layout:
+    "layout/margin":     20   # ✅ = spacing-large (화면 좌우 padding)
+    "layout/margin-top": 24   # ✅ = spacing-xlarge (Headline 등 상단)
+
+  # ─── 파생 값 (Figma variable 아님, 계산·관례) ────────────
+  derived:
+    screen-h-padding: 20      # = layout/margin
+    content-width: 320        # = 360 - (layout/margin × 2)
+    input-gap: 40             # 텍스트 필드 간 세로 간격 (2 × spacing-large)
+    list-item-height: 65      # list/list 컴포넌트 기본 높이
+    card-padding: 24          # = spacing-xlarge — 정보 박스 내부 패딩
 
 radius:
-  # ──────────────────────────────────────────────────────────────
-  # Scale tokens — 2·4 배수 기반 + 최대 반원(50%) 허용
-  # ──────────────────────────────────────────────────────────────
-  2xsmall:  4      # radius-2xsmall   — 최소 버튼
-  xsmall:   6      # radius-xsmall    — 입력폼, 본문 내 버튼
-  small:    8      # radius-small     — 페이지 중요 액션 버튼
-  medium:   12     # radius-medium    ★ base — 본문 내 박스형 컨텐츠
-  large:    16     # radius-large     — 팝업
-  xlarge:   24     # radius-xlarge    ★ base — 바텀시트
-  2xlarge:  32     # radius-2xlarge   — ⚠ deprecated, 향후 제거 예정 (홈 상/하단 박스)
-  round:    9999   # radius-round (50%) — 라벨, 라운드 버튼
+  # ═══════════════════════════════════════════════════════════════
+  # Figma에서 radius는 3가지 명명 규칙 병존:
+  #   1. radius-{scale}        — kebab flat  (radius-small)
+  #   2. radius/button/{size}  — slash path  (radius/button/large)
+  #   3. radius/components/*   — slash path  (radius/components/form)
+  #   4. radius-layout-*       — kebab layout (radius-layout-form)
+  # 모두 그대로 유지.
+  # ═══════════════════════════════════════════════════════════════
+  scale:
+    "radius-2xsmall":  4      # ⚠️ 최소 버튼
+    "radius-xsmall":   6      # ⚠️ 입력폼, 본문 내 버튼
+    "radius-small":    8      # ⚠️ 페이지 중요 액션 버튼
+    "radius-medium":   12     # ⚠️ ★ base — 본문 내 박스형 컨텐츠
+    "radius-large":    16     # ⚠️ 팝업
+    "radius-xlarge":   24     # ⚠️ ★ base — 바텀시트
+    "radius-2xlarge":  32     # ⚠️ deprecated (홈 상/하단 박스)
+    "radius-round":    9999   # ⚠️ (50%) — 라벨, 라운드 버튼
 
-  # ──────────────────────────────────────────────────────────────
-  # Button aliases
-  # ──────────────────────────────────────────────────────────────
-  button-large:   8       # → radius-small   — 페이지 컨트롤 중요 액션 버튼
-  button-medium:  6       # → radius-xsmall  — 본문 내 중요 액션 버튼
-  button-small:   4       # → radius-2xsmall — 설명/가이드 액션 버튼
-  button-round:   9999    # → radius-round   — 라운드형 버튼
+  # ─── radius/button/* — 실제 사용 이름 ────────────────────
+  button:
+    "radius/button/large":  8      # ✅ = radius-small
+    "radius/button/medium": 6      # ✅ = radius-xsmall
+    "radius/button/small":  4      # ⚠️ = radius-2xsmall
+    "radius/button/round":  9999   # ✅ = radius-round
+    "radius-button-large":  8      # ✅ (legacy 별칭 - 병행 관측)
 
-  # ──────────────────────────────────────────────────────────────
-  # Layout aliases (Figma 변수 radius-layout-* / radius-* 와 매핑)
-  # ──────────────────────────────────────────────────────────────
-  form:           6       # → radius-xsmall  (radius-layout-form)   — 입력폼
-  contents:       12      # → radius-medium  (radius-layout-contents) — 컨텐츠 박스
-  toast:          12      # → radius-medium  — 토스트 팝업 (Figma 변수명은 `radius-tost`, 오타 주의)
-  popup:          16      # → radius-large   — 팝업/모달
-  bottomsheet:    24      # → radius-xlarge  (radius-layout-bottomsheet) — 바텀시트 상단 코너만
-  label:          9999    # → radius-round   — 라벨/배지 (pill)
+  # ─── radius/components/* — 컴포넌트별 ─────────────────
+  components:
+    "radius/components/form":       6   # ✅ (입력폼)
+    "radius/components/box-button": 8   # ✅ (card-select 등 박스형 버튼)
+    "radius/components/box-info":   8   # ✅ (info-box)
+
+  # ─── radius-layout-* — 레이아웃 별칭 (legacy) ─────────
+  layout:
+    "radius-layout-form": 6         # ✅
+    # "radius-layout-contents":     12
+    # "radius-tost":                12   # ⚠️ Figma 오타 - 실제로는 toast
+    # "radius-layout-popup":        16
+    # "radius-layout-bottomsheet":  24
+    # "radius-layout-label":        9999
+
+opacity:
+  # ═══════════════════════════════════════════════════════════════
+  # opacity/* — 투명도 토큰
+  # ═══════════════════════════════════════════════════════════════
+  "opacity/visible":        100   # ✅ 완전 불투명
+  "opacity/invisible":      0     # ✅ 완전 투명
+  "opacity/disable/button": 40    # ✅ Button/Control disable = Default × 40%
 
 # Figma DS 파일 고정 키 (importComponentByKeyAsync 등에 사용)
 figma:
