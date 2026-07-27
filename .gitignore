@@ -1,0 +1,8 @@
+# Legacy/WIP files not part of the DS package
+DESIGN.md
+DESIGN.no-keys.tmp
+*.tmp
+
+# OS / editor
+.DS_Store
+.claude/
