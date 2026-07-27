@@ -6,11 +6,20 @@ description: >
   Figma DS 파일(Nv4o6ozSx5W4w10uFnQIs5)을 원본 소스로 하며,
   Claude AI 코딩 에이전트가 Figma Plugin API로 화면을 제작할 때 참조합니다.
   토큰 키는 Figma variable 원본 이름을 그대로 사용합니다 (get_variable_defs 반환값과 1:1 매칭).
-verified_against_figma: "부분 검증 - 실 컴포넌트 인스턴스에서 get_variable_defs API 호출 결과와 대조"
+verified_against_figma: "2026-07-27 - 여러 컴포넌트 인스턴스에서 get_variable_defs API로 실증 (button/input/tab/checkbox/actionbar/list/info/tooltip/banner/label)"
 verification_status: |
-  ✅ API 확인됨 (get_variable_defs 결과와 일치) - 아래 항목에 체크로 표시
-  ⚠️ 미확인 - Foundation 문서 페이지(node 296:3042) 기재값만 확인. 실 컴포넌트 사용 여부 미확인
+  ✅ API 확인됨 (get_variable_defs 결과와 일치)
+  ⚠️ 미확인 - Foundation 문서 페이지 기재값만 확인. 실 컴포넌트 노출 미관측
   🎨 Palette - Figma variable로 등록되지 않은 원자 팔레트 (문서용)
+figma_naming_notes: |
+  Figma variable 명명 규칙이 시대별로 혼재. 원본 그대로 유지 (수정 시 매칭 실패):
+  1. slash 계층:    color/font/primary, radius/button/large
+  2. kebab flat:     spacing-medium, radius-small, radius-button-large
+  3. legacy 별칭:    base/gray-300, color/gray-tertiary, color/brand-secondary
+  4. raw:            333, 000, Primary/BG_01, BG_02, UI_Error
+  5. 오타 (원본):    color/button/quarternary (quaternary), color/border/primay (primary),
+                    radius-tost (toast), opecity/--제거/--black-65 (opacity + "제거" 접두어),
+                    Subcolor/redFF364D (실 값은 FF364B)
 
 colors:
   # ═══════════════════════════════════════════════════════════════
@@ -28,8 +37,21 @@ colors:
   base:
     "color/black":     "#000000"   # ⚠️
     "color/white":     "#FFFFFF"   # ⚠️
-    "base/green":      "#1CCEA5"   # ✅ (Actionbar에서 관측 - 로고 accent)
-    "base/bg_brand":   "#F4F0FD"   # ✅ (Banner에서 관측 - 브랜드 옅은 배경)
+    "black":           "#000000"   # ✅ (raw alias)
+    "white":           "#FFFFFF"   # ✅ (raw alias)
+    "brand":           "#805AE9"   # ✅ (raw alias)
+    "color/base/brand-primary": "#805AE9"   # ✅ (관측)
+    "color/brand-secondary":    "#F4F0FD"   # ✅ (dash 명명 - slash "color/brand/secondary"와 병행)
+    "base/green":      "#1CCEA5"   # ✅ 로고 accent 등
+    "base/bg_brand":   "#F4F0FD"   # ✅ Banner에서 관측 - 브랜드 옅은 배경
+    "base/bg_02":      "#F8F9FB"   # ✅ background/secondary alias
+    "base/gray-300":   "#DDDDDD"   # ✅
+    "base/gray-700":   "#666666"   # ✅
+    "base/gray-800":   "#333333"   # ✅
+    "color/gray-tertiary":   "#999999"   # ✅ (관측 - legacy 명명)
+    "color/gray-quaternary": "#DDDDDD"   # ✅ (관측 - legacy 명명)
+    # ⚠️ 아래는 정리(제거) 예정일 가능성 - Figma에 "제거" 접두어 관측
+    # "opecity/--제거/--black-65": "#000000A6"   # ⚠️ opecity 오타 + 제거 대상
 
   # ─── color/font/* — 텍스트 색 ─────────────────────────────
   font:
@@ -52,13 +74,27 @@ colors:
   # ─── color/background/* — 배경 ────────────────────────────
   background:
     "color/background/primary":      "#FFFFFF"   # ✅ 기본 화면
-    "color/background/secondary":    "#F8F9FB"   # ⚠️ 회색 카드 배경 (= coolgray-50)
+    "color/background/secondary":    "#F8F9FB"   # ✅ 회색 카드 배경 (= coolgray-50)
     "color/background/tertiary":     "#F8F6FE"   # ⚠️ 브랜드 약 배경 (= purple-50)
     "color/background/button-brand": "#805AE9"   # ✅ 채움 CTA 배경
+    "color/background/brand":        "#805AE9"   # ✅ Bubble tooltip Brand type
+    "color/background/dimed":        "#000000A3"   # ✅ Popup dim overlay (~64%)
 
   # ─── color/surface/* — 신규 명명 규칙 (관측됨) ────────────
   surface:
     "color-surface-background-banner-brand": "#F8F6FE"   # ✅ (신규 명명 - 병행 존재 확인)
+
+  # ─── 관측된 legacy raw 이름 (숫자·화면상 그대로) ──────────
+  legacyRaw:
+    "000":         "#000000"   # ✅ (관측 - deprecated 사용 지양)
+    "333":         "#333333"   # ✅
+    "666":         "#666666"   # ✅
+    "Primary/000": "#000000"   # ✅
+    "Primary/BG_01": "#FFFFFF" # ✅
+    "BG_02":       "#F6F6FA"   # ✅ (⚠️ color/background/secondary #F8F9FB와 다른 값 — legacy alt)
+    "Line_02":     "#EEEEEE"   # ✅
+    "UI_Error":    "#FF364B"   # ✅
+    "Subcolor/redFF364D": "#FF364B"   # ✅ (⚠️ 이름에 hex FF364D 오기재 - 실 값은 FF364B)
 
   # ─── color/button/* — 버튼 색조 별칭 ─────────────────────
   button:
@@ -71,18 +107,22 @@ colors:
   border:
     "color/border/default": "#DDDDDD"   # ✅ Input·Select 기본 테두리
     "color/border/focus":   "#805AE9"   # ✅ Focus·Active·Selected 테두리
-    # "color/border/error": "#FF364B"   # 렌더링상 존재하나 아직 API 미확인
+    "color/border/brand":   "#805AE9"   # ✅ Bubble tooltip Brand type border
+    "color/border/primay":  "#0000000F" # ✅ ⚠️ Figma 오타 "primay" (primary 아님) — 값은 divider/primary와 동일
+    # "color/border/error": "#FF364B"   # Error 상태에서 사용 관측되지만 API 노출 미확인
 
   # ─── color/icon/* — 아이콘 색조 ──────────────────────────
   icon:
-    "color/icon/secondary":  "#333333"   # ✅ 기본 아이콘
-    "color/icon/quaternary": "#999999"   # ✅ 비활성·힌트
-    "color/icon/quinary":    "#DDDDDD"   # ✅ 매우 옅은 아이콘 (clear 원형 배경 등)
-    "color/icon/brand":      "#805AE9"   # ✅ 브랜드 아이콘
-    "color/icon/white":      "#FFFFFF"   # ✅ 채움 배경 위 흰 아이콘
-    "color/icon/accent-red": "#FF364B"   # ✅ 오류 아이콘
-    # "color/icon/primary":  "#000000"   # 문서 기재값. API 미확인
-    # "color/icon/tertiary": "#666666"   # 문서 기재값. API 미확인
+    "color/icon/secondary":    "#333333"   # ✅ 기본 아이콘
+    "color/icon/tertiary":     "#666666"   # ✅ 서브 아이콘
+    "color/icon/quaternary":   "#999999"   # ✅ 비활성·힌트
+    "color/icon/quinary":      "#DDDDDD"   # ✅ 매우 옅은 아이콘 (clear 원형 배경 등)
+    "color/icon/brand":        "#805AE9"   # ✅ 브랜드 아이콘
+    "color/icon/white":        "#FFFFFF"   # ✅ 채움 배경 위 흰 아이콘
+    "color/icon/accent-red":   "#FF364B"   # ✅ 오류 아이콘
+    "color/icon/accent-green": "#1CCEA5"   # ✅ 성공 아이콘
+    "color/icon/accent-blue":  "#589CF6"   # ✅ 정보 아이콘
+    # "color/icon/primary":  "#000000"   # 문서 기재값. API 노출 미확인
 
   # ─── color/divider/* — 구분선 ─────────────────────────────
   divider:
@@ -92,10 +132,18 @@ colors:
     "color/divider/white":     "#FFFFFF"     # ⚠️
 
   # ─── color/accent/* — 상태 색상 ───────────────────────────
+  # ⚠️ 주의: accent 계열은 실 컴포넌트에서 color/icon/accent-red|green|blue로 관측됨.
+  # color/accent/* 이름 그대로는 API 노출 미확인 (Foundation 페이지 기재만).
   accent:
-    "color/accent/primary":   "#FF364B"   # ⚠️ 오류·취소 (= red-500)
-    "color/accent/secondary": "#589CF6"   # ⚠️ 정보 (= blue-500)
-    "color/accent/tertiary":  "#1CCEA5"   # ⚠️ 성공 (= green-500)
+    "color/accent/primary":   "#FF364B"   # ⚠️ 오류·취소 (= red-500) — 실사용은 color/icon/accent-red
+    "color/accent/secondary": "#589CF6"   # ⚠️ 정보 (= blue-500) — 실사용은 color/icon/accent-blue
+    "color/accent/tertiary":  "#1CCEA5"   # ⚠️ 성공 (= green-500) — 실사용은 color/icon/accent-green
+
+  # ─── color/label/* — 라벨 색상 (관측됨) ─────────────────
+  label:
+    "color/label/white":            "#FFFFFF"   # ✅
+    "color/label/neutral-tertiary": "#999999"   # ✅
+    "color/label/neutral-secondary": "#666666"  # ✅
 
   # ─── color/gradient/* — 그라디언트 ────────────────────
   gradient:
@@ -220,34 +268,34 @@ typography:
 
   # ─── font/size/* — 사이즈 스케일 ─────────────────────────
   size:
-    "font/size/2xsmall":         11   # ⚠️
+    "font/size/2xsmall":         11   # ✅
     "font/size/xsmall":          12   # ✅
     "font/size/small":           14   # ✅
     "font/size/medium":          15   # ✅
-    "font/size/large":           18   # ⚠️
-    "font/size/xlarge":          20   # ⚠️
+    "font/size/large":           18   # ✅
+    "font/size/xlarge":          20   # ✅
     "font/size/2xlarge":         24   # ✅
-    "font/size/display/medium":  32   # ⚠️
+    "font/size/display/medium":  32   # ⚠️ 문서 기재만
 
   # ─── font/lineheight/* ────────────────────────────────────
   lineheight:
-    "font/lineheight/2xsmall":         16   # ⚠️
+    "font/lineheight/2xsmall":         16   # ✅
     "font/lineheight/xsmall":          18   # ✅
     "font/lineheight/small":           22   # ✅
     "font/lineheight/medium":          24   # ✅
-    "font/lineheight/large":           26   # ⚠️
-    "font/lineheight/xlarge":          28   # ⚠️
+    "font/lineheight/large":           26   # ✅
+    "font/lineheight/xlarge":          28   # ✅
     "font/lineheight/2xlarge":         32   # ✅
     "font/lineheight/display/medium":  40   # ⚠️
 
   # ─── font/letterspacing/* (px 단위 음수) ────────────────
   letterspacing:
-    "font/letterspacing/2xsmall":         -0.22   # ⚠️
+    "font/letterspacing/2xsmall":         -0.22   # ✅
     "font/letterspacing/xsmall":          -0.24   # ✅
     "font/letterspacing/small":           -0.28   # ✅
     "font/letterspacing/medium":          -0.30   # ✅
-    "font/letterspacing/large":           -0.36   # ⚠️
-    "font/letterspacing/xlarge":          -0.40   # ⚠️
+    "font/letterspacing/large":           -0.36   # ✅
+    "font/letterspacing/xlarge":          -0.40   # ✅
     "font/letterspacing/2xlarge":         -0.48   # ✅
     "font/letterspacing/display/medium":  -0.64   # ⚠️
   # 규칙: letterSpacing = size × -0.02
@@ -257,9 +305,9 @@ typography:
   styles:
     "heading/1-bold":     { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 700 }   # ✅
     "heading/1-regular":  { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 400 }   # ⚠️
-    "heading/2-bold":     { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 700 }   # ⚠️
+    "heading/2-bold":     { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 700 }   # ✅
     "heading/2-regular":  { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 400 }   # ⚠️
-    "heading/3-bold":     { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 700 }   # ⚠️
+    "heading/3-bold":     { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 700 }   # ✅
     "heading/3-regular":  { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 400 }   # ⚠️
     "body/1-Bold":        { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
     "body/1-regular":     { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 400 }   # ✅
@@ -267,12 +315,15 @@ typography:
     "body/2-Regular":     { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅
     "body/3-Bold":        { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ✅
     "body/3-Regular":     { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 400 }   # ✅
-    "body/4-bold":        { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 700 }   # ⚠️
+    "body/4-Bold":        { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 700 }   # ✅ (capital B 관측)
     "body/4-regular":     { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ⚠️
     "button/large-bold":  { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
     "button/medium-bold": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 700 }   # ✅
+    "button/medium-regular": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅
     "button/small-bold":  { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ⚠️
-    # ⚠️ heading/*, body/*, button/* 이름은 API 반환값 기준 (대소문자 혼용 그대로 유지 — "body/1-Bold" vs "body/2-bold")
+    # ⚠️ heading/*, body/*, button/* 이름은 API 반환값 기준 (대소문자 혼용 그대로 유지)
+    #    "body/1-Bold" "body/3-Bold" "body/4-Bold" = capital B / "body/2-bold" = lowercase b
+    #    "body/1-regular" "body/2-Regular" "body/3-Regular" = capital/lowercase R 혼용
 
 spacing:
   # ═══════════════════════════════════════════════════════════════
@@ -318,6 +369,7 @@ radius:
   # 모두 그대로 유지.
   # ═══════════════════════════════════════════════════════════════
   scale:
+    "radius-none":     0      # ✅ 라운드 없음
     "radius-2xsmall":  4      # ⚠️ 최소 버튼
     "radius-xsmall":   6      # ⚠️ 입력폼, 본문 내 버튼
     "radius-small":    8      # ⚠️ 페이지 중요 액션 버튼
@@ -325,30 +377,32 @@ radius:
     "radius-large":    16     # ⚠️ 팝업
     "radius-xlarge":   24     # ⚠️ ★ base — 바텀시트
     "radius-2xlarge":  32     # ⚠️ deprecated (홈 상/하단 박스)
-    "radius-round":    9999   # ⚠️ (50%) — 라벨, 라운드 버튼
+    "radius-round":    9999   # ✅ (50%) — 라벨, 라운드 버튼
 
   # ─── radius/button/* — 실제 사용 이름 ────────────────────
   button:
     "radius/button/large":  8      # ✅ = radius-small
     "radius/button/medium": 6      # ✅ = radius-xsmall
-    "radius/button/small":  4      # ⚠️ = radius-2xsmall
+    "radius-button-small":  4      # ✅ = radius-2xsmall (legacy 명명 관측)
     "radius/button/round":  9999   # ✅ = radius-round
     "radius-button-large":  8      # ✅ (legacy 별칭 - 병행 관측)
 
   # ─── radius/components/* — 컴포넌트별 ─────────────────
   components:
-    "radius/components/form":       6   # ✅ (입력폼)
-    "radius/components/box-button": 8   # ✅ (card-select 등 박스형 버튼)
-    "radius/components/box-info":   8   # ✅ (info-box)
+    "radius/components/form":         6    # ✅ (입력폼)
+    "radius/components/box-button":   8    # ✅ (card-select 등 박스형 버튼)
+    "radius/components/box-info":     8    # ✅ (info-box, tooltip 등)
+    "radius/components/box-contents": 12   # ✅ (컨텐츠 박스)
+    "radius/components/bottomsheet":  24   # ✅ (바텀시트 상단 코너)
 
   # ─── radius-layout-* — 레이아웃 별칭 (legacy) ─────────
   layout:
-    "radius-layout-form": 6         # ✅
-    # "radius-layout-contents":     12
-    # "radius-tost":                12   # ⚠️ Figma 오타 - 실제로는 toast
-    # "radius-layout-popup":        16
-    # "radius-layout-bottomsheet":  24
-    # "radius-layout-label":        9999
+    "radius-layout-form":     6      # ✅
+    "radius-layout-contents": 12     # ✅
+    "radius-layout-label":    9999   # ✅
+    # "radius-tost":                12   # ⚠️ Figma 오타 - 실제로는 toast (API 관측 미확인)
+    # "radius-layout-popup":        16   # 문서 기재만
+    # "radius-layout-bottomsheet":  24   # 문서 기재만 (실사용은 radius/components/bottomsheet)
 
 opacity:
   # ═══════════════════════════════════════════════════════════════
@@ -415,77 +469,160 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 화면 제작 시에는 반드시 **의미 기반 토큰을 우선**하고, 원자 토큰은 의미 토큰이 없는 경우에만 직접 참조합니다.
 
 > 출처: Figma DS `Nv4o6ozSx5W4w10uFnQIs5` / Color Guide (node 296:3042)
-> 변수 네이밍 노트 — Figma 원본의 변수명 일부는 오타가 있습니다 (`sencondary`). 코드에서는 `secondary`로 표기하되, Plugin API로 변수 참조 시 원본명을 사용해야 합니다.
+> **토큰 이름은 Figma variable 원본 그대로** 표기합니다 (예: `color/font/tertiary`). `get_variable_defs` 반환값과 1:1 매칭.
+> **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary), `radius-tost` (실제 toast) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
 
-### 1) Brand
+### 1) Brand — `color/brand/*`
 
 | 토큰 | Hex | Palette | 용도 |
 |------|-----|---------|------|
-| `brand/primary` | `#805AE9` | purple-500 | 유일한 액션 컬러 — CTA, 강조, 링크 |
-| `brand/secondary` | `#F4F0FD` | purple-100 | 브랜드 배지/태그 배경 |
-| `brand/tertiary` | `#F8F6FE` | purple-50 | 브랜드 약 배경, 카드 배경 |
+| `color/brand/primary` | `#805AE9` | purple-500 | 유일한 액션 컬러 — CTA, 강조, 링크 |
+| `color/brand/secondary` | `#F4F0FD` | purple-100 | 브랜드 배지/태그 배경 |
+| `color/brand/tertiary` | `#F8F6FE` | purple-50 | 브랜드 약 배경, 카드 배경 |
 
-### 2) Black & White / Font
+### 2) Base & Font — `color/black`, `color/white`, `color/font/*`
 
 | 토큰 | Hex | 용도 |
 |------|-----|------|
-| `black` | `#000000` | 최상위 컨트라스트가 필요한 경우 |
-| `white` | `#FFFFFF` | 기본 화면/카드 배경 |
-| `font/primary` | `#000000` | 본문/타이틀 기본 텍스트 |
-| `font/secondary` | `#333333` | 서브 텍스트, 캡션 |
+| `color/black` | `#000000` | 최상위 컨트라스트 |
+| `color/white` | `#FFFFFF` | 기본 화면/카드 배경 |
+| `color/font/primary` | `#000000` | 본문/타이틀 기본 텍스트 |
+| `color/font/secondary` | `#333333` | 서브 텍스트, 캡션 |
+| `color/font/tertiary` | `#666666` | 부가·설명 텍스트 |
+| `color/font/quaternary` | `#999999` | 힌트·비활성 라벨 |
+| `color/font/placeholder` | `#999999` | Input placeholder (quaternary와 값 동일) |
+| `color/font/brand` | `#805AE9` | 브랜드 강조 텍스트 |
+| `color/font/error` | `#FF364B` | 오류 문구 |
+| `color/font/white` | `#FFFFFF` | 채움 CTA 위 흰 텍스트 |
+| `base/green` | `#1CCEA5` | (관측) 로고 accent 등 |
+| `base/bg_brand` | `#F4F0FD` | (관측) 배너 브랜드 옅은 배경 |
 
-### 3) Neutral (텍스트·아이콘 위계)
+### 3) Neutral (텍스트·아이콘 위계) — `color/neutral/*`
 
 | 토큰 | Hex | Palette | 위계 |
 |------|-----|---------|------|
-| `neutral/primary` | `#333333` | gray-800 | 1차 — 본문 텍스트 |
-| `neutral/secondary` | `#666666` | gray-700 | 2차 — 보조 텍스트 |
-| `neutral/tertiary` | `#999999` | gray-500 | 3차 — 플레이스홀더, 비활성 |
-| `neutral/quaternary` | `#DDDDDD` | gray-300 | 4차 — 비활성 배경, 약구분 |
+| `color/neutral/primary` | `#333333` | gray-800 | 1차 — 본문 텍스트 |
+| `color/neutral/secondary` | `#666666` | gray-700 | 2차 — 보조 텍스트 |
+| `color/neutral/tertiary` | `#999999` | gray-500 | 3차 — 플레이스홀더, 비활성 |
+| `color/neutral/quaternary` | `#DDDDDD` | gray-300 | 4차 — 비활성 배경, 약구분 |
 
-### 4) Background / Surfaces
+### 4) Background / Surfaces — `color/background/*`
 
 | 토큰 | Hex | Palette | 용도 |
 |------|-----|---------|------|
-| `background/primary` | `#FFFFFF` | white | 기본 화면 — 대부분의 페이지 |
-| `background/secondary` | `#F8F9FB` | coolgray-50 | 섹션 분리, 카드 그룹 배경 |
-| `background/tertiary` | `#F8F6FE` | purple-50 | 브랜드 영역 약배경 |
+| `color/background/primary` | `#FFFFFF` | white | 기본 화면 |
+| `color/background/secondary` | `#F8F9FB` | coolgray-50 | 섹션 분리, 카드 그룹 배경 |
+| `color/background/tertiary` | `#F8F6FE` | purple-50 | 브랜드 영역 약배경 |
+| `color/background/button-brand` | `#805AE9` | purple-500 | 채움 CTA 배경 |
+| `color/background/brand` | `#805AE9` | purple-500 | Bubble tooltip Brand type |
+| `color/background/dimed` | `#000000A3` | — | Popup 배경 dim overlay (~64%) |
+| `color-surface-background-banner-brand` | `#F8F6FE` | purple-50 | (신규 명명 - 병행 존재) |
 
-### 5) Line & Divider
+### 5) Button 색조 별칭 — `color/button/*`
+
+| 토큰 | Hex | 용도 |
+|------|-----|------|
+| `color/button/secondary` | `#F4F0FD` | Brand_Light 채움 |
+| `color/button/tertiary` | `#DDDDDD` | Gray_Line 아웃라인 |
+| `color/button/quarternary` | `#999999` | ⚠️ 오타 그대로 (quaternary 아님) — 비활성 텍스트 |
+| `color/button/white` | `#FFFFFF` | 흰 채움 |
+
+### 6) Border — `color/border/*`
+
+| 토큰 | Hex | 용도 |
+|------|-----|------|
+| `color/border/default` | `#DDDDDD` | Input·Select 기본 테두리 |
+| `color/border/focus` | `#805AE9` | Focus·Active·Selected 테두리 |
+| `color/border/brand` | `#805AE9` | Bubble tooltip Brand type border |
+| `color/border/primay` | `#0000000F` | ⚠️ **Figma 오타 "primay"** (primary 아님, 값은 divider/primary와 동일) |
+
+### 7) Icon — `color/icon/*`
+
+| 토큰 | Hex | 용도 |
+|------|-----|------|
+| `color/icon/secondary` | `#333333` | 기본 아이콘 |
+| `color/icon/tertiary` | `#666666` | 서브 아이콘 |
+| `color/icon/quaternary` | `#999999` | 비활성·힌트 |
+| `color/icon/quinary` | `#DDDDDD` | 매우 옅은 아이콘 (clear 원형 배경 등) |
+| `color/icon/brand` | `#805AE9` | 브랜드 아이콘 |
+| `color/icon/white` | `#FFFFFF` | 채움 배경 위 흰 아이콘 |
+| `color/icon/accent-red` | `#FF364B` | 오류 아이콘 |
+| `color/icon/accent-green` | `#1CCEA5` | 성공 아이콘 |
+| `color/icon/accent-blue` | `#589CF6` | 정보 아이콘 |
+
+### 8) Line & Divider — `color/divider/*`
 
 | 토큰 | Value | 비고 |
 |------|-------|------|
-| `divider/primary` | `#000000` 6% (`#0000000F`) | 기본 구분선 — 리스트, 카드 |
-| `divider/secondary` | `#000000` 8% (`#00000014`) | 약간 진한 구분선 |
-| `divider/tertiary` | `#000000` 12% (`#0000001F`) | 강조 구분선, 입력 필드 |
-| `divider/white` | `#FFFFFF` | 다크/컬러 배경 위 구분선 |
+| `color/divider/primary` | `#000000` 6% (`#0000000F`) | 기본 구분선 — 리스트, 카드 |
+| `color/divider/secondary` | `#000000` 8% (`#00000014`) | 약간 진한 구분선 |
+| `color/divider/tertiary` | `#000000` 12% (`#0000001F`) | 강조 구분선, 입력 필드 |
+| `color/divider/white` | `#FFFFFF` | 다크/컬러 배경 위 구분선 |
 
-### 6) Accent (상태)
+### 9) Accent (상태) — `color/accent/*`
 
-| 토큰 | Hex | Palette | 의미 |
-|------|-----|---------|------|
-| `accent/primary` | `#FF364B` | red-500 | 오류, 취소, 경고 |
-| `accent/secondary` | `#589CF6` | blue-500 | 정보 |
-| `accent/tertiary` | `#1CCEA5` | green-500 | 성공, 완료 |
+⚠️ **주의**: `color/accent/*` 이름 그대로는 API 노출 미확인 (문서 페이지 기재만). 실 컴포넌트에서는 아래 표의 대체 토큰 사용.
 
-### 7) Gradient
+| 문서 토큰 | Hex | Palette | 의미 | 실사용 대체 (API 확인) |
+|------|-----|---------|------|------------------------|
+| `color/accent/primary` | `#FF364B` | red-500 | 오류, 취소, 경고 | `color/icon/accent-red`, `color/font/error`, `UI_Error` |
+| `color/accent/secondary` | `#589CF6` | blue-500 | 정보 | `color/icon/accent-blue` |
+| `color/accent/tertiary` | `#1CCEA5` | green-500 | 성공, 완료 | `color/icon/accent-green`, `base/green` |
+
+### 9-1) Label — `color/label/*`
+
+| 토큰 | Hex | 용도 |
+|------|-----|------|
+| `color/label/white` | `#FFFFFF` | Fill Label 위 흰 텍스트 |
+| `color/label/neutral-secondary` | `#666666` | Neutral 라벨 텍스트 |
+| `color/label/neutral-tertiary` | `#999999` | 옅은 라벨 텍스트 |
+
+### 10) Gradient — `color/gradient/*`
 
 | 토큰 | Start → End | 용도 |
 |------|-------------|------|
-| `gradient/primary` | `#804EE2` → `#526ED3` | 브랜드 강조 배너, 프리미엄 카드 |
-| `gradient/secondary` | `#00BB5A` → `#5978EA` | 보조 강조 |
-| `gradient/tertiary` | `#FF364B` → `#FF1493` | 이벤트, 프로모션 |
+| `color/gradient/primary` | `#804EE2` → `#526ED3` | 브랜드 강조 배너, 프리미엄 카드 |
+| `color/gradient/secondary` | `#00BB5A` → `#5978EA` | 보조 강조 |
+| `color/gradient/tertiary` | `#FF364B` → `#FF1493` | 이벤트, 프로모션 |
 
-### 8) Background / Banner (정보 배너 약배경)
+### 11) Banner (정보 배너 약배경) — `color/banner/*`
 
 | 토큰 | Hex | Palette |
 |------|-----|---------|
-| `banner/brand` | `#F8F6FE` | purple-50 |
-| `banner/gray` | `#F8F9FB` | coolgray-50 |
-| `banner/blue` | `#F0F6FE` | blue-50 |
-| `banner/green` | `#EFFCF9` | green-50 |
-| `banner/yellow` | `#FFFBDF` | yellow-50 |
-| `banner/pink` | `#FFEFF1` | red-50 |
+| `color/banner/brand` | `#F8F6FE` | purple-50 |
+| `color/banner/gray` | `#F8F9FB` | coolgray-50 |
+| `color/banner/blue` | `#F0F6FE` | blue-50 |
+| `color/banner/green` | `#EFFCF9` | green-50 |
+| `color/banner/yellow` | `#FFFBDF` | yellow-50 |
+| `color/banner/pink` | `#FFEFF1` | red-50 |
+
+### 12) Legacy / Alternate 이름 (관측됨)
+
+Figma 파일에는 시대별로 병행 사용되는 **legacy 이름**과 **raw 이름**이 남아있습니다. 신규 코드는 상단 `color/font/*`, `color/background/*`, `color/border/*` 등 정식 이름을 우선 사용하되, 컴포넌트 API 조회 시 아래 이름이 반환될 수 있음을 인지합니다.
+
+| Legacy 이름 | Hex | 정식 대체 (권장) |
+|---|---|---|
+| `black` | `#000000` | `color/black`, `color/font/primary` |
+| `white` | `#FFFFFF` | `color/white`, `color/background/primary` |
+| `brand` | `#805AE9` | `color/brand/primary` |
+| `color/base/brand-primary` | `#805AE9` | `color/brand/primary` |
+| `color/brand-secondary` | `#F4F0FD` | `color/brand/secondary` (dash 사용은 legacy) |
+| `base/bg_brand` | `#F4F0FD` | `color/brand/secondary` |
+| `base/bg_02` | `#F8F9FB` | `color/background/secondary` |
+| `base/gray-300` | `#DDDDDD` | `color/neutral/quaternary` |
+| `base/gray-700` | `#666666` | `color/neutral/secondary` |
+| `base/gray-800` | `#333333` | `color/neutral/primary` |
+| `color/gray-tertiary` | `#999999` | `color/neutral/tertiary` |
+| `color/gray-quaternary` | `#DDDDDD` | `color/neutral/quaternary` |
+| `000`, `Primary/000` | `#000000` | `color/font/primary` |
+| `333` | `#333333` | `color/font/secondary` |
+| `666` | `#666666` | `color/font/tertiary` |
+| `Primary/BG_01` | `#FFFFFF` | `color/background/primary` |
+| `BG_02` | `#F6F6FA` | ⚠️ `color/background/secondary`(#F8F9FB)와 다른 값 — 별개 legacy 자산 |
+| `Line_02` | `#EEEEEE` | (아이콘 페이지 구분선 등 legacy) |
+| `UI_Error` | `#FF364B` | `color/font/error` |
+| `Subcolor/redFF364D` | `#FF364B` | ⚠️ 이름에 `FF364D` 오기재 — 실 값은 `FF364B` |
+| `opecity/--제거/--black-65` | `#000000A6` | ⚠️ `opecity` 오타 + "제거" 접두어 → 사용 지양 (제거 예정) |
 
 ---
 
@@ -540,13 +677,14 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 ### 사용 규칙
 
-- **`brand/primary` (`#805AE9`)** 는 CTA 버튼과 핵심 강조에만 사용 — 배경 전체에 깔거나 본문 텍스트에 사용 금지
-- **`accent/primary` (red-500)** 는 "구매 취소", 오류 메시지 등 상태 표시 전용 — 장식 목적 사용 금지
-- 텍스트/아이콘 위계는 **반드시 `neutral/*` semantic 토큰**으로 — 직접 `gray-*` 참조 지양
-- 배경은 `background/primary` (white)가 기본, 섹션 분리 시 `background/secondary` (coolgray-50)
-- 정보 배너 배경은 `banner/*` 토큰 사용 — 패밀리 50 단계를 직접 참조하지 말 것
-- 구분선은 모두 **black + alpha** (`divider/*`) 사용 — solid gray 직접 사용 금지
+- **`color/brand/primary` (`#805AE9`)** 는 CTA 버튼과 핵심 강조에만 사용 — 배경 전체에 깔거나 본문 텍스트에 사용 금지
+- **`color/accent/primary` (red-500)** 는 "구매 취소", 오류 메시지 등 상태 표시 전용 — 장식 목적 사용 금지
+- 텍스트/아이콘 위계는 **반드시 `color/neutral/*` 또는 `color/font/*` semantic 토큰**으로 — 직접 palette gray-\* 참조 지양
+- 배경은 `color/background/primary` (white)가 기본, 섹션 분리 시 `color/background/secondary` (coolgray-50)
+- 정보 배너 배경은 `color/banner/*` 토큰 사용 — 패밀리 50 단계를 직접 참조하지 말 것
+- 구분선은 모두 **black + alpha** (`color/divider/*`) 사용 — solid gray 직접 사용 금지
 - 컬러 변수는 **임의로 추가·변경할 수 없습니다** (DS 공통 자산)
+- **Plugin API에서 variable 참조 시 반드시 원본 이름** (예: `figma.variables.getVariableByIdAsync` 또는 `getBoundVariablesAsync` 반환값의 slash 형태 이름)을 그대로 사용
 
 ---
 
@@ -604,8 +742,8 @@ letterSpacing은 px 단위 음수(track-tight).
 | `body/2-Regular` | 14 / 22 / -0.28 | Regular | 보조 정보 |
 | `body/3-Bold` | 12 / 18 / -0.24 | Bold | 배지, 캡션 강조 |
 | `body/3-Regular` | 12 / 18 / -0.24 | Regular | 캡션, 날짜 |
-| `body/4-Bold` | 11 / 16 / -0.22 | Bold | 최소 크기 강조 |
-| `body/4-Regular` | 11 / 16 / -0.22 | Regular | 최소 크기 (법적 고지 등) |
+| `body/4-bold` | 11 / 16 / -0.22 | Bold | 최소 크기 강조 |
+| `body/4-regular` | 11 / 16 / -0.22 | Regular | 최소 크기 (법적 고지 등) |
 | `button/large-bold` | 15 / 24 / -0.30 | Bold | 대형 버튼 (height 56) |
 | `button/medium-bold` | 14 / 22 / -0.28 | Bold | 중형 버튼 (height 44) |
 | `button/small-bold` | 12 / 18 / -0.24 | Bold | 소형 버튼 (height 32) |
@@ -690,25 +828,29 @@ letterSpacing은 px 단위 음수(track-tight).
 | ~~`radius-2xlarge`~~ | ~~32~~ | ⚠ **deprecated** — 홈 상/하단 박스 (향후 제거 예정) |
 | `radius-round` | 50% | 라벨, 라운드 버튼 |
 
-### Button Aliases
+### Button Aliases — `radius/button/*`
 
-| 토큰 | Reference | 값 (px) | 용도 |
+| 토큰 (Figma 원본) | Reference | 값 (px) | 용도 |
 |------|-----------|--------:|------|
-| `radius-button-large` | `radius-small` | 8 | 페이지 컨트롤 중요 액션 버튼 |
-| `radius-button-medium` | `radius-xsmall` | 6 | 본문 내 중요 액션 버튼 |
-| `radius-button-small` | `radius-2xsmall` | 4 | 설명·가이드에 따른 액션 버튼 |
-| `radius-button-round` | `radius-round` | 50% | 라운드형 버튼 |
+| `radius/button/large` | = `radius-small` | 8 | 페이지 컨트롤 중요 액션 버튼 |
+| `radius/button/medium` | = `radius-xsmall` | 6 | 본문 내 중요 액션 버튼 |
+| `radius/button/small` | = `radius-2xsmall` | 4 | 설명·가이드에 따른 액션 버튼 |
+| `radius/button/round` | = `radius-round` | 50% | 라운드형 버튼 |
+| `radius-button-large` | = `radius-small` | 8 | ⚠️ Legacy 별칭 (병행 관측 — 신규 코드는 `radius/button/large` 사용) |
 
-### Layout Aliases
+### Components & Layout Aliases — `radius/components/*`, `radius-layout-*`
 
-| 토큰 | Reference | 값 (px) | 용도 |
+| 토큰 (Figma 원본) | Reference | 값 (px) | 용도 |
 |------|-----------|--------:|------|
-| `radius-form` | `radius-xsmall` | 6 | 입력폼 |
-| `radius-contents` | `radius-medium` | 12 | 컨텐츠 박스 |
-| `radius-toast` | `radius-medium` | 12 | 토스트 팝업 (※ Figma 변수명은 `radius-tost` — 오타) |
-| `radius-popup` | `radius-large` | 16 | 팝업/모달 |
-| `radius-bottomsheet` | `radius-xlarge` | 24 | 바텀시트 (상단 코너만) |
-| `radius-label` | `radius-round` | 50% | 라벨/배지 (pill) |
+| `radius/components/form` | = `radius-xsmall` | 6 | 입력폼 (Input·Select·Search·Selectbox) |
+| `radius/components/box-button` | = `radius-small` | 8 | 박스형 버튼 (card-select 등) |
+| `radius/components/box-info` | = `radius-small` | 8 | 정보 박스 (Banner, Bubble tooltip 등) |
+| `radius-layout-form` | = `radius-xsmall` | 6 | ⚠️ Legacy 별칭 (form과 병행 관측) |
+| `radius-layout-contents` | = `radius-medium` | 12 | 컨텐츠 박스 (문서 기재값 — API 미확인) |
+| `radius-tost` | = `radius-medium` | 12 | ⚠️ **Figma 오타 그대로** — 실제로는 toast (수정 금지) |
+| `radius-layout-popup` | = `radius-large` | 16 | 팝업/모달 (문서 기재값) |
+| `radius-layout-bottomsheet` | = `radius-xlarge` | 24 | 바텀시트 상단 코너만 (문서 기재값) |
+| `radius-layout-label` | = `radius-round` | 50% | 라벨/배지 pill (문서 기재값) |
 
 ### 사용 규칙
 
@@ -734,10 +876,10 @@ letterSpacing은 px 단위 음수(track-tight).
 
 | 속성 | 값 | 토큰 |
 |------|----|------|
-| 화면 좌우 패딩 | `20px` | `spacing-large` (변경불가) |
-| 콘텐츠 영역 너비 | `320px` | `360 - spacing-large × 2` |
+| 화면 좌우 패딩 | `20px` | `layout/margin` (= `spacing-large`, 변경불가) |
+| 콘텐츠 영역 너비 | `320px` | `360 - layout/margin × 2` |
 | 텍스트 필드 간 세로 간격 | `40px` | `spacing-3xlarge` |
-| 섹션 내부 콘텐츠 padding | `24px` | `spacing-xlarge` |
+| 섹션 내부 콘텐츠 padding | `24px` | `spacing-xlarge` (= `layout/margin-top`) |
 | 리스트 아이템 높이 | `65px` | — (컴포넌트 고정 높이) |
 
 ### 화면 레이어 구조 (항상 이 순서)
