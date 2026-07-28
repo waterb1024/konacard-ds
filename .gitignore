@@ -3,6 +3,13 @@ DESIGN.md
 DESIGN.no-keys.tmp
 *.tmp
 
+# Internal scratch/analysis notes
+_*.md
+
+# Local screenshots (README uses hosted URLs)
+image.png
+*.png
+
 # OS / editor
 .DS_Store
 .claude/
