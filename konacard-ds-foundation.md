@@ -1,5 +1,5 @@
 ---
-version: "1.2-wip"
+version: "1.0"
 name: KONACARD Design Foundation
 description: >
   KONACARD 모바일 앱(AOS) 공통 디자인 시스템 — Foundation (토큰) 문서.
