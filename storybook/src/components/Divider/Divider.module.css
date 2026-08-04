@@ -1,0 +1,122 @@
+/*
+ * konacard-ds — Divider (07_Line)
+ * Figma: Nv4o6ozSx5W4w10uFnQIs5 / node 9362:7756 (component), 99:1134 (usage)
+ *
+ * 4 sub-components:
+ *  - Solid    (line/solid)         : 1px 가로선 · color light/dark
+ *  - Dotted   (line/dotted)        : 1px 가로선 (dashed 2/2 pattern) · light/dark/white
+ *  - Section  (line/divider)       : 10px band 섹션 구분 · light/dark
+ *  - Vertical (line/divider-line)  : 1px 세로선 · size 8/12/16 · light/dark/white
+ *
+ * Color 토큰:
+ *   light = color/divider/primary  = rgba(0,0,0,0.06)  #0F000000
+ *   dark  = color/divider/secondary = rgba(0,0,0,0.08) #14000000
+ *   white = color/divider/white    = #FFFFFF (다크 배경 위)
+ */
+
+/* ── Solid ───────────────────────────────────── */
+.solid {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.solid-light {
+  background: var(--color-divider-primary);
+}
+.solid-dark {
+  background: var(--color-divider-secondary);
+}
+
+/* ── Dotted ─────────────────────────────────── */
+/*
+ * Figma stroke-dasharray="2 2" · stroke-opacity 0.06/0.08
+ * CSS: linear-gradient 로 2px dash + 2px gap 재현
+ */
+.dotted {
+  width: 100%;
+  height: 1px;
+  background-repeat: repeat-x;
+  background-size: 4px 1px;
+}
+.dotted-light {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.06) 0,
+    rgba(0, 0, 0, 0.06) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+.dotted-dark {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.08) 0,
+    rgba(0, 0, 0, 0.08) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+.dotted-white {
+  background-image: linear-gradient(
+    to right,
+    #ffffff 0,
+    #ffffff 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+/* ── Section (10px "BG + Line 겹침") ─────────
+ * Figma: area (10px 반투명 fill) + top 1px line + bottom 1px line
+ * 같은 색을 겹쳐 상/하 1px 는 alpha 2배 → 눈에 보이는 라인 효과
+ */
+.section {
+  width: 100%;
+  height: 10px;
+  box-sizing: border-box;
+}
+.section-light {
+  background: var(--color-divider-primary);
+  box-shadow:
+    inset 0 1px 0 var(--color-divider-primary),
+    inset 0 -1px 0 var(--color-divider-primary);
+}
+.section-dark {
+  background: var(--color-divider-secondary);
+  box-shadow:
+    inset 0 1px 0 var(--color-divider-secondary),
+    inset 0 -1px 0 var(--color-divider-secondary);
+}
+
+/* ── Vertical (인라인 텍스트 사이 구분자) ──────
+ * ⚠ Figma variant "color=light/drak" 는 가로 divider 와 alpha 매핑이 다름
+ *   vertical light = rgba(0,0,0,0.08)  = divider-secondary
+ *   vertical drak  = rgba(0,0,0,0.12)  = divider-tertiary
+ *   vertical white = #FFFFFF
+ */
+.vertical {
+  display: inline-block;
+  width: 1px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.vertical-size-8 {
+  height: 8px;
+}
+.vertical-size-12 {
+  height: 12px;
+}
+.vertical-size-16 {
+  height: 16px;
+}
+.vertical-light {
+  background: var(--color-divider-secondary);
+}
+.vertical-dark {
+  background: var(--color-divider-tertiary);
+}
+.vertical-white {
+  background: #ffffff;
+}

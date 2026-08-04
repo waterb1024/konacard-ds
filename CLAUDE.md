@@ -31,7 +31,11 @@
 
 ## Figma DS 원본
 
-- **파일 키**: `Nv4o6ozSx5W4w10uFnQIs5` (KONACARD - COMMON)
+- **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON, 현행)
+  - 이전 파일 키: `Nv4o6ozSx5W4w10uFnQIs5` (-NEW- KONACARD - COMMON, 사용 중단)
+  - AX 파일은 NEW 파일의 복제본으로 컴포넌트 노드 ID는 그대로 유지됨 (예: `input/input` = `41:505`)
+- **컴포넌트 카탈로그 페이지**: `17:827` (02_Components)
+- **Foundation 페이지**: `295:3042` (01_Foundations)
 - **작업 대상 파일**: 세션마다 사용자가 공유하는 Figma URL에서 추출
 - Figma variables 이름 오타 주의: `radius-tost` (실제로는 toast), `sencondary` 등은 원본명 그대로 참조.
 

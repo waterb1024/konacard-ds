@@ -1,0 +1,116 @@
+/*
+ * konacard-ds-components.md § 03_Tab
+ * Main tab: 밑줄 스타일 (48h, hard divider bottom, Selected 하단 select bar 2px)
+ * Sub tab: pill 스타일 (38h, radius round, Selected 브랜드 채움)
+ */
+
+/* ── Main Tab ─────────────────────────────────────── */
+.mainTabs {
+  display: flex;
+  height: 48px;
+  padding: 0 var(--screen-h-padding);
+  border-bottom: 1px solid var(--color-divider-secondary);
+  background: transparent;
+  align-items: stretch;
+}
+
+.mainTabs.multi {
+  padding: 0 var(--screen-h-padding) 0 var(--screen-h-padding);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+}
+
+.mainTabs.multi::-webkit-scrollbar {
+  display: none;
+}
+
+.mainTab {
+  position: relative;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-medium);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-quaternary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mainTab.basic {
+  flex: 1;
+  padding: 0;
+}
+
+.mainTab:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+.mainTab.selected {
+  font: var(--text-body-1-bold);
+  color: var(--color-font-brand);
+}
+
+/* Select bar — 텍스트 폭 + 좌우 16 */
+.mainTab.selected::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; /* border-bottom 위 겹침 */
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-background-button-brand);
+}
+
+/* Basic 모드 (Fill) 에서는 텍스트 폭 + 좌우 16 대신 padding 영역 그대로 사용 */
+
+/* ── Sub Tab (Pill) ───────────────────────────────── */
+.subTabs {
+  display: flex;
+  gap: var(--spacing-2xsmall); /* 4px */
+  padding: 0 var(--screen-h-padding);
+  height: 38px;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.subTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.subTab {
+  height: 38px;
+  padding: 0 var(--spacing-medium);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-button-round);
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-font-primary);
+  font: var(--text-body-2-bold);
+  letter-spacing: var(--font-letterspacing-small);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.subTab.selected {
+  background: var(--color-background-button-brand);
+  border-color: var(--color-background-button-brand);
+  color: var(--color-font-white);
+}
+
+.subTab:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}

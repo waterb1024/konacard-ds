@@ -1,0 +1,126 @@
+/* Foundation 스토리 공용 스타일 */
+
+.wrap {
+  padding: 24px;
+  background: var(--color-background-primary);
+  font: var(--text-body-2-regular);
+  color: var(--color-font-primary);
+  font-family: var(--font-family-body);
+}
+
+.h1 {
+  font: var(--text-heading-1-bold);
+  letter-spacing: var(--font-letterspacing-2xlarge);
+  color: var(--color-font-primary);
+  margin: 0 0 8px;
+}
+
+.h2 {
+  font: var(--text-heading-3-bold);
+  letter-spacing: var(--font-letterspacing-large);
+  color: var(--color-font-primary);
+  margin: 32px 0 12px;
+}
+
+.intro {
+  color: var(--color-font-tertiary);
+  margin: 0 0 24px;
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.gridSingleCol {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+.token {
+  border: 1px solid var(--color-divider-secondary);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--color-background-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tokenSwatch {
+  height: 56px;
+  border-radius: 6px;
+  border: 1px solid var(--color-divider-secondary);
+}
+
+.tokenName {
+  font: var(--text-body-3-bold);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-primary);
+  word-break: break-all;
+}
+
+.tokenValue {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-tertiary);
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+.tokenUsage {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary);
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  margin: 24px 0 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-divider-primary);
+}
+
+.rowLabel {
+  min-width: 200px;
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font: 400 12px/18px "SFMono-Regular", Menlo, monospace;
+  color: var(--color-font-primary);
+  word-break: break-all;
+}
+
+.rowValue {
+  color: var(--color-font-tertiary);
+  font: 400 12px/18px "SFMono-Regular", Menlo, monospace;
+  min-width: 100px;
+}
+
+.rowSample {
+  flex: 1;
+  color: var(--color-font-primary);
+}
+
+.note {
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--color-font-secondary);
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  margin: 12px 0 24px;
+}

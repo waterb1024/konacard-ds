@@ -1,0 +1,172 @@
+/*
+ * konacard-ds — Label
+ * Figma: Nv4o6ozSx5W4w10uFnQIs5
+ *  - Basic (component): node 2121:5513
+ *  - Link (variant):   node 2415:6389
+ *  - Usage:            node 149:1240
+ *
+ * Basic: 4 size × 2 type (color/line) × 7 color
+ * Link : icon + text, 5 color × 2 type — regular weight (basic 은 bold)
+ * Radius: pill (radius/components/label = 9999)
+ */
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-round);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  white-space: nowrap;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ── Size (Basic) ──────────────────────────── */
+/* large: pv4 ph12 · body/2-bold (14/22) */
+.size-large {
+  padding: var(--spacing-2xsmall) var(--spacing-small);
+  gap: var(--spacing-xsmall);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.28px;
+}
+
+/* medium: pv4 ph12 · body/3-bold (12/18) */
+.size-medium {
+  padding: var(--spacing-2xsmall) var(--spacing-small);
+  gap: var(--spacing-xsmall);
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.24px;
+}
+
+/* small: h24 fixed, padding 8 · body/4-bold (11/16) */
+.size-small {
+  height: 24px;
+  padding: 0 var(--spacing-xsmall);
+  gap: var(--spacing-xsmall);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: -0.22px;
+}
+
+/* tiny: pv4 ph8 · 9px/12 */
+.size-tiny {
+  padding: var(--spacing-2xsmall) var(--spacing-xsmall);
+  gap: var(--spacing-2xsmall);
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: -0.18px;
+}
+
+/* ── Color × Type ─────────────────────────── */
+/* brand */
+.color-color-brand {
+  background: var(--color-brand-primary);
+  color: var(--color-font-white);
+  border-color: var(--color-brand-primary);
+}
+.color-line-brand {
+  background: transparent;
+  color: var(--color-font-brand);
+  border-color: var(--color-brand-primary);
+}
+
+/* brand-light — Fill only (no line variant in Figma) */
+.color-color-brand-light {
+  background: var(--color-brand-secondary);
+  color: var(--color-font-brand);
+  border-color: var(--color-brand-secondary);
+}
+.color-line-brand-light {
+  background: transparent;
+  color: var(--color-font-brand);
+  border-color: var(--color-brand-secondary);
+}
+
+/* brand-gradient */
+.color-color-brand-gradient {
+  background: linear-gradient(to right, #804ee2, #526ed3 103.93%);
+  color: var(--color-font-white);
+  border-color: transparent;
+}
+.color-line-brand-gradient {
+  background: transparent;
+  color: transparent;
+  border: 1px solid #804ee2;
+  background-image: linear-gradient(to right, #804ee2, #526ed3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* gray-dark (Figma 원본 오타 gray-drak 도 지원) */
+.color-color-gray-dark,
+.color-color-gray-drak {
+  background: var(--color-font-quaternary);
+  color: var(--color-font-white);
+  border-color: var(--color-font-quaternary);
+}
+.color-line-gray-dark,
+.color-line-gray-drak {
+  background: transparent;
+  color: var(--color-font-tertiary);
+  border-color: var(--color-font-tertiary);
+}
+
+/* gray-light */
+.color-color-gray-light {
+  background: var(--color-background-secondary);
+  color: var(--color-font-primary);
+  border-color: var(--color-background-secondary);
+}
+.color-line-gray-light {
+  background: transparent;
+  color: var(--color-font-quaternary);
+  border-color: var(--color-font-quaternary);
+}
+
+/* white */
+.color-color-white {
+  background: var(--color-background-primary);
+  color: var(--color-font-tertiary);
+  border-color: var(--color-background-primary);
+}
+.color-line-white {
+  background: transparent;
+  color: var(--color-font-white);
+  border-color: var(--color-font-white);
+}
+
+/* warning (red) */
+.color-color-warning {
+  background: var(--color-font-error);
+  color: var(--color-font-white);
+  border-color: var(--color-font-error);
+}
+.color-line-warning {
+  background: transparent;
+  color: var(--color-font-error);
+  border-color: var(--color-font-error);
+}
+
+/* ── Link Label ───────────────────────────── */
+.link {
+  padding: var(--spacing-3xsmall) var(--spacing-xsmall) var(--spacing-3xsmall)
+    var(--spacing-2xsmall);
+  gap: var(--spacing-3xsmall);
+  font-weight: var(--font-weight-regular);
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.24px;
+}
+
+.linkIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

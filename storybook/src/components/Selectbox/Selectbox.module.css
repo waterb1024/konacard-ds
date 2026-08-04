@@ -1,0 +1,80 @@
+/*
+ * konacard-ds-components.md § 04_Forms — Selectbox (Input/Select)
+ * State 4단계: Default / Active / Inactive / Error (Focus·Complete 없음)
+ * 우측: chevron ⌵ — Default 아래, Active 위 (펼침)
+ */
+
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  height: 48px;
+  padding: 0 var(--spacing-medium);
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-components-form);
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-font-placeholder);
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.wrap:disabled {
+  cursor: not-allowed;
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── State ──────────────────────────────────────────── */
+.state-default {
+  border-color: var(--color-border-default);
+  color: var(--color-font-placeholder);
+}
+
+.state-active {
+  border-color: var(--color-border-focus);
+  color: var(--color-font-brand);
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.state-inactive {
+  border-color: var(--color-border-default);
+  color: var(--color-font-placeholder);
+}
+
+.state-error {
+  border-color: var(--color-border-error);
+  color: var(--color-font-error);
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-icon-quaternary);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.state-active .chevron,
+.state-error .chevron {
+  color: var(--color-icon-secondary);
+}
+
+.chevron-up {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,124 @@
+/*
+ * konacard-ds-components.md § 05_Control — Switch (control/swtich)
+ * 사이즈 4단: large(50×28) / medium(42×24) / small(34×20) / tiny(28×16)
+ * Selected(True): 트랙 브랜드 보라, 핸들 우측 · Default(False): 트랙 회색, 핸들 좌측
+ * Disable = Default × opacity 40%
+ */
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: var(--color-button-quarternary);
+  border-radius: var(--radius-round);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.switch:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--color-button-white);
+  border-radius: var(--radius-round);
+  transition: left 0.18s ease;
+}
+
+/* ── Sizes ──────────────────────────────────────────── */
+.size-large {
+  width: 50px;
+  height: 28px;
+}
+.size-large .thumb {
+  width: 24px;
+  height: 24px;
+  left: 2px;
+}
+.size-large.on .thumb {
+  left: calc(100% - 24px - 2px);
+}
+
+.size-medium {
+  width: 42px;
+  height: 24px;
+}
+.size-medium .thumb {
+  width: 20px;
+  height: 20px;
+  left: 2px;
+}
+.size-medium.on .thumb {
+  left: calc(100% - 20px - 2px);
+}
+
+.size-small {
+  width: 34px;
+  height: 20px;
+}
+.size-small .thumb {
+  width: 16px;
+  height: 16px;
+  left: 2px;
+}
+.size-small.on .thumb {
+  left: calc(100% - 16px - 2px);
+}
+
+.size-tiny {
+  width: 28px;
+  height: 16px;
+}
+.size-tiny .thumb {
+  width: 12px;
+  height: 12px;
+  left: 2px;
+}
+.size-tiny.on .thumb {
+  left: calc(100% - 12px - 2px);
+}
+
+/* ── On (Selected True) ─────────────────────────────── */
+.on {
+  background: var(--color-background-button-brand);
+}
+
+/* ── switch_setting composite ──────────────────────── */
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+  background: var(--color-background-primary);
+  border-radius: var(--radius-components-box-contents);
+}
+
+.settingRow.settingRow-gray {
+  background: var(--color-background-secondary);
+}
+
+.settingText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xsmall);
+  min-width: 0;
+}
+
+.settingTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.settingDesc {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary);
+}

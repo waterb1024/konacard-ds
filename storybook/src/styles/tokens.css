@@ -1,0 +1,164 @@
+/*
+ * KONACARD Design Foundation — CSS variables
+ * Source: konacard-ds-foundation.md (Figma DS Nv4o6ozSx5W4w10uFnQIs5)
+ *
+ * 명명 규칙: Figma variable 원본 이름을 CSS custom property 로 옮길 때
+ *   "/" → "-"  (예: color/brand/primary → --color-brand-primary)
+ *   대소문자·오타 (quarternary, primay 등) 원본 유지
+ */
+
+:root {
+  /* ─── color/brand ─────────────────────────────────────── */
+  --color-brand-primary: #805ae9;
+  --color-brand-secondary: #f4f0fd;
+  --color-brand-tertiary: #f8f6fe;
+
+  /* ─── color/font ─────────────────────────────────────── */
+  --color-font-primary: #000000;
+  --color-font-secondary: #333333;
+  --color-font-tertiary: #666666;
+  --color-font-quaternary: #999999;
+  --color-font-placeholder: #999999;
+  --color-font-error: #ff364b;
+  --color-font-brand: #805ae9;
+  --color-font-white: #ffffff;
+
+  /* ─── color/background ──────────────────────────────── */
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f8f9fb;
+  --color-background-tertiary: #f8f6fe;
+  --color-background-button-brand: #805ae9;
+  --color-background-brand: #805ae9;
+  --color-background-dimed: rgba(0, 0, 0, 0.64);
+  --color-background-disabled: #f8f9fb; /* Figma color/background/disabled — Form 비활성 필드 배경 */
+
+  /* ─── color/button ──────────────────────────────────── */
+  --color-button-secondary: #f4f0fd;       /* Brand_Light fill */
+  --color-button-tertiary: #dddddd;        /* Gray_Line outline */
+  --color-button-quarternary: #999999;     /* Figma 원본 오타 유지 */
+  --color-button-white: #ffffff;
+
+  /* ─── color/border ──────────────────────────────────── */
+  --color-border-default: #dddddd;
+  --color-border-focus: #805ae9;
+  --color-border-brand: #805ae9;
+  --color-border-error: #ff364b;
+
+  /* ─── color/icon ─────────────────────────────────────── */
+  --color-icon-secondary: #333333;
+  --color-icon-tertiary: #666666;
+  --color-icon-quaternary: #999999;
+  --color-icon-quinary: #dddddd;
+  --color-icon-brand: #805ae9;
+  --color-icon-white: #ffffff;
+  --color-icon-accent-red: #ff364b;
+  --color-icon-accent-green: #1ccea5;
+  --color-icon-accent-blue: #589cf6;
+
+  /* ─── color/divider ─────────────────────────────────── */
+  --color-divider-primary: rgba(0, 0, 0, 0.06);
+  --color-divider-secondary: rgba(0, 0, 0, 0.08);
+  --color-divider-tertiary: rgba(0, 0, 0, 0.12);
+
+  /* ─── color/banner (pastel) ─────────────────────────── */
+  --color-banner-brand: #f8f6fe;
+  --color-banner-gray: #f8f9fb;
+  --color-banner-blue: #f0f6fe;
+  --color-banner-green: #effcf9;
+  --color-banner-yellow: #fffbdf;
+  --color-banner-pink: #ffeff1;
+
+  /* ─── palette (원자) ────────────────────────────────── */
+  --palette-purple-50: #f8f6fe;
+  --palette-purple-100: #f4f0fd;
+  --palette-purple-500: #805ae9;
+  --palette-red-500: #ff364b;
+  --palette-blue-500: #589cf6;
+  --palette-green-500: #1ccea5;
+
+  /* ─── typography ─────────────────────────────────────── */
+  --font-family-body: "Pretendard", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  --font-size-2xsmall: 11px;
+  --font-size-xsmall: 12px;
+  --font-size-small: 14px;
+  --font-size-medium: 15px;
+  --font-size-large: 18px;
+  --font-size-xlarge: 20px;
+  --font-size-2xlarge: 24px;
+
+  --font-lineheight-2xsmall: 16px;
+  --font-lineheight-xsmall: 18px;
+  --font-lineheight-small: 22px;
+  --font-lineheight-medium: 24px;
+  --font-lineheight-large: 26px;
+  --font-lineheight-xlarge: 28px;
+  --font-lineheight-2xlarge: 32px;
+
+  --font-letterspacing-2xsmall: -0.22px;
+  --font-letterspacing-xsmall: -0.24px;
+  --font-letterspacing-small: -0.28px;
+  --font-letterspacing-medium: -0.3px;
+  --font-letterspacing-large: -0.36px;
+  --font-letterspacing-xlarge: -0.4px;
+  --font-letterspacing-2xlarge: -0.48px;
+
+  /* Text style composite tokens — button 계열 */
+  --text-button-large: 700 15px/24px var(--font-family-body);
+  --text-button-medium: 700 14px/22px var(--font-family-body);
+  --text-button-small: 700 12px/18px var(--font-family-body);
+
+  /* Text style composite tokens — body/heading */
+  --text-heading-1-bold: 700 24px/32px var(--font-family-body);
+  --text-heading-2-bold: 700 20px/28px var(--font-family-body);
+  --text-heading-3-bold: 700 18px/26px var(--font-family-body);
+  --text-body-1-regular: 400 15px/24px var(--font-family-body);
+  --text-body-1-bold: 700 15px/24px var(--font-family-body);
+  --text-body-2-regular: 400 14px/22px var(--font-family-body);
+  --text-body-2-bold: 700 14px/22px var(--font-family-body);
+  --text-body-3-regular: 400 12px/18px var(--font-family-body);
+  --text-body-3-bold: 700 12px/18px var(--font-family-body);
+
+  /* ─── spacing ────────────────────────────────────────── */
+  --spacing-none: 0;
+  --spacing-3xsmall: 2px;
+  --spacing-2xsmall: 4px;
+  --spacing-xsmall: 8px;
+  --spacing-small: 12px;
+  --spacing-medium: 16px;
+  --spacing-large: 20px;      /* ★ layout margin (screen padding) */
+  --spacing-xlarge: 24px;
+  --spacing-2xlarge: 32px;
+  --spacing-3xlarge: 40px;
+
+  --layout-margin: 20px;
+  --layout-margin-top: 24px;
+  --screen-h-padding: 20px;
+
+  /* ─── radius ─────────────────────────────────────────── */
+  --radius-none: 0;
+  --radius-2xsmall: 4px;
+  --radius-xsmall: 6px;
+  --radius-small: 8px;
+  --radius-medium: 12px;
+  --radius-large: 16px;
+  --radius-xlarge: 24px;
+  --radius-round: 9999px;
+
+  --radius-button-large: 8px;   /* = radius-small */
+  --radius-button-medium: 6px;  /* = radius-xsmall */
+  --radius-button-small: 4px;   /* = radius-2xsmall */
+  --radius-button-round: 9999px;
+
+  --radius-components-form: 6px;
+  --radius-components-box-button: 8px;
+  --radius-components-box-info: 8px;
+  --radius-components-box-contents: 12px;
+  --radius-components-bottomsheet: 24px;
+
+  /* ─── opacity ────────────────────────────────────────── */
+  --opacity-disable-button: 0.4;
+}

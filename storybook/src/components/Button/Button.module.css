@@ -1,0 +1,95 @@
+/*
+ * konacard-ds-components.md § 02_Button (Large / Medium / Small)
+ * - Disable = Default × opacity 40%
+ * - Font: Pretendard Bold, 사이즈별 button-large/medium/small
+ * - Radius: $radius-button-* 시맨틱 토큰
+ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2xsmall);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.12s ease;
+}
+
+.button:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ── Size ─────────────────────────────────────────────── */
+.size-large {
+  height: 56px;
+  padding: 0 16px;
+  border-radius: var(--radius-button-large);
+  font: var(--text-button-large);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.size-medium {
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-button-medium);
+  font: var(--text-button-medium);
+  letter-spacing: var(--font-letterspacing-small);
+}
+
+.size-small {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-button-small);
+  font: var(--text-button-small);
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
+
+/* ── Color ────────────────────────────────────────────── */
+/* Brand — 진한 보라 채움 · 흰 텍스트 (기본 Primary CTA) */
+.color-Brand {
+  background: var(--color-background-button-brand);
+  color: var(--color-font-white);
+  border-color: var(--color-background-button-brand);
+}
+
+/* Brand_Light — 옅은 보라 배경 + 보라 텍스트 */
+.color-Brand_Light {
+  background: var(--color-button-secondary);
+  color: var(--color-font-brand);
+  border-color: var(--color-button-secondary);
+}
+
+/* Brand_Line — 흰 배경 + 보라 아웃라인 + 보라 텍스트 */
+.color-Brand_Line {
+  background: var(--color-background-primary);
+  color: var(--color-font-brand);
+  border-color: var(--color-border-focus);
+}
+
+/* Gray — 회색 채움 + 검정 텍스트 (병렬 CTA 좌측 보조) */
+.color-Gray {
+  background: var(--color-background-secondary);
+  color: var(--color-font-primary);
+  border-color: var(--color-background-secondary);
+}
+
+/* Gray_Line — 흰 배경 + 회색 아웃라인 + 검정 텍스트 */
+.color-Gray_Line {
+  background: var(--color-background-primary);
+  color: var(--color-font-primary);
+  border-color: var(--color-border-default);
+}
+
+/* Dark — Small 전용 · 검정 채움 + 흰 텍스트 */
+.color-Dark {
+  background: var(--color-font-primary);
+  color: var(--color-font-white);
+  border-color: var(--color-font-primary);
+}

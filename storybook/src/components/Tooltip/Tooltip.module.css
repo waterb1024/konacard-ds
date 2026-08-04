@@ -1,0 +1,127 @@
+/*
+ * konacard-ds-components.md § 11_Tooltip — Bubble Type
+ * Figma: Nv4o6ozSx5W4w10uFnQIs5 / node 200:1909
+ *
+ * Placement 8종: top-left / top / top-right / bottom-left / bottom / bottom-right / left / right
+ * Style: line (white bg + border-focus + font-primary) / brand (background-brand + font-white)
+ *
+ * Body — padding 12v × 16h, radius 8 (radius/components/box-info)
+ *        font: body/2-Regular (14 / 22 / -0.28)
+ * Pin  — 12×8, box와 -1px 오버랩, line 은 stroke 만 (base 은 body 뒤에 숨김)
+ * 슬롯 폭 40px (Figma 규격) → pin 중앙 배치 + items-start/center/end 로 좌/중/우 offset
+ */
+
+.tooltip {
+  display: inline-flex;
+  padding: 0;
+  line-height: 0;
+  position: relative;
+}
+
+/* ── Placement layouts ───────────────────────────── */
+.p-top-left, .p-top, .p-top-right,
+.p-bottom-left, .p-bottom, .p-bottom-right {
+  flex-direction: column;
+}
+.p-top-left, .p-bottom-left { align-items: flex-start; }
+.p-top, .p-bottom { align-items: center; }
+.p-top-right, .p-bottom-right { align-items: flex-end; }
+
+.p-left, .p-right {
+  flex-direction: row;
+  align-items: center;
+}
+.p-left { justify-content: flex-end; }
+
+/* ── Body ─────────────────────────────────────── */
+.body {
+  padding: var(--spacing-small) var(--spacing-medium); /* 12v × 16h */
+  border-radius: var(--radius-components-box-info); /* 8 */
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  white-space: nowrap;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.line .body {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-focus);
+  color: var(--color-font-primary);
+}
+
+.brand .body {
+  background: var(--color-background-brand);
+  color: var(--color-font-white);
+}
+
+/* ── Arrow slot ───────────────────────────────── */
+.arrowSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.p-top-left .arrowSlot, .p-top .arrowSlot, .p-top-right .arrowSlot,
+.p-bottom-left .arrowSlot, .p-bottom .arrowSlot, .p-bottom-right .arrowSlot {
+  width: 40px;
+  height: 8px;
+}
+
+.p-left .arrowSlot, .p-right .arrowSlot {
+  width: 8px;
+  height: 40px;
+}
+
+/* ── -1px overlap ─────────────────────────────── */
+/* top-*: body 위, arrow 아래 → body 하단이 arrow 상단을 1px 덮음 */
+.p-top-left .body, .p-top .body, .p-top-right .body {
+  margin-bottom: -1px;
+}
+
+/* bottom-*: arrow 위, body 아래 → arrow 하단이 body 상단을 1px 덮음 */
+.p-bottom-left .arrowSlot, .p-bottom .arrowSlot, .p-bottom-right .arrowSlot {
+  margin-bottom: -1px;
+  z-index: 2;
+}
+
+/* left: body 왼쪽, arrow 오른쪽 → body 우측이 arrow 좌측 1px 덮음 */
+.p-left .body {
+  margin-right: -1px;
+}
+
+/* right: arrow 왼쪽, body 오른쪽 → arrow 우측이 body 좌측 1px 덮음 */
+.p-right .arrowSlot {
+  margin-right: -1px;
+  z-index: 2;
+}
+
+/* ── Trigger (? or !) ─────────────────────────── */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+}
+
+.triggerIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-round);
+  background: var(--color-icon-quaternary);
+  color: var(--color-icon-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 10px/1 var(--font-family-body);
+  flex-shrink: 0;
+}

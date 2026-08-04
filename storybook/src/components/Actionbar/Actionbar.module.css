@@ -1,0 +1,167 @@
+/*
+ * konacard-ds-components.md § 01_Actionbar
+ * 공통: 높이 Fixed 56px · 좌우 padding 20px · 배경 상속(투명)
+ * action-bar/button: 56×56 정사각, icon 24px + padding 16
+ * header 3형: Main / Sub / Scroll Title
+ * headline: 큰 제목 (heading/1-Bold 24px), 상단 padding 24 · 좌우 20
+ */
+
+/* ── action-bar/button (icon button 56×56) ─────────── */
+.iconButton {
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-icon-secondary);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.iconButton-brand {
+  color: var(--color-icon-brand);
+}
+
+.iconButton:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+/* ── action-bar/header 공통 (56h) ──────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-textArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.header-title {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Main 유형 ────────────────────────────────────── */
+.header-main .header-textArea {
+  padding-left: var(--screen-h-padding); /* 20px */
+  gap: var(--spacing-small); /* 12px logo↔title */
+}
+
+.header-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-round);
+  background: var(--color-brand-primary);
+  color: var(--color-font-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 12px/1 var(--font-family-body);
+  flex-shrink: 0;
+}
+
+/* ── Sub 유형 (AOS 좌측 · iOS 중앙) ────────────────── */
+.header-sub-aos .header-textArea {
+  padding-left: var(--screen-h-padding);
+  justify-content: flex-start;
+}
+.header-sub-aos.hasBack .header-textArea {
+  padding-left: var(--spacing-2xsmall); /* back 56 + 4 gap */
+}
+
+.header-sub-ios .header-textArea {
+  padding-left: 0;
+  padding-right: 0;
+  justify-content: center;
+  /* iOS 는 title 중앙 → back 있으면 우측에 스페이서 필요 */
+}
+.header-sub-ios.hasBack.hasRightSpacer .header-textArea {
+  padding-right: 0;
+}
+
+/* iOS 중앙정렬 시 우측 스페이서 (back 은 있지만 우측 액션 없는 경우) */
+.header-rightSpacer {
+  width: 56px;
+  flex-shrink: 0;
+}
+
+/* Scroll Title 유형 — 스크롤 전엔 title 숨김, divider 없음 */
+.header-scroll .header-textArea {
+  padding-left: var(--screen-h-padding);
+}
+.header-scroll.scrolled {
+  border-bottom: 1px solid var(--color-divider-secondary);
+}
+.header-scroll:not(.scrolled) .header-title {
+  visibility: hidden;
+}
+
+/* 우측 text 액션 (button/text) padding */
+.header-textAction {
+  padding-right: var(--spacing-medium); /* 16px */
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  height: 56px;
+  padding-left: var(--spacing-medium);
+}
+
+.header-textAction-brand {
+  color: var(--color-font-brand);
+}
+
+/* ── action-bar/headline ─────────────────────────── */
+.headline {
+  padding: var(--layout-margin-top) var(--screen-h-padding) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+}
+
+.headline-sub {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+}
+
+.headline-main {
+  font: var(--text-heading-1-bold);
+  letter-spacing: var(--font-letterspacing-2xlarge);
+  color: var(--color-font-primary);
+}
+
+.headline-emphasis {
+  color: var(--color-font-brand);
+}
+
+.headline-desc {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-quaternary);
+}

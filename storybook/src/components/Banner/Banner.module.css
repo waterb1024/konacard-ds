@@ -1,0 +1,124 @@
+/*
+ * konacard-ds-components.md § 12_Banner
+ * Corner radius 8px 공통. 6 파스텔 색.
+ * Benefit Banner: 1line, height ~56 컴팩트
+ * Action Banner: 2 depth 텍스트, 상하 padding 24
+ */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium);
+  border-radius: var(--radius-components-box-info); /* 8px */
+  padding: var(--spacing-medium) var(--screen-h-padding);
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+/* ── 6 파스텔 색 ─────────────────────────────── */
+.color-brand {
+  background: var(--color-banner-brand);
+}
+.color-gray {
+  background: var(--color-banner-gray);
+}
+.color-blue {
+  background: var(--color-banner-blue);
+}
+.color-green {
+  background: var(--color-banner-green);
+}
+.color-yellow {
+  background: var(--color-banner-yellow);
+}
+.color-pink {
+  background: var(--color-banner-pink);
+}
+
+/* ── 좌측 아이콘 ────────────────────────────── */
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-icon-secondary);
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--color-icon-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Benefit Banner (1 line) ─────────────────── */
+.benefit .textArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  overflow: hidden;
+}
+
+.benefit .title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.benefit .value {
+  color: var(--color-font-brand);
+  flex-shrink: 0;
+}
+
+/* ── Action Banner (2 depth) ─────────────────── */
+.action {
+  padding: var(--spacing-xlarge) var(--screen-h-padding);
+  align-items: flex-start;
+}
+
+.action .textArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xsmall);
+}
+
+.action .title {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.action .description {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.action .icon {
+  margin-top: 2px;
+}

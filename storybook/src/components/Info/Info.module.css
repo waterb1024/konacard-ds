@@ -1,0 +1,99 @@
+/*
+ * konacard-ds-components.md § 10_Info
+ * Text info: 1Depth = • Dot + body/2 검정, 2Depth = * Aster + body/3 회색
+ * Info-box: 회색 카드, 좌우 24 마진, 항목 간 16, Item List(항목명 우측 정렬 + 항목 내용 좌측 정렬 · gap 16)
+ */
+
+.textInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+  padding: 0 var(--screen-h-padding);
+}
+
+.textInfo.dottedTop {
+  border-top: 1px dashed var(--color-divider-tertiary);
+  padding-top: var(--spacing-medium);
+}
+
+.textInfoTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall);
+  font: var(--text-body-2-bold);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-primary);
+}
+
+.textInfoTitleIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-icon-secondary);
+}
+
+.textInfoRow {
+  display: flex;
+  gap: var(--spacing-2xsmall);
+}
+
+.depth-1 {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-primary);
+}
+
+.depth-2 {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary);
+  padding-left: var(--spacing-small);
+}
+
+.bullet {
+  flex-shrink: 0;
+  font-family: var(--font-family-body);
+}
+
+/* ── Info-box ────────────────────────────────────── */
+.infoBox {
+  padding: var(--spacing-xlarge);
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-components-box-info);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  margin: 0 var(--screen-h-padding);
+}
+
+.itemList {
+  display: flex;
+  gap: var(--spacing-medium);
+  align-items: flex-start;
+}
+
+.itemLabel {
+  flex-shrink: 0;
+  width: 88px;
+  text-align: right;
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+}
+
+.itemContent {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-primary);
+  word-break: break-word;
+}
+
+.groupDivider {
+  border-top: 1px dashed var(--color-divider-tertiary);
+  margin: var(--spacing-large) 0;
+}

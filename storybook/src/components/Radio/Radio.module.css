@@ -1,0 +1,89 @@
+/*
+ * konacard-ds-components.md § 05_Control — Radio (control/radio)
+ * 사이즈 24 / 28 · 흰 원 + 회색 테두리, Selected 내부 도트 브랜드 보라
+ * ※ Disable 상태는 별도 image asset — 여기서는 opacity 로 근사
+ */
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--color-border-default);
+  border-radius: var(--radius-round);
+  background: var(--color-background-primary);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.radio:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+.size-24 {
+  width: 24px;
+  height: 24px;
+}
+.size-28 {
+  width: 28px;
+  height: 28px;
+}
+
+.dot {
+  border-radius: var(--radius-round);
+  background: var(--color-icon-brand);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.size-24 .dot {
+  width: 10px;
+  height: 10px;
+}
+.size-28 .dot {
+  width: 12px;
+  height: 12px;
+}
+
+.checked .dot {
+  opacity: 1;
+}
+
+/* ── radio-text 조합 ─────────────────────────────── */
+.radioText {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.radioText.basic {
+  height: 40px;
+}
+
+.radioText.small {
+  height: 32px;
+}
+
+.radioTextLabel {
+  color: var(--color-font-primary);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.radioText.basic .radioTextLabel {
+  font: var(--text-body-1-regular);
+}
+
+.radioText.small .radioTextLabel {
+  font: var(--text-body-2-regular);
+}
+
+.radioText:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}

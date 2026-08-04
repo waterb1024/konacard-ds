@@ -1,0 +1,145 @@
+/*
+ * konacard-ds-components.md § 04_Forms — Inputbox (input/input, input/basic)
+ * State: Default / Focus / Active / Complete / Inactive(Disable) / Error
+ * 공통: 48h · R6 · padding 16 · gap 12(내부) · body/1-regular (Active·Error·Complete는 Bold)
+ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall); /* Title ↔ Field ↔ Guide Text 8px */
+  width: 100%;
+}
+
+.title {
+  font: var(--text-body-3-bold);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-secondary);
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small); /* 내부 요소 gap 12px */
+  height: 48px;
+  padding: 0 var(--spacing-medium);
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-components-form);
+  box-sizing: border-box;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  padding: 0;
+}
+
+.input::placeholder {
+  color: var(--color-font-placeholder);
+  font-weight: var(--font-weight-regular);
+}
+
+.input:disabled {
+  color: var(--color-font-placeholder);
+  -webkit-text-fill-color: var(--color-font-placeholder); /* iOS/Safari 회색 tint 방지 */
+  opacity: 1; /* 브라우저 기본 opacity 감소 방지 */
+  cursor: not-allowed;
+}
+
+/* ── States ─────────────────────────────────────────── */
+.state-default .inputWrap {
+  border-color: var(--color-border-default);
+}
+
+.state-focus .inputWrap {
+  border-color: var(--color-border-focus);
+}
+
+/* Active: 편집 중 유효 — 보라 테두리 + 보라 Bold */
+.state-active .inputWrap {
+  border-color: var(--color-border-focus);
+}
+.state-active .input {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-brand);
+}
+
+/* Complete: 확정 — 회색 테두리 + 검정 Bold */
+.state-complete .inputWrap {
+  border-color: var(--color-border-default);
+}
+.state-complete .input {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.state-inactive .inputWrap {
+  border-color: var(--color-border-default);
+  background: var(--color-background-disabled); /* Figma color/background/disabled #F8F9FB. components.md 는 White 로 표기되어 있으나 Figma 원본 우선 */
+}
+.state-inactive .input {
+  color: var(--color-font-placeholder);
+  background: transparent; /* wrapper 배경이 보이도록 */
+}
+
+/* Error: 빨간 테두리 + 빨간 Bold */
+.state-error .inputWrap {
+  border-color: var(--color-border-error);
+}
+.state-error .input {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-error);
+}
+
+/* ── Clear (×) 어드먼트 — Active/Error에서만 노출 ─── */
+/* SVG(<DeleteIcon />) 자체가 원형 배경 + 흰 × 를 그리므로 버튼은 wrapper 만 담당 */
+.clear {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Guide Text ───────────────────────────────────── */
+.guide {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall);
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
+
+.guide-info-gray {
+  color: var(--color-font-placeholder);
+}
+.guide-info-black {
+  color: var(--color-font-primary);
+}
+.guide-guide-gray {
+  color: var(--color-font-placeholder);
+}
+.guide-guide-black {
+  color: var(--color-font-primary);
+}
+.guide-error {
+  color: var(--color-font-error);
+}
+
+/* guideIcon 은 이제 <BulletIcon /> SVG 로 처리 — CSS 클래스 불필요 */

@@ -1,0 +1,232 @@
+/*
+ * konacard-ds-components.md § 06_List
+ * Basic (list/list): 최소 56h, 좌우 padding 20, 아이템 divider 1dp #0000000F
+ * Expand (list/expand): Header + open 시 Body + divider
+ * Card select (list/card-select): 88h, R8, border 1px (Selected 시 브랜드)
+ */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: transparent;
+}
+
+/* ── Basic list item ─────────────────────────────── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small); /* 12px */
+  min-height: 56px;
+  padding: var(--spacing-medium) var(--screen-h-padding);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--color-divider-primary);
+}
+
+.item:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+.item.nonInteractive {
+  cursor: default;
+}
+
+.item.last {
+  border-bottom: none;
+}
+
+.itemText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+}
+
+.itemTitle {
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.itemDescription {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary);
+}
+
+.itemValue {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.itemChevron {
+  width: 20px;
+  height: 20px;
+  color: var(--color-icon-quaternary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.item.selected .itemTitle {
+  font: var(--text-body-1-bold);
+  color: var(--color-font-brand);
+}
+.item.selected .itemChevron {
+  color: var(--color-icon-brand);
+}
+
+/* ── Expand ──────────────────────────────────────── */
+.expand {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-divider-primary);
+}
+
+.expandHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-small);
+  min-height: 56px;
+  padding: var(--spacing-medium) var(--screen-h-padding);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.expandHeaderText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xsmall);
+}
+
+.expandTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.expandDesc {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-quaternary);
+}
+
+.expandChevron {
+  width: 24px;
+  height: 24px;
+  color: var(--color-icon-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.expandChevron.open {
+  transform: rotate(180deg);
+}
+
+.expandBody {
+  padding: var(--spacing-medium) var(--screen-h-padding) var(--spacing-large);
+  border-top: 1px solid var(--color-divider-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+}
+
+.expandBodyText {
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.expandBodySub {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary);
+}
+
+/* ── Card Select ─────────────────────────────────── */
+.cardSelect {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xlarge); /* 24px */
+  min-height: 88px;
+  padding: var(--spacing-medium);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-components-box-button);
+  background: var(--color-background-primary);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cardSelect.selected {
+  border-color: var(--color-border-focus);
+}
+
+.cardSelectImage {
+  width: 40px;
+  height: 64px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #805ae9, #f4f0fd);
+  color: var(--color-font-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 10px/1 var(--font-family-body);
+  flex-shrink: 0;
+}
+
+.cardSelectText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xsmall);
+}
+
+.cardSelectTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.cardSelectDesc {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+}
+
+.cardSelectCheck {
+  width: 24px;
+  height: 24px;
+  color: var(--color-icon-brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
