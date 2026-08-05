@@ -13,7 +13,9 @@
 .textButton {
   display: inline-flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-end: line 이 컨테이너 바닥에 붙어 integer 픽셀에 렌더 →
+     사이즈별 sub-pixel 굵기 편차 방지. Figma 시각과도 일치 (텍스트 상단, 라인 하단). */
+  justify-content: flex-end;
   align-items: flex-start;
   padding: var(--spacing-2xsmall) 0; /* 4v 0h — Figma py-2xsmall */
   gap: 0;
@@ -22,7 +24,6 @@
   cursor: pointer;
   box-sizing: border-box;
   transition: opacity 0.12s ease;
-  /* button 태그의 UA line-height/text-align 이 flex layout 을 방해하지 않도록 명시 */
   line-height: 0;
   text-align: left;
   vertical-align: middle;
