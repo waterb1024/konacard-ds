@@ -53,14 +53,14 @@ function RadioSvg({
       aria-hidden
       focusable="false"
     >
-      {/* Ring 은 stroke 대신 겹친 두 개 fill circle 로 구현 —
-          browser stroke antialiasing 에 의한 이중선 artifact 회피.
-          외곽 gray disc (r=16) + 내부 white disc (r=15) = 1px 링 효과. */}
+      {/* Ring: 겹친 fill circle 2개. 내부 반지름 15.5 로 링 두께 0.5 viewBox unit →
+          32px 렌더 시 0.5px 두께가 antialiasing 으로 부드럽게 spread 되어 Figma
+          stroke 렌더와 시각적 두께 매칭 (1px solid fill 은 너무 진했음). */}
       <circle cx="16" cy="16" r="16" fill="var(--color-border-default)" />
       <circle
         cx="16"
         cy="16"
-        r="15"
+        r="15.5"
         fill="var(--color-background-primary)"
       />
       {/* Inner dot (state=true 만): 보라 채움 */}
