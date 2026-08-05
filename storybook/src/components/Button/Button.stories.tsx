@@ -31,9 +31,7 @@ const meta = {
         "Gray_Light",
         "Gray_Line",
         "Gray_Line_Light",
-        "Dark",
       ],
-      description: "Dark 는 Small 전용",
     },
     disabled: { control: "boolean" },
     fullWidth: { control: "boolean" },
@@ -115,11 +113,6 @@ export const SmallBrandLine: Story = {
   args: { size: "small", color: "Brand_Line", children: "인증하기" },
 };
 
-export const SmallDark: Story = {
-  name: "Small / Dark",
-  args: { size: "small", color: "Dark", children: "확인" },
-};
-
 /* ── 병렬 CTA (3.5 : 6.5) ─────────────────────────── */
 export const FixedBottomPair: Story = {
   name: "Fixed-Bottom 병렬 CTA (3.5:6.5)",
@@ -166,50 +159,41 @@ export const Matrix: Story = {
     },
   },
   render: () => {
-    const largeColors: Array<
-      "Brand" | "Brand_Light" | "Brand_Line" | "Gray" | "Gray_Line"
-    > = ["Brand", "Brand_Light", "Brand_Line", "Gray", "Gray_Line"];
-    const smallColors: Array<
-      "Gray" | "Dark" | "Brand" | "Brand_Line" | "Gray_Line"
-    > = ["Gray", "Dark", "Brand", "Brand_Line", "Gray_Line"];
+    const allColors: Array<
+      | "Brand"
+      | "Brand_Light"
+      | "Brand_Line"
+      | "Brand_Gradient"
+      | "Gray"
+      | "Gray_Light"
+      | "Gray_Line"
+      | "Gray_Line_Light"
+    > = [
+      "Brand",
+      "Brand_Light",
+      "Brand_Line",
+      "Brand_Gradient",
+      "Gray",
+      "Gray_Light",
+      "Gray_Line",
+      "Gray_Line_Light",
+    ];
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        <section>
-          <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
-            Large
-          </h4>
-          <div style={{ display: "grid", gap: 8 }}>
-            {largeColors.map((c) => (
-              <Button key={c} size="large" color={c} fullWidth>
-                {c}
-              </Button>
-            ))}
-          </div>
-        </section>
-        <section>
-          <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
-            Medium
-          </h4>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {largeColors.map((c) => (
-              <Button key={c} size="medium" color={c}>
-                {c}
-              </Button>
-            ))}
-          </div>
-        </section>
-        <section>
-          <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
-            Small
-          </h4>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {smallColors.map((c) => (
-              <Button key={c} size="small" color={c}>
-                {c}
-              </Button>
-            ))}
-          </div>
-        </section>
+        {(["large", "medium", "small"] as const).map((s) => (
+          <section key={s}>
+            <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
+              {s}
+            </h4>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {allColors.map((c) => (
+                <Button key={c} size={s} color={c}>
+                  {c}
+                </Button>
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     );
   },

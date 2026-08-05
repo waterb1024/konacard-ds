@@ -1,25 +1,24 @@
 /*
- * konacard-ds-components.md § 02_Button (Large / Medium / Small)
- * - Disable = Default × opacity 40%
- * - Font: Pretendard Bold, 사이즈별 button-large/medium/small
- * - Radius: $radius-button-* 시맨틱 토큰
+ * konacard-ds-components.md § 02_Button
+ * Figma: dHJa65PGtCQHq2n4qgL9Z9 / node 17:703 (button/button, style=primary 기준)
+ *
+ * 사이즈: Large 56 / Medium 48 / Small 40 (Figma primary 기준. 문서는 32 로 표기되어 있지만 Figma 원본 우선)
+ * Radius: 8 / 6 / 6 (Small 은 button-medium 토큰과 동일)
+ * Padding: 16 / 12 16 / 12 16
+ * Gap (아이콘 등): 8px (spacing-xsmall)
+ * Disabled: Fill 계열은 bg #DDD 스왑, Line 계열은 opacity 0.4
  */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2xsmall);
+  gap: var(--spacing-xsmall); /* 8px */
   border: 1px solid transparent;
   background: transparent;
   cursor: pointer;
   white-space: nowrap;
   transition: opacity 0.12s ease;
-}
-
-.button:disabled {
-  opacity: var(--opacity-disable-button);
-  cursor: not-allowed;
 }
 
 .fullWidth {
@@ -29,30 +28,30 @@
 /* ── Size ─────────────────────────────────────────────── */
 .size-large {
   height: 56px;
-  padding: 0 16px;
-  border-radius: var(--radius-button-large);
+  padding: 16px;
+  border-radius: var(--radius-button-large); /* 8 */
   font: var(--text-button-large);
   letter-spacing: var(--font-letterspacing-medium);
 }
 
 .size-medium {
   height: 48px;
-  padding: 0 16px;
-  border-radius: var(--radius-button-medium);
+  padding: 12px 16px;
+  border-radius: var(--radius-button-medium); /* 6 */
   font: var(--text-button-medium);
   letter-spacing: var(--font-letterspacing-small);
 }
 
 .size-small {
-  height: 32px;
-  padding: 0 12px;
-  border-radius: var(--radius-button-small);
-  font: var(--text-button-small);
-  letter-spacing: var(--font-letterspacing-xsmall);
+  height: 40px;
+  padding: 12px 16px;
+  border-radius: var(--radius-button-medium); /* 6 — Figma small 은 medium 과 동일 radius */
+  font: var(--text-button-medium); /* Figma small 은 medium 과 동일 font (14/22 bold) */
+  letter-spacing: var(--font-letterspacing-small);
 }
 
-/* ── Color ────────────────────────────────────────────── */
-/* Brand — 진한 보라 채움 · 흰 텍스트 (기본 Primary CTA) */
+/* ── Color (state=true / enabled) ──────────────────────── */
+/* Brand — 진한 보라 채움 + 흰 텍스트 */
 .color-Brand {
   background: var(--color-background-button-brand);
   color: var(--color-font-white);
@@ -61,7 +60,7 @@
 
 /* Brand_Light — 옅은 보라 배경 + 보라 텍스트 */
 .color-Brand_Light {
-  background: var(--color-button-secondary);
+  background: var(--color-button-secondary); /* #F4F0FD */
   color: var(--color-font-brand);
   border-color: var(--color-button-secondary);
 }
@@ -73,47 +72,59 @@
   border-color: var(--color-border-focus);
 }
 
-/* Brand_Gradient — 보라→블루 수평 그라디언트 + 흰 텍스트 (Figma gradient/primary) */
+/* Brand_Gradient — 보라→블루 수평 그라디언트 + 흰 텍스트 */
 .color-Brand_Gradient {
   background: linear-gradient(90deg, #804ee2 0%, #526ed3 100%);
   color: var(--color-font-white);
   border-color: transparent;
 }
 
-/* Gray — 회색 채움 + 검정 텍스트 (병렬 CTA 좌측 보조) */
+/* Gray — 중간 회색 채움 (#999) + 흰 텍스트 */
 .color-Gray {
-  background: var(--color-background-secondary);
-  color: var(--color-font-primary);
-  border-color: var(--color-background-secondary);
+  background: var(--color-button-quarternary); /* #999999 */
+  color: var(--color-font-white);
+  border-color: var(--color-button-quarternary);
 }
 
-/* Gray_Light — 중간 회색 채움 (color/button/tertiary #DDDDDD) + 검정 텍스트
- * NOTE: 이름과 달리 실제로 기존 Gray(#F8F9FB)보다 더 진한 회색.
- *       Figma 원본 naming 그대로 유지. */
+/* Gray_Light — 옅은 회색 채움 (#DDD) + 검정 텍스트 */
 .color-Gray_Light {
-  background: var(--color-button-tertiary);
+  background: var(--color-button-tertiary); /* #DDDDDD */
   color: var(--color-font-primary);
   border-color: var(--color-button-tertiary);
 }
 
-/* Gray_Line — 흰 배경 + 회색 아웃라인 + 검정 텍스트 */
+/* Gray_Line — 흰 배경 + 회색 아웃라인 (#999) + 다크그레이 텍스트 (#333) */
 .color-Gray_Line {
   background: var(--color-background-primary);
-  color: var(--color-font-primary);
-  border-color: var(--color-border-default);
+  color: var(--color-font-secondary); /* #333 */
+  border-color: var(--color-button-quarternary); /* #999 */
 }
 
-/* Gray_Line_Light — 흰 배경 + 회색 아웃라인 + 다크그레이 텍스트
- * 기존 Gray_Line 과 텍스트 색만 다름 (#000 → #333). */
+/* Gray_Line_Light — 흰 배경 + 옅은 회색 아웃라인 (#DDD) + 다크그레이 텍스트 (#333) */
 .color-Gray_Line_Light {
   background: var(--color-background-primary);
   color: var(--color-font-secondary);
-  border-color: var(--color-border-default);
+  border-color: var(--color-border-default); /* #DDD */
 }
 
-/* Dark — Small 전용 · 검정 채움 + 흰 텍스트 */
-.color-Dark {
-  background: var(--color-font-primary);
+/* ── Disabled (state=false) — Figma 스펙 ─────────────────
+ * Fill 계열은 bg 를 #DDD 로 스왑 + 흰 텍스트.
+ * Line 계열은 원본 스타일 유지 + opacity 0.4. */
+
+.color-Brand:disabled,
+.color-Brand_Light:disabled,
+.color-Brand_Gradient:disabled,
+.color-Gray:disabled,
+.color-Gray_Light:disabled {
+  background: var(--color-button-tertiary); /* #DDD */
   color: var(--color-font-white);
-  border-color: var(--color-font-primary);
+  border-color: var(--color-button-tertiary);
+  cursor: not-allowed;
+}
+
+.color-Brand_Line:disabled,
+.color-Gray_Line:disabled,
+.color-Gray_Line_Light:disabled {
+  opacity: var(--opacity-disable-button); /* 0.4 */
+  cursor: not-allowed;
 }

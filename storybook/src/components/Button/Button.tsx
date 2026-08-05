@@ -12,8 +12,7 @@ export type ButtonColor =
   | "Gray"
   | "Gray_Light"
   | "Gray_Line"
-  | "Gray_Line_Light"
-  | "Dark"; // Small 전용
+  | "Gray_Line_Light";
 
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
