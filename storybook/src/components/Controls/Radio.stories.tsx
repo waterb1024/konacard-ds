@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Radio } from "./Radio";
 
 const meta = {
-  title: "Component/Controls/Radio",
+  title: "Component/Controls/Radio button",
   component: Radio,
   tags: ["autodocs"],
   parameters: {
