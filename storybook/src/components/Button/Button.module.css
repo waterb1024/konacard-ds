@@ -73,11 +73,9 @@
   border-color: var(--color-border-focus);
 }
 
-/* Brand_Gradient — 보라 그라디언트 채움 + 흰 텍스트
- * TODO: Figma variable gradient/primary 는 API 로 값이 노출되지 않아 근사 gradient 사용.
- *       실제 gradient stops 는 디자이너에게 확인 후 정정. */
+/* Brand_Gradient — 보라→블루 수평 그라디언트 + 흰 텍스트 (Figma gradient/primary) */
 .color-Brand_Gradient {
-  background: linear-gradient(135deg, #805ae9 0%, #b39ddb 100%);
+  background: linear-gradient(90deg, #804ee2 0%, #526ed3 100%);
   color: var(--color-font-white);
   border-color: transparent;
 }
