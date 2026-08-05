@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD?node-id=28-431
-// source=storybook/src/components/Control/Checkbox.tsx
+// source=storybook/src/components/Controls/Checkbox.tsx
 // component=Checkbox
 import figma from 'figma'
 
