@@ -74,7 +74,6 @@ function Pin({
           stroke={stroke}
           strokeWidth="1"
           strokeLinejoin="round"
-          strokeLinecap="round"
         />
       )}
     </svg>
