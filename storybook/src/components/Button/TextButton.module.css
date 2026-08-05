@@ -1,0 +1,59 @@
+/*
+ * konacard-ds-components.md § 02_Button > Text 버튼 (button/text, node 17:793)
+ * 형태: 배경 없는 텍스트 링크성 버튼
+ * Height 36px 고정 · Padding 상하 6px 좌우 auto
+ */
+
+.textButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 6px 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.12s ease;
+}
+
+.textButton:disabled {
+  opacity: var(--opacity-disable-button); /* 0.4 */
+  cursor: not-allowed;
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Size (Regular weight 기본 — 텍스트 링크 성격) ─────────────────────── */
+.size-large {
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+.size-medium {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+}
+.size-small {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
+.size-tiny {
+  font: 400 11px/16px var(--font-family-body);
+  letter-spacing: var(--font-letterspacing-2xsmall);
+}
+
+/* ── Color ────────────────────────────────────────── */
+.color-black {
+  color: var(--color-font-primary); /* #000000 */
+}
+.color-brand {
+  color: var(--color-font-brand); /* #805AE9 */
+}
+.color-gray {
+  color: var(--color-font-tertiary); /* #666666 */
+}
+.color-gray-light {
+  color: var(--color-font-quaternary); /* #999999 */
+}
