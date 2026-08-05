@@ -27,7 +27,8 @@ const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
 // Figma: ic_arrow/ic_arrow_right_14 (large) · ic_arrow_right_12 (medium/small/tiny)
-// 실제 spec: 8×14 (또는 7×12) 좁고 긴 > 모양. viewBox "0 0 8 14" 로 통일 사용.
+// 실제 spec: 8×14 (또는 7×12) 좁고 긴 > 모양.
+// 내부 마크 좌표: left 25% · right 12.5% · top/bottom 14.29% 인셋으로 5×10 위치.
 function ChevronRight({ h }: { h: 12 | 14 }) {
   const w = h === 14 ? 8 : 7;
   return (
@@ -41,7 +42,7 @@ function ChevronRight({ h }: { h: 12 | 14 }) {
       style={{ flexShrink: 0 }}
     >
       <path
-        d="M1 1 L7 7 L1 13"
+        d="M2 2 L7 7 L2 12"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
