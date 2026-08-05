@@ -65,6 +65,7 @@ function RadioSvg({
         r={outerR}
         fill="var(--color-background-primary)"
         stroke="var(--color-border-default)"
+        strokeWidth="0.75"
       />
       {checked && (
         <circle
