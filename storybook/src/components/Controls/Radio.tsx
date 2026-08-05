@@ -44,31 +44,33 @@ function RadioSvg({
   checked: boolean;
   size: number;
 }) {
+  /* viewBox 를 각 display size 와 1:1 매칭 → SVG 1 unit = 1 물리 px 항상 유지 →
+     stroke 1 이 사이즈 무관하게 정확히 1 physical pixel 로 렌더.
+     Figma 는 각 사이즈별 SVG 를 native 로 export 하는 방식과 동등 결과. */
+  const c = size / 2;
+  const outerR = c - 0.5; /* stroke 절반이 viewBox 안에 들어가도록 */
+  const dotR = size * (7.47 / 32); /* Figma 비율 그대로: dot 반지름 = 23.3% of outer */
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 32 32"
+      viewBox={`0 0 ${size} ${size}`}
       fill="none"
       aria-hidden
       focusable="false"
     >
-      {/* Figma 원본 SVG 그대로 이식 — stroke 방식.
-          Figma: <circle r=15.5 fill=#FFF stroke=#DDDDDD /> (stroke-width 미지정 default=1).
-          viewBox 정확히 32×32 로 두어야 Figma canvas 렌더와 동일한 antialiasing 결과. */}
       <circle
-        cx="16"
-        cy="16"
-        r="15.5"
+        cx={c}
+        cy={c}
+        r={outerR}
         fill="var(--color-background-primary)"
         stroke="var(--color-border-default)"
       />
-      {/* Inner dot (state=true 만): 보라 채움 */}
       {checked && (
         <circle
-          cx="16"
-          cy="16"
-          r="7.47"
+          cx={c}
+          cy={c}
+          r={dotR}
           fill="var(--color-brand-primary)"
         />
       )}
