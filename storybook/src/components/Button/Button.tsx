@@ -8,8 +8,11 @@ export type ButtonColor =
   | "Brand"
   | "Brand_Light"
   | "Brand_Line"
+  | "Brand_Gradient"
   | "Gray"
+  | "Gray_Light"
   | "Gray_Line"
+  | "Gray_Line_Light"
   | "Dark"; // Small 전용
 
 export interface ButtonProps

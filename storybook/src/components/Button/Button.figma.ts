@@ -14,19 +14,17 @@ const size = instance.getEnum('size', {
   tiny: 'small',
 })
 
-// Figma "type" (8종) → 코드 "color" (6종). 이름·값 모두 다름.
-// - PascalCase + underscore (Brand_Light) 는 Button.tsx 원본 표기 유지.
-// - 코드 미지원 3종(brand-gradient, gray-light, gray-line-light) 은
-//   가장 유사한 대체값으로 매핑 (fidelity 손실은 향후 code prop 확장 시 정정).
+// Figma "type" (8종) → 코드 "color" (9종). 이름은 다르지만 값 1:1 대응.
+// PascalCase + underscore (Brand_Light 등) 는 Button.tsx 원본 표기 유지.
 const color = instance.getEnum('type', {
   brand: 'Brand',
   'brand-light': 'Brand_Light',
   'brand-line': 'Brand_Line',
-  'brand-gradient': 'Brand',
+  'brand-gradient': 'Brand_Gradient',
   gray: 'Gray',
-  'gray-light': 'Gray',
+  'gray-light': 'Gray_Light',
   'gray-line': 'Gray_Line',
-  'gray-line-light': 'Gray_Line',
+  'gray-line-light': 'Gray_Line_Light',
 })
 
 // style (primary/secondary) · state (true/false) 는 코드에 대응 prop 없어 매핑 skip.

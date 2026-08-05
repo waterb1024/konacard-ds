@@ -73,6 +73,15 @@
   border-color: var(--color-border-focus);
 }
 
+/* Brand_Gradient — 보라 그라디언트 채움 + 흰 텍스트
+ * TODO: Figma variable gradient/primary 는 API 로 값이 노출되지 않아 근사 gradient 사용.
+ *       실제 gradient stops 는 디자이너에게 확인 후 정정. */
+.color-Brand_Gradient {
+  background: linear-gradient(135deg, #805ae9 0%, #b39ddb 100%);
+  color: var(--color-font-white);
+  border-color: transparent;
+}
+
 /* Gray — 회색 채움 + 검정 텍스트 (병렬 CTA 좌측 보조) */
 .color-Gray {
   background: var(--color-background-secondary);
@@ -80,10 +89,27 @@
   border-color: var(--color-background-secondary);
 }
 
+/* Gray_Light — 중간 회색 채움 (color/button/tertiary #DDDDDD) + 검정 텍스트
+ * NOTE: 이름과 달리 실제로 기존 Gray(#F8F9FB)보다 더 진한 회색.
+ *       Figma 원본 naming 그대로 유지. */
+.color-Gray_Light {
+  background: var(--color-button-tertiary);
+  color: var(--color-font-primary);
+  border-color: var(--color-button-tertiary);
+}
+
 /* Gray_Line — 흰 배경 + 회색 아웃라인 + 검정 텍스트 */
 .color-Gray_Line {
   background: var(--color-background-primary);
   color: var(--color-font-primary);
+  border-color: var(--color-border-default);
+}
+
+/* Gray_Line_Light — 흰 배경 + 회색 아웃라인 + 다크그레이 텍스트
+ * 기존 Gray_Line 과 텍스트 색만 다름 (#000 → #333). */
+.color-Gray_Line_Light {
+  background: var(--color-background-primary);
+  color: var(--color-font-secondary);
   border-color: var(--color-border-default);
 }
 
