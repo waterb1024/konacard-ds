@@ -44,3 +44,13 @@
 - **`konacard-ds-foundation.md`** = Figma DS 원본과 대조 필요. 임의 수정 금지. 값 변경 시 반드시 Figma 원본과 일치하는지 확인.
 - **`konacard-ds-rule.md`** = 새 화면 분석하면서 규칙 축적. 기존 규칙과 충돌 시 사용자에게 확인 후 정정.
 - **버전 1 작성 진행 중** — changelog 별도 기록 안 함. 완성 후 v1 배포 시 정리 예정.
+
+## Storybook 컴포넌트 작업 시 (필독)
+
+`storybook/` 안의 컴포넌트를 만들거나 수정할 때는 **반드시 `storybook/README.md` 상단의 "진실의 소스: Figma 파일" 규칙을 먼저 읽고 준수**한다.
+
+핵심 규칙:
+- 모든 픽셀·색·타이포 값은 Figma 에서 추출 (`get_context_for_code_connect` → `get_metadata` → `get_design_context`)
+- 문서(`components.md`, `foundation.md`) 와 Figma 가 어긋나면 **Figma 우선**
+- **아이콘·화살표는 반드시 Figma 원본 SVG 를 다운로드해서 그대로 사용** — 자기 스타일로 그리지 않음
+- 미확인 값은 코드에 넣지 않음 (매핑에서 skip 하거나 명시적 미구현 처리)
