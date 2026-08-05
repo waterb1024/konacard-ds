@@ -41,6 +41,7 @@
 .input:disabled {
   color: var(--color-font-placeholder);
   -webkit-text-fill-color: var(--color-font-placeholder);
+  background: transparent; /* Chrome UA input[disabled] bg 방지 */
   opacity: 1;
   cursor: not-allowed;
 }

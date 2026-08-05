@@ -33,9 +33,9 @@ const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
 /* Figma ic_arrow/ic_arrow_down_12 원본:
- *   Vector 6×11 stroke=1 currentColor
- *   컨테이너 12×8 안에서 mark 위치는 x=1~11, y=2~7 (inset 8.33% 좌우, 25%/12.5% 상하)
- *   최종 v 모양: (1,2) → (6,7) → (11,2) */
+ *   Vector 6×11 (`<` shape) → CSS rotate(90) + scale-x(-1) 로 `v` 형태로 변환.
+ *   최종 렌더 크기 11×6, viewBox 12×8 안에서 마크는 x=0.5~11.5, y=1~7.
+ *   round linecap 으로 stroke 이 viewBox 경계까지 자연스럽게 확장. */
 function ChevronDown() {
   return (
     <svg
@@ -47,7 +47,7 @@ function ChevronDown() {
       focusable="false"
     >
       <path
-        d="M1 2 L6 7 L11 2"
+        d="M0.5 1.5 L6 7 L11.5 1.5"
         stroke="currentColor"
         strokeWidth="1"
         strokeLinecap="round"
@@ -57,7 +57,7 @@ function ChevronDown() {
   );
 }
 
-/* active 상태 (펼침): ^ 모양. mark 위치 x=1~11, y=1~6 (inset 12.5% 위, 25% 아래) */
+/* active 상태 (펼침): ^ 모양. 세로 뒤집기 (y' = 8 - y) */
 function ChevronUp() {
   return (
     <svg
@@ -69,7 +69,7 @@ function ChevronUp() {
       focusable="false"
     >
       <path
-        d="M1 6 L6 1 L11 6"
+        d="M0.5 6.5 L6 1 L11.5 6.5"
         stroke="currentColor"
         strokeWidth="1"
         strokeLinecap="round"

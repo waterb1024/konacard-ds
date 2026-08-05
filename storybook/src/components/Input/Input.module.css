@@ -50,6 +50,7 @@
 .input:disabled {
   color: var(--color-font-placeholder);
   -webkit-text-fill-color: var(--color-font-placeholder); /* iOS/Safari 회색 tint 방지 */
+  background: transparent; /* Chrome UA input[disabled] bg 방지 — wrap 배경 그대로 노출 */
   opacity: 1; /* 브라우저 기본 opacity 감소 방지 */
   cursor: not-allowed;
 }
