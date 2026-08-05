@@ -116,29 +116,31 @@ function CheckboxSvg({
 
       {/* line 스타일은 박스 없음 */}
 
-      {/* ── Check mark (checked 일 때만) ────────────── */}
-      {checked && style === "circle" && (
+      {/* ── Check mark (모든 state 렌더, 색만 다름 — Figma 원본 SVG 대로) ─── */}
+      {style === "circle" && (
         <path
           d="M9 16.5 L13.67 21 L23 12"
-          stroke={white}
+          stroke={white} /* circle 은 checked/unchecked 둘 다 white check */
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       )}
-      {checked && (style === "square-fill" || style === "square-line") && (
+      {(style === "square-fill" || style === "square-line") && (
         <path
           d="M9.33 15.91 L13.78 20.19 L22.67 11.62"
-          stroke={style === "square-fill" ? white : brand}
+          stroke={
+            checked ? (style === "square-fill" ? white : brand) : off
+          }
           strokeWidth="2.67"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       )}
-      {checked && style === "line" && (
+      {style === "line" && (
         <path
           d="M6.67 15.33 L12.89 21.33 L25.33 9.33"
-          stroke={brand}
+          stroke={checked ? brand : off}
           strokeWidth="2.67"
           strokeLinecap="round"
           strokeLinejoin="round"
