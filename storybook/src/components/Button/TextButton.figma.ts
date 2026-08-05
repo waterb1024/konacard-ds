@@ -21,7 +21,7 @@ const color = instance.getEnum('color', {
 })
 
 // state (true/false) 는 HTML disabled 로 처리 — 매핑 skip.
-// underline 은 사용 시점 결정 사항이라 매핑에서 강제하지 않음.
+// 밑줄은 컴포넌트 기본 스타일이라 별도 prop 없음.
 
 export default {
   example: figma.code`<TextButton size="${size}" color="${color}">Button</TextButton>`,

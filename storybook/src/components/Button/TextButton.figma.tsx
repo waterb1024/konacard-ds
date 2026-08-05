@@ -6,7 +6,7 @@
  * 매핑 요약
  * - size · color 는 outlier 없이 1:1
  * - state 는 HTML disabled 로 별도 처리 → skip
- * - underline 은 사용 시점 결정 사항 → 매핑에서 강제 안 함
+ * - 밑줄은 컴포넌트 기본 스타일이라 매핑에서 별도 prop 없음
  */
 import figma from "@figma/code-connect";
 import { TextButton } from "./TextButton";

@@ -23,7 +23,6 @@ const meta = {
       control: "inline-radio",
       options: ["black", "brand", "gray", "gray-light"],
     },
-    underline: { control: "boolean" },
     disabled: { control: "boolean" },
     children: { control: "text" },
   },
@@ -31,7 +30,6 @@ const meta = {
     children: "약관 보기",
     size: "medium",
     color: "black",
-    underline: false,
     disabled: false,
   },
   decorators: [
@@ -56,10 +54,6 @@ export const Gray: Story = { args: { color: "gray", children: "다시 보기" } 
 export const GrayLight: Story = {
   name: "Gray_Light",
   args: { color: "gray-light", children: "지원 안 됨" },
-};
-
-export const Underlined: Story = {
-  args: { color: "gray", underline: true, children: "이용약관" },
 };
 
 export const Disabled: Story = {
