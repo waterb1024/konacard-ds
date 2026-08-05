@@ -104,21 +104,23 @@ function BulletIcon({
   );
 }
 
-// Figma: input/icon type=icon_delete (2502:6380). 원형 배경 + 흰색 × 크로스.
-function DeleteIcon({ size = 20 }: { size?: 24 | 20 | 16 }) {
+// Figma: input/icon type=icon_delete. 24×24 컨테이너 · 18×18 원(inset 12.5%) + 흰색 × 크로스.
+// Figma 원본 SVG 좌표 그대로: 원 r=9 at (12,12), × stroke width 1 (default), 7px 대각선.
+function DeleteIcon({ size = 24 }: { size?: 24 | 20 | 16 }) {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 20 20"
+      viewBox="0 0 24 24"
+      fill="none"
       aria-hidden
       focusable="false"
     >
-      <circle cx="10" cy="10" r="10" fill="var(--color-icon-quinary)" />
+      <circle cx="12" cy="12" r="9" fill="var(--color-icon-quinary)" />
       <path
-        d="M6.75 6.75 L13.25 13.25 M13.25 6.75 L6.75 13.25"
+        d="M8.5 8.5 L15.5 15.5 M15.5 8.5 L8.5 15.5"
         stroke="var(--color-icon-white)"
-        strokeWidth="1.5"
+        strokeWidth="1"
         strokeLinecap="round"
       />
     </svg>

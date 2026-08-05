@@ -20,9 +20,9 @@
 .inputWrap {
   display: flex;
   align-items: center;
-  gap: var(--spacing-small); /* 내부 요소 gap 12px */
+  gap: var(--spacing-medium); /* Figma 실측: 16px */
   height: 48px;
-  padding: 0 var(--spacing-medium);
+  padding: var(--spacing-small) var(--spacing-medium); /* Figma 실측: 12 16 */
   background: var(--color-background-primary);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-components-form);
@@ -103,10 +103,10 @@
 }
 
 /* ── Clear (×) 어드먼트 — Active/Error에서만 노출 ─── */
-/* SVG(<DeleteIcon />) 자체가 원형 배경 + 흰 × 를 그리므로 버튼은 wrapper 만 담당 */
+/* Figma 24×24 클릭 영역. SVG(<DeleteIcon />) 가 배경·×을 그림 */
 .clear {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
   background: transparent;
