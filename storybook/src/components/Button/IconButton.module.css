@@ -1,0 +1,73 @@
+/*
+ * konacard-ds-components.md § 02_Button > Icon 버튼 (button/icon, node 202:2574)
+ * 형태: 텍스트 + 우측 chevron(>)
+ * Height: 자연스럽게 padding + lineHeight 로 결정. spec 상 medium 기준 34h.
+ */
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall); /* 4px */
+  padding: var(--spacing-xsmall) var(--spacing-2xsmall); /* 8px 4px */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.12s ease;
+}
+
+.iconButton:disabled {
+  opacity: var(--opacity-disable-button); /* 0.4 */
+  cursor: not-allowed;
+}
+
+.label {
+  display: inline-flex;
+}
+
+/* ── Size × Weight ─────────────────────────────────── */
+/* regular */
+.size-large.weight-regular {
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+.size-medium.weight-regular {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+}
+.size-small.weight-regular {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
+.size-tiny.weight-regular {
+  font: 400 11px/16px var(--font-family-body);
+  letter-spacing: var(--font-letterspacing-2xsmall);
+}
+
+/* bold */
+.size-large.weight-bold {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+.size-medium.weight-bold {
+  font: var(--text-body-2-bold);
+  letter-spacing: var(--font-letterspacing-small);
+}
+.size-small.weight-bold {
+  font: var(--text-body-3-bold);
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
+.size-tiny.weight-bold {
+  font: 700 11px/16px var(--font-family-body);
+  letter-spacing: var(--font-letterspacing-2xsmall);
+}
+
+/* ── Color (type) ──────────────────────────────────── */
+.type-black {
+  color: var(--color-font-primary); /* #000000 */
+}
+.type-brand {
+  color: var(--color-font-brand); /* #805AE9 */
+}
+.type-gray {
+  color: var(--color-font-tertiary); /* #666666 */
+}
