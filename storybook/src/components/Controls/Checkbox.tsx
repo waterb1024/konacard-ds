@@ -50,7 +50,17 @@ const SIZE_PX: Record<CheckboxSize, number> = {
   tiny: 20,
 };
 
-/* Figma vector 686 (checkmark) — path 는 32×32 viewBox 로 이식된 실제 Figma 좌표 */
+/* Figma vector 좌표 정확 이식 — 32×32 viewBox 로 전 style 통일:
+ *  circle base: 원 fill (checked: brand, unchecked: #DDD)
+ *  square-fill: rect fill 스왑 (checked: brand + brand border · unchecked: white + #DDD border)
+ *  square-line: rect white fill · border (checked: brand · unchecked: #DDD)
+ *  line: 박스 없음, check mark 만
+ *
+ * Check mark path 는 style 별 별개:
+ *  circle:  Figma vector687 (16×11, stroke 2) → 32×32 좌표 `M9 16.5 L13.67 21 L23 12`
+ *  square:  Figma vector686 (16×11.24, stroke 2.67) → `M9.33 15.91 L13.78 20.19 L22.67 11.62`
+ *  line:    Figma vector686-large (21.33×14.67, stroke 2.67) → `M6.67 15.33 L12.89 21.33 L25.33 9.33`
+ * checked=false 는 check mark 자체를 렌더 안 함 (Figma 는 bg 와 같은 색으로 그리지만 시각적으로 동일). */
 function CheckboxSvg({
   style,
   checked,
@@ -62,8 +72,7 @@ function CheckboxSvg({
 }) {
   const brand = "var(--color-brand-primary)";
   const white = "var(--color-font-white)";
-  const border = "var(--color-icon-quaternary)";
-  const unfillBg = "var(--color-background-secondary)";
+  const off = "var(--color-border-default)"; /* #DDDDDD */
 
   return (
     <svg
@@ -74,20 +83,10 @@ function CheckboxSvg({
       aria-hidden
       focusable="false"
     >
-      {/* ── Base box per style ──────────────────────── */}
-      {style === "circle" &&
-        (checked ? (
-          <circle cx="16" cy="16" r="16" fill={brand} />
-        ) : (
-          <circle
-            cx="16"
-            cy="16"
-            r="15"
-            fill="none"
-            stroke={border}
-            strokeWidth="2"
-          />
-        ))}
+      {/* ── Base per style ─────────────────────────── */}
+      {style === "circle" && (
+        <circle cx="16" cy="16" r="16" fill={checked ? brand : off} />
+      )}
 
       {style === "square-fill" && (
         <rect
@@ -96,8 +95,8 @@ function CheckboxSvg({
           width="30"
           height="30"
           rx="5.333"
-          fill={checked ? brand : unfillBg}
-          stroke={checked ? brand : border}
+          fill={checked ? brand : white}
+          stroke={checked ? brand : off}
           strokeWidth="2"
         />
       )}
@@ -110,18 +109,27 @@ function CheckboxSvg({
           height="30"
           rx="5.333"
           fill={white}
-          stroke={brand}
+          stroke={checked ? brand : off}
           strokeWidth="2"
         />
       )}
 
       {/* line 스타일은 박스 없음 */}
 
-      {/* ── Check mark ─────────────────────────────── */}
-      {checked && style !== "line" && (
+      {/* ── Check mark (checked 일 때만) ────────────── */}
+      {checked && style === "circle" && (
+        <path
+          d="M9 16.5 L13.67 21 L23 12"
+          stroke={white}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      )}
+      {checked && (style === "square-fill" || style === "square-line") && (
         <path
           d="M9.33 15.91 L13.78 20.19 L22.67 11.62"
-          stroke={style === "square-line" ? brand : white}
+          stroke={style === "square-fill" ? white : brand}
           strokeWidth="2.67"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -129,7 +137,7 @@ function CheckboxSvg({
       )}
       {checked && style === "line" && (
         <path
-          d="M6.67 15.67 L12.89 21.67 L25.33 9.67"
+          d="M6.67 15.33 L12.89 21.33 L25.33 9.33"
           stroke={brand}
           strokeWidth="2.67"
           strokeLinecap="round"
