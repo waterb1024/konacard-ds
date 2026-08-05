@@ -53,7 +53,8 @@ function RadioSvg({
       aria-hidden
       focusable="false"
     >
-      {/* Outer: 항상 white bg + #DDD 테두리 (Figma 원본 SVG 그대로) */}
+      {/* Outer: 항상 white bg + #DDD 테두리 (Figma 원본 SVG 그대로)
+          vector-effect: non-scaling-stroke 로 사이즈에 관계없이 stroke 항상 1px 물리 픽셀 */}
       <circle
         cx="16"
         cy="16"
@@ -61,6 +62,7 @@ function RadioSvg({
         fill="var(--color-background-primary)"
         stroke="var(--color-border-default)"
         strokeWidth="1"
+        vectorEffect="non-scaling-stroke"
       />
       {/* Inner dot (state=true 만): 보라 채움 */}
       {checked && (
