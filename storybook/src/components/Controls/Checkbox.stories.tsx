@@ -26,6 +26,10 @@ const meta = {
     },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
+    // HTML button 상속 attrs 는 Docs 에서 숨김 (내부 고정 값이거나 컴포넌트 API 아님)
+    type: { table: { disable: true } },
+    onClick: { table: { disable: true } },
+    onChange: { table: { disable: true } },
   },
   args: {
     style: "circle",
