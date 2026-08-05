@@ -29,7 +29,14 @@ export type TooltipStyle = "line" | "brand";
 const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
-/* ── Pin (arrow) SVG ────────────────────────────── */
+/* ── Pin (arrow) SVG ──────────────────────────────
+ * 두 개의 path 사용:
+ *   1) fill path — "지붕 있는 집" 모양. body 방향 1px 스트립 + 삼각형.
+ *      → fill 이 body 의 border 1px 를 덮어 이음새(seam) 방지.
+ *   2) stroke path — 두 대각선만. body 방향 base 는 stroke 안 함
+ *      (body 의 border 와 자연스럽게 이어져 보이도록).
+ * strokeLinejoin="round" 로 tip 을 살짝 둥글게 (Figma rounded tip 대응).
+ */
 type PinDirection = "down" | "up" | "left" | "right";
 
 function Pin({
@@ -45,55 +52,48 @@ function Pin({
     : "var(--color-background-primary)";
   const stroke = "var(--color-border-focus)";
 
-  if (direction === "down") {
-    /* tip at bottom-center — attached below body */
-    return (
-      <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden>
-        {isBrand ? (
-          <path d="M0 0 L6 8 L12 0 Z" fill={fill} />
-        ) : (
-          <path d="M0 0 L6 8 L12 0" fill={fill} stroke={stroke} strokeWidth="1" />
-        )}
-      </svg>
-    );
-  }
-
-  if (direction === "up") {
-    /* tip at top-center — attached above body */
-    return (
-      <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden>
-        {isBrand ? (
-          <path d="M0 8 L6 0 L12 8 Z" fill={fill} />
-        ) : (
-          <path d="M0 8 L6 0 L12 8" fill={fill} stroke={stroke} strokeWidth="1" />
-        )}
-      </svg>
-    );
-  }
-
-  if (direction === "right") {
-    /* tip at right-center — attached to right of body */
-    return (
-      <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden>
-        {isBrand ? (
-          <path d="M0 0 L8 6 L0 12 Z" fill={fill} />
-        ) : (
-          <path d="M0 0 L8 6 L0 12" fill={fill} stroke={stroke} strokeWidth="1" />
-        )}
-      </svg>
-    );
-  }
-
-  /* left — tip at left-center, attached to left of body */
-  return (
-    <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden>
-      {isBrand ? (
-        <path d="M8 0 L0 6 L8 12 Z" fill={fill} />
-      ) : (
-        <path d="M8 0 L0 6 L8 12" fill={fill} stroke={stroke} strokeWidth="1" />
+  const render = (
+    fillPath: string,
+    strokePath: string,
+    w: number,
+    h: number,
+  ) => (
+    <svg
+      width={w}
+      height={h}
+      viewBox={`0 0 ${w} ${h}`}
+      fill="none"
+      aria-hidden
+      focusable="false"
+    >
+      <path d={fillPath} fill={fill} />
+      {!isBrand && (
+        <path
+          d={strokePath}
+          fill="none"
+          stroke={stroke}
+          strokeWidth="1"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+        />
       )}
     </svg>
   );
+
+  if (direction === "down") {
+    /* tip at bottom, base at top overlaps body's bottom edge */
+    return render("M0 0 L12 0 L12 1 L6 8 L0 1 Z", "M0 1 L6 8 L12 1", 12, 8);
+  }
+  if (direction === "up") {
+    /* tip at top, base at bottom overlaps body's top edge */
+    return render("M0 8 L12 8 L12 7 L6 0 L0 7 Z", "M0 7 L6 0 L12 7", 12, 8);
+  }
+  if (direction === "right") {
+    /* tip at right, base at left overlaps body's right edge */
+    return render("M0 0 L1 0 L8 6 L1 12 L0 12 Z", "M1 0 L8 6 L1 12", 8, 12);
+  }
+  /* left — tip at left, base at right overlaps body's left edge */
+  return render("M8 0 L7 0 L0 6 L7 12 L8 12 Z", "M7 0 L0 6 L7 12", 8, 12);
 }
 
 /* ── Placement → pin direction ─────────────────── */
