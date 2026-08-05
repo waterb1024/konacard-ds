@@ -21,25 +21,37 @@
   cursor: not-allowed;
 }
 
-/* ── Size — Height + font ─────────────────────── */
+/* ── Size — Height + typography (line-height 확실히 적용되도록 shorthand 대신 분리) ─────── */
 .size-large {
   height: 36px;
-  font: var(--text-body-1-regular);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-medium); /* 15px */
+  line-height: var(--font-lineheight-medium); /* 24px */
   letter-spacing: var(--font-letterspacing-medium);
 }
 .size-medium {
   height: 32px;
-  font: var(--text-body-2-regular);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-small); /* 14px */
+  line-height: var(--font-lineheight-small); /* 22px */
   letter-spacing: var(--font-letterspacing-small);
 }
 .size-small {
   height: 28px;
-  font: var(--text-body-3-regular);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-xsmall); /* 12px */
+  line-height: var(--font-lineheight-xsmall); /* 18px */
   letter-spacing: var(--font-letterspacing-xsmall);
 }
 .size-tiny {
   height: 24px;
-  font: 400 11px/16px var(--font-family-body);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-2xsmall); /* 11px */
+  line-height: var(--font-lineheight-2xsmall); /* 16px */
   letter-spacing: var(--font-letterspacing-2xsmall);
 }
 
