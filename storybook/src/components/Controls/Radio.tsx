@@ -53,15 +53,15 @@ function RadioSvg({
       aria-hidden
       focusable="false"
     >
-      {/* Ring: 겹친 fill circle 2개. 내부 반지름 15.5 로 링 두께 0.5 viewBox unit →
-          32px 렌더 시 0.5px 두께가 antialiasing 으로 부드럽게 spread 되어 Figma
-          stroke 렌더와 시각적 두께 매칭 (1px solid fill 은 너무 진했음). */}
-      <circle cx="16" cy="16" r="16" fill="var(--color-border-default)" />
+      {/* Figma 원본 SVG 그대로 이식 — stroke 방식.
+          Figma: <circle r=15.5 fill=#FFF stroke=#DDDDDD /> (stroke-width 미지정 default=1).
+          viewBox 정확히 32×32 로 두어야 Figma canvas 렌더와 동일한 antialiasing 결과. */}
       <circle
         cx="16"
         cy="16"
         r="15.5"
         fill="var(--color-background-primary)"
+        stroke="var(--color-border-default)"
       />
       {/* Inner dot (state=true 만): 보라 채움 */}
       {checked && (
