@@ -30,12 +30,12 @@ const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
 /* ── Pin (arrow) SVG ──────────────────────────────
- * 두 개의 path 사용:
- *   1) fill path — "지붕 있는 집" 모양. body 방향 1px 스트립 + 삼각형.
- *      → fill 이 body 의 border 1px 를 덮어 이음새(seam) 방지.
- *   2) stroke path — 두 대각선만. body 방향 base 는 stroke 안 함
- *      (body 의 border 와 자연스럽게 이어져 보이도록).
- * strokeLinejoin="round" 로 tip 을 살짝 둥글게 (Figma rounded tip 대응).
+ * Figma polygon2 원본을 그대로 반영:
+ *   - Tip 은 cubic bezier 로 둥글게 처리 (`strokeLinejoin: round` 만으로는
+ *     실제 tip 이 각져 보였음 — Figma 는 진짜 rounded tip).
+ *   - Diagonals 는 pin container 의 base edge 까지 연장돼 fill 이 body
+ *     border 를 완전히 덮음 (seam 방지).
+ *   - Stroke path 는 base 를 뺀 open path — body 의 border 와 이어져 보이도록.
  */
 type PinDirection = "down" | "up" | "left" | "right";
 
@@ -79,20 +79,47 @@ function Pin({
     </svg>
   );
 
-  if (direction === "down") {
-    /* tip at bottom, base at top overlaps body's bottom edge */
-    return render("M0 0 L12 0 L12 1 L6 8 L0 1 Z", "M0 1 L6 8 L12 1", 12, 8);
-  }
+  /* Figma polygon2 원본 tip curve:
+   *   (4.71, 1.23) → C(5.30, 0.26) (6.70, 0.26) (7.29, 1.23)
+   * viewBox 12×8 기준 (Figma 8.113 → 8 로 살짝 스케일).
+   * Diagonals 는 tip 끝점에서 pin 의 base edge 코너 (0/12, 0/8) 까지 연장 →
+   * 원본보다 base 가 약간 넓어지지만 fill 이 body border 를 완전히 덮어 seam 방지.
+   */
+
   if (direction === "up") {
-    /* tip at top, base at bottom overlaps body's top edge */
-    return render("M0 8 L12 8 L12 7 L6 0 L0 7 Z", "M0 7 L6 0 L12 7", 12, 8);
+    /* tip up, base at bottom (bottom-* placement) */
+    return render(
+      "M0 8 L4.71 1.23 C5.30 0.26 6.70 0.26 7.29 1.23 L12 8 Z",
+      "M0 8 L4.71 1.23 C5.30 0.26 6.70 0.26 7.29 1.23 L12 8",
+      12,
+      8,
+    );
+  }
+  if (direction === "down") {
+    /* tip down, base at top (top-* placement). 세로 뒤집기: y' = 8 - y */
+    return render(
+      "M0 0 L4.71 6.77 C5.30 7.74 6.70 7.74 7.29 6.77 L12 0 Z",
+      "M0 0 L4.71 6.77 C5.30 7.74 6.70 7.74 7.29 6.77 L12 0",
+      12,
+      8,
+    );
   }
   if (direction === "right") {
-    /* tip at right, base at left overlaps body's right edge */
-    return render("M0 0 L1 0 L8 6 L1 12 L0 12 Z", "M1 0 L8 6 L1 12", 8, 12);
+    /* tip right, base at left (left placement). 시계방향 90도 회전 */
+    return render(
+      "M0 0 L6.77 4.71 C7.74 5.30 7.74 6.70 6.77 7.29 L0 12 Z",
+      "M0 0 L6.77 4.71 C7.74 5.30 7.74 6.70 6.77 7.29 L0 12",
+      8,
+      12,
+    );
   }
-  /* left — tip at left, base at right overlaps body's left edge */
-  return render("M8 0 L7 0 L0 6 L7 12 L8 12 Z", "M7 0 L0 6 L7 12", 8, 12);
+  /* left — tip left, base at right (right placement). 좌우 반전 */
+  return render(
+    "M8 0 L1.23 4.71 C0.26 5.30 0.26 6.70 1.23 7.29 L8 12 Z",
+    "M8 0 L1.23 4.71 C0.26 5.30 0.26 6.70 1.23 7.29 L8 12",
+    8,
+    12,
+  );
 }
 
 /* ── Placement → pin direction ─────────────────── */
