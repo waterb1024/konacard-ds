@@ -1,13 +1,18 @@
 /*
  * konacard-ds — Label
- * Figma: Nv4o6ozSx5W4w10uFnQIs5
+ * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-)
  *  - Basic (component): node 2121:5513
  *  - Link (variant):   node 2415:6389
- *  - Usage:            node 149:1240
  *
  * Basic: 4 size × 2 type (color/line) × 7 color
  * Link : icon + text, 5 color × 2 type — regular weight (basic 은 bold)
- * Radius: pill (radius/components/label = 9999)
+ * Radius: pill (radius/components/label = 9999, `--radius-round` 와 동일 값)
+ *
+ * ── 사이즈별 스펙 (Figma AX 실측) ────────────────
+ *   Large : 30h, padding 4v 12h, body/2-bold (14/22/-0.28)
+ *   Medium: 26h, padding 4v 12h, body/3-bold (12/18/-0.24)
+ *   Small : 24h(fixed), padding 8 all, body/4-bold (11/16/-0.22)
+ *   Tiny  : 20h, padding 4v 8h,   9/12/-0.18 (semantic body token 없음)
  */
 
 .label {
@@ -41,10 +46,10 @@
   letter-spacing: -0.24px;
 }
 
-/* small: h24 fixed, padding 8 · body/4-bold (11/16) */
+/* small: h24 fixed, padding 8 all sides · body/4-bold (11/16) */
 .size-small {
   height: 24px;
-  padding: 0 var(--spacing-xsmall);
+  padding: var(--spacing-xsmall); /* Figma spec: 8px 전방향 */
   gap: var(--spacing-xsmall);
   font-size: 11px;
   line-height: 16px;
