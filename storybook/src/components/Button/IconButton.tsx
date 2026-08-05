@@ -26,20 +26,22 @@ export interface IconButtonProps
 const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
-function ChevronRight({ px }: { px: 12 | 14 }) {
-  // stroke="currentColor" 로 텍스트 톤과 자동 동기화.
+// Figma: ic_arrow/ic_arrow_right_14 (large) · ic_arrow_right_12 (medium/small/tiny)
+// 실제 spec: 8×14 (또는 7×12) 좁고 긴 > 모양. viewBox "0 0 8 14" 로 통일 사용.
+function ChevronRight({ h }: { h: 12 | 14 }) {
+  const w = h === 14 ? 8 : 7;
   return (
     <svg
-      width={px}
-      height={px}
-      viewBox="0 0 12 12"
+      width={w}
+      height={h}
+      viewBox="0 0 8 14"
       fill="none"
       aria-hidden
       focusable="false"
       style={{ flexShrink: 0 }}
     >
       <path
-        d="M4.5 3 L7.5 6 L4.5 9"
+        d="M1 1 L7 7 L1 13"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
@@ -76,7 +78,9 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         {...rest}
       >
         <span className={styles.label}>{children}</span>
-        <ChevronRight px={arrowPx} />
+        <span className={styles.chevron} aria-hidden>
+          <ChevronRight h={arrowPx} />
+        </span>
       </button>
     );
   },

@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-2xsmall); /* 4px */
-  padding: var(--spacing-xsmall) var(--spacing-2xsmall); /* 8px 4px */
+  padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -22,6 +22,31 @@
 
 .label {
   display: inline-flex;
+}
+
+/* chevron 은 text 색보다 한 톤 살짝 다르게 처리 — Figma spec 대로 */
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Height per size (Figma spec: 40/32/28/24) ─────────────── */
+.size-large.iconButton,
+.iconButton.size-large {
+  height: 40px;
+}
+.size-medium.iconButton,
+.iconButton.size-medium {
+  height: 32px;
+}
+.size-small.iconButton,
+.iconButton.size-small {
+  height: 28px;
+}
+.size-tiny.iconButton,
+.iconButton.size-tiny {
+  height: 24px;
 }
 
 /* ── Size × Weight ─────────────────────────────────── */
@@ -61,13 +86,24 @@
   letter-spacing: var(--font-letterspacing-2xsmall);
 }
 
-/* ── Color (type) ──────────────────────────────────── */
+/* ── Color (type) — 텍스트 색과 chevron 색 분리 (Figma spec) ─────── */
 .type-black {
-  color: var(--color-font-primary); /* #000000 */
+  color: var(--color-font-primary); /* text #000000 */
 }
+.type-black .chevron {
+  color: var(--color-icon-secondary); /* icon #333333 (텍스트보다 한 톤 옅음) */
+}
+
 .type-brand {
   color: var(--color-font-brand); /* #805AE9 */
 }
+.type-brand .chevron {
+  color: var(--color-icon-brand); /* #805AE9 (동일) */
+}
+
 .type-gray {
-  color: var(--color-font-tertiary); /* #666666 */
+  color: var(--color-font-tertiary); /* text #666666 */
+}
+.type-gray .chevron {
+  color: var(--color-icon-tertiary); /* icon #666666 (동일) */
 }
