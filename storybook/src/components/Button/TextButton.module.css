@@ -22,6 +22,11 @@
   cursor: pointer;
   box-sizing: border-box;
   transition: opacity 0.12s ease;
+  /* button 태그의 UA line-height/text-align 이 flex layout 을 방해하지 않도록 명시 */
+  line-height: 0;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0;
 }
 
 .textButton:disabled {
