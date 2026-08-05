@@ -30,6 +30,11 @@
 
 .wrap:disabled {
   cursor: not-allowed;
+  /* 브라우저 UA 의 disabled 자동 dimming 제거 — Figma 는 bg 자체를 #F8F9FB 로 스왑하고
+     별도 opacity 는 chevron 에만 적용 (0.24). button 기본 opacity 를 켜 두면
+     background 색이 어둡게 씌워짐. */
+  opacity: 1;
+  -webkit-text-fill-color: currentColor;
 }
 
 .label {
@@ -82,7 +87,7 @@
   color: var(--color-icon-secondary); /* #333 */
 }
 
-/* Inactive (Figma "disabled") — 회색 배경 · placeholder 색 */
+/* Inactive (Figma "disabled") — 회색 배경 · placeholder 색 · chevron 흐림 */
 .state-inactive {
   border-color: var(--color-border-default);
   background: var(--color-background-disabled);
@@ -90,6 +95,7 @@
 }
 .state-inactive .chevron {
   color: var(--color-icon-quaternary);
+  opacity: 0.24; /* Figma opacity/disable/icon */
 }
 
 /* Error — 빨간 테두리 · error bold */
