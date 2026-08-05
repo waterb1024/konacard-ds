@@ -64,7 +64,8 @@
   justify-content: center;
   flex-shrink: 0;
   line-height: 0;
-  position: relative; /* z-index 활성화 위해 필수 */
+  position: relative;
+  z-index: 2; /* 항상 body(z=1) 위에 그려져야 arrow fill 이 body border 를 덮음 */
 }
 
 .p-top-left .arrowSlot, .p-top .arrowSlot, .p-top-right .arrowSlot,
@@ -87,7 +88,6 @@
 /* bottom-*: arrow 위, body 아래 → arrow 하단이 body 상단을 1px 덮음 */
 .p-bottom-left .arrowSlot, .p-bottom .arrowSlot, .p-bottom-right .arrowSlot {
   margin-bottom: -1px;
-  z-index: 2;
 }
 
 /* left: body 왼쪽, arrow 오른쪽 → body 우측이 arrow 좌측 1px 덮음 */
@@ -98,7 +98,6 @@
 /* right: arrow 왼쪽, body 오른쪽 → arrow 우측이 body 좌측 1px 덮음 */
 .p-right .arrowSlot {
   margin-right: -1px;
-  z-index: 2;
 }
 
 /* ── Trigger (? or !) ─────────────────────────── */
