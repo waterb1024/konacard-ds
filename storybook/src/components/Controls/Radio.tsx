@@ -53,17 +53,15 @@ function RadioSvg({
       aria-hidden
       focusable="false"
     >
-      {/* Outer: white bg + #DDD 테두리.
-          r=15 (기존 15.5 는 stroke 절반이 viewBox 밖으로 나가서 clipping + 이중선 artifact).
-          vector-effect: non-scaling-stroke 로 사이즈 무관 1px 물리 픽셀 유지. */}
+      {/* Ring 은 stroke 대신 겹친 두 개 fill circle 로 구현 —
+          browser stroke antialiasing 에 의한 이중선 artifact 회피.
+          외곽 gray disc (r=16) + 내부 white disc (r=15) = 1px 링 효과. */}
+      <circle cx="16" cy="16" r="16" fill="var(--color-border-default)" />
       <circle
         cx="16"
         cy="16"
         r="15"
         fill="var(--color-background-primary)"
-        stroke="var(--color-border-default)"
-        strokeWidth="1"
-        vectorEffect="non-scaling-stroke"
       />
       {/* Inner dot (state=true 만): 보라 채움 */}
       {checked && (
