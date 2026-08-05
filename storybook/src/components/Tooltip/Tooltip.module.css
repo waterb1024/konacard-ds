@@ -1,14 +1,23 @@
 /*
  * konacard-ds-components.md § 11_Tooltip — Bubble Type
- * Figma: Nv4o6ozSx5W4w10uFnQIs5 / node 200:1909
+ * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 200:1909
  *
  * Placement 8종: top-left / top / top-right / bottom-left / bottom / bottom-right / left / right
  * Style: line (white bg + border-focus + font-primary) / brand (background-brand + font-white)
  *
  * Body — padding 12v × 16h, radius 8 (radius/components/box-info)
  *        font: body/2-Regular (14 / 22 / -0.28)
- * Pin  — 12×8, box와 -1px 오버랩, line 은 stroke 만 (base 은 body 뒤에 숨김)
+ * Pin  — 12×8, body 와 -1px 오버랩, line 은 fill (white) + stroke 는 base 제외 open path
  * 슬롯 폭 40px (Figma 규격) → pin 중앙 배치 + items-start/center/end 로 좌/중/우 offset
+ *
+ * ── Body-Pin 이음새(seam) 방지 패턴 ────────────────────────────
+ * 1) `.body` · `.arrowSlot` 둘 다 `position: relative` 필수 —
+ *    이게 없으면 z-index 가 완전히 무시됨 (static 은 stacking context 참여 못 함).
+ * 2) `.arrowSlot` 에 base 로 `z-index: 2` 부여 (body 는 1) — 배치와 무관하게
+ *    arrow 가 항상 body 위에 그려져야 fill 이 body border 를 덮을 수 있음.
+ * 3) 여기에 -1px 오버랩(margin) 을 조합해 pin 이 body border 를 정확히 1px 겹치게.
+ * 4) Pin SVG 는 Tooltip.tsx 안에서 Figma polygon2 원본 cubic bezier 그대로 사용
+ *    (strokeLinejoin: round 만으로는 실제 rounded tip 표현 불가).
  */
 
 .tooltip {
