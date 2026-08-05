@@ -1,19 +1,26 @@
 /*
  * konacard-ds-components.md § 02_Button > Text 버튼 (button/text, node 17:793)
- * 형태: 배경 없는 텍스트 링크성 버튼. Regular weight · 항상 밑줄.
- * Height 는 size 별로 다름 (36/32/28/24). 좌우 padding 없음 (텍스트 폭 그대로).
+ * Figma AX 실측 (2025-08-05):
+ *   - Layout : flex-column · justify-center · items-start · padding 4v 0h · gap 0
+ *   - Height : 36 / 32 / 28 / 24 (large/medium/small/tiny)
+ *   - Font   : 14/22 · 12/18 · 12/18 · 11/16 (Regular)
+ *     → medium 과 small 은 폰트 동일, height 만 다름 (Figma spec 그대로)
+ *   - Underline: CSS text-decoration 이 아니라 별도 <span class="line" />.
+ *     h=1px, w=100%, bg=currentColor, opacity 0.8.
+ *   - Disabled: opacity 0.4 (그러면 line 도 0.8 * 0.4 = 0.32 로 함께 옅어짐)
  */
 
 .textButton {
   display: inline-flex;
-  align-items: center;
-  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--spacing-2xsmall) 0; /* 4v 0h — Figma py-2xsmall */
+  gap: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  text-decoration: underline; /* 항상 밑줄 */
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px; /* Figma 원본과 유사한 텍스트-밑줄 갭 */
+  box-sizing: border-box;
   transition: opacity 0.12s ease;
 }
 
@@ -22,41 +29,60 @@
   cursor: not-allowed;
 }
 
-/* ── Size — Height + typography (line-height 확실히 적용되도록 shorthand 대신 분리) ─────── */
-.size-large {
-  height: 36px;
+.label {
+  display: block;
   font-family: var(--font-family-body);
   font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-medium); /* 15px */
-  line-height: var(--font-lineheight-medium); /* 24px */
-  letter-spacing: var(--font-letterspacing-medium);
-}
-.size-medium {
-  height: 32px;
-  font-family: var(--font-family-body);
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-small); /* 14px */
-  line-height: var(--font-lineheight-small); /* 22px */
-  letter-spacing: var(--font-letterspacing-small);
-}
-.size-small {
-  height: 28px;
-  font-family: var(--font-family-body);
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-xsmall); /* 12px */
-  line-height: var(--font-lineheight-xsmall); /* 18px */
-  letter-spacing: var(--font-letterspacing-xsmall);
-}
-.size-tiny {
-  height: 24px;
-  font-family: var(--font-family-body);
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-2xsmall); /* 11px */
-  line-height: var(--font-lineheight-2xsmall); /* 16px */
-  letter-spacing: var(--font-letterspacing-2xsmall);
+  white-space: nowrap;
 }
 
-/* ── Color ────────────────────────────────────────── */
+.line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: currentColor; /* 텍스트 색 상속 */
+  opacity: 0.8;
+}
+
+/* ── Size — Height + typography ─────────────────── */
+.size-large {
+  height: 36px;
+}
+.size-large .label {
+  font-size: var(--font-size-small); /* 14 */
+  line-height: var(--font-lineheight-small); /* 22 */
+  letter-spacing: var(--font-letterspacing-small); /* -0.28 */
+}
+
+.size-medium {
+  height: 32px;
+}
+.size-medium .label {
+  font-size: var(--font-size-xsmall); /* 12 */
+  line-height: var(--font-lineheight-xsmall); /* 18 */
+  letter-spacing: var(--font-letterspacing-xsmall); /* -0.24 */
+}
+
+.size-small {
+  height: 28px;
+}
+.size-small .label {
+  font-size: var(--font-size-xsmall); /* 12 */
+  line-height: var(--font-lineheight-xsmall); /* 18 */
+  letter-spacing: var(--font-letterspacing-xsmall); /* -0.24 */
+}
+
+.size-tiny {
+  height: 24px;
+}
+.size-tiny .label {
+  font-size: var(--font-size-2xsmall); /* 11 */
+  line-height: var(--font-lineheight-2xsmall); /* 16 */
+  letter-spacing: var(--font-letterspacing-2xsmall); /* -0.22 */
+}
+
+/* ── Color ────────────────────────────────────────
+ * line 은 currentColor 로 텍스트 색 자동 상속. */
 .color-black {
   color: var(--color-font-primary); /* #000000 */
 }

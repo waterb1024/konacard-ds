@@ -40,7 +40,10 @@ export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
         )}
         {...rest}
       >
-        {children}
+        <span className={styles.label}>{children}</span>
+        {/* Figma 는 CSS text-decoration 이 아니라 별도 1px div 로 밑줄 렌더.
+            opacity 0.8, bg 는 텍스트 색과 동일 (currentColor). */}
+        <span className={styles.line} aria-hidden />
       </button>
     );
   },
