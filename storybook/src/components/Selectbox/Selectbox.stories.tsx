@@ -10,23 +10,22 @@ const meta = {
       description: {
         component:
           "KONACARD DS Selectbox. konacard-ds-components.md § 04_Forms 기준. " +
-          "State 4단계(Default/Active/Inactive/Error) — Focus·Complete 상태 없음.",
+          "State 5단계: Default / Active(펼침) / Select(선택완료) / Inactive / Error. " +
+          "Active 일 때 chevron 이 위쪽(^) 로 회전.",
       },
     },
   },
   argTypes: {
     state: {
       control: "inline-radio",
-      options: ["default", "active", "inactive", "error"],
+      options: ["default", "active", "select", "inactive", "error"],
     },
-    open: { control: "boolean" },
     value: { control: "text" },
     placeholder: { control: "text" },
   },
   args: {
     state: "default",
     placeholder: "선택",
-    open: false,
   },
   decorators: [
     (Story) => (
@@ -45,12 +44,13 @@ export const Playground: Story = {};
 export const Default: Story = { args: { state: "default" } };
 
 export const Active: Story = {
+  name: "Active (펼침)",
   args: { state: "active", value: "신용카드" },
 };
 
-export const ActiveOpen: Story = {
-  name: "Active (열림 — chevron 위)",
-  args: { state: "active", value: "신용카드", open: true },
+export const Select: Story = {
+  name: "Select (선택완료)",
+  args: { state: "select", value: "신용카드" },
 };
 
 export const Inactive: Story = {
@@ -68,7 +68,7 @@ export const StateMatrix: Story = {
     <div style={{ display: "grid", gap: 12 }}>
       <Selectbox state="default" placeholder="카드 종류 선택" />
       <Selectbox state="active" value="신용카드" />
-      <Selectbox state="active" value="신용카드" open />
+      <Selectbox state="select" value="신용카드" />
       <Selectbox state="inactive" placeholder="선택 불가" />
       <Selectbox state="error" value="선택이 필요합니다" />
     </div>
