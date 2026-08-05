@@ -13,6 +13,7 @@
   cursor: pointer;
   text-decoration: underline; /* 항상 밑줄 */
   text-decoration-thickness: 1px;
+  text-underline-offset: 3px; /* Figma 원본과 유사한 텍스트-밑줄 갭 */
   transition: opacity 0.12s ease;
 }
 
