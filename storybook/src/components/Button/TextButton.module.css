@@ -1,19 +1,17 @@
 /*
  * konacard-ds-components.md § 02_Button > Text 버튼 (button/text, node 17:793)
- * 형태: 배경 없는 텍스트 링크성 버튼
- * Height 36px 고정 · Padding 상하 6px 좌우 auto
+ * 형태: 배경 없는 텍스트 링크성 버튼. Regular weight · 항상 밑줄.
+ * Height 는 size 별로 다름 (36/32/28/24). 좌우 padding 없음 (텍스트 폭 그대로).
  */
 
 .textButton {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 6px 0;
+  padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  text-decoration: underline; /* Text Button 은 항상 밑줄 */
+  text-decoration: underline; /* 항상 밑줄 */
   text-underline-offset: 2px;
   transition: opacity 0.12s ease;
 }
@@ -23,20 +21,24 @@
   cursor: not-allowed;
 }
 
-/* ── Size (Regular weight 기본 — 텍스트 링크 성격) ─────────────────────── */
+/* ── Size — Height + font ─────────────────────── */
 .size-large {
+  height: 36px;
   font: var(--text-body-1-regular);
   letter-spacing: var(--font-letterspacing-medium);
 }
 .size-medium {
+  height: 32px;
   font: var(--text-body-2-regular);
   letter-spacing: var(--font-letterspacing-small);
 }
 .size-small {
+  height: 28px;
   font: var(--text-body-3-regular);
   letter-spacing: var(--font-letterspacing-xsmall);
 }
 .size-tiny {
+  height: 24px;
   font: 400 11px/16px var(--font-family-body);
   letter-spacing: var(--font-letterspacing-2xsmall);
 }
