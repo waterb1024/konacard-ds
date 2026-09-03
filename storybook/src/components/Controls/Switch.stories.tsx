@@ -10,8 +10,8 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Switch. konacard-ds-components.md § 05_Control — 즉시 반영 On/Off 토글. " +
-          "Disable = Default × opacity 40%.",
+          "KONACARD DS Switch. konacard-ds-components.md § 05_Control (controls/swtich). " +
+          "4 size × 2 state × 2 status. Disable = Default × opacity 40%.",
       },
     },
   },
@@ -22,6 +22,9 @@ const meta = {
     },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
+    type: { table: { disable: true } },
+    onClick: { table: { disable: true } },
+    onChange: { table: { disable: true } },
   },
   args: { size: "large", checked: false, disabled: false },
   decorators: [
@@ -58,7 +61,7 @@ export const Disabled: Story = {
   ),
 };
 
-export const SizeMatrix: Story = {
+export const Matrix: Story = {
   name: "Size × State Matrix",
   render: () => {
     const sizes = ["large", "medium", "small", "tiny"] as const;

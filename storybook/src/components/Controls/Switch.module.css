@@ -1,0 +1,150 @@
+/*
+ * konacard-ds-components.md § 05_Control — Switch (controls/swtich, Figma 원본 오타 유지)
+ *
+ * 구조 (Figma 실측):
+ *   - 프레임(button)    = 클릭 영역 = 썸 원 지름 기준 (large 50×28 등)
+ *   - track (absolute)  = 프레임보다 얇음. left/right:0, top/bottom inset
+ *   - thumb (absolute)  = 프레임 전체 높이 = 정사각형 원. left:0 (off) / right:0 (on)
+ *   - thumb 은 트랙 색과 동일한 border 를 가짐 (사이즈별 두께 다름)
+ *
+ * 사이즈별 실측:
+ *   large : 50×28 · track top/bot 6px (=21.43%) · thumb 28×28 · border 2px
+ *   medium: 42×24 · track top/bot 5px (=20.83%) · thumb 24×24 · border 2px
+ *   small : 34×20 · track top/bot 4px (=20%)    · thumb 20×20 · border 1.667px
+ *   tiny  : 28×16 · track top/bot 3px (=18.75%) · thumb 16×16 · border 1.6px
+ *
+ *   Selected(True)  : 트랙 브랜드 보라 · 썸 border 브랜드 · 썸 우측
+ *   Default (False) : 트랙 회색       · 썸 border 회색   · 썸 좌측
+ *   Disable         = status false → opacity 0.4
+ */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.switch:disabled {
+  opacity: var(--opacity-disable-button);
+  cursor: not-allowed;
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--color-button-quarternary);
+  border-radius: var(--radius-round);
+  transition: background-color 0.15s ease;
+}
+
+.thumb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--color-button-white);
+  border: 2px solid var(--color-button-quarternary);
+  border-radius: var(--radius-round);
+  box-sizing: border-box;
+  transition: left 0.18s ease, right 0.18s ease, border-color 0.15s ease;
+}
+
+/* ── On (state=true) ─────────────────────────────────── */
+.on .track {
+  background: var(--color-background-button-brand);
+}
+.on .thumb {
+  left: auto;
+  right: 0;
+  border-color: var(--color-background-button-brand);
+}
+
+/* ── Sizes ───────────────────────────────────────────── */
+.size-large {
+  width: 50px;
+  height: 28px;
+}
+.size-large .track {
+  top: 6px;
+  bottom: 6px;
+}
+.size-large .thumb {
+  width: 28px;
+}
+
+.size-medium {
+  width: 42px;
+  height: 24px;
+}
+.size-medium .track {
+  top: 5px;
+  bottom: 5px;
+}
+.size-medium .thumb {
+  width: 24px;
+}
+
+.size-small {
+  width: 34px;
+  height: 20px;
+}
+.size-small .track {
+  top: 4px;
+  bottom: 4px;
+}
+.size-small .thumb {
+  width: 20px;
+  border-width: 1.667px;
+}
+
+.size-tiny {
+  width: 28px;
+  height: 16px;
+}
+.size-tiny .track {
+  top: 3px;
+  bottom: 3px;
+}
+.size-tiny .thumb {
+  width: 16px;
+  border-width: 1.6px;
+}
+
+/* ── switch_setting composite ──────────────────────── */
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+  background: var(--color-background-primary);
+  border-radius: var(--radius-components-box-contents);
+}
+
+.settingRow.settingRow-gray {
+  background: var(--color-background-secondary);
+}
+
+.settingText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xsmall);
+  min-width: 0;
+}
+
+.settingTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.settingDesc {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary);
+}
