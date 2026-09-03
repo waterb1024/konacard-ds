@@ -12,4 +12,6 @@ image.png
 
 # OS / editor
 .DS_Store
-.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/**/*.local.*
