@@ -1,0 +1,45 @@
+/*
+ * Figma: badges/badge (node 3426:10001)
+ * types: dot | new | count
+ * - dot: 4×4 (inline SVG, gradient baked in)
+ * - new: 20×20 (inline SVG, gradient + "N" mark baked in)
+ * - count: pill, gradient red→pink, white bold 11px. min-width 20px, 폭은 텍스트 따라 확장.
+ * gradient: color/gradient/tertiary = #FF364B → #FF1493
+ */
+
+.iconDot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+}
+
+.iconNew {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: var(--spacing-3xsmall) var(--spacing-2xsmall);
+  border-radius: var(--radius-button-round);
+  box-sizing: border-box;
+  background: linear-gradient(136.33deg, #FF364B 33.023%, #FF1493 86.802%);
+}
+
+.numText {
+  padding: 0 var(--spacing-3xsmall);
+  font-family: "Pretendard", sans-serif;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xsmall);
+  line-height: var(--font-lineheight-2xsmall);
+  letter-spacing: var(--font-letterspacing-2xsmall);
+  color: var(--color-font-white);
+  white-space: nowrap;
+}

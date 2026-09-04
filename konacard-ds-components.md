@@ -545,7 +545,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - **State**: Default / Disable (opacity 40% — 다른 버튼 규칙과 동일)
 - **주의**:
   - **아이콘만** 배치. 텍스트가 필요하면 `button/text` 컴포넌트를 헤더 우측에 직접 배치 (예: `7796:5462` — Page title + 우측 "Button" 텍스트)
-  - 배지(Badge)는 아이콘 우상단에 붙이는 별도 인스턴스 (12_Banner 정리 시 재검토)
+  - 배지(Badge)는 아이콘 우상단에 붙이는 별도 인스턴스 — 상세는 § "Alert Badge" (08_Indicator) 참조
 
 ---
 
@@ -979,11 +979,28 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - **모양**: 회색 반투명 pill (`background/tertiary` 계열), 흰 텍스트 `body/3-Regular` 12px
 - **위치**: 이미지 좌하단 (관례)
 
+## Alert Badge (알림 배지) — `badges/badge` (`3426:10001`)
+
+> 아이콘 우상단·리스트 항목 우측 등에 붙여 **신규·미확인 알림 존재**를 표시. 3 타입 모두 `color/gradient/tertiary` (#FF364B → #FF1493) 그라디언트 배경.
+
+- **Type — 3종** (Figma 는 4 variant 이나 코드는 3 타입으로 통합)
+  - `dot` — **4×4** 원, 텍스트 없음. 존재만 알림 (미확인 알림 1개 이상).
+  - `new` — **20×20** 원 + 흰색 "N" 마크. 신규 콘텐츠·업데이트.
+  - `count` — **min-width 20 × height 20** pill. 텍스트 길이에 따라 폭 자연 확장 (`padding: 2px 4px`). 예: `1`, `9`, `25`, `99`, `99+`, `999+`.
+    - Figma `num-min`(20×20) / `num-max`(32×20) 두 variant 는 사이즈 예시일 뿐 코드에선 하나로 통합. **폭 고정하지 말 것**.
+- **텍스트 (count 전용)**: Pretendard Bold **11px** (`font/size/2xsmall`), lineHeight 16, letter-spacing `-0.22`, color `color/font/white` #FFFFFF.
+- **radius**: `radius/button/round` = 9999 (완전 pill).
+- **위치·조합 관례**: action-bar/button 우상단(56×56 아이콘 기준 top 12 / right 12), 리스트 항목 우측 텍스트 옆. 컴포넌트 자체는 position 로직 없음 — 부모가 배치 책임.
+- **SVG 원본 유지**: dot·new 는 Figma 원본 SVG (linearGradient defs 포함) 를 그대로 인라인. 벡터를 다시 그리지 않는다.
+
 ## 08_Indicator 안티패턴
 
 - ❌ Page dot을 사용자 조작 가능한 요소로 사용 (탭 인터랙션 금지 — 표시 전용)
 - ❌ Navigator 비활성 상태에 opacity 40% (반드시 30%)
 - ❌ dot 크기 6px 이상으로 확대 (반드시 4×4)
+- ❌ Alert Badge `count` 폭을 20/32 로 고정 (텍스트에 따라 확장돼야 함; min-width 20 유지)
+- ❌ Alert Badge 배경을 단색으로 대체 (반드시 `gradient/tertiary`; 회색 pill 이 필요하면 § N/NN 카운트 배지 사용)
+- ❌ Alert Badge 를 클릭 가능한 요소로 사용 (표시 전용; 액션이 필요하면 부모 요소가 핸들링)
 
 ---
 
@@ -1250,7 +1267,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 | 05 | Control | swtich, checkbox, radio + agree/setting/radio-text |
 | 06 | List | list (4형), expand, card-select, bottomsheet |
 | 07 | Line | Solid, Dotted, Divider |
-| 08 | Indicator | Page dot, Navigator, N/NN badge |
+| 08 | Indicator | Page dot, Navigator, N/NN badge, Alert badge (dot/new/count) |
 | 09 | Label | Basic (Fill·Line 5색), Link, label-State(deprecated) |
 | 10 | Info | Text info (bullet 2depth), Info-box |
 | 11 | Tooltip | Popup(?), Bubble(!, Line/Brand) |
