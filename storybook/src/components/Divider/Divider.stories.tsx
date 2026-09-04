@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Divider (07_Line). Figma: Nv4o6ozSx5W4w10uFnQIs5 / 9362:7756. " +
+          "KONACARD DS Divider (07_Line). Figma: dHJa65PGtCQHq2n4qgL9Z9 / 9362:7756. " +
           "Solid · Dotted (dashed 2/2) · Section (10px band) · Vertical (1×8/12/16 인라인 구분자).",
       },
     },

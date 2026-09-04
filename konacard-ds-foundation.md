@@ -3,7 +3,7 @@ version: "1.0"
 name: KONACARD Design Foundation
 description: >
   KONACARD 모바일 앱(AOS) 공통 디자인 시스템 — Foundation (토큰) 문서.
-  Figma DS 파일(Nv4o6ozSx5W4w10uFnQIs5)을 원본 소스로 하며,
+  Figma DS 파일(dHJa65PGtCQHq2n4qgL9Z9)을 원본 소스로 하며,
   Claude AI 코딩 에이전트가 Figma Plugin API로 화면을 제작할 때 참조합니다.
   토큰 키는 Figma variable 원본 이름을 그대로 사용합니다 (get_variable_defs 반환값과 1:1 매칭).
 verified_against_figma: "2026-07-27 - 여러 컴포넌트 인스턴스에서 get_variable_defs API로 실증 (button/input/tab/checkbox/actionbar/list/info/tooltip/banner/label)"
@@ -414,7 +414,7 @@ opacity:
 
 # Figma DS 파일 고정 키 (importComponentByKeyAsync 등에 사용)
 figma:
-  dsFileKey: "Nv4o6ozSx5W4w10uFnQIs5"
+  dsFileKey: "dHJa65PGtCQHq2n4qgL9Z9"
 
 components:
   status-bar:
@@ -446,7 +446,7 @@ components:
 # KONACARD Design System
 
 > **AI 에이전트 참조 문서** — Figma Plugin API로 KONACARD AOS 화면을 제작하는 Claude 코딩 에이전트가 참조하는 디자인 시스템 명세입니다.  
-> 원본 DS Figma 파일: `Nv4o6ozSx5W4w10uFnQIs5`  
+> 원본 DS Figma 파일: `dHJa65PGtCQHq2n4qgL9Z9`  
 > 작업 대상 파일: 세션마다 사용자가 공유하는 Figma URL에서 추출
 
 ---
@@ -455,7 +455,7 @@ components:
 
 KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자인 언어는 **신뢰와 간결함**을 우선합니다.
 
-- 🚨 **DS 컴포넌트 사용이 최우선 원칙입니다.** 화면을 만들 때는 반드시 DS 파일(`Nv4o6ozSx5W4w10uFnQIs5`)에 동일/유사한 컴포넌트가 있는지 **먼저 확인**하고, 있다면 무조건 그 인스턴스를 사용합니다. 직접 그리거나 autoLayout으로 새로 만드는 것은 **DS에 매칭되는 컴포넌트가 정말로 없을 때만** 허용됩니다. → 자세한 워크플로는 [§ Component-First Principle](#component-first-principle) 참조.
+- 🚨 **DS 컴포넌트 사용이 최우선 원칙입니다.** 화면을 만들 때는 반드시 DS 파일(`dHJa65PGtCQHq2n4qgL9Z9`)에 동일/유사한 컴포넌트가 있는지 **먼저 확인**하고, 있다면 무조건 그 인스턴스를 사용합니다. 직접 그리거나 autoLayout으로 새로 만드는 것은 **DS에 매칭되는 컴포넌트가 정말로 없을 때만** 허용됩니다. → 자세한 워크플로는 [§ Component-First Principle](#component-first-principle) 참조.
 - **브랜드 퍼플 (`#805AE9`)** 이 유일한 액션 컬러입니다. CTA 버튼, 강조 텍스트, 헤드라인 일부에만 사용하며, 다른 용도로는 절대 사용하지 않습니다.
 - **흰색 배경** (`background/primary` = `#FFFFFF`) 이 기본입니다. 섹션 분리에는 `background/secondary` (`#F8F9FB`, coolgray-50), 브랜드 약배경에는 `background/tertiary` (`#F8F6FE`, purple-50)를 사용합니다.
 - **Pretendard** 폰트 전용입니다. 다른 폰트(Roboto 등)가 컴포넌트 내에 나타나면 DS 텍스트 스타일로 교체하세요.
@@ -468,7 +468,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 컬러는 **의미 기반(semantic) 토큰**과 **원자(palette) 토큰** 두 층으로 구성됩니다.
 화면 제작 시에는 반드시 **의미 기반 토큰을 우선**하고, 원자 토큰은 의미 토큰이 없는 경우에만 직접 참조합니다.
 
-> 출처: Figma DS `Nv4o6ozSx5W4w10uFnQIs5` / Color Guide (node 296:3042)
+> 출처: Figma DS `dHJa65PGtCQHq2n4qgL9Z9` / Color Guide (node 296:3042)
 > **토큰 이름은 Figma variable 원본 그대로** 표기합니다 (예: `color/font/tertiary`). `get_variable_defs` 반환값과 1:1 매칭.
 > **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary), `radius-tost` (실제 toast) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
 
@@ -690,7 +690,7 @@ Figma 파일에는 시대별로 병행 사용되는 **legacy 이름**과 **raw �
 
 ## Typography
 
-> 출처: Figma DS `Nv4o6ozSx5W4w10uFnQIs5` / Typography Guide (node 296:3051)
+> 출처: Figma DS `dHJa65PGtCQHq2n4qgL9Z9` / Typography Guide (node 296:3051)
 
 서체는 서비스의 톤앤매너를 결정하는 핵심 요소이므로 본 가이드를 명확히 인지하고 사용합니다.
 **임의로 추가·변경할 수 없습니다.**
@@ -762,7 +762,7 @@ letterSpacing은 px 단위 음수(track-tight).
 
 ## Spacing
 
-> 출처: Figma DS `Nv4o6ozSx5W4w10uFnQIs5` / Spacing Guide (node 296:3057)
+> 출처: Figma DS `dHJa65PGtCQHq2n4qgL9Z9` / Spacing Guide (node 296:3057)
 
 여백(Spacing)은 정보를 체계적으로 구조화하는 중요한 역할을 합니다. 잘 계획된 여백을 통해 정보를 체계적으로 그룹화하여 사용자가 쉽고 빠르게 정보를 인지할 수 있도록 지원합니다.
 
@@ -808,7 +808,7 @@ letterSpacing은 px 단위 음수(track-tight).
 
 ## Radius
 
-> 출처: Figma DS `Nv4o6ozSx5W4w10uFnQIs5` / Radius Guide (node 481:3296)
+> 출처: Figma DS `dHJa65PGtCQHq2n4qgL9Z9` / Radius Guide (node 481:3296)
 
 일관된 패턴과 가이드는 사용자가 빠르게 정보를 인지할 수 있도록 돕고, 서비스 전반에 예측 가능한 사용성을 제공합니다.
 아래 정의된 컴포넌트 가이드를 준수하여 일관된 사용성을 유지합니다.
@@ -914,7 +914,7 @@ wrapper (360×800, white)
 화면 작업을 시작하기 전, 또는 새 UI 요소를 추가할 때마다 다음 순서를 따릅니다.
 
 ```
-1. DS 파일(Nv4o6ozSx5W4w10uFnQIs5)을 먼저 검색한다.
+1. DS 파일(dHJa65PGtCQHq2n4qgL9Z9)을 먼저 검색한다.
    ├─ 02_Components 페이지에서 키워드로 COMPONENT_SET / COMPONENT 탐색
    ├─ 04_Image 페이지에서 아이콘·로고 탐색
    └─ 매칭되는 컴포넌트가 있으면 → 키 확보 후 importComponentByKeyAsync
@@ -1138,7 +1138,7 @@ Figma DS(COMMON 파일 Elevation 페이지)에는 **웹 전용** 6단 shadow 토
 
 ## Icons
 
-아이콘은 DS 파일(`Nv4o6ozSx5W4w10uFnQIs5`)의 `04_Image` 페이지에서 가져옵니다.
+아이콘은 DS 파일(`dHJa65PGtCQHq2n4qgL9Z9`)의 `04_Image` 페이지에서 가져옵니다.
 
 **직접 그리기 절대 금지** — Rectangle/Vector/Ellipse로 아이콘을 만드는 것은 허용되지 않습니다.
 
@@ -1245,7 +1245,7 @@ for (const item of items) {
 
 ## Figma 컴포넌트 인덱스
 
-> 컴포넌트 키는 본 문서에 포함되지 않습니다. 사용 시 DS 파일(`Nv4o6ozSx5W4w10uFnQIs5`)을 직접 검색해 키를 확보하세요.
+> 컴포넌트 키는 본 문서에 포함되지 않습니다. 사용 시 DS 파일(`dHJa65PGtCQHq2n4qgL9Z9`)을 직접 검색해 키를 확보하세요.
 
 | 컴포넌트 | 타입 |
 |----------|------|

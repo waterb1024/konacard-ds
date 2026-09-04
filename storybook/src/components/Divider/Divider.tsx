@@ -2,7 +2,7 @@ import styles from "./Divider.module.css";
 
 /**
  * KONACARD DS Divider (07_Line)
- * Figma: Nv4o6ozSx5W4w10uFnQIs5 / component 9362:7756, usage 99:1134
+ * Figma: dHJa65PGtCQHq2n4qgL9Z9 / component 9362:7756, usage 99:1134
  *
  * 4 sub-components:
  *   Solid   — 1px 가로선

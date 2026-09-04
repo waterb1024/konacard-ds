@@ -54,3 +54,39 @@
 - 문서(`components.md`, `foundation.md`) 와 Figma 가 어긋나면 **Figma 우선**
 - **아이콘·화살표는 반드시 Figma 원본 SVG 를 다운로드해서 그대로 사용** — 자기 스타일로 그리지 않음
 - 미확인 값은 코드에 넣지 않음 (매핑에서 skip 하거나 명시적 미구현 처리)
+
+## 에이전트 팀 라우팅 (`.claude/agents/`, 2026-09-04 도입)
+
+이 프로젝트는 반복 작업을 두 트랙 · 총 8개 subagent 로 분화해두었다. 아래 작업 유형은 해당 agent 에 위임 (Task tool → subagent_type).
+
+### 트랙 A. 화면 생산 (일상)
+
+**트리거**: "여기 기획서/스펙 링크 → 이걸로 화면 만들어줘"
+
+| 작업 유형 | 위임 대상 | 비고 |
+|---|---|---|
+| 기획서(Confluence/PRD/Figma URL/이미지) 파싱 → 요구사항 정형 요약 | `screen-spec-reader` | 파이프라인 첫 단계 |
+| 요약 → 화면 성격 판정 → 표준 패턴 매핑 → 조립 계획 | `screen-planner` | rule.md 10종 유형 embed |
+| 조립 계획 → use_figma 로 Figma 화면 조립 | `figma-composer` | DS 인스턴스 유지, 360×800·hug·padding 20 |
+| Figma 화면 안티패턴 검증 (rule.md § 6) | `screen-reviewer` | flag 만 반환, 자동 수정 금지 |
+
+**파이프라인**: `screen-spec-reader` → `screen-planner` → `figma-composer` → `screen-reviewer`
+
+### 트랙 B. DS 유지관리 (주기적)
+
+**트리거**: "Chips 매핑해줘", "foundation 값 검증", "figma connect publish"
+
+| 작업 유형 | 위임 대상 | 비고 |
+|---|---|---|
+| Figma 값(spec / variant / 색 / 타이포 / SVG) 추출 | `ds-figma-inspector` | 4단계 MCP 절차 자동, 정형 리포트 반환 |
+| Storybook 4종 파일 작성·수정 (`.tsx` / `.module.css` / `.stories.tsx` / `.figma.ts`) | `ds-component-implementer` | inspector 리포트 소비 |
+| Code Connect publish (`npx figma connect publish`) | `ds-publisher` | env/dir/config 사전 체크 |
+| `konacard-ds-{foundation,components,rule}.md` 문서 수정·정합성 검증 | `ds-doc-curator` | Figma 우선 원칙 embed |
+
+**파이프라인**: `ds-figma-inspector` → `ds-component-implementer` → `ds-publisher` → (필요 시) `ds-doc-curator`
+
+### 공통 원칙
+
+- 각 agent 는 시스템 프롬프트에 프로젝트 컨텍스트(파일키 `dHJa65PGtCQHq2n4qgL9Z9`, 화면 성격 10종, 5개 공통 원칙, Figma 작업 규칙, 4단계 절차, template-only 규칙, publish 사전 체크 등)를 embed. 매 호출마다 재브리핑 불필요.
+- 위 규칙과 충돌하는 지침이 agent 정의에 있으면 **agent 정의를 먼저 갱신**할 것.
+- 상세는 Confluence `KIUX / Agent teams` 페이지 참조.

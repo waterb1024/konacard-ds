@@ -7,7 +7,7 @@
 
 
 KONACARD 모바일 앱(AOS) 공통 디자인 시스템의 **AI 참조용 문서 세트**.
-Figma DS 원본(`Nv4o6ozSx5W4w10uFnQIs5` — KONACARD COMMON)을 코드-컨텍스트로 번역해, Claude Code + Figma MCP 환경에서 AI 에이전트가 "KONACARD답게" 화면을 자동 재현할 수 있도록 유지합니다.
+Figma DS 원본(`dHJa65PGtCQHq2n4qgL9Z9` — -AX- KONACARD COMMON)을 코드-컨텍스트로 번역해, Claude Code + Figma MCP 환경에서 AI 에이전트가 "KONACARD답게" 화면을 자동 재현할 수 있도록 유지합니다.
 
 > ⚠️ **v1 작성 진행 중** — 릴리즈 전까지 세부 정정 및 보강이 있을 수 있습니다.
 
@@ -44,9 +44,10 @@ Claude Code 세션에서 이 폴더 진입 시 `CLAUDE.md`가 자동 로드되�
 
 ## Figma DS 원본
 
-- **파일 키**: `Nv4o6ozSx5W4w10uFnQIs5`
-- **파일 URL**: https://www.figma.com/design/Nv4o6ozSx5W4w10uFnQIs5
-- **아이콘 페이지**: `04_Image` (page id `2:16890`) — 660개 아이콘/이미지 컴포넌트
+- **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON, 현행)
+- **파일 URL**: https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9
+- **아이콘 페이지**: `04_Image` (page id `2:16890`, hidden) — 662개 아이콘·이미지 컴포넌트 (AX 이관 후에도 노드 ID·구성 그대로 유지, Figma UI 에는 hidden page 로 노출)
+- 이전 파일 키: `Nv4o6ozSx5W4w10uFnQIs5` (-NEW-, 2026-08-04 이후 사용 중단)
 
 ## 향후 계획
 

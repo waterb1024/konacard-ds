@@ -11,7 +11,7 @@ const meta = {
       description: {
         component:
           "KONACARD DS Label — 정보 표시 전용 pill 태그. " +
-          "Figma: Nv4o6ozSx5W4w10uFnQIs5 / Basic 2121:5513 · Link 2415:6389 · Usage 149:1240. " +
+          "Figma: dHJa65PGtCQHq2n4qgL9Z9 / Basic 2121:5513 · Link 2415:6389 · Usage 149:1240. " +
           "Basic (4 size × 2 type × 7 color) + LinkLabel (icon + text 조합).",
       },
     },

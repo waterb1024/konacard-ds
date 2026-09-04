@@ -16,7 +16,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@figma/code-connect": "^1.5.2",
+    "@figma/code-connect": "^2.0.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
     "@storybook/addon-links": "^8.4.7",
