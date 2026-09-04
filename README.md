@@ -72,7 +72,6 @@ ds-figma-inspector  →  ds-component-implementer  →  ds-publisher  →  ds-do
 ## Figma DS 원본
 
 - **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON, 현행)
-- **파일 URL**: https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9
 - **아이콘 페이지**: `04_Image` (page id `2:16890`, hidden) — 662개 아이콘·이미지 컴포넌트 (AX 이관 후에도 노드 ID·구성 그대로 유지, Figma UI 에는 hidden page 로 노출)
 - 이전 파일 키: `Nv4o6ozSx5W4w10uFnQIs5` (-NEW-, 2026-08-04 이후 사용 중단)
 
