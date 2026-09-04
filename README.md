@@ -18,7 +18,10 @@ konacard-ds/
 ├── CLAUDE.md                        # 진입 지침 · 3파일 라우팅 (Claude Code 자동 로드)
 ├── konacard-ds-foundation.md        # 토큰: color / typography / spacing / radius / elevation
 ├── konacard-ds-components.md        # 12개 대분류 컴포넌트 명세 (00_Basic ~ 12_Banner)
-└── konacard-ds-rule.md              # Figma 작업 규칙 · 화면 성격 분류 · 조립 원칙 · 안티패턴
+├── konacard-ds-rule.md              # Figma 작업 규칙 · 화면 성격 분류 · 조립 원칙 · 안티패턴
+├── .claude/
+│   └── agents/                      # 8개 subagent (트랙 A 화면 생산 / 트랙 B DS 유지관리)
+└── storybook/                       # React Storybook — 매핑된 컴포넌트 라이브러리
 ```
 
 ## 사용 방법
@@ -41,6 +44,30 @@ Claude Code 세션에서 이 폴더 진입 시 `CLAUDE.md`가 자동 로드되�
 - **모노톤 뼈대** — 배경 흰색, 카드는 `background/secondary` 회색만, 오류에만 빨강
 - **Pretendard 통일** — Regular / Bold 두 굵기만
 - **20px 좌우 padding** — 모든 화면 공통
+
+## 에이전트 팀 (`.claude/agents/`, 2026-09-04 도입)
+
+Claude Code 세션에서 자동 라우팅되는 subagent 8종을 두 트랙으로 구성. 각 agent 는 프로젝트 컨텍스트(파일키·화면 성격 10종·5개 공통 원칙·4단계 MCP 절차·publish 사전 체크 등)를 시스템 프롬프트에 embed 하고 있어 세션마다 재브리핑 불필요.
+
+### 트랙 A. 화면 생산 (일상)
+
+기획서 링크 → Figma 화면. 파이프라인:
+
+```
+screen-spec-reader  →  screen-planner  →  figma-composer  →  screen-reviewer
+   (스펙 파싱)         (성격 판정·계획)     (use_figma 조립)     (안티패턴 flag)
+```
+
+### 트랙 B. DS 유지관리 (주기적)
+
+컴포넌트 매핑·문서 정합성·Code Connect publish. 파이프라인:
+
+```
+ds-figma-inspector  →  ds-component-implementer  →  ds-publisher  →  ds-doc-curator
+   (Figma 값 추출)        (Storybook 4종 파일)         (publish)         (문서 반영, 선택)
+```
+
+상세 배경·설계 근거는 사내 wiki 의 `Agent teams` 문서 참조.
 
 ## Figma DS 원본
 
