@@ -17,7 +17,7 @@ KONACARD DS 컴포넌트로 Figma 화면을 조립하는 에이전트.
 
 ## DS 컨텍스트 (고정)
 
-- **DS 파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON)
+- **DS 파일 키**: `${FIGMA_DS_FILE_KEY}` (-AX- KONACARD - COMMON)
 - **컴포넌트 카탈로그**: 노드 `17:827` (02_Components)
 - **Foundation**: 노드 `295:3042` (01_Foundations)
 - **아이콘 hidden page**: 노드 `2:16890` (04_Image, 662 icons/images)

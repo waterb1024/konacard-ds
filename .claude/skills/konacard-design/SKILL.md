@@ -45,7 +45,7 @@ print(struct.unpack('<q', b)[0])
 ### 0-3. 대상 Figma 파일 확인
 - 세션 컨텍스트에 대상 Figma URL 있으면 사용
 - 없으면 사용자에게 요청 (질문: "어느 Figma 파일에 만들까요? URL 알려주세요")
-- ⚠️ **DS 원본 파일 `dHJa65PGtCQHq2n4qgL9Z9`(-AX- KONACARD - COMMON)에는 직접 만들지 말 것** — 이 파일은 컴포넌트 import 대상이지 작업 대상 아님
+- ⚠️ **DS 원본 파일 `${FIGMA_DS_FILE_KEY}`(-AX- KONACARD - COMMON)에는 직접 만들지 말 것** — 이 파일은 컴포넌트 import 대상이지 작업 대상 아님
 
 ### 0-4. Code Connect 등록 현황 인지
 - **등록 완료 11개** (정확한 매핑 학습됨, 우선 사용):
@@ -153,7 +153,7 @@ print(struct.unpack('<q', b)[0])
 - 텍스트 프레임 height: **항상 hug contents** (fixed 아님)
 
 ### 3-2. Actionbar 삽입
-- DS 파일(`dHJa65PGtCQHq2n4qgL9Z9`)에서 `action-bar` 컴포넌트 검색·인스턴스 import
+- DS 파일(`${FIGMA_DS_FILE_KEY}`)에서 `action-bar` 컴포넌트 검색·인스턴스 import
 - **FIXED 설정만으로 부족** — `resize(w, 56)` 명시 필수
 - `title/title` 인스턴스는 `layoutSizingHorizontal='FILL'`
 
@@ -233,7 +233,7 @@ Phase 3 완료 후 다음 체크리스트 자동 실행 → 결과와 함께 Fig
 - `konacard-ds-foundation.md` — 토큰 실값 (color · typography · spacing · radius · shadow)
 - `konacard-ds-components.md` — 컴포넌트 명세 (12개 대분류 58개, v1.0)
 - `storybook/src/components/` — Storybook 로컬 코드 (Code Connect 등록 11개)
-- **Figma DS 원본**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON)
+- **Figma DS 원본**: `${FIGMA_DS_FILE_KEY}` (-AX- KONACARD - COMMON)
   - 02_Components 페이지: `17:827`
   - 01_Foundations 페이지: `295:3042`
   - 04_Image (아이콘): DS 파일 내 페이지

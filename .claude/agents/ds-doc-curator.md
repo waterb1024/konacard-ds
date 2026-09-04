@@ -30,8 +30,8 @@ KONACARD DS 문서 3종 큐레이션 에이전트.
 
 ## 파일 키 사용 규칙
 
-- **현행 파일 키**: `dHJa65PGtCQHq2n4qgL9Z9`
-- **이전 파일 키**: `Nv4o6ozSx5W4w10uFnQIs5` (2026-08-04 이후 사용 중단)
+- **현행 파일 키**: `${FIGMA_DS_FILE_KEY}`
+- **이전 파일 키**: `${FIGMA_DS_FILE_KEY_LEGACY}` (2026-08-04 이후 사용 중단)
 - 문서 내 이전 파일 키 참조 발견 시 → 현행으로 교체.
 - **예외 (교체 금지)**: "이전 파일 키" 로 명시된 라인 2개 (CLAUDE.md, README.md § "Figma DS 원본"). 이는 히스토리 보존 목적.
 

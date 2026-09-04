@@ -4,7 +4,7 @@ import styles from "./SearchBar.module.css";
 
 /**
  * KONACARD DS SearchBar
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 777:4492 (input/search)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 777:4492 (input/search)
  * spec: konacard-ds-components.md § 04_Forms > Search bar
  *
  * TextField 와 동일한 48h 폼 필드에 검색 아이콘이 우측 상시 노출.

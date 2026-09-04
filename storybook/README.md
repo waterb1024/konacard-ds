@@ -4,7 +4,7 @@ React + Vite + Storybook 8 로 실행되는 KONACARD 디자인 시스템 스토�
 
 ---
 
-## ⚠️ 진실의 소스: **Figma 파일** (dHJa65PGtCQHq2n4qgL9Z9 -AX- KONACARD)
+## ⚠️ 진실의 소스: **Figma 파일** (${FIGMA_DS_FILE_KEY} -AX- KONACARD)
 
 **컴포넌트를 새로 만들거나 수정할 때 반드시 지킬 규칙**. 예외 없음.
 

@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD?node-id=777-4492
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD?node-id=777-4492
 // source=storybook/src/components/Input/SearchBar.tsx
 // component=SearchBar
 import figma from 'figma'

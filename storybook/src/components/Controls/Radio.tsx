@@ -4,7 +4,7 @@ import styles from "./Radio.module.css";
 
 /**
  * KONACARD DS Radio
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 30:409 (controls/radio button)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 30:409 (controls/radio button)
  * spec: konacard-ds-components.md § 05_Control
  *
  * Figma variants:

@@ -3,7 +3,7 @@ import styles from "./Label.module.css";
 
 /**
  * KONACARD DS Label
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-)
  *   Basic component: node 2121:5513
  *   Link variant:    node 2415:6389
  *   Usage guide:     node 149:1240

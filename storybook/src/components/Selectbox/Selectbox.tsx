@@ -4,7 +4,7 @@ import styles from "./Selectbox.module.css";
 
 /**
  * KONACARD DS Selectbox
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 41:550 (select/select box)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 41:550 (select/select box)
  * spec: konacard-ds-components.md § 04_Forms > Selectbox
  *
  * TextField 와 동일한 48h 폼 필드에 chevron 이 우측 상시 노출.

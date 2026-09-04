@@ -44,7 +44,7 @@ description: >
 
 **원칙 — 아이콘은 절대 직접 만들지 말 것. 항상 DS 파일의 기존 아이콘 컴포넌트를 import해 사용.**
 
-- **DS 파일 키**: `dHJa65PGtCQHq2n4qgL9Z9`
+- **DS 파일 키**: `${FIGMA_DS_FILE_KEY}`
 - **아이콘 페이지**: `04_Image` (page id `2:16890`) — **660개** 아이콘/이미지 컴포넌트 보유
 - **import 방법**:
   - 일반 Component → `await figma.importComponentByKeyAsync(key)`
@@ -1982,7 +1982,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 
 ### `popup/popup_Title` 컴포넌트 4 variant 규칙 (DS 원본 기준)
 
-COMMON DS 파일(`dHJa65PGtCQHq2n4qgL9Z9`, node `1217:11725`)에 정의된 팝업 타이틀 컴포넌트의 4 variant를 화면 성격에 따라 정확히 선택. 임의로 스타일 오버라이드 금지.
+COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 타이틀 컴포넌트의 4 variant를 화면 성격에 따라 정확히 선택. 임의로 스타일 오버라이드 금지.
 
 | Variant | 컴포넌트 높이 | 헤딩 스타일 | 헤딩 색 | 언제 사용 |
 |---|---:|---|---|---|

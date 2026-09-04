@@ -4,7 +4,7 @@ import styles from "./Switch.module.css";
 
 /**
  * KONACARD DS Switch
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 28:409 (controls/swtich)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 28:409 (controls/swtich)
  * spec: konacard-ds-components.md § 05_Control
  *
  * Figma variants:

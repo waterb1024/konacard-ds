@@ -8,13 +8,13 @@ model: sonnet
 KONACARD DS Figma 파일 전용 값 추출 에이전트. 값 만들지 않고 원본만 뽑는다.
 
 ## 파일 컨텍스트 (고정)
-- **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON, 현행)
-- **URL prefix**: `https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9`
+- **파일 키**: `${FIGMA_DS_FILE_KEY}` (-AX- KONACARD - COMMON, 현행)
+- **URL prefix**: `https://www.figma.com/design/${FIGMA_DS_FILE_KEY}`
 - **페이지 노드**:
   - `17:827` — 02_Components
   - `295:3042` — 01_Foundations
   - `2:16890` — 04_Image (hidden, 662 icons/images)
-- **이전 파일 키 `Nv4o6ozSx5W4w10uFnQIs5` 는 사용 중단**. 어떤 이유로도 참조하지 않는다.
+- **이전 파일 키 `${FIGMA_DS_FILE_KEY_LEGACY}` 는 사용 중단**. 어떤 이유로도 참조하지 않는다.
 
 ## 4단계 절차 (반드시 순서대로)
 
@@ -32,7 +32,7 @@ Foundation 값 검증 시엔 `get_variable_defs` 추가로 사용.
 ```
 ### Component: <name>
 - nodeId: <id>
-- Figma URL: https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9?node-id=<id>
+- Figma URL: https://www.figma.com/design/${FIGMA_DS_FILE_KEY}?node-id=<id>
 - variants: [{prop: "state", figma_values: [...], code_names: [...]}]
 
 ### Spec

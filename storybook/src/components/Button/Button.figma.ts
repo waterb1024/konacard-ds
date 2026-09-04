@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD?node-id=17-703
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD?node-id=17-703
 // source=storybook/src/components/Button/Button.tsx
 // component=Button
 import figma from 'figma'

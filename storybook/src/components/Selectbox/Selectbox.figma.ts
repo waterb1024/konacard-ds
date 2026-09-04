@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD?node-id=41-550
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD?node-id=41-550
 // source=storybook/src/components/Selectbox/Selectbox.tsx
 // component=Selectbox
 import figma from 'figma'

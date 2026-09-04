@@ -4,7 +4,7 @@ import styles from "./TextButton.module.css";
 
 /**
  * KONACARD DS Text Button
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 17:793
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 17:793
  * spec: konacard-ds-components.md § 02_Button > Text 버튼
  * 형태: 배경 없는 텍스트 링크성 버튼. **항상 밑줄 표시**.
  * 용도: 하단 유틸리티 링크, CTA 위 반대 액션, 부가 정보 링크 등.

@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD?node-id=2121-5513
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD?node-id=2121-5513
 // source=storybook/src/components/Label/Label.tsx
 // component=Label
 import figma from 'figma'

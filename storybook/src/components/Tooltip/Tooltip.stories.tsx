@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Tooltip (Bubble Type). Figma dHJa65PGtCQHq2n4qgL9Z9 / node 200:1909. " +
+          "KONACARD DS Tooltip (Bubble Type). Figma ${FIGMA_DS_FILE_KEY} / node 200:1909. " +
           "8 placement × 2 style (line / brand). Popup Type ( ? 아이콘 ) 은 별도 다이얼로그 컴포넌트 — 여기선 트리거만.",
       },
     },

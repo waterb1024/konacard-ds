@@ -4,7 +4,7 @@ import styles from "./Tooltip.module.css";
 
 /**
  * KONACARD DS Tooltip — Bubble Type
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 200:1909
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 200:1909
  * spec: konacard-ds-components.md § 11_Tooltip
  *
  * Placement 명명 규칙 = "툴팁이 앵커에 대해 어디에 위치하는지"

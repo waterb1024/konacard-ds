@@ -31,8 +31,8 @@
 
 ## Figma DS 원본
 
-- **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON, 현행)
-  - 이전 파일 키: `Nv4o6ozSx5W4w10uFnQIs5` (-NEW- KONACARD - COMMON, 사용 중단)
+- **파일 키**: `${FIGMA_DS_FILE_KEY}` (-AX- KONACARD - COMMON, 현행)
+  - 이전 파일 키: `${FIGMA_DS_FILE_KEY_LEGACY}` (-NEW- KONACARD - COMMON, 사용 중단)
   - AX 파일은 NEW 파일의 복제본으로 컴포넌트 노드 ID는 그대로 유지됨 (예: `input/input` = `41:505`)
 - **컴포넌트 카탈로그 페이지**: `17:827` (02_Components)
 - **Foundation 페이지**: `295:3042` (01_Foundations)
@@ -87,6 +87,6 @@
 
 ### 공통 원칙
 
-- 각 agent 는 시스템 프롬프트에 프로젝트 컨텍스트(파일키 `dHJa65PGtCQHq2n4qgL9Z9`, 화면 성격 10종, 5개 공통 원칙, Figma 작업 규칙, 4단계 절차, template-only 규칙, publish 사전 체크 등)를 embed. 매 호출마다 재브리핑 불필요.
+- 각 agent 는 시스템 프롬프트에 프로젝트 컨텍스트(파일키 `${FIGMA_DS_FILE_KEY}`, 화면 성격 10종, 5개 공통 원칙, Figma 작업 규칙, 4단계 절차, template-only 규칙, publish 사전 체크 등)를 embed. 매 호출마다 재브리핑 불필요.
 - 위 규칙과 충돌하는 지침이 agent 정의에 있으면 **agent 정의를 먼저 갱신**할 것.
 - 상세는 Confluence `KIUX / Agent teams` 페이지 참조.

@@ -7,7 +7,7 @@
 
 
 KONACARD 모바일 앱(AOS) 공통 디자인 시스템의 **AI 참조용 문서 세트**.
-Figma DS 원본(`dHJa65PGtCQHq2n4qgL9Z9` — -AX- KONACARD COMMON)을 코드-컨텍스트로 번역해, Claude Code + Figma MCP 환경에서 AI 에이전트가 "KONACARD답게" 화면을 자동 재현할 수 있도록 유지합니다.
+Figma DS 원본(`${FIGMA_DS_FILE_KEY}` — -AX- KONACARD COMMON)을 코드-컨텍스트로 번역해, Claude Code + Figma MCP 환경에서 AI 에이전트가 "KONACARD답게" 화면을 자동 재현할 수 있도록 유지합니다.
 
 > ⚠️ **v1 작성 진행 중** — 릴리즈 전까지 세부 정정 및 보강이 있을 수 있습니다.
 
@@ -71,9 +71,10 @@ ds-figma-inspector  →  ds-component-implementer  →  ds-publisher  →  ds-do
 
 ## Figma DS 원본
 
-- **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9` (-AX- KONACARD - COMMON, 현행)
+- **파일 키**: `${FIGMA_DS_FILE_KEY}` — 실제 값은 저장소에 포함하지 않음. 팀 관리자에게 별도 채널로 문의.
 - **아이콘 페이지**: `04_Image` (page id `2:16890`, hidden) — 662개 아이콘·이미지 컴포넌트 (AX 이관 후에도 노드 ID·구성 그대로 유지, Figma UI 에는 hidden page 로 노출)
-- 이전 파일 키: `Nv4o6ozSx5W4w10uFnQIs5` (-NEW-, 2026-08-04 이후 사용 중단)
+
+> 저장소의 모든 Figma URL/키 참조는 `${FIGMA_DS_FILE_KEY}` (또는 `${FIGMA_DS_FILE_KEY_LEGACY}`) 플레이스홀더로 유지. Code Connect publish 등 실키가 필요한 작업은 팀 관리자에게 값을 받아 로컬 워킹 트리에만 주입해 사용 (**주입된 값은 커밋 금지**).
 
 ## 향후 계획
 

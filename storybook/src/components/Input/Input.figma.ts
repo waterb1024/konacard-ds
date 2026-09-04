@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD---COMMON?node-id=41-505
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD---COMMON?node-id=41-505
 // source=storybook/src/components/Input/Input.tsx
 // component=Input
 import figma from 'figma'

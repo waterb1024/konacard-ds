@@ -4,7 +4,7 @@ import styles from "./Checkbox.module.css";
 
 /**
  * KONACARD DS Checkbox
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 28:431 (controls/check box)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 28:431 (controls/check box)
  * spec: konacard-ds-components.md § 05_Control
  *
  * Figma variants:

@@ -1,6 +1,6 @@
 /*
  * KONACARD Design Foundation — CSS variables
- * Source: konacard-ds-foundation.md (Figma DS dHJa65PGtCQHq2n4qgL9Z9)
+ * Source: konacard-ds-foundation.md (Figma DS ${FIGMA_DS_FILE_KEY})
  *
  * 명명 규칙: Figma variable 원본 이름을 CSS custom property 로 옮길 때
  *   "/" → "-"  (예: color/brand/primary → --color-brand-primary)

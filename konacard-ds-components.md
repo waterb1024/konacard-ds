@@ -3,7 +3,7 @@ version: "1.0"
 name: KONACARD Design Components
 description: >
   KONACARD 모바일 앱(AOS) 공통 디자인 시스템 — Component 명세 문서.
-  Figma DS 파일(dHJa65PGtCQHq2n4qgL9Z9)의 컴포넌트 카탈로그 페이지(node 17:827)를 원본 소스로 함.
+  Figma DS 파일(${FIGMA_DS_FILE_KEY})의 컴포넌트 카탈로그 페이지(node 17:827)를 원본 소스로 함.
   각 컴포넌트의 variant/state/props/사용 조건을 정리.
 scope: >
   Figma 카탈로그의 12개 대분류(00_Basic ~ 12_Banner) 전체 완료.
@@ -15,7 +15,7 @@ related_docs:
 
 # KONACARD Design Components
 
-> Figma DS 원본: `dHJa65PGtCQHq2n4qgL9Z9` / 카탈로그 페이지 `17:827` (`02_Components`)
+> Figma DS 원본: `${FIGMA_DS_FILE_KEY}` / 카탈로그 페이지 `17:827` (`02_Components`)
 > 각 컴포넌트의 Figma 노드 ID·variant·state·용도를 정리합니다.
 > 토큰 상세는 `konacard-ds-foundation.md`, 사용 상황·조합 원칙은 `konacard-ds-rule.md` 참조.
 

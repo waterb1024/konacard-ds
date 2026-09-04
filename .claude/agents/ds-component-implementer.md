@@ -24,7 +24,7 @@ KONACARD DS Storybook (repo 내 `storybook/`) 컴포넌트 작성 에이전트.
 ## `.figma.ts` template 규격 (Input.figma.ts 기준)
 
 ```ts
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD---COMMON?node-id=<id>
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD---COMMON?node-id=<id>
 // source=storybook/src/components/<Name>/<Name>.tsx
 // component=<Name>
 import figma from 'figma'

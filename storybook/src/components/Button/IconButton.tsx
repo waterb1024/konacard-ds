@@ -4,7 +4,7 @@ import styles from "./IconButton.module.css";
 
 /**
  * KONACARD DS Icon Button
- * Figma: dHJa65PGtCQHq2n4qgL9Z9 (-AX-) / node 202:2574
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 202:2574
  * spec: konacard-ds-components.md § 02_Button > Icon 버튼
  * 형태: 텍스트 + 우측 chevron(>) 아이콘.
  * 용도: 진입형 리스트 아이템 우측 · 설정 아이템 등.

@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9/-AX--KONACARD?node-id=28-431
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD?node-id=28-431
 // source=storybook/src/components/Controls/Checkbox.tsx
 // component=Checkbox
 import figma from 'figma'
