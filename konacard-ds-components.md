@@ -78,7 +78,7 @@ related_docs:
   - Width: Flexible (부모 너비)
 - **Variant — Color** (5개):
   - `Brand` — 진한 보라 배경(`brand/primary` #805AE9) + 흰 텍스트 · **기본 Primary CTA**
-  - `Brand_Light` — 옅은 보라 배경(`brand/secondary` #F4F0FD 추정) + 보라 텍스트
+  - `Brand_Light` — 옅은 보라 배경(`color/button/secondary` #F4F0FD) + 보라 텍스트
   - `Brand_Line` — 흰 배경 + 보라 아웃라인 + 보라 텍스트 · **Secondary(보라 아웃라인)**
   - `Gray` — 회색 배경(`background/secondary` 계열) + 검정 텍스트 · **Neutral(병렬 CTA 좌측 보조)**
   - `Gray_Line` — 흰 배경 + 회색 아웃라인 + 검정 텍스트 · **Secondary(회색 아웃라인, 반복 편집 진입점)**
@@ -161,13 +161,13 @@ related_docs:
   - 비율 계산 후 정수 안 떨어지면 반올림
   - 좌측 = 보조(회색 채움 or 아웃라인), 우측 = 주(Primary 보라)
   - **파괴적 액션/미루기 = 좌측** (rule.md § "CTA 병렬 위계" 참조)
-- **AOS vs iOS**: AOS는 사각+radius small / iOS는 더 큰 radius (플랫폼별 관례)
+- **AOS vs iOS**: 플랫폼별 radius 차이 없음 (동일)
 
 ## Select 버튼 (`button/select`)
 
 - **Figma 노드**: `247:2113`
 - **용도**: 필드형 셀렉트(드롭다운) 버튼 — 밖 라벨 아래에서 값 선택 UI로 사용
-- (상세 미확인 — Forms 카테고리 정리 시 재검토 예정)
+- 별도 버튼 컴포넌트가 아니라 04_Forms의 **`Input/Select`(select/select box, node `41:550`)와 동일한 컴포넌트**. size=large 기준 state 5종(`default / active / select / disabled / error`)이며, Storybook `Selectbox`(Selectbox.stories.tsx)로 구현되어 있음. "button/select"는 카탈로그 상의 별칭일 뿐 Selectbox와 같은 컴포넌트이므로 별도 구현 불필요.
 
 ## Margin (버튼 병렬 배치 규칙)
 
@@ -876,8 +876,8 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
     - Main ↔ Description gap **4px** (`spacing-2xsmall`)
   - 이미지 ↔ 텍스트 gap **24px** (`spacing-xlarge`)
 - **Selected 시각 표기**:
-  - 테두리 브랜드 보라 변경 + Main text `body/1-Bold` 유지
-  - **우측 체크 아이콘 노출**(관례) — 카드-select 컴포넌트 자체에는 아이콘 슬롯이 있음
+  - 테두리 브랜드 보라(`color/border/focus` #805AE9) 변경 + Main text `body/1-Bold` 유지
+  - 체크 아이콘 없음 — 선택 상태는 **테두리 색상 변경만으로 표시**하는 구조 (아이콘 추가하지 말 것)
 - **터치 영역**: 카드 아이템 전체
 
 ### Bottomsheet — `list/bottomsheet`
@@ -959,7 +959,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
   - `Default(True)`: 회색 점 (`color/icon/quinary` #DDDDDD)
   - `Active(False)`: 브랜드 보라 점 (`color/background/button-brand` #805AE9)
 - **Multi progress**: N개 점 나열 시 활성 위치만 브랜드 보라, 나머지 옅은 회색
-- **표시 위치**: 캐러셀 하단 중앙 (관례)
+- **표시 위치**: 고정 규칙 없음 — 인디케이터를 담는 컨테이너(배너·온보딩·팝업 등)의 레이아웃에 맞춰 상/하, 좌/중/우가 그때그때 다르게 배치됨. 화면 조립 시 "하단 중앙"을 기본값으로 가정하지 말고 해당 화면의 다른 요소 배치에 맞출 것
 
 ## Navigator (좌/우 chevron 버튼)
 
@@ -977,7 +977,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 
 - **용도**: 캐러셀·갤러리에서 "1/6" 형식 현재/전체 표시
 - **모양**: 회색 반투명 pill (`background/tertiary` 계열), 흰 텍스트 `body/3-Regular` 12px
-- **위치**: 이미지 좌하단 (관례)
+- **위치**: 고정값 없음 — 컨테이너 레이아웃에 따라 달라짐 (예: 롤링배너에서는 배너 우하단)
 
 ## Alert Badge (알림 배지) — `badges/badge` (`3426:10001`)
 
@@ -990,7 +990,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
     - Figma `num-min`(20×20) / `num-max`(32×20) 두 variant 는 사이즈 예시일 뿐 코드에선 하나로 통합. **폭 고정하지 말 것**.
 - **텍스트 (count 전용)**: Pretendard Bold **11px** (`font/size/2xsmall`), lineHeight 16, letter-spacing `-0.22`, color `color/font/white` #FFFFFF.
 - **radius**: `radius/button/round` = 9999 (완전 pill).
-- **위치·조합 관례**: action-bar/button 우상단(56×56 아이콘 기준 top 12 / right 12), 리스트 항목 우측 텍스트 옆. 컴포넌트 자체는 position 로직 없음 — 부모가 배치 책임.
+- **위치·조합**: action-bar/button 우상단(버튼 사이즈 40×56 — 아이콘 24×24 + 좌우 padding 16, 정사각형 아님. 배지 오프셋 top 14 / right 0, 우측은 inset 없이 버튼 가장자리에 그대로 붙음), 리스트 항목 우측 텍스트 옆. 컴포넌트 자체는 position 로직 없음 — 부모가 배치 책임.
 - **SVG 원본 유지**: dot·new 는 Figma 원본 SVG (linearGradient defs 포함) 를 그대로 인라인. 벡터를 다시 그리지 않는다.
 
 ## 08_Indicator 안티패턴
@@ -1151,8 +1151,9 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 
 - **6가지 옅은 파스텔 배경**: 옅은 회색 / 옅은 보라 / 옅은 하늘 / 옅은 민트 / 옅은 노랑 / 옅은 핑크
 - **원칙**: 강조 강도는 옅은 톤으로 유지 — 배너가 CTA를 이기지 않도록 (`konacard-ds-rule.md` § "보라 한 색" 원칙)
-- **색조 매핑** (관례):
-  - 옅은 보라: 브랜드성 혜택 / 옅은 노랑: 안내·주의 / 옅은 민트: 성공·긍정 / 옅은 핑크: 프로모션·이벤트
+- **색조 매핑**:
+  - **브랜드 제휴 배너** (특정 브랜드 혜택·프로모션, 예: 올리브영 → 녹색): 브랜드 색조(H)에 맞추고 명도(L) 85~95% 범위 안에서 조정 (`konacard-ds-foundation.md` § color/banner 참조)
+  - **그 외 일반 배너**: 옅은 보라 = 브랜드성 혜택 / 옅은 노랑 = 안내·주의 / 옅은 민트 = 성공·긍정 / 옅은 핑크 = 프로모션·이벤트
 
 ## Benefit Banner
 

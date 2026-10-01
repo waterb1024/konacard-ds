@@ -109,7 +109,7 @@ colors:
     "color/border/focus":   "#805AE9"   # ✅ Focus·Active·Selected 테두리
     "color/border/brand":   "#805AE9"   # ✅ Bubble tooltip Brand type border
     "color/border/primay":  "#0000000F" # ✅ ⚠️ Figma 오타 "primay" (primary 아님) — 값은 divider/primary와 동일
-    # "color/border/error": "#FF364B"   # Error 상태에서 사용 관측되지만 API 노출 미확인
+    "color/border/error":   "#FF364B"   # ✅ Error 상태 테두리
 
   # ─── color/icon/* — 아이콘 색조 ──────────────────────────
   icon:
@@ -122,7 +122,7 @@ colors:
     "color/icon/accent-red":   "#FF364B"   # ✅ 오류 아이콘
     "color/icon/accent-green": "#1CCEA5"   # ✅ 성공 아이콘
     "color/icon/accent-blue":  "#589CF6"   # ✅ 정보 아이콘
-    # "color/icon/primary":  "#000000"   # 문서 기재값. API 노출 미확인
+    "color/icon/primary":      "#000000"   # ✅ 기본 아이콘 검정
 
   # ─── color/divider/* — 구분선 ─────────────────────────────
   divider:
@@ -133,7 +133,7 @@ colors:
 
   # ─── color/accent/* — 상태 색상 ───────────────────────────
   # ⚠️ 주의: accent 계열은 실 컴포넌트에서 color/icon/accent-red|green|blue로 관측됨.
-  # color/accent/* 이름 그대로는 API 노출 미확인 (Foundation 페이지 기재만).
+  # color/accent/* 이름 자체는 Figma 변수로 등록되어 있지 않음 (Foundation 페이지 기재용 이름).
   accent:
     "color/accent/primary":   "#FF364B"   # ⚠️ 오류·취소 (= red-500) — 실사용은 color/icon/accent-red
     "color/accent/secondary": "#589CF6"   # ⚠️ 정보 (= blue-500) — 실사용은 color/icon/accent-blue
@@ -153,6 +153,7 @@ colors:
     # "gradient/primary":       ""   # ✅ (Button에서 관측 - 값 empty로 노출)
 
   # ─── color/banner/* — 배너 파스텔 배경 ──────────────────
+  # 아래 hex는 Figma 변수 기본값. 실제 배너는 브랜드 색조(H)에 맞춰 명도(L) 85~95% 범위 안에서 조정해 사용 (채도 S는 고정값 없음).
   banner:
     "color/banner/brand":  "#F8F6FE"   # ⚠️ (= purple-50)
     "color/banner/gray":   "#F8F9FB"   # ⚠️ (= coolgray-50)
@@ -340,11 +341,13 @@ spacing:
     "spacing-large":    20   # ✅ ★ layout margin (변경불가)
     "spacing-xlarge":   24   # ✅ ★ base — 컨텐츠/본문 여백
     "spacing-2xlarge":  32   # ✅ 넓은 여백
-    "spacing-3xlarge":  40   # ⚠️ 그룹 명확 구분
+    "spacing-3xlarge":  40   # ✅ 그룹 명확 구분
 
-    # 디스플레이용 큰 마진 (배너·인트로 등)
-    "spacing-display-margin-l":  60   # ⚠️
-    "spacing-display-margin-xl": 80   # ⚠️
+    # 디스플레이용 큰 마진 (배너·인트로 등) — 실제 경로는 spacing/display/{medium|large|xlarge|2xlarge}
+    "spacing-display-medium":    48   # ✅ = spacing/display/medium
+    "spacing-display-margin-l":  60   # ✅ = spacing/display/large
+    "spacing-display-margin-xl": 80   # ✅ = spacing/display/xlarge
+    "spacing-display-2xlarge":   120  # ✅ = spacing/display/2xlarge
 
   # ─── layout/* — 시맨틱 별칭 ──────────────────────────────
   layout:
@@ -370,13 +373,13 @@ radius:
   # ═══════════════════════════════════════════════════════════════
   scale:
     "radius-none":     0      # ✅ 라운드 없음
-    "radius-2xsmall":  4      # ⚠️ 최소 버튼
-    "radius-xsmall":   6      # ⚠️ 입력폼, 본문 내 버튼
-    "radius-small":    8      # ⚠️ 페이지 중요 액션 버튼
-    "radius-medium":   12     # ⚠️ ★ base — 본문 내 박스형 컨텐츠
-    "radius-large":    16     # ⚠️ 팝업
-    "radius-xlarge":   24     # ⚠️ ★ base — 바텀시트
-    "radius-2xlarge":  32     # ⚠️ deprecated (홈 상/하단 박스)
+    "radius-2xsmall":  4      # ✅ 최소 버튼
+    "radius-xsmall":   6      # ✅ 입력폼, 본문 내 버튼
+    "radius-small":    8      # ✅ 페이지 중요 액션 버튼
+    "radius-medium":   12     # ✅ ★ base — 본문 내 박스형 컨텐츠
+    "radius-large":    16     # ✅ 팝업
+    "radius-xlarge":   24     # ✅ ★ base — 바텀시트
+    "radius-2xlarge":  32     # ✅ deprecated (홈 상/하단 박스)
     "radius-round":    9999   # ✅ (50%) — 라벨, 라운드 버튼
 
   # ─── radius/button/* — 실제 사용 이름 ────────────────────
@@ -390,19 +393,24 @@ radius:
   # ─── radius/components/* — 컴포넌트별 ─────────────────
   components:
     "radius/components/form":         6    # ✅ (입력폼)
+    "radius/components/form-small":   4    # ✅ (입력폼 — 작은 사이즈)
     "radius/components/box-button":   8    # ✅ (card-select 등 박스형 버튼)
     "radius/components/box-info":     8    # ✅ (info-box, tooltip 등)
     "radius/components/box-contents": 12   # ✅ (컨텐츠 박스)
+    "radius/components/box-container":24   # ✅ (컨텐츠 컨테이너 — box-contents와 다른 용도이니 혼동 주의)
+    "radius/components/toast":        12   # ✅ (Figma 변수명은 "toast"로 정확히 표기됨 — 레거시 "radius-tost"는 구버전 오타 별칭)
+    "radius/components/popup":        16   # ✅ (팝업/모달)
     "radius/components/bottomsheet":  24   # ✅ (바텀시트 상단 코너)
+    "radius/components/label":        9999 # ✅ (라벨/배지 pill)
 
   # ─── radius-layout-* — 레이아웃 별칭 (legacy) ─────────
   layout:
     "radius-layout-form":     6      # ✅
-    "radius-layout-contents": 12     # ✅
-    "radius-layout-label":    9999   # ✅
-    # "radius-tost":                12   # ⚠️ Figma 오타 - 실제로는 toast (API 관측 미확인)
-    # "radius-layout-popup":        16   # 문서 기재만
-    # "radius-layout-bottomsheet":  24   # 문서 기재만 (실사용은 radius/components/bottomsheet)
+    "radius-layout-contents": 12     # ⚠️ 레거시 이름 자체는 미등록 — 현역 토큰 radius/components/box-contents(✅ 위 참조)를 사용할 것
+    "radius-layout-label":    9999   # ✅ = radius/components/label
+    # "radius-tost":                12   # ⚠️ 레거시 kebab-flat 오타 별칭 — 현역 토큰은 radius/components/toast
+    # "radius-layout-popup":        16   # ✅ = radius/components/popup
+    # "radius-layout-bottomsheet":  24   # ✅ = radius/components/bottomsheet
 
 opacity:
   # ═══════════════════════════════════════════════════════════════
@@ -561,7 +569,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 ### 9) Accent (상태) — `color/accent/*`
 
-⚠️ **주의**: `color/accent/*` 이름 그대로는 API 노출 미확인 (문서 페이지 기재만). 실 컴포넌트에서는 아래 표의 대체 토큰 사용.
+⚠️ **주의**: `color/accent/*` 이름 그대로는 Figma 변수로 등록되어 있지 않음 (문서 페이지 기재용 이름). 실 컴포넌트에서는 아래 표의 대체 토큰 사용.
 
 | 문서 토큰 | Hex | Palette | 의미 | 실사용 대체 (API 확인) |
 |------|-----|---------|------|------------------------|
@@ -791,10 +799,12 @@ letterSpacing은 px 단위 음수(track-tight).
 
 **Display margin** (배너·인트로 등 큰 영역):
 
-| 토큰 | 값 (px) |
-|------|--------:|
-| `spacing-display-margin-l` | 60 |
-| `spacing-display-margin-xl` | 80 |
+| 토큰 | 값 (px) | 실제 Figma 경로 |
+|------|--------:|------|
+| `spacing-display-margin-l` | 60 | `spacing/display/large` |
+| `spacing-display-margin-xl` | 80 | `spacing/display/xlarge` |
+| *(문서에 없던 값)* | 48 | `spacing/display/medium` |
+| *(문서에 없던 값)* | 120 | `spacing/display/2xlarge` |
 
 ### 사용 규칙
 
@@ -845,12 +855,16 @@ letterSpacing은 px 단위 음수(track-tight).
 | `radius/components/form` | = `radius-xsmall` | 6 | 입력폼 (Input·Select·Search·Selectbox) |
 | `radius/components/box-button` | = `radius-small` | 8 | 박스형 버튼 (card-select 등) |
 | `radius/components/box-info` | = `radius-small` | 8 | 정보 박스 (Banner, Bubble tooltip 등) |
+| `radius/components/box-container` | = `radius-xlarge` | 24 | 컨텐츠 컨테이너 (box-contents와 다른 용도) |
+| `radius/components/form-small` | = `radius-2xsmall` | 4 | 입력폼 작은 사이즈 |
+| `radius/components/toast` | = `radius-medium` | 12 | 변수명은 "toast"로 정확히 표기됨 |
+| `radius/components/popup` | = `radius-large` | 16 | |
 | `radius-layout-form` | = `radius-xsmall` | 6 | ⚠️ Legacy 별칭 (form과 병행 관측) |
-| `radius-layout-contents` | = `radius-medium` | 12 | 컨텐츠 박스 (문서 기재값 — API 미확인) |
-| `radius-tost` | = `radius-medium` | 12 | ⚠️ **Figma 오타 그대로** — 실제로는 toast (수정 금지) |
-| `radius-layout-popup` | = `radius-large` | 16 | 팝업/모달 (문서 기재값) |
-| `radius-layout-bottomsheet` | = `radius-xlarge` | 24 | 바텀시트 상단 코너만 (문서 기재값) |
-| `radius-layout-label` | = `radius-round` | 50% | 라벨/배지 pill (문서 기재값) |
+| `radius-layout-contents` | = `radius-medium` | 12 | ⚠️ 레거시 별칭 자체는 미등록 — 현역 토큰 `radius/components/box-contents` 사용 |
+| `radius-tost` | = `radius-medium` | 12 | ⚠️ 레거시 kebab-flat 오타 별칭 — 현역 토큰 `radius/components/toast` 사용 |
+| `radius-layout-popup` | = `radius-large` | 16 | ✅ 현역 토큰 `radius/components/popup`과 값 일치 |
+| `radius-layout-bottomsheet` | = `radius-xlarge` | 24 | ✅ 현역 토큰 `radius/components/bottomsheet`과 값 일치 |
+| `radius-layout-label` | = `radius-round` | 50% | ✅ 현역 토큰 `radius/components/label`과 값 일치 |
 
 ### 사용 규칙
 
@@ -1106,18 +1120,14 @@ KONACARD **앱(AOS)** 은 그림자(shadow)를 최소화합니다. 배경색·�
 
 ### 웹 전용 Shadow 토큰 (앱 미적용 · 정리 예정)
 
-Figma DS(COMMON 파일 Elevation 페이지)에는 **웹 전용** 6단 shadow 토큰이 정의되어 있습니다. **앱에는 적용하지 않음.** 웹 프로젝트에서만 참조.
+Figma DS(COMMON 파일 Elevation 페이지)에는 **웹 전용** shadow 토큰이 정의되어 있습니다. **앱에는 적용하지 않음.** 웹 프로젝트에서만 참조. 실제 등록된 이름은 `$shadow-*`가 아니라 `elevation/shadow-*` 체계.
 
-| 토큰 | 용도 (추정) |
-|------|------|
-| `$shadow-pressed` | 눌린 상태 |
-| `$shadow-button` | 버튼 기본 |
-| `$shadow-navigation` | 네비게이션 |
-| `$shadow-card` | 카드 |
-| `$shadow-deep` | 강한 elevation |
-| `$shadow-active` | 활성 상태 |
-
-> ⚠️ Figma 원본 상 "가이드 정리 후 적용 예정 --- 2월말까지 정리 예정" 표시. 값(offset/blur/color) 미확정 상태. 사용 전 Figma variables에서 실값 확인 필요.
+| 토큰 | 용도 | 상태 |
+|------|------|------|
+| `elevation/shadow-card` | 카드 | ✅ EFFECT 스타일 등록됨 |
+| `elevation/shadow-deep` | 강한 elevation | ✅ EFFECT 스타일 등록됨 |
+| `elevation/shadow-dark` | (문서에 없던 추가 스타일) | ✅ 등록됨 |
+| pressed/button/navigation/active 4종 | — | ⚠️ 미발견 |
 
 ---
 
