@@ -220,13 +220,3 @@
   letter-spacing: var(--font-letterspacing-small);
   color: var(--color-font-tertiary);
 }
-
-.cardSelectCheck {
-  width: 24px;
-  height: 24px;
-  color: var(--color-icon-brand);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}

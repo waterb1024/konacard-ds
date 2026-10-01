@@ -33,21 +33,6 @@ function ChevronDown() {
   );
 }
 
-function CheckCircle() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="12" cy="12" r="10" fill="currentColor" />
-      <path
-        d="M7.5 12.5L10.5 15.5L16.5 9"
-        stroke="#fff"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 /* ── Basic list item ─────────────────────────────── */
 export interface ListItemProps {
   title: ReactNode;
@@ -199,11 +184,6 @@ export function CardSelect({
           <span className={styles.cardSelectDesc}>{description}</span>
         )}
       </div>
-      {selected && (
-        <span className={styles.cardSelectCheck}>
-          <CheckCircle />
-        </span>
-      )}
     </button>
   );
 }
