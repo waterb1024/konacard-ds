@@ -25,9 +25,9 @@ related_docs:
 |---|---|---|
 | **00_Basic** | ✅ 완료 | OS/status-bar (AOS·iOS·notch·Chrome), OS/keyboard (AOS·iOS), spacing 8-based 원칙 |
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
-| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), tetiary, text, icon, fixed-bottom, select |
+| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), tetiary, text button, icon, fixed-bottom, select |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/basic, input/search bar, input/email, input/card-number, input/button, Input/Select, Form UI(Title·Guide Text) |
+| **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/basic, input/search bar, input/email, input/card-number, input/button, select/select box (구 Input/Select), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
 | **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
@@ -166,20 +166,27 @@ related_docs:
 - **Type 시각**: `Dark` = #999 채움 + 흰 텍스트 / `Gray` = #DDD 채움 + 검정 텍스트 / `line` = 흰 배경 + #DDD 테두리 + #333 텍스트
 - **용도**: rule.md 규칙 없음 — "+ 추가" 성격 액션으로 추정되나 미정의
 
-## Text 버튼 (`button/text`)
+## Text 버튼 (`button/text button`)
 
-- **Figma 노드**: `17:793`
+- **Figma 노드**: `17:793` — AX 이름 **`button/text button`** (2026-10-02 AX 확인)
 - **용도**: 배경 없는 텍스트 링크성 버튼 (하단 유틸리티 링크, CTA 위 반대 액션 등)
-- **사이즈·기하**:
-  - Fixed height: **36px** (터치 영역 = 버튼명 가로 × 32 세로)
-  - Padding: 상하 6px, 좌우 auto (텍스트 만큼)
-- **Variant — Color** (4개):
-  - `Gray_Light` — 옅은 회색 텍스트 (비활성 링크 or 부가 정보)
-  - `Gray` — 회색 텍스트 (기본 유틸리티 링크)
-  - `Black` — 검정 텍스트
-  - `Brand` — 보라 텍스트 (강조 링크)
-- **Variant — State**: Default / Disable (opacity 40%)
-- **스타일 참고**: 하단 유틸리티 링크는 밑줄 병기 (rule.md 참조).
+- **Variant 속성 3개** (소문자): `size` × `color` × `state`
+
+| size | 높이 (fixed) | 텍스트 스타일 |
+|---|---|---|
+| `large` | 36 | `button/medium-regular` 14/22 |
+| `medium` | 32 | `button/small-regular` 12/18 |
+| `small` | 28 | `button/small-regular` 12/18 |
+| `tiny` | 24 | `button/tiny-regular` 11/16 |
+
+- **사이즈·기하** (AX 실측): Padding 상하 **4px** / 좌우 0 (폭 = 텍스트 hug). 높이는 size 별 고정
+- **Variant — `color`** (4개):
+  - `gray-light` — #999999 (비활성 링크 or 부가 정보)
+  - `gray` — #666666 (기본 유틸리티 링크)
+  - `black` — #000000
+  - `brand` — #805AE9 (강조 링크)
+- **Variant — `state`**: `true` / `false` (opacity 40%)
+- **스타일 참고**: 컴포넌트 자체에는 밑줄 없음 (`textDecoration: NONE`). 하단 유틸리티 링크의 밑줄 병기는 rule.md 규칙에 따름.
 
 ## Icon 버튼 (`button/icon`)
 
@@ -233,8 +240,8 @@ related_docs:
 | 필드 우측 어드먼트 (편집) | Small | `gray-line` (회색 아웃라인) |
 | 필드 우측 어드먼트 (강조 부가 액션) | Small | `brand-line` (보라 아웃라인) |
 | 정보 조회 화면의 반복 편집 진입점 | Small | `gray-line` |
-| 하단 유틸리티 링크 | Text | Gray |
-| CTA 위 반대 액션 링크 | Text | Gray (밑줄 병기) |
+| 하단 유틸리티 링크 | Text | `gray` |
+| CTA 위 반대 액션 링크 | Text | `gray` (밑줄 병기) |
 | 진입형 리스트 아이템 우측 액션 | Icon | Gray / Brand (설정값이면 Brand) |
 
 ## Button 관련 안티패턴
@@ -263,7 +270,7 @@ related_docs:
 - **폰트**: Pretendard, `body/1-regular` (15px / lineHeight 24 / letterSpacing -0.3) 기본, Active·Error·Complete 상태는 `body/1-Bold`
 - **Width**: Flexible (부모 컨테이너 가변 — "화면이 늘어날 경우 늘어나는 영역")
 
-**상태(State) 스펙 — 공통** (Inputbox·Search bar 기준 6개, Selectbox는 축약 4개)
+**상태(State) 스펙 — 공통** (Inputbox·Search bar 기준 6개, Selectbox는 별도 5개 — § Selectbox 참조)
 
 | State | 테두리 | 텍스트/아이콘 | 굵기 | 배경 | 사용 시점 |
 |---|---|---|---|---|---|
@@ -274,7 +281,7 @@ related_docs:
 | **Inactive** (variant 값 `disabled`) | `color/border/default` #DDDDDD | `color/font/placeholder` #999999 | Regular | **#F8F9FB** — Inputbox·Selectbox `color/background/disabled`, Search bar `color/background/secondary` (같은 hex, 토큰명 다름 — AX 원본 그대로) | 비활성/입력 불가 |
 | **Error** | `color/border/error` #FF364B (레드) | 입력값 `color/font/error` #FF364B | **Bold** | White | 검증 실패 |
 
-> Selectbox는 `Focus`·`Complete` 상태를 사용하지 않음 — Default → Active → Inactive → Error 4단계.
+> Selectbox는 `focus`·`complete` 대신 `active`(펼침)·`select`(선택 완료)를 사용 — `default` → `active` → `select` / `disabled` / `error` 5단계.
 
 ---
 
@@ -327,28 +334,29 @@ related_docs:
 
 ---
 
-## Selectbox (`Input/Select`)
+## Selectbox (`select/select box`)
 
-- **Figma 노드 (샘플 인스턴스)**: `99:951`
+- **Figma 노드**: 컴포넌트 세트 `41:550` — AX 이름 **`select/select box`** (카탈로그 페이지 인스턴스 이름은 `Input/Select`, 샘플 `99:951`)
+- **Variant 속성**: `size` = `large` (1종) × `State` (대문자 S) = `default` / `active` / `select` / `disabled` / `error`
 - **용도**: 정해진 옵션 목록에서 하나 고르는 필드 (드롭다운 트리거)
 - **사이즈·기하**: Inputbox와 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
 - **하위 슬롯**:
   - Left: 텍스트(플레이스홀더 "선택" 또는 선택값)
-  - Right: **chevron** 12×8 — Active 만 위방향 `ic_arrow/ic_arrow_up_12`, Default·Inactive·Error 는 아래방향 `ic_arrow/ic_arrow_down_12` (AX 실측. Focus 상태는 없음)
-    - Default·Active·Error: `color/icon/secondary` #333333
-    - Inactive(Disabled) 만: `color/icon/quaternary` #999999
-- **State 변형** (축약 4단계):
-  - `Default` — 옵션 미선택
-  - `Active` — 옵션 선택 완료 (텍스트 보라 Bold + 보라 테두리)
-  - `Inactive (Disable)` — 비활성 (배경 `color/background/disabled` #F8F9FB)
-  - `Error` — 검증 실패 (빨간 테두리 + 빨간 텍스트)
-  - **Focus·Complete 상태 없음** (선택식이므로 편집 중 vs 확정 구분 불필요)
+  - Right: **chevron** 12×8 — `active` 만 위방향 `ic_arrow/ic_arrow_up_12`, 나머지는 아래방향 `ic_arrow/ic_arrow_down_12` (AX 실측)
+    - 아이콘 색은 전 state #333333. `disabled` 만 아이콘 투명도 24% (`opacity/disable/icon`) 로 흐리게 처리
+- **State 변형** (5단계, AX 실측):
+  - `default` — 옵션 미선택 (#DDD 테두리 + #999 Regular 플레이스홀더)
+  - `active` — **드롭다운 펼침 중** (보라 테두리 + 보라 Bold 텍스트 + chevron ↑)
+  - `select` — **선택 완료·닫힘** (#DDD 테두리 + 검정 Bold 선택값) — Inputbox `complete` 대응
+  - `disabled` — 비활성 (배경 `color/background/disabled` #F8F9FB + #999 Regular)
+  - `error` — 검증 실패 (빨간 테두리 + 빨간 Bold 텍스트)
+  - **Focus 상태 없음**
 - **터치 영역**: 필드 전체 48px 유지
-- **button/select와의 관계**: `02_Button § Select 버튼(247:2113)`은 이 Selectbox와 동일 렌더링을 재활용한 별도 버튼 인스턴스 (Forms 카탈로그에서는 `Input/Select`, Buttons 카탈로그에서는 `button/select` 로 이중 노출). **폼 안 = Selectbox 사용, 폼 밖 필터 트리거 = button/select 사용**
+- **button/select와의 관계**: `02_Button § Select 버튼(247:2113)`은 이 Selectbox와 동일 렌더링을 재활용한 별도 버튼 인스턴스 (Forms 카탈로그에서는 `Input/Select` = `select/select box`, Buttons 카탈로그에서는 `button/select` 로 이중 노출). **폼 안 = Selectbox 사용, 폼 밖 필터 트리거 = button/select 사용**
 
 ## Selectbox 관련 안티패턴
 
-- ❌ **Focus 상태 추가로 그리기** — Active 하나로 편집·확정 모두 커버 (Inputbox와 다름)
+- ❌ **Focus 상태 추가로 그리기** — 펼침은 `active`, 선택 완료는 `select` 로 표현 (Inputbox와 다름)
 - ❌ chevron 방향을 항상 아래로 고정 (열림 상태 시각 피드백 상실)
 - ❌ 옵션이 3개 이하일 때 Selectbox 사용 — 라디오 버튼(`05_Control`) 사용 고려
 
@@ -578,11 +586,8 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - **배경**: 별도 색 없음 — **Contents 영역과 동일 배경 상속** ("Action bar 배경 색상은 Contents 영역의 배경색과 동일하게 적용")
 - **좌우 화면 padding**: **20px** (`layout/margin` — 모든 화면 공통, `konacard-ds-rule.md` 참조)
 - **버튼 touch 유닛 = 56×56 정사각** (`action-bar/button`)
-- **로고↔타이틀 gap** (Main 유형): **12px**
 - **Text 우측 액션 padding**: 16px (`spacing-medium`)
-- **텍스트 정렬**:
-  - **AOS**: 좌측 정렬(back 유무와 무관)
-  - **iOS**: 중앙 정렬(back 유무와 무관)
+- **텍스트 정렬**: Page title **가운데 정렬** — AOS·iOS 공통, back 유무와 무관 (AX 컴포넌트 기본값)
 
 ---
 
@@ -597,7 +602,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - **하위 슬롯**: 중앙에 아이콘 하나. 색: `color/icon/secondary` #333333 기본, 강조 필요 시 `color/icon/brand` #805AE9
 - **State**: Default / Disable (opacity 40% — 다른 버튼 규칙과 동일)
 - **주의**:
-  - **아이콘만** 배치. 텍스트가 필요하면 `button/text` 컴포넌트를 헤더 우측에 직접 배치 (예: `7796:5462` — Page title + 우측 "Button" 텍스트)
+  - **아이콘만** 배치. 텍스트가 필요하면 `button/text button` 컴포넌트를 헤더 우측에 직접 배치 (예: `7796:5462` — Page title + 우측 "Button" 텍스트)
   - 배지(Badge)는 아이콘 우상단에 붙이는 별도 인스턴스 — 상세는 § "Alert Badge" (08_Indicator) 참조
 
 ---
@@ -608,34 +613,34 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 
 | 형태 | 좌측 | 중앙/좌측 텍스트 | 우측 | 대표 노드 |
 |---|---|---|---|---|
-| **Main** (홈·메인 진입 화면) | 로고 24px + 12px gap + Main text | `body/1-Bold` 15px 검정, 좌측 정렬 | icon 버튼 1~3개 (알림·설정·햄버거 등) | `375:3198` |
-| **Sub** (하위 페이지) | back `<` 버튼 (선택) | Page title `body/1-Bold` 15px 검정 · **AOS 좌측·iOS 중앙** | text button 또는 icon 버튼 (선택) | `7796:5440`(AOS) · `7796:5486`(iOS) |
+| **Main** (**코나카드 홈 메인 전용**) | 흰색 KONA 워드마크 로고 83×20 | 없음 (로고만) | 흰색 icon 버튼 2개 (알림·메뉴) | `type=main` `375:3142` |
+| **Sub** (하위 페이지) | back `<` 버튼 (선택) | Page title `body/1-Bold` 15px 검정 · **가운데 정렬 (AOS·iOS 공통)** | text button 또는 icon 버튼 (선택) | `7796:5440`(AOS) · `7796:5486`(iOS) |
 | **Scroll Title** (헤드라인 스크롤 대응) | back `<` (선택) | 스크롤 전 비어있음 → 스크롤 시 Page title 노출 | icon 버튼 (햄버거 등) | `407:3744` |
 
-### Main 유형 (`375:3198`)
+### Main 유형 (`type=main`, `375:3142`)
 
-- **용도**: 홈·메인·주요 진입 화면 상단
-- **레이아웃** (56h):
-  - 좌: **로고 24px** + gap 12px + Main text (`body/1-Bold` 15px, `color/font/primary` #000000)
-  - 좌 padding: **20px** (`layout/margin`)
-  - 우: icon button 1~3개 병렬 (각 56×56, gap 없음 — 버튼 자체 여백으로 자연 간격 형성)
-- **align**: Vertical middle (`Align: Middle`)
-- **로고**: 브랜드 심볼 (원형 브랜드 아이콘). 실 프로덕트에서는 브랜드 오브젝트로 대체 가능하나 크기 24px 고정.
-- **Main text**: 브랜드명 또는 짧은 위치 표시 (예: "KONACARD", "MY카드")
+- **용도**: **코나카드 홈 메인 화면 전용** 헤더. 다른 화면에서는 사용하지 않음 (다른 화면은 Sub 유형 `page_icon` / `page_button`)
+- **레이아웃** (56h, AX 실측):
+  - header padding 좌우 4px
+  - 좌: `left` 영역 padding-left 16 → **로고 시작 x = 20** (`layout/margin` 과 일치) / 로고 `img_logo_kona_w` **83×20**
+  - 우: `action-bar/button` 56×56 × 2 — `ic_24/ic_alarm_24_w`, `ic_24/ic_menu_24_w` (흰색 아이콘)
+- **배경**: 투명 (fill 없음)
+- **구버전 `type=old`** (원형 로고 + Main text + 아이콘 3개, `307:5511`) 는 사용하지 않음 — 문서에서 제외
 
 ### Sub 유형 — AOS (`7796:5440`, `7796:5414`, `7796:5462`)
 
 - **용도**: 뒤로가기 필요한 하위 페이지 상단
-- **레이아웃 3 variant**:
-  - **이전 있음**: `<` back(56×56) + gap 4px + Page title 좌측 정렬 (실좌 padding = back 56 + 4 = 60px 지점)
-  - **이전 없음**: Page title 20px 좌측 padding
-  - **이전 + 우측 액션**: `<` back + Page title 좌측 + 우측 text button (`body/1-Bold`, 우측 padding 16)
+- **AX variant 매핑**: 아이콘 액션 = `type=page_icon` / 우측 텍스트 버튼 = `type=page_button` (header padding 좌우 4, 버튼 56×56)
+- **레이아웃 3 형태** (Page title 은 항상 **가운데 정렬** — AX 컴포넌트 `textAlignHorizontal: CENTER`):
+  - **이전 있음**: `<` back(56×56) + Page title 가운데
+  - **이전 없음**: Page title 가운데
+  - **이전 + 우측 액션**: `<` back + Page title 가운데 + 우측 text button (`type=page_button`)
 - **Page title**: `body/1-Bold` = Pretendard **Bold 15px** / lineHeight 24 / 색 #000000
 
 ### Sub 유형 — iOS (`7796:5486`, `7796:5415`, `7796:5416`)
 
-- **레이아웃**: AOS와 동일 구조, **다만 Page title은 항상 중앙 정렬** (back 유무 무관)
-- **주의**: iOS 관례에 따른 중앙 정렬. **하나의 화면에 AOS/iOS 헤더를 섞지 말 것** — 플랫폼별 빌드에서 하나만 사용
+- **레이아웃**: AOS와 동일 (같은 컴포넌트 · Page title 가운데 정렬)
+- **주의**: **하나의 화면에 AOS/iOS 헤더를 섞지 말 것** — 플랫폼별 빌드에서 하나만 사용
 
 ### Scroll Title 유형 (`407:3744` + `1098:4449`)
 
@@ -647,21 +652,32 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 
 ## action-bar/header 안티패턴
 
-- ❌ **AOS 헤더에서 title 중앙 정렬** / **iOS 헤더에서 title 좌측 정렬** (플랫폼 관례 위배)
+- ❌ **Page title 좌측 정렬 override** — AOS·iOS 모두 컴포넌트 기본값(가운데) 유지
 - ❌ **Main 유형에 back 버튼** (Main은 진입점 — back 없음. back 필요하면 Sub 유형)
+- ❌ **홈 메인 외 화면에 Main 유형(`type=main`) 사용** — 코나카드 홈 메인 전용
 - ❌ **우측 액션 4개 이상** (56×56 × 3 이하 권장, 그 이상은 햄버거 메뉴로 통합)
 - ❌ 헤더 배경에 별도 색 지정 (Contents 배경 상속 원칙 위배)
 - ❌ Scroll Title 유형에서 스크롤 전에도 헤더에 Page title 노출 (헤드라인과 중복)
 
 ---
 
-## action-bar/headline (`1098:4444`, `1098:4449`)
+## action-bar/headline (컴포넌트 세트 `896:4387`)
 
+- **Figma 노드**: 세트 `896:4387` / 샘플 인스턴스 `1098:4444`, `1098:4449` (둘 다 `type=3line`)
 - **용도**: Scroll Title 유형과 페어링되는 **큰 제목 영역** (본문 최상단 배치)
+- **Variant `type`** — 표시되는 **텍스트 블록 개수** (Main text 줄 수 아님, AX 실측):
+
+| type | 구성 | 높이 (Main 3줄 기준) |
+|---|---|---|
+| `1line` | Main text | 144 |
+| `2line` | Main text + Sub text | 196 |
+| `3line` | Main text + Sub text + Description | 248 |
+
 - **사이즈·기하**:
-  - 폭: 360px 기준(가변) / 높이: 248px 기준(콘텐츠 따라 가변)
+  - 폭: 360px 기준(가변, 컴포넌트 원본 320) / 높이: 콘텐츠 따라 가변
   - 좌우 padding: **20px** (`layout/margin`)
-  - 상단 padding: **24px** (`layout/margin-top`)
+  - 상·하 padding: **24px** (`layout/margin-top`)
+  - 블록 간 gap: **8px**
 - **하위 슬롯** (스크롤 전 렌더):
   - **Main text** (큰 제목): `heading/1-bold` = Pretendard **Bold 24px** / lineHeight 32 / letterSpacing -0.48 / 색 #000000
     - 강조 부분은 `color/font/brand` #805AE9 사용 가능 (한 구절만)
@@ -857,7 +873,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
   - **사이즈별 우측 요소**:
     - link: large는 `ic_arrow_right_14`만 / medium은 value 텍스트(`body/3-Regular` 12px `color/font/brand`) + `ic_arrow_right_14`
     - control(스위치): large 50×28 / medium 42×24
-    - button: large는 `button/text` large · `button/button` style=secondary·size=medium(h32) · `button/icon` medium / medium은 각각 small(h28 · `button/button` style=secondary·size=small h24 · h28)
+    - button: large는 `button/text button` large · `button/button` style=secondary·size=medium(h32) · `button/icon` medium / medium은 각각 small(h28 · `button/button` style=secondary·size=small h24 · h28)
 
 ### 4가지 표기 형태
 
@@ -866,7 +882,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 | **기본형** (Main text 단독) | 없음 | 정보 라벨 나열 | 진입 없음 (또는 행 자체 탭) |
 | **텍스트가 길어질 경우** | 없음 | 긴 안내 | 진입 없음 |
 | **항목과 값을 표기할 경우** | 값 텍스트 (우측 정렬, `body/2-Regular` `color/font/tertiary` #666666) | "회원등급 : 프리미엄" 형 정보 조회 | 진입 없음 |
-| **항목과 버튼을 표기할 경우** | (a) `button/text` + `>` chevron (진입형) / (b) Small `button` `gray-line` (액션형) | (a) 설정 항목 진입 (b) 인라인 편집 · 변경 | (a) 있음 (b) 즉시 액션 |
+| **항목과 버튼을 표기할 경우** | (a) `button/text button` + `>` chevron (진입형) / (b) Small `button` `gray-line` (액션형) | (a) 설정 항목 진입 (b) 인라인 편집 · 변경 | (a) 있음 (b) 즉시 액션 |
 
 - **텍스트 정렬**:
   - Main text: 좌측 정렬

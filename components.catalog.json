@@ -1,0 +1,467 @@
+{
+  "_meta": {
+    "version": "draft-1",
+    "source": {
+      "fileKey": "dHJa65PGtCQHq2n4qgL9Z9",
+      "fileName": "-AX- KONACARD",
+      "extractedAt": "2026-10-02",
+      "method": "use_figma (read-only) — node.key / componentPropertyDefinitions / variant children"
+    },
+    "fields": {
+      "key": "component set (또는 component) key — AX 파일 로컬 노드에서 읽은 값",
+      "nodeId": "AX 파일 노드 ID",
+      "props": "Figma variant 속성명과 허용 값 (대소문자 원본 그대로)",
+      "heights": "variant 별 높이 (px, AX 실측)",
+      "codeProp": "Storybook 코드 prop 매핑 (Code Connect 기준, 있을 때만)",
+      "docRef": "용도·규칙·안티패턴은 md 문서 해당 섹션이 진실의 소스"
+    },
+    "importNote": "이 키들은 AX 파일의 로컬 컴포넌트(remote=false) 키. search_design_system 결과에는 AX 의 button/button 이 나오지 않고 NEW 라이브러리의 button/primary 가 나옴 → AX 가 라이브러리로 publish 되었는지 미확인. 다른 파일에서 importComponentSetByKeyAsync 로 쓸 수 있는지 3단계 전에 검증 필요."
+  },
+  "components": {
+    "button/button": {
+      "type": "COMPONENT_SET",
+      "key": "4277674fb460f1714bc4be7c3ee5d25b0f241f35",
+      "nodeId": "17:703",
+      "props": {
+        "style": [
+          "primary",
+          "secondary"
+        ],
+        "size": [
+          "large",
+          "medium",
+          "small",
+          "tiny"
+        ],
+        "type": [
+          "brand",
+          "brand-light",
+          "brand-line",
+          "brand-gradient",
+          "gray",
+          "gray-light",
+          "gray-line",
+          "gray-line-light"
+        ],
+        "state": [
+          "true",
+          "false"
+        ]
+      },
+      "defaults": {
+        "style": "primary",
+        "size": "large",
+        "type": "brand-light",
+        "state": "true"
+      },
+      "validCombos": {
+        "style=primary": {
+          "size": [
+            "large",
+            "medium",
+            "small"
+          ]
+        },
+        "style=secondary": {
+          "size": [
+            "large",
+            "medium",
+            "small",
+            "tiny"
+          ]
+        }
+      },
+      "heights": {
+        "primary/large": 56,
+        "primary/medium": 48,
+        "primary/small": 40,
+        "secondary/large": 40,
+        "secondary/medium": 32,
+        "secondary/small": 24,
+        "secondary/tiny": 24
+      },
+      "aliases": {
+        "Large 버튼": "style=primary, size=large",
+        "Medium 버튼": "style=primary, size=medium",
+        "Small 버튼": "style=secondary, size=medium"
+      },
+      "codeProp": {
+        "component": "Button",
+        "type→color": {
+          "brand": "Brand",
+          "brand-light": "Brand_Light",
+          "brand-line": "Brand_Line",
+          "brand-gradient": "Brand_Gradient",
+          "gray": "Gray",
+          "gray-light": "Gray_Light",
+          "gray-line": "Gray_Line",
+          "gray-line-light": "Gray_Line_Light"
+        }
+      },
+      "notes": [
+        "PascalCase(Gray_Line 등)는 코드 prop 값. Figma 에서는 type 값(소문자·하이픈) 사용",
+        "primary 에는 size=tiny 조합 없음"
+      ],
+      "docRef": "konacard-ds-components.md § 02_Button"
+    },
+    "button/tetiary": {
+      "type": "COMPONENT_SET",
+      "key": "2d10e22c9cd4fcf2b70a2bba8cdcdcf91e7f39fc",
+      "nodeId": "1212:4553",
+      "props": {
+        "Type": [
+          "Dark",
+          "Gray",
+          "line"
+        ]
+      },
+      "defaults": {
+        "Type": "Dark"
+      },
+      "heights": {
+        "*": 28
+      },
+      "aliases": {
+        "추가 버튼": "button/tetiary"
+      },
+      "notes": [
+        "Figma 원본 오타(tetiary) 그대로",
+        "속성명 대문자 Type, 값 line 은 소문자"
+      ],
+      "docRef": "konacard-ds-components.md § 추가 버튼"
+    },
+    "button/fixed-bottom": {
+      "type": "COMPONENT_SET",
+      "key": "da746135da5bad5cdd6efff82f4b904a7ab8edc8",
+      "nodeId": "17:1049",
+      "props": {
+        "Device": [
+          "AOS",
+          "iOS"
+        ]
+      },
+      "defaults": {
+        "Device": "AOS"
+      },
+      "sizes": {
+        "AOS": [
+          360,
+          72
+        ],
+        "iOS": [
+          375,
+          72
+        ]
+      },
+      "docRef": "konacard-ds-components.md § Fixed-Bottom 버튼"
+    },
+    "button/text button": {
+      "type": "COMPONENT_SET",
+      "key": "732152b17bc78fb0e663fb210b0a56351a6fb0bf",
+      "nodeId": "17:793",
+      "props": {
+        "size": [
+          "large",
+          "medium",
+          "small",
+          "tiny"
+        ],
+        "color": [
+          "black",
+          "brand",
+          "gray",
+          "gray-light"
+        ],
+        "state": [
+          "true",
+          "false"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "color": "gray-light",
+        "state": "true"
+      },
+      "heights": {
+        "large": 36,
+        "medium": 32,
+        "small": 28,
+        "tiny": 24
+      },
+      "notes": [
+        "문서 표기도 'button/text button' 으로 통일 (2026-10-02)",
+        "컴포넌트 자체에 밑줄 없음"
+      ],
+      "docRef": "konacard-ds-components.md § Text 버튼",
+      "textStyles": {
+        "large": "button/medium-regular",
+        "medium": "button/small-regular",
+        "small": "button/small-regular",
+        "tiny": "button/tiny-regular"
+      }
+    },
+    "input/text field": {
+      "type": "COMPONENT_SET",
+      "key": "b5a95e671a356625445a6193b529ae5c02e7d77f",
+      "nodeId": "41:505",
+      "props": {
+        "state": [
+          "default",
+          "focus",
+          "active",
+          "complete",
+          "disabled",
+          "error"
+        ]
+      },
+      "defaults": {
+        "state": "default"
+      },
+      "heights": {
+        "*": 48
+      },
+      "aliases": {
+        "Inputbox": "input/text field",
+        "input/input": "input/text field (NEW 파일 이름)"
+      },
+      "docRef": "konacard-ds-components.md § Inputbox"
+    },
+    "input/basic": {
+      "type": "COMPONENT",
+      "key": "8ba9417efa31e79c4d1c4a0273f7d639dc08e965",
+      "nodeId": "99:804",
+      "size": [
+        270,
+        100
+      ],
+      "notes": [
+        "Title + input/text field + Guide Text 조합. variant 없음"
+      ],
+      "docRef": "konacard-ds-components.md § Inputbox (input/basic 확장)"
+    },
+    "input/search bar": {
+      "type": "COMPONENT_SET",
+      "key": "0294e4f5dc01568c6bbbfae696ef2294c12b42c2",
+      "nodeId": "777:4492",
+      "props": {
+        "state": [
+          "default",
+          "focus",
+          "active",
+          "complete",
+          "disabled",
+          "error"
+        ]
+      },
+      "defaults": {
+        "state": "default"
+      },
+      "heights": {
+        "*": 48
+      },
+      "aliases": {
+        "Search bar": "input/search bar"
+      },
+      "docRef": "konacard-ds-components.md § Search bar"
+    },
+    "select/select box": {
+      "type": "COMPONENT_SET",
+      "key": "ddc7d340c3cd3d162621ca0d75e6bac8efbde8d7",
+      "nodeId": "41:550",
+      "props": {
+        "size": [
+          "large"
+        ],
+        "State": [
+          "default",
+          "active",
+          "select",
+          "disabled",
+          "error"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "State": "default"
+      },
+      "heights": {
+        "*": 48
+      },
+      "aliases": {
+        "Selectbox": "select/select box",
+        "Input/Select": "select/select box (카탈로그 인스턴스 이름)"
+      },
+      "notes": [
+        "State 속성명 대문자 S",
+        "active = 드롭다운 펼침(chevron ↑), select = 선택 완료·닫힘 (Inputbox complete 대응)",
+        "disabled 는 chevron 투명도 24%"
+      ],
+      "docRef": "konacard-ds-components.md § Selectbox"
+    },
+    "list/list": {
+      "type": "COMPONENT_SET",
+      "key": "d8ca8a0451596916517bfd9372dbe7fd068b94f9",
+      "nodeId": "202:2536",
+      "props": {
+        "size": [
+          "large",
+          "medium"
+        ],
+        "type": [
+          "button",
+          "control",
+          "link"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "type": "link"
+      },
+      "heights": {
+        "large/link": 87,
+        "large/button": 87,
+        "large/control": 87,
+        "medium/link": 71,
+        "medium/button": 81,
+        "medium/control": 73
+      },
+      "notes": [
+        "heights 는 Description 표시 상태 기준. 숨기면 large −22 / medium −16"
+      ],
+      "docRef": "konacard-ds-components.md § Basic Type — list/list"
+    },
+    "action-bar/header": {
+      "type": "COMPONENT_SET",
+      "key": "7ca4e473027526feeb51ff256b0a8ebdb252ce97",
+      "nodeId": "375:3141",
+      "props": {
+        "type": [
+          "main",
+          "page_icon",
+          "page_button",
+          "old"
+        ]
+      },
+      "defaults": {
+        "type": "main"
+      },
+      "heights": {
+        "*": 56
+      },
+      "notes": [
+        "type=old 는 구버전 — 사용 금지 (문서에서 제외)",
+        "type=main 은 코나카드 홈 메인 전용. 그 외 화면은 page_icon / page_button",
+        "Page title 은 AOS·iOS 모두 가운데 정렬",
+        "인스턴스는 resize(w, 56) 명시 필수 (메모리 규칙)"
+      ],
+      "docRef": "konacard-ds-components.md § action-bar/header",
+      "deprecated": {
+        "type": [
+          "old"
+        ]
+      }
+    },
+    "action-bar/headline": {
+      "type": "COMPONENT_SET",
+      "key": "155c014cd305b08c84015e657b93b48a0941f99d",
+      "nodeId": "896:4387",
+      "props": {
+        "type": [
+          "1line",
+          "2line",
+          "3line"
+        ]
+      },
+      "defaults": {
+        "type": "1line"
+      },
+      "heights": {
+        "1line": 144,
+        "2line": 196,
+        "3line": 248
+      },
+      "notes": [
+        "type 의 line = 텍스트 블록 개수 (1: Main / 2: +Sub / 3: +Description)",
+        "padding 상하 24 · 좌우 20, 블록 gap 8",
+        "variant 폭 320 (원본). 화면에서는 360 폭으로 사용"
+      ],
+      "docRef": "konacard-ds-components.md § action-bar/headline"
+    },
+    "title/title": {
+      "type": "COMPONENT_SET",
+      "key": "8f7a85fd66a5c094c0827cf0162ccc4f7a0fa6ee",
+      "nodeId": "576:6131",
+      "props": {
+        "Type": [
+          "Input",
+          "Con_list",
+          "Black",
+          "Gray"
+        ],
+        "Size": [
+          "Large",
+          "Medium",
+          "Small"
+        ],
+        "Color": [
+          "Gray",
+          "Black"
+        ]
+      },
+      "defaults": {
+        "Type": "Input",
+        "Size": "Medium",
+        "Color": "Black"
+      },
+      "validCombos": {
+        "Type=Input": {
+          "Size": [
+            "Medium"
+          ],
+          "Color": [
+            "Black",
+            "Gray"
+          ],
+          "height": 18
+        },
+        "Type=Con_list": {
+          "Size": [
+            "Medium",
+            "Small"
+          ],
+          "Color": [
+            "Gray",
+            "Black"
+          ],
+          "height": {
+            "Medium": 34,
+            "Small": 32
+          }
+        },
+        "Type=Black": {
+          "Size": [
+            "Large"
+          ],
+          "Color": [
+            "Black"
+          ],
+          "height": 38
+        },
+        "Type=Gray": {
+          "Size": [
+            "Large"
+          ],
+          "Color": [
+            "Gray"
+          ],
+          "height": 38
+        }
+      },
+      "notes": [
+        "인스턴스는 항상 layoutSizingHorizontal='FILL' (메모리 규칙)",
+        "속성명·값 PascalCase 원본 그대로"
+      ],
+      "docRef": "konacard-ds-rule.md · konacard-ds-components.md (Form UI Title)"
+    }
+  }
+}
