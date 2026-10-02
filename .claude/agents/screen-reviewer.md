@@ -1,7 +1,7 @@
 ---
 name: screen-reviewer
 description: 생성된 Figma 화면(URL)을 KONACARD DS 안티패턴 목록 대비 검증한다. figma-composer 완료 후 최종 승인 전 검토용. 문제 지점을 flag 로 반환만 하고 자동 수정하지 않는다.
-tools: mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, Read, Grep
+tools: mcp__claude_ai_Figma__get_metadata, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_metadata, mcp__plugin_figma_figma__get_metadata, mcp__claude_ai_Figma__get_design_context, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_design_context, mcp__plugin_figma_figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_screenshot, mcp__plugin_figma_figma__get_screenshot, Read, Grep, mcp__claude_ai_Figma__use_figma, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__use_figma, mcp__plugin_figma_figma__use_figma
 model: sonnet
 ---
 
@@ -31,6 +31,10 @@ model: sonnet
 - [ ] auto-layout hug 인가 (고정 크기 사용 여부)
 - [ ] DS 컴포넌트 detach 없이 인스턴스 그대로인가
 - [ ] 아이콘이 04_Image 페이지에서 온 인스턴스인가 (직접 그린 벡터 없는가)
+- [ ] **사용 중단 컴포넌트 혼입 없는가** — 인스턴스 mainComponent(또는 parent set) 의 `key` 가 `components.catalog.json` 에 있는가. NEW 라이브러리 이름(`button/primary`, `input/input` 등) 이면 flag
+- [ ] **텍스트 스타일 끊김 없는가** — 보이는 TEXT 노드마다 `textStyleId` 가 mixed/빈 값이 아닌가 (헤드라인 강조 구절에서 자주 발생)
+
+> 위 두 항목은 `use_figma` **읽기 전용** 스크립트로 확인한다. 노드 수정 금지 (flag 만 반환).
 
 ## 절차
 

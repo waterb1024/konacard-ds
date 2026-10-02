@@ -1,7 +1,7 @@
 ---
 name: ds-doc-curator
 description: konacard-ds-{foundation,components,rule}.md 3개 문서와 Figma AX 파일의 정합성을 감시·유지한다. 문서 수정 요청, 새 규칙 축적, Figma 값 변경 반영, 안티패턴 추가, 문서 <-> Figma 불일치 검증 시 부를 것.
-tools: Read, Edit, Grep, Glob, mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_variable_defs
+tools: Read, Edit, Grep, Glob, mcp__claude_ai_Figma__get_metadata, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_metadata, mcp__plugin_figma_figma__get_metadata, mcp__claude_ai_Figma__get_design_context, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_design_context, mcp__plugin_figma_figma__get_design_context, mcp__claude_ai_Figma__get_variable_defs, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_variable_defs, mcp__plugin_figma_figma__get_variable_defs
 model: sonnet
 ---
 

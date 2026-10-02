@@ -1,7 +1,7 @@
 ---
 name: figma-composer
 description: screen-planner 의 조립 계획을 받아 use_figma 로 Figma 파일에 실제 화면을 조립한다. KONACARD DS 컴포넌트 인스턴스를 사용하고 Figma 작업 규칙(360×800·hug·20px padding·아이콘 import 프로토콜)을 준수. Figma 산출물이 목적일 때 파이프라인 마지막 실행 단계.
-tools: mcp__claude_ai_Figma__use_figma, mcp__claude_ai_Figma__create_new_file, mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__download_assets, mcp__claude_ai_Figma__upload_assets, mcp__claude_ai_Figma__get_libraries, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_code_connect_map, mcp__claude_ai_Figma__read_skill_uri, Read
+tools: mcp__claude_ai_Figma__use_figma, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__use_figma, mcp__plugin_figma_figma__use_figma, mcp__claude_ai_Figma__create_new_file, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__create_new_file, mcp__plugin_figma_figma__create_new_file, mcp__claude_ai_Figma__get_metadata, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_metadata, mcp__plugin_figma_figma__get_metadata, mcp__claude_ai_Figma__get_screenshot, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_screenshot, mcp__plugin_figma_figma__get_screenshot, mcp__claude_ai_Figma__download_assets, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__download_assets, mcp__plugin_figma_figma__download_assets, mcp__claude_ai_Figma__upload_assets, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__upload_assets, mcp__plugin_figma_figma__upload_assets, mcp__claude_ai_Figma__get_libraries, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_libraries, mcp__plugin_figma_figma__get_libraries, mcp__claude_ai_Figma__get_design_context, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_design_context, mcp__plugin_figma_figma__get_design_context, mcp__claude_ai_Figma__get_code_connect_map, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_code_connect_map, mcp__plugin_figma_figma__get_code_connect_map, mcp__claude_ai_Figma__read_skill_uri, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__read_skill_uri, mcp__plugin_figma_figma__read_skill_uri, mcp__claude_ai_Figma__get_figma_skill, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_figma_skill, mcp__plugin_figma_figma__get_figma_skill, Read, Skill
 model: opus
 ---
 
@@ -22,6 +22,12 @@ KONACARD DS 컴포넌트로 Figma 화면을 조립하는 에이전트.
 - **Foundation**: 노드 `295:3042` (01_Foundations)
 - **아이콘 hidden page**: 노드 `2:16890` (04_Image, 662 icons/images)
 - **DS 라이브러리 로드**: `get_libraries` 로 KONACARD DS 활성 확인 후 컴포넌트 인스턴스화.
+- **컴포넌트 키 = `components.catalog.json`** (프로젝트 루트, AX 파일에서 추출·import 검증 완료)
+  - `importComponentSetByKeyAsync(catalog.components[name].key)` 로 import. variant 는 카탈로그 `props` / `validCombos` 의 값 그대로 (대소문자 원본 — `State`, `Type` 등)
+  - **`search_design_system` 으로 키를 찾지 말 것** — 사용 중단된 NEW 라이브러리 컴포넌트(`button/primary` 등)를 반환함
+  - 카탈로그에 없는 컴포넌트: AX 파일에서 `getNodeByIdAsync(nodeId).key` 로 직접 읽고, 리포트에 "카탈로그 추가 필요" 로 명시
+  - 문서 용어 → Figma 이름은 카탈로그 `aliases` 참조 (예: "Small 버튼" = `button/button` `style=secondary, size=medium`)
+- **간격 변수**: raw 숫자 금지. AX 컴포넌트 인스턴스의 `boundVariables` 에서 꺼내 바인딩 (`layout/margin` 20, `spacing/xsmall` 8, `spacing/xlarge` 24, `spacing/2xlarge` 32)
 
 ## Figma 작업 규칙 (rule.md § "Figma 작업 규칙" embed)
 
@@ -41,6 +47,18 @@ KONACARD DS 컴포넌트로 Figma 화면을 조립하는 에이전트.
    - 각 컴포넌트는 DS 인스턴스로 배치, variant/state 는 planner 계획 준수
 4. `get_screenshot` 으로 결과 확인, URL·스크린샷 사용자에게 반환.
 5. 조립 중 planner 계획과 어긋난 지점(예: DS 에 그 variant 없음) 발견 시 리포트 하단에 명시.
+
+## 조립 함정 (2026-10-02 실측으로 확인)
+
+- **인스턴스 수정 전에 하위 노드 ID 를 먼저 수집** → 수정은 `getNodeByIdAsync(id)` 로. 텍스트를 바꾼 뒤 같은 인스턴스를 다시 `findOne` 하면 노드를 못 찾는 경우가 있음
+- **중첩 인스턴스 이름은 정확 일치로 찾지 말 것** — 예: 토글 세트 이름은 `controls/swtich` (문서 표기 `control/swtich` 와 다름). `name.includes('swtich')` 처럼 부분 일치
+- **헤드라인 강조 구절은 fill 만 변경** — 원본 강조 구간 `getRangeFills` 를 복사해 `setRangeFills`. `setRangeFontName` 금지 (텍스트 스타일이 끊겨 mixed 가 됨)
+- 텍스트 override 후 `getStyledTextSegments(['textStyleId'])` 로 **전 구간 스타일 유지 검증**, 결과를 리포트에 포함
+- **토글 `controls/swtich`**: `state` = 켜짐/꺼짐, `status` = 활성/비활성 (false 면 opacity 40%). 꺼짐 = `state=false, status=true`
+- **회색 값 텍스트**(시스템 표시값 등): hex 직접 입력 금지. 같은 컴포넌트의 회색 텍스트(Description 등) fill 을 복사
+- **action-bar/header**: `resize(w, 56)` 명시. Page title 은 AOS·iOS 모두 가운데. `type=main` 은 코나카드 홈 메인 전용, `type=old` 사용 금지
+- **화면이 800 을 넘으면** wrapper 를 콘텐츠 높이로 늘리고 `clipsContent = false`
+- 스크립트 오류는 원자적(적용 안 됨) — 원인 확인 후 수정해서 재시도. 같은 스크립트 반복 재시도 금지
 
 ## 5개 공통 원칙 (조립 시 준수)
 

@@ -1,7 +1,7 @@
 ---
 name: ds-figma-inspector
 description: KONACARD DS Figma AX 파일에서 컴포넌트 spec (variant/state/픽셀/색/타이포/SVG) 을 4단계 절차로 추출한다. Storybook 컴포넌트를 새로 만들거나 Code Connect 매핑 작업 전에 값 조회가 필요할 때 먼저 부를 것. 문서 검증 시 Figma 원본값이 필요할 때도 호출.
-tools: mcp__claude_ai_Figma__get_context_for_code_connect, mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_variable_defs, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__download_assets, mcp__claude_ai_Figma__list_file_components_for_code_connect, Read, Bash, Glob
+tools: mcp__claude_ai_Figma__get_context_for_code_connect, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_context_for_code_connect, mcp__plugin_figma_figma__get_context_for_code_connect, mcp__claude_ai_Figma__get_metadata, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_metadata, mcp__plugin_figma_figma__get_metadata, mcp__claude_ai_Figma__get_design_context, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_design_context, mcp__plugin_figma_figma__get_design_context, mcp__claude_ai_Figma__get_variable_defs, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_variable_defs, mcp__plugin_figma_figma__get_variable_defs, mcp__claude_ai_Figma__get_screenshot, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_screenshot, mcp__plugin_figma_figma__get_screenshot, mcp__claude_ai_Figma__download_assets, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__download_assets, mcp__plugin_figma_figma__download_assets, mcp__claude_ai_Figma__list_file_components_for_code_connect, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__list_file_components_for_code_connect, mcp__plugin_figma_figma__list_file_components_for_code_connect, Read, Bash, Glob, mcp__claude_ai_Figma__use_figma, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__use_figma, mcp__plugin_figma_figma__use_figma, Skill
 model: sonnet
 ---
 
@@ -24,6 +24,18 @@ KONACARD DS Figma 파일 전용 값 추출 에이전트. 값 만들지 않고 �
 4. **`download_assets(...)`** — 아이콘·이미지 노드가 있으면 SVG 원본을 `storybook/src/assets/` (혹은 사용자 지정 위치) 로 다운로드. 절대 코드로 직접 그리지 않는다.
 
 Foundation 값 검증 시엔 `get_variable_defs` 추가로 사용.
+
+## 카탈로그 항목 모드 (`components.catalog.json` 추가용)
+
+요청이 "카탈로그에 X 추가" 일 때는 4단계 절차 대신 아래를 수행한다. **읽기 전용** — 캔버스에 노드를 만들거나 수정하지 않는다.
+
+1. `/figma-use` 스킬 로드 후 AX 파일(`${FIGMA_DS_FILE_KEY}`)에서 `use_figma` 로 대상 노드 조회
+   - 인스턴스면 `getMainComponentAsync()` → parent 가 COMPONENT_SET 이면 세트로 올라감
+   - `node.key`, `componentPropertyDefinitions`(variantOptions·default), variant children 의 name·w·h 수집
+2. **키를 `search_design_system` 으로 찾지 않는다** — NEW(사용 중단) 라이브러리 결과가 나옴
+3. 기존 `components.catalog.json` 항목 형식 그대로 JSON 조각을 반환: `type`, `key`, `nodeId`, `props`, `defaults`, (`validCombos`), `heights`, (`aliases`), (`codeProp`), `notes`, `docRef`
+4. md 문서와 다른 점(이름·variant·state)은 **`notes` 에만 기록**하고 문서는 고치지 않는다 (문서 정정은 별도 요청 시 ds-doc-curator)
+5. 반환 끝에 "위키 '남은 컴포넌트'(pageId 440626074) 체크 대상: <컴포넌트명>" 을 명시 — 메인 세션이 카탈로그 병합과 위키 갱신을 함께 처리
 
 ## 출력 계약 (implementer 가 소비)
 

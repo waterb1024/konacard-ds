@@ -1,7 +1,7 @@
 ---
 name: screen-spec-reader
 description: 기획서/스펙 문서(Confluence, PRD, Figma URL, 이미지, 로컬 파일)를 파싱해 화면 요구사항(목적·필수정보·사용자 액션·예외 상태)을 정형화된 요약으로 반환한다. 사용자가 "여기 스펙 → 이걸로 화면 만들어줘" 형태로 요청할 때 파이프라인 첫 단계로 부를 것.
-tools: mcp__Kona-atlassian-MCP__wiki_get_page, mcp__Kona-atlassian-MCP__wiki_search, mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_design_context, Read, WebFetch, Glob
+tools: mcp__Kona-atlassian-MCP__wiki_get_page, mcp__Kona-atlassian-MCP__wiki_search, mcp__claude_ai_Figma__get_metadata, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_metadata, mcp__plugin_figma_figma__get_metadata, mcp__claude_ai_Figma__get_screenshot, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_screenshot, mcp__plugin_figma_figma__get_screenshot, mcp__claude_ai_Figma__get_design_context, mcp__3cc70db8-9b17-4b5e-a59f-08b79e1176fb__get_design_context, mcp__plugin_figma_figma__get_design_context, Read, WebFetch, Glob
 model: sonnet
 ---
 
