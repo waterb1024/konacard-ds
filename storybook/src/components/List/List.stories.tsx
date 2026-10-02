@@ -65,3 +65,40 @@ export const BasicEntry: Story = {
     </List>
   ),
 };
+
+export const SizeMatrix: Story = {
+  name: "Size — large 65 / medium 55",
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      <List>
+        <ListItem size="large" title="large · link" chevron onClick={() => {}} />
+        <ListItem
+          size="large"
+          title="large · link + Description"
+          description="Description"
+          chevron
+          onClick={() => {}}
+          last
+        />
+      </List>
+      <List>
+        <ListItem
+          size="medium"
+          title="medium · link"
+          value="value"
+          chevron
+          onClick={() => {}}
+        />
+        <ListItem
+          size="medium"
+          title="medium · link + Description"
+          description="Description"
+          value="value"
+          chevron
+          onClick={() => {}}
+          last
+        />
+      </List>
+    </div>
+  ),
+};

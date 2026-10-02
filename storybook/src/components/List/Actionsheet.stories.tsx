@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { List, ListItem } from "./List";
+import { BottomsheetItem, List } from "./List";
 
 const meta = {
   title: "Component/Action sheet",
@@ -30,24 +30,26 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SelectList: Story = {
-  name: "Bottomsheet — 옵션 선택",
+  name: "Bottomsheet — 통신사 선택",
   render: () => {
-    const [value, setValue] = useState("recent");
+    const [value, setValue] = useState("kt");
     const items = [
-      { id: "recent", label: "최신순" },
-      { id: "popular", label: "인기순" },
-      { id: "amount", label: "혜택 금액순" },
+      { id: "skt", label: "SKT" },
+      { id: "kt", label: "KT" },
+      { id: "lgu", label: "LG U+" },
+      { id: "skt-mvno", label: "SKT 알뜰폰" },
+      { id: "kt-mvno", label: "KT 알뜰폰" },
+      { id: "lgu-mvno", label: "LG U+ 알뜰폰" },
     ];
     return (
-      <div style={{ paddingTop: 8 }}>
+      <div style={{ padding: "0 20px" }}>
         <List>
-          {items.map((it, i) => (
-            <ListItem
+          {items.map((it) => (
+            <BottomsheetItem
               key={it.id}
               title={it.label}
               selected={value === it.id}
               onClick={() => setValue(it.id)}
-              last={i === items.length - 1}
             />
           ))}
         </List>

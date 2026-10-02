@@ -1,6 +1,8 @@
 /*
  * konacard-ds-components.md § 06_List
- * Basic (list/list): 최소 56h, 좌우 padding 20, 아이템 divider 1dp #0000000F
+ * Basic (list/list, Figma 202:2536): size large 상하 12 · 우측 영역 40 → 한 줄 65
+ *   / medium 상하 16 → 한 줄 55 (link), 좌우 padding 20, divider 1px #0000000F
+ * Bottomsheet (list/bottomsheet): 한 줄 56 (상하 16 + 24, divider 안쪽), 선택 체크 20
  * Expand (list/expand): Header + open 시 Body + divider
  * Card select (list/card-select): 88h, R8, border 1px (Selected 시 브랜드)
  */
@@ -16,9 +18,8 @@
 .item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-small); /* 12px */
-  min-height: 56px;
-  padding: var(--spacing-medium) var(--screen-h-padding);
+  gap: var(--spacing-medium); /* 16px */
+  padding: 0 var(--screen-h-padding);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -26,6 +27,16 @@
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid var(--color-divider-primary);
+}
+
+.item.large {
+  padding-top: var(--spacing-small); /* 12px */
+  padding-bottom: var(--spacing-small);
+}
+
+.item.medium {
+  padding-top: var(--spacing-medium); /* 16px */
+  padding-bottom: var(--spacing-medium);
 }
 
 .item:disabled {
@@ -46,12 +57,9 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xsmall);
 }
 
 .itemTitle {
-  font: var(--text-body-1-regular);
-  letter-spacing: var(--font-letterspacing-medium);
   color: var(--color-font-primary);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -59,36 +67,118 @@
   overflow: hidden;
 }
 
+/* Figma item 행 = 우측 영역 40 고정, Main text 24 는 세로 중앙 (상하 8) */
+.large .itemTitle {
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  padding: var(--spacing-xsmall) 0;
+}
+
+.medium .itemTitle {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+}
+
 .itemDescription {
-  font: var(--text-body-3-regular);
-  letter-spacing: var(--font-letterspacing-xsmall);
-  color: var(--color-font-quaternary);
+  color: var(--color-font-tertiary);
+}
+
+.large .itemDescription {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+}
+
+.medium .itemDescription {
+  font: var(--text-body-4-regular);
+  letter-spacing: var(--font-letterspacing-2xsmall);
+}
+
+/* 우측 영역 — large 40 고정, medium hug */
+.itemRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-xsmall); /* 8px */
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.large .itemRight {
+  height: 40px;
+}
+
+/* medium 은 Main text 한 줄(22) 기준 세로 중앙 */
+.medium .itemRight {
+  height: 22px;
 }
 
 .itemValue {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.large .itemValue {
   font: var(--text-body-2-regular);
   letter-spacing: var(--font-letterspacing-small);
   color: var(--color-font-tertiary);
-  text-align: right;
-  flex-shrink: 0;
+}
+
+.medium .itemValue {
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-brand);
 }
 
 .itemChevron {
-  width: 20px;
-  height: 20px;
-  color: var(--color-icon-quaternary);
+  width: 8px;
+  height: 14px;
+  color: var(--color-icon-secondary);
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
 }
 
-.item.selected .itemTitle {
+/* ── Bottomsheet option item ─────────────────────── */
+/* 한 줄 56 = 상하 16 + 24, divider 1px 은 56 안쪽 (마지막 줄 포함) */
+.bottomsheetItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium); /* 16px */
+  height: 56px;
+  padding: var(--spacing-medium) 0;
+  background: var(--color-background-primary);
+  border: none;
+  box-shadow: inset 0 -1px 0 var(--color-divider-primary);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bottomsheetTitle {
+  flex: 1;
+  min-width: 0;
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.bottomsheetItem.selected .bottomsheetTitle {
   font: var(--text-body-1-bold);
   color: var(--color-font-brand);
 }
-.item.selected .itemChevron {
-  color: var(--color-icon-brand);
+
+/* 미선택 시 숨김 — 20px 자리는 유지 */
+.bottomsheetCheck {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: inline-flex;
+  color: var(--color-font-brand);
+  opacity: 0;
+}
+
+.bottomsheetItem.selected .bottomsheetCheck {
+  opacity: 1;
 }
 
 /* ── Expand ──────────────────────────────────────── */
