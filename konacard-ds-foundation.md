@@ -321,7 +321,9 @@ typography:
     "button/large-bold":  { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
     "button/medium-bold": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 700 }   # ✅
     "button/medium-regular": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅
-    "button/small-bold":  { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ⚠️
+    "button/small-bold":  { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ⚠️ 스타일은 존재하나 button/button 에서 미사용 (AX 2026-10-02)
+    "button/small-regular": { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 400 }   # ✅ AX 실측 (secondary medium·small)
+    "button/tiny-regular":  { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ✅ AX 실측 (secondary tiny)
     # ⚠️ heading/*, body/*, button/* 이름은 API 반환값 기준 (대소문자 혼용 그대로 유지)
     #    "body/1-Bold" "body/3-Bold" "body/4-Bold" = capital B / "body/2-bold" = lowercase b
     #    "body/1-regular" "body/2-Regular" "body/3-Regular" = capital/lowercase R 혼용
@@ -753,8 +755,13 @@ letterSpacing은 px 단위 음수(track-tight).
 | `body/4-bold` | 11 / 16 / -0.22 | Bold | 최소 크기 강조 |
 | `body/4-regular` | 11 / 16 / -0.22 | Regular | 최소 크기 (법적 고지 등) |
 | `button/large-bold` | 15 / 24 / -0.30 | Bold | 대형 버튼 (height 56) |
-| `button/medium-bold` | 14 / 22 / -0.28 | Bold | 중형 버튼 (height 44) |
-| `button/small-bold` | 12 / 18 / -0.24 | Bold | 소형 버튼 (height 32) |
+| `button/medium-bold` | 14 / 22 / -0.28 | Bold | 중형 버튼 — `style=primary, size=medium` (height 48) |
+| `button/medium-regular` | 14 / 22 / -0.28 | Regular | `style=secondary, size=large` (height 40) |
+| `button/small-regular` | 12 / 18 / -0.24 | Regular | 소형 버튼 — `style=secondary, size=medium` (height 32) · `size=small` (height 24) |
+| `button/tiny-regular` | 11 / 16 / -0.22 | Regular | `style=secondary, size=tiny` (height 24) |
+| `button/small-bold` | 12 / 18 / -0.24 | Bold | 스타일은 존재하나 `button/button` 에서 미사용 |
+
+> `button/button` 의 `style=primary, size=small` (height 40) 은 button 스타일이 아니라 `body/2-bold` 14/22 를 사용 (AX `2216:5518` 실측). 위 매핑은 모두 AX 파일 2026-10-02 get_design_context 기준.
 
 > **추가 display 스타일**: `display/1-bold` (40), `display/2-bold` (36), `display/4-bold` (28)도 텍스트 스타일로 등록되어 있습니다. Figma 변수 스케일에는 포함되지 않으므로 일반 화면에서는 `display/3-bold` 와 `heading/*` 사용을 우선합니다.
 

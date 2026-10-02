@@ -25,9 +25,9 @@ related_docs:
 |---|---|---|
 | **00_Basic** | ✅ 완료 | OS/status-bar (AOS·iOS·notch·Chrome), OS/keyboard (AOS·iOS), spacing 8-based 원칙 |
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
-| **02_Button** | ✅ 완료 | button/primary, secondary, tetiary, text, icon, fixed-bottom, select |
+| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), tetiary, text, icon, fixed-bottom, select |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input/input, input/basic, input/search, input/email, input/card-number, input/button, Input/Select, Form UI(Title·Guide Text) |
+| **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/basic, input/search bar, input/email, input/card-number, input/button, Input/Select, Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
 | **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
@@ -63,61 +63,108 @@ related_docs:
 
 **공통 원칙**
 - **Disable 상태 = Default 버튼의 opacity 40%** (모든 버튼 사이즈·색조 공통)
-- **폰트**: Pretendard Bold, 사이즈는 사이즈별 대응 (Large=button-large 15px / Medium=button-medium 14px / Small=button-small 12px — `konacard-ds-foundation.md` 참조)
+- **폰트** (AX 실측): Large = `button/large-bold` 15/24 Bold / Medium = `button/medium-bold` 14/22 Bold / Small = `button/small-regular` 12/18 **Regular** (Small 만 Regular) — `konacard-ds-foundation.md` 참조
 - **Corner radius**: `$radius-button-*` 시맨틱 토큰 사용 (`konacard-ds-foundation.md` 참조)
 - **터치 영역**: 최소 32px 세로 확보 (Text·Icon 버튼도 동일)
 
-## Large 버튼
+## button/button 컴포넌트 세트 (style × size × type × state)
 
-- **Figma 노드**: `17:703` (button/primary), `2423:4577` (button/secondary), `1212:4553` (button/tetiary — Figma 파일 원본 오타)
+- **Figma 노드**: `17:703` (`button/button`) — AX 파일에서 primary·secondary 가 **단일 component set** 으로 통합됨 (2026-10-02 get_metadata 확인)
+- **Variant 속성 4개** (속성명·값 모두 소문자):
+  - `style`: `primary` / `secondary`
+  - `size`: style 별로 다름 (아래 표)
+  - `type` (8종, 두 style 공통): `brand` / `brand-light` / `brand-gradient` / `brand-line` / `gray` / `gray-light` / `gray-line` / `gray-line-light`
+  - `state`: `true` (활성) / `false` (비활성, opacity 40%)
+
+| style | size | 높이 | 문서 섹션 |
+|---|---|---|---|
+| `primary` | `large` | 56 | Large 버튼 |
+| `primary` | `medium` | 48 | Medium 버튼 |
+| `primary` | `small` | 40 | — (용도 미정의. 실측: padding 16/12, radius 6 `radius/button/medium`, 텍스트 `body/2-bold` 14/22 — `2216:5518`) |
+| `secondary` | `large` | 40 | — (용도 미정의) |
+| `secondary` | `medium` | 32 | Small 버튼 |
+| `secondary` | `small` | 24 | — (용도 미정의) |
+| `secondary` | `tiny` | 24 | — (용도 미정의) |
+
+- **type 시각 정의** (두 style 공통):
+
+| type | 배경 / 테두리 | 텍스트 | 코드 `color` (Code Connect) |
+|---|---|---|---|
+| `brand` | 보라 채움 (`brand/primary` #805AE9) | 흰색 | `Brand` |
+| `brand-light` | 연보라 채움 (#F4F0FD) | 보라 | `Brand_Light` |
+| `brand-line` | 흰 배경 + 보라 테두리 | 보라 | `Brand_Line` |
+| `brand-gradient` | 보라→파랑 그라데이션 | 흰색 | `Brand_Gradient` |
+| `gray-light` | 연회색 채움 | 검정 | `Gray_Light` |
+| `gray` | 진회색 채움 (#999) | 흰색 | `Gray` |
+| `gray-line` | 흰 배경 + 회색 테두리 | 검정 | `Gray_Line` |
+| `gray-line-light` | 흰 배경 (테두리 없음) | 검정 | `Gray_Line_Light` |
+
+- **용도 미정의**: `brand-gradient`, `gray-line-light` — Figma 에 존재하나 `konacard-ds-rule.md` 규칙 없음
+- 예전 문서의 PascalCase 표기(`Brand_Line`, `Gray_Line` 등)는 Figma variant 가 아니라 **코드 `color` prop 값**. Figma 작업 시에는 `type` 값(소문자·하이픈) 사용.
+
+## Large 버튼 (`style=primary, size=large`)
+
+- **Figma 노드**: `17:703` 의 `style=primary, size=large`
 - **용도**: 페이지를 컨트롤하는 중요 액션 버튼 (하단 고정 CTA·주요 화면 CTA)
 - **사이즈·기하**:
   - Fixed height: **56px**
-  - Padding: 좌우 16px, 상하 auto (텍스트 세로 중앙)
-  - Corner radius: **8px** (`$radius-button-large = $radius-small`)
+  - Padding: 상하좌우 **16px** (`spacing-medium`) / 내부 gap 8px (`spacing-xsmall`)
+  - Corner radius: **8px** (`radius/button/large`)
+  - 텍스트: `button/large-bold` 15/24
   - Width: Flexible (부모 너비)
-- **Variant — Color** (5개):
-  - `Brand` — 진한 보라 배경(`brand/primary` #805AE9) + 흰 텍스트 · **기본 Primary CTA**
-  - `Brand_Light` — 옅은 보라 배경(`color/button/secondary` #F4F0FD) + 보라 텍스트
-  - `Brand_Line` — 흰 배경 + 보라 아웃라인 + 보라 텍스트 · **Secondary(보라 아웃라인)**
-  - `Gray` — 회색 배경(`background/secondary` 계열) + 검정 텍스트 · **Neutral(병렬 CTA 좌측 보조)**
-  - `Gray_Line` — 흰 배경 + 회색 아웃라인 + 검정 텍스트 · **Secondary(회색 아웃라인, 반복 편집 진입점)**
-- **Variant — State** (2개):
-  - `Default (True)` — 활성
-  - `Disable (False)` — 비활성 (opacity 40%)
+  - (AX `17:718` 실측, 2026-10-02)
+- **type 용도**:
+  - `brand` — **기본 Primary CTA**
+  - `brand-light` — 연보라 보조
+  - `brand-line` — **Secondary(보라 아웃라인)**
+  - `gray-light` — **Neutral(병렬 CTA 좌측 보조, 회색 채움 + 어두운 텍스트)**
+  - `gray-line` — **Secondary(회색 아웃라인, 반복 편집 진입점)**
 - **관련 rule.md**:
   - § "버튼" — Primary/Secondary/Neutral/비활성 원칙
   - § "5) 말투 / CTA 라벨" — 라벨 규칙
   - § "5) 말투 / CTA 개수 규칙" — 화면당 개수
 
-## Medium 버튼
+## Medium 버튼 (`style=primary, size=medium`)
 
-- **Figma 노드**: 카탈로그 `17:916` 내부 (별도 컴포넌트 인스턴스, 노드ID는 variant instance)
+- **Figma 노드**: `17:703` 의 `style=primary, size=medium` (카탈로그 `17:916` 내부 인스턴스 — 노드ID는 variant instance)
 - **용도**: 본문 내 중요 액션 버튼
 - **사이즈·기하**:
   - Fixed height: **48px**
-  - Padding: 좌우 16px
-  - Corner radius: **6px** (`$radius-button-medium = $radius-xsmall`)
+  - Padding: 좌우 **16px** (`spacing-medium`) / 상하 **12px** (`spacing-small`) / 내부 gap 8px
+  - Corner radius: **6px** (`radius/button/medium`)
+  - 텍스트: `button/medium-bold` 14/22
   - Width: Flexible
-- **Variant — Color**: Large와 동일 5색조 (Brand_Light / Brand / Brand_Line / Gray / Gray_Line)
-- **Variant — State**: Default / Disable (opacity 40%)
+  - (AX `134:1085` 실측, 2026-10-02)
+- **type 용도**: Large 와 동일
 
-## Small 버튼
+## Small 버튼 (`style=secondary, size=medium`)
 
-- **Figma 노드**: 카탈로그 내부
+- **Figma 노드**: `17:703` 의 `style=secondary, size=medium` (예: `1254:4558` = gray-line / true)
 - **용도**: 설명·가이드에 붙는 액션 버튼, 필드 우측 어드먼트, 카드 안 액션 등
-- **사이즈·기하**:
+- **사이즈·기하** (2026-10-02 get_design_context 실측, `1254:4558`):
   - Fixed height: **32px**
-  - Padding: 좌우 12px
-  - Corner radius: **4px** (`$radius-button-small = $radius-2xsmall`)
+  - Padding: 좌우 12px (`spacing-small`) / 상하 4px (`spacing-2xsmall`)
+  - Corner radius: **4px** (`radius/button/small`)
+  - 텍스트: `button/small-regular` (12px Regular)
   - Width: Flexible
-- **Variant — Color** (5개 — Large와 다름):
-  - `Gray` — 회색 배경 + 검정 텍스트 (기본)
-  - `Dark` — 진한 회색·검정 배경 + 흰 텍스트
-  - `Brand` — 보라 배경 + 흰 텍스트
-  - `Brand_Line` — 흰 배경 + 보라 아웃라인 + 보라 텍스트
-  - `Gray_Line` — 흰 배경 + 회색 아웃라인 + 검정 텍스트
-- **Variant — State**: Default / Disable
+- **type 용도** (예전 표기 → 실제 `type`):
+  - Gray → `gray-light` — 회색 배경 + 검정 텍스트 (기본)
+  - Dark → `gray` — 진회색 배경 + 흰 텍스트
+  - Brand → `brand` — 보라 배경 + 흰 텍스트
+  - Brand_Line → `brand-line` — 흰 배경 + 보라 아웃라인 + 보라 텍스트
+  - Gray_Line → `gray-line` — 흰 배경 + 회색 아웃라인 + 검정 텍스트
+
+## 추가 버튼 (`button/tetiary` — Figma 원본 오타)
+
+- **Figma 노드**: `1212:4553` (별도 component set)
+- **Variant**: `Type` = `Dark` / `Gray` / `line` (속성명 대문자 `Type` 원본 그대로)
+- **사이즈·기하** (2026-10-02 get_design_context 실측):
+  - Fixed height: **28px**
+  - Padding: 좌우 12px / 상하 4px, 아이콘↔텍스트 gap 4px
+  - Corner radius: **4px** (`radius/button/small`)
+  - 구성: `ic_system/ic_plus_12` 아이콘 + 텍스트 (Pretendard Bold 14px)
+- **Type 시각**: `Dark` = #999 채움 + 흰 텍스트 / `Gray` = #DDD 채움 + 검정 텍스트 / `line` = 흰 배경 + #DDD 테두리 + #333 텍스트
+- **용도**: rule.md 규칙 없음 — "+ 추가" 성격 액션으로 추정되나 미정의
 
 ## Text 버튼 (`button/text`)
 
@@ -152,16 +199,17 @@ related_docs:
 
 - **Figma 노드**: `17:1049`
 - **용도**: 화면 하단 고정 CTA 컨테이너 (Large 버튼을 감싸는 래퍼)
-- **사이즈·기하**:
-  - Height: 72px (버튼 56 + 상하 여백 8+8)
-  - Padding: 좌우 20px (`$screen-h-padding`)
-  - 배경: Contents 영역과 동일 배경 (별도 색 없음)
+- **사이즈·기하** (AX `17:1048` 실측, 2026-10-02):
+  - Height: 72px (버튼 56 + 상단 **0** + 하단 **16** `spacing-medium`)
+  - Padding: 좌우 20px (`layout/margin`)
+  - 버튼 간 gap: 8px (`spacing-xsmall`)
+  - 배경: `color/background/primary` #FFFFFF (콘텐츠 영역과 동일)
+  - 내장 버튼 (2개 병렬 기본형): 좌 `button/button` `style=primary, size=large, type=gray-light` **폭 115 고정** + 우 `type=brand` **fill**
 - **하단 고정 버튼 병렬 비율**:
-  - **좌 : 우 = 3.5 : 6.5** (성격이 다른 CTA 2개 병렬 시)
-  - 비율 계산 후 정수 안 떨어지면 반올림
+  - **좌 115px 고정 + 우 fill** (성격이 다른 CTA 2개 병렬 시, gap 8) — AX 컴포넌트 구현값. AOS 기준 우측 = 320 − 115 − 8 = **197px**, iOS(375) 기준 **212px**
   - 좌측 = 보조(회색 채움 or 아웃라인), 우측 = 주(Primary 보라)
   - **파괴적 액션/미루기 = 좌측** (rule.md § "CTA 병렬 위계" 참조)
-- **AOS vs iOS**: 플랫폼별 radius 차이 없음 (동일)
+- **Variant `Device`**: `AOS` (360×72) / `iOS` (375×72) — 폭만 다르고 구조·padding·버튼 radius(8) 동일 (AX 실측)
 
 ## Select 버튼 (`button/select`)
 
@@ -178,20 +226,20 @@ related_docs:
 
 | 위치 | 사이즈 | 색조 |
 |---|---|---|
-| 하단 고정 CTA (Primary) | Large | Brand (진한 보라) |
-| 하단 고정 CTA (병렬 보조) | Large | Gray (회색 채움) |
-| 하단 고정 CTA (병렬 반대 액션·아웃라인) | Large | Brand_Line or Gray_Line |
-| 본문 내 강조 액션 | Medium | Brand or Brand_Line |
-| 필드 우측 어드먼트 (편집) | Small | Gray_Line (회색 아웃라인) |
-| 필드 우측 어드먼트 (강조 부가 액션) | Small | Brand_Line (보라 아웃라인) |
-| 정보 조회 화면의 반복 편집 진입점 | Small | Gray_Line |
+| 하단 고정 CTA (Primary) | Large | `brand` (진한 보라) |
+| 하단 고정 CTA (병렬 보조) | Large | `gray-light` (회색 채움) |
+| 하단 고정 CTA (병렬 반대 액션·아웃라인) | Large | `brand-line` or `gray-line` |
+| 본문 내 강조 액션 | Medium | `brand` or `brand-line` |
+| 필드 우측 어드먼트 (편집) | Small | `gray-line` (회색 아웃라인) |
+| 필드 우측 어드먼트 (강조 부가 액션) | Small | `brand-line` (보라 아웃라인) |
+| 정보 조회 화면의 반복 편집 진입점 | Small | `gray-line` |
 | 하단 유틸리티 링크 | Text | Gray |
 | CTA 위 반대 액션 링크 | Text | Gray (밑줄 병기) |
 | 진입형 리스트 아이템 우측 액션 | Icon | Gray / Brand (설정값이면 Brand) |
 
 ## Button 관련 안티패턴
 
-- ❌ 하단 고정 CTA 2개 병렬을 **동등 무게**로 (반드시 3.5:6.5 위계)
+- ❌ 하단 고정 CTA 2개 병렬을 **동등 무게**로 (반드시 좌 115 고정 + 우 fill 위계)
 - ❌ **파괴 확정 액션을 우측 주 위치에** (반드시 좌측 회색 보조 위치)
 - ❌ 로딩·처리중 표시(스피너)를 버튼에 (**opacity 40% Disable만으로 처리**)
 - ❌ Text 버튼에 배경색 채우기 (그럴 거면 Small Brand 버튼 사용)
@@ -207,7 +255,7 @@ related_docs:
 **공통 토큰** (모든 Form 컴포넌트 공유)
 
 - **Corner radius**: `radius/components/form` = **6px**
-- **Height**: **48px** (fixed) — Inputbox/Search bar/Selectbox 모두 동일
+- **Height**: **48px** (fixed) — Inputbox 는 AX 실측 확인 (2026-10-02, `41:475`). Search bar/Selectbox 는 미검증
 - **내부 좌우 padding**: `spacing-medium` = **16px**
 - **아이콘·요소 간 gap**: `spacing-small` = **12px** (내부), `spacing-xsmall` = **8px** (필드끼리)
 - **배경**: `color/background/primary` = #FFFFFF
@@ -223,31 +271,36 @@ related_docs:
 | **Focus** | `color/border/focus` #805AE9 (보라) | Placeholder 유지 | Regular | White | 필드 탭 후 아직 값 없음 |
 | **Active** | `color/border/focus` #805AE9 | 입력값 `color/font/brand` #805AE9 | **Bold** | White | 값 입력 완료·유효 (편집 중) |
 | **Complete** | `color/border/default` #DDDDDD | 입력값 `color/font/primary` #000000 | **Bold** | White | 값 확정(편집 종료·읽기 전용에 준함) |
-| **Inactive (Disable)** | `color/border/default` #DDDDDD | `color/font/placeholder` #999999 | Regular | White (opacity 미적용, 텍스트만 회색) | 비활성/입력 불가 |
+| **Inactive** (variant 값 `disabled`) | `color/border/default` #DDDDDD | `color/font/placeholder` #999999 | Regular | **#F8F9FB** — Inputbox·Selectbox `color/background/disabled`, Search bar `color/background/secondary` (같은 hex, 토큰명 다름 — AX 원본 그대로) | 비활성/입력 불가 |
 | **Error** | `color/border/error` #FF364B (레드) | 입력값 `color/font/error` #FF364B | **Bold** | White | 검증 실패 |
 
 > Selectbox는 `Focus`·`Complete` 상태를 사용하지 않음 — Default → Active → Inactive → Error 4단계.
 
 ---
 
-## Inputbox (`input/input`, `input/basic`)
+## Inputbox (`input/text field`, `input/basic`)
 
 - **Figma 노드 (샘플 인스턴스)**:
   - `99:881` (Default) / `99:884` (Focus) / `99:932` (Active + clear 아이콘)
   - `386:2868` (input/basic — Title + Input + Guide Text 조합 컴포넌트)
 - **용도**: 텍스트 자유 입력 필드. 이름·전화·주소 등 문자 입력 전반.
+- **Figma 컴포넌트 세트**: `41:505` — AX 파일 이름 **`input/text field`** (NEW 파일의 `input/input` 에서 개명). variant 속성은 `state` 하나 (2026-10-02 AX get_metadata 확인)
+  - `state`: `default` / `focus` / `active` / `complete` / `disabled` / `error` — 6종 모두 높이 48
+  - size variant 없음 (NEW 파일에 있던 large/medium/small/tiny 는 AX 에 없음)
 - **사이즈·기하**:
-  - Height 48px / Radius 6px / 좌우 padding 16px
+  - Height **48px** 고정 / Radius **6px** (`radius/components/form`) / Padding 좌우 16px (`spacing-medium`)·상하 12px (`spacing-small`) / 내부 gap 16px — AX `41:475` 실측
+  - 텍스트: `body/1-regular` 15/24
   - 문구 영역 = 가변 (컨테이너 너비에 맞춰 확장)
   - **터치 영역** = 필드 전체 (48px 세로 유지, `konacard-ds-rule.md` § "터치 영역 32px 최소" 규칙 충족)
 - **텍스트 정렬**: Fill — **Align: Left** (플레이스홀더·입력값 모두 좌측 정렬)
 - **State 변형**:
-  - `Default` / `Focus` / `Active` / `Complete` / `Inactive(Disable)` / `Error` — 위 공통 표 그대로
-  - **Active·Error 상태에서만 clear 버튼(×) 노출** (우측 어드먼트, `color/icon/quinary` #DDDDDD 원형 + `color/icon/white` 아이콘)
+  - `Default` / `Focus` / `Active` / `Complete` / `Inactive` (variant 값 `disabled`) / `Error` — 위 공통 표 그대로 (variant 값: `default / focus / active / complete / disabled / error`)
+  - **clear 버튼(×) 슬롯은 Active·Complete·Error 에 내장** (`input/icon` `type=icon_delete` 24px). Default·Focus·Disabled 에는 없음 (AX `41:505` 실측). 카탈로그 페이지 State 열 인스턴스(`386:2778`~`386:2782`)는 override 로 Error 에만 노출, 좌측 예시 `99:932` 는 Active + clear
+  - Complete 에는 인증 타이머 슬롯도 내장: `3:00` (`body/2-Regular` `color/font/error`) + `input/icon` `type=icon_refresh`
 - **하위 슬롯**:
   - Left: 텍스트(플레이스홀더 또는 입력값)
-  - Right (선택): clear 아이콘(Active/Error에서만) — Icon `color/icon/quinary` #DDDDDD 배경 + white "×"
-- **input/basic 확장**: input/input에 상단 Title(`body/3-Bold` 12px)과 하단 Guide Text(`body/3-Regular` 12px) 슬롯이 결합된 조합 컴포넌트 — 요소 간 상하 gap **8px** (`spacing-xsmall`)
+  - Right (선택): clear 아이콘 (Active·Complete·Error) — `input/icon` `type=icon_delete` 24px
+- **input/basic 확장**: input/text field 에 상단 Title(`body/3-Bold` 12px)과 하단 Guide Text(`body/3-Regular` 12px) 슬롯이 결합된 조합 컴포넌트 — 요소 간 상하 gap **8px** (`spacing-xsmall`)
 
 ## Inputbox 관련 안티패턴
 
@@ -258,16 +311,16 @@ related_docs:
 
 ---
 
-## Search bar (`input/search`)
+## Search bar (`input/search bar`)
 
 - **Figma 노드 (샘플 인스턴스)**: `2408:7204` (Default) / `2408:7213` (Active with clear)
 - **용도**: 목록·데이터를 텍스트 키워드로 필터링. 상단 툴바 하단 배치 또는 필터 카드 상단.
-- **사이즈·기하**: Inputbox와 동일 (48h / R6 / padding 16 / left 정렬)
+- **사이즈·기하**: Inputbox와 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
 - **하위 슬롯**:
   - Left: 텍스트 (플레이스홀더/입력값)
-  - Right: **검색 아이콘 🔍** (`color/icon/secondary` #333333, 항상 노출)
-  - Right (Active/Error에서만): **clear 아이콘(×)** — 검색 아이콘 좌측에 위치
-- **State 변형**: Inputbox와 동일 6단계 (Default/Focus/Active/Complete/Inactive/Error)
+  - Right: **검색 아이콘** `ic_24/ic_search_24` 24px (항상 노출. Disabled 에서는 `opacity/disable/icon` 24%)
+  - Right (Active·Complete·Error): **clear 아이콘(×)** `input/icon` `type=icon_delete` — 검색 아이콘 좌측, 좌측 padding 12
+- **State 변형**: Inputbox와 동일 6단계 — variant 값 `default / focus / active / complete / disabled / error`
 - **Search bar 자체 사용 규칙**:
   - 검색 아이콘은 항상 우측 고정, 클릭해도 별도 액션 없음(엔터·자동검색으로 동작)
   - 좌측에 아이콘 두지 말 것 (Inputbox와 시각적으로 구분 안 됨)
@@ -278,16 +331,16 @@ related_docs:
 
 - **Figma 노드 (샘플 인스턴스)**: `99:951`
 - **용도**: 정해진 옵션 목록에서 하나 고르는 필드 (드롭다운 트리거)
-- **사이즈·기하**: Inputbox와 동일 (48h / R6 / padding 16 / left 정렬)
+- **사이즈·기하**: Inputbox와 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
 - **하위 슬롯**:
   - Left: 텍스트(플레이스홀더 "선택" 또는 선택값)
-  - Right: **chevron 아이콘 ⌵** — Default 아래방향, Active/Focus 위방향(펼침 상태)
-    - Default·Inactive: `color/icon/quaternary` #999999
-    - Active·Error: `color/icon/secondary` #333333
+  - Right: **chevron** 12×8 — Active 만 위방향 `ic_arrow/ic_arrow_up_12`, Default·Inactive·Error 는 아래방향 `ic_arrow/ic_arrow_down_12` (AX 실측. Focus 상태는 없음)
+    - Default·Active·Error: `color/icon/secondary` #333333
+    - Inactive(Disabled) 만: `color/icon/quaternary` #999999
 - **State 변형** (축약 4단계):
   - `Default` — 옵션 미선택
   - `Active` — 옵션 선택 완료 (텍스트 보라 Bold + 보라 테두리)
-  - `Inactive (Disable)` — 비활성
+  - `Inactive (Disable)` — 비활성 (배경 `color/background/disabled` #F8F9FB)
   - `Error` — 검증 실패 (빨간 테두리 + 빨간 텍스트)
   - **Focus·Complete 상태 없음** (선택식이므로 편집 중 vs 확정 구분 불필요)
 - **터치 영역**: 필드 전체 48px 유지
@@ -344,7 +397,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - **버튼 사이즈**: 인풋 높이(48px)와 맞추기 위해 Medium 이상 사용 권장 (Small은 회색·경량 액션에 한정)
 - **버튼 색조**:
   - 액션 트리거(인증번호 요청·검색) = **Brand** (보라 채움)
-  - 보조 액션(초기화·재요청) = **Gray_Line**
+  - 보조 액션(초기화·재요청) = **`gray-line`**
 
 ### Form - Email (`input/email`)
 
@@ -787,7 +840,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
   - 항목+값: `1085:5896`
   - 항목+버튼: `1085:5977` + `Frame 8994`(`704:6280`), `Frame 8995`(`1085:5782`), `Frame 8996`(`1085:5819`)
 - **용도**: 설정·정보 리스트·메뉴·바텀시트 옵션 등 대부분의 세로 리스트 기본 유닛
-- **Figma 컴포넌트 세트**: `202:2536` (`size` = large / medium × `type` = link / button / control)
+- **Figma 컴포넌트 세트**: `202:2536` (`size` = large / medium × `type` = link / button / control) — AX 확인 (2026-10-02). size=small 은 NEW 파일에만 있고 AX 에 없음
 - **사이즈·기하**:
   - 좌우 padding **20px** (`layout/margin`)
   - Main text ↔ 우측 요소 gap: **16px** (`spacing-medium`)
@@ -804,7 +857,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
   - **사이즈별 우측 요소**:
     - link: large는 `ic_arrow_right_14`만 / medium은 value 텍스트(`body/3-Regular` 12px `color/font/brand`) + `ic_arrow_right_14`
     - control(스위치): large 50×28 / medium 42×24
-    - button: large는 `button/text` large · `button/button` medium(h32) · `button/icon` medium / medium은 각각 small(h28 · h24 · h28)
+    - button: large는 `button/text` large · `button/button` style=secondary·size=medium(h32) · `button/icon` medium / medium은 각각 small(h28 · `button/button` style=secondary·size=small h24 · h28)
 
 ### 4가지 표기 형태
 
@@ -813,7 +866,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 | **기본형** (Main text 단독) | 없음 | 정보 라벨 나열 | 진입 없음 (또는 행 자체 탭) |
 | **텍스트가 길어질 경우** | 없음 | 긴 안내 | 진입 없음 |
 | **항목과 값을 표기할 경우** | 값 텍스트 (우측 정렬, `body/2-Regular` `color/font/tertiary` #666666) | "회원등급 : 프리미엄" 형 정보 조회 | 진입 없음 |
-| **항목과 버튼을 표기할 경우** | (a) `button/text` + `>` chevron (진입형) / (b) Small `button` `Gray_Line` (액션형) | (a) 설정 항목 진입 (b) 인라인 편집 · 변경 | (a) 있음 (b) 즉시 액션 |
+| **항목과 버튼을 표기할 경우** | (a) `button/text` + `>` chevron (진입형) / (b) Small `button` `gray-line` (액션형) | (a) 설정 항목 진입 (b) 인라인 편집 · 변경 | (a) 있음 (b) 즉시 액션 |
 
 - **텍스트 정렬**:
   - Main text: 좌측 정렬

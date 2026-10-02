@@ -33,7 +33,7 @@
 
 - **파일 키**: `${FIGMA_DS_FILE_KEY}` (-AX- KONACARD - COMMON, 현행)
   - 이전 파일 키: `${FIGMA_DS_FILE_KEY_LEGACY}` (-NEW- KONACARD - COMMON, 사용 중단)
-  - AX 파일은 NEW 파일의 복제본으로 컴포넌트 노드 ID는 그대로 유지됨 (예: `input/input` = `41:505`)
+  - AX 파일은 NEW 파일의 복제본으로 컴포넌트 노드 ID는 그대로 유지됨 (예: `41:505` — NEW `input/input` → AX `input/text field` 로 이름 변경 + size variant 제거. 노드 ID는 같아도 이름·variant 구조가 다를 수 있으니 값은 반드시 AX 에서 확인)
 - **컴포넌트 카탈로그 페이지**: `17:827` (02_Components)
 - **Foundation 페이지**: `295:3042` (01_Foundations)
 - **작업 대상 파일**: 세션마다 사용자가 공유하는 Figma URL에서 추출
