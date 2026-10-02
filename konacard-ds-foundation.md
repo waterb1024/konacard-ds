@@ -358,8 +358,8 @@ spacing:
   derived:
     screen-h-padding: 20      # = layout/margin
     content-width: 320        # = 360 - (layout/margin × 2)
-    input-gap: 40             # 텍스트 필드 간 세로 간격 (2 × spacing-large)
-    list-item-height: 65      # list/list 컴포넌트 기본 높이
+    input-gap: 32             # = spacing-2xlarge — 필드 묶음(라벨+입력창) 간 세로 간격. 묶음 내부(라벨↔입력창·입력창↔입력창·입력창↔안내문구)는 spacing-xsmall 8
+    list-item-height: 65      # list/list size=large 한 줄 높이 (medium link 55 / control 57 / button 65)
     card-padding: 24          # = spacing-xlarge — 정보 박스 내부 패딩
 
 radius:
@@ -892,9 +892,11 @@ letterSpacing은 px 단위 음수(track-tight).
 |------|----|------|
 | 화면 좌우 패딩 | `20px` | `layout/margin` (= `spacing-large`, 변경불가) |
 | 콘텐츠 영역 너비 | `320px` | `360 - layout/margin × 2` |
-| 텍스트 필드 간 세로 간격 | `40px` | `spacing-3xlarge` |
+| 필드 묶음(라벨+입력창) 간 세로 간격 | `32px` | `spacing-2xlarge` |
+| 필드 묶음 내부 간격 (라벨↔입력창·입력창↔입력창·입력창↔안내문구) | `8px` | `spacing-xsmall` |
+| 입력 영역 padding (상 / 하) | `24px` / `40px` | `spacing-xlarge` / `spacing-3xlarge` |
 | 섹션 내부 콘텐츠 padding | `24px` | `spacing-xlarge` (= `layout/margin-top`) |
-| 리스트 아이템 높이 | `65px` | — (컴포넌트 고정 높이) |
+| 리스트 아이템 높이 (`list/list` 한 줄) | large `65px` / medium `55px`(link) | — (상·하 padding large 12 / medium 16 + 내용 + divider 1) |
 
 ### 화면 레이어 구조 (항상 이 순서)
 
@@ -1096,7 +1098,7 @@ headline.findOne(n => n.type === 'TEXT').setRangeFills(0, N, [{ type: 'SOLID', c
 
 ```
 list [VERTICAL, itemSpacing=0]
-└─ list/list size=large, type=link/control (h=65) × N
+└─ list/list size=large, type=link/control (h=65) × N   ※ size=medium link는 h=55
    └─ 내장 line/solid 구분선 (하단)
 ```
 
@@ -1114,7 +1116,7 @@ KONACARD **앱(AOS)** 은 그림자(shadow)를 최소화합니다. 배경색·�
 | 용도 | 적용 |
 |------|------|
 | 카드/정보 박스 | 배경색 차이로 구분 (`background/secondary` #F8F9FB vs `white`) |
-| 팝업 | 오버레이(딤 60%) + `radius/popup (16px)` |
+| 팝업 | 오버레이(`color/background/dimed` 64%, `bg-dimed`) + `radius/popup (16px)` |
 | 구분선 | `line/solid` 컴포넌트 (black 6% opacity) |
 | 바텀시트 | 상단 radius 24px, 오버레이 |
 

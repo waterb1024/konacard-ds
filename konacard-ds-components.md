@@ -787,12 +787,24 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
   - 항목+값: `1085:5896`
   - 항목+버튼: `1085:5977` + `Frame 8994`(`704:6280`), `Frame 8995`(`1085:5782`), `Frame 8996`(`1085:5819`)
 - **용도**: 설정·정보 리스트·메뉴·바텀시트 옵션 등 대부분의 세로 리스트 기본 유닛
+- **Figma 컴포넌트 세트**: `202:2536` (`size` = large / medium × `type` = link / button / control)
 - **사이즈·기하**:
-  - 최소 높이 **56px** (한 줄 텍스트 기준, 상·하 padding 자동)
   - 좌우 padding **20px** (`layout/margin`)
-  - Main text ↔ 우측 요소 gap: **12px** (`spacing-small`)
-  - Main text ↔ Description(하단 2줄째) gap: **8px** (`spacing-xsmall`)
-  - 하단 divider: 1dp #0000000F
+  - Main text ↔ 우측 요소 gap: **16px** (`spacing-medium`)
+  - Main text ↔ Description gap: **0** — Description 줄이 Main text 행 바로 아래에 붙음
+  - 하단 divider: `line/solid` 1px #0000000F (컴포넌트 내장)
+
+| size | 상·하 padding | Main text | Description | 우측 요소 높이 | 한 줄 높이 (Description 숨김) |
+|---|---|---|---|---|---|
+| **large** | 12 / 12 (`spacing-small`) | `body/1-regular` 15/24 | `body/2-Regular` 14/22 `color/font/tertiary` | 40 고정 (link·button·control 공통) | **65** |
+| **medium** | 16 / 16 (`spacing-medium`) | `body/2-Regular` 14/22 | `body/4-Regular` 11/16 `color/font/tertiary` | link: hug (22) / control: 24 / button: 32 고정 | link **55** / control **57** / button **65** |
+
+  - 높이 = 상·하 padding + 우측 요소(또는 Main text) 높이 + divider 1. Description을 켜면 그 줄 높이(large 22 / medium 16)만큼 늘어남.
+  - 하단 divider를 숨기면 1px 줄어듦 (예: large 64 — 바로 아래 회색 정보 박스가 이어지는 경우)
+  - **사이즈별 우측 요소**:
+    - link: large는 `ic_arrow_right_14`만 / medium은 value 텍스트(`body/3-Regular` 12px `color/font/brand`) + `ic_arrow_right_14`
+    - control(스위치): large 50×28 / medium 42×24
+    - button: large는 `button/text` large · `button/button` medium(h32) · `button/icon` medium / medium은 각각 small(h28 · h24 · h28)
 
 ### 4가지 표기 형태
 
@@ -808,7 +820,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
   - 값 텍스트: **우측 정렬**
   - 우측 버튼(진입형·액션형): 우측 정렬
 - **하단 부가 텍스트**:
-  - Main text 아래 부연 `Description`(회색) 슬롯이 있으면 자동으로 행 높이 확장. Main↔Description gap 8px 유지.
+  - Main text 아래 부연 `Description`(회색) 슬롯이 있으면 자동으로 행 높이 확장. Main↔Description gap 0.
 - **터치 영역 규칙**:
   - **화면 이동이 되는 리스트** = 리스트 전체 영역 터치 (우측 chevron만이 아님)
   - 행 안 액션 버튼(Small)이 있는 액션형은 **행 전체 = 진입 없음**, **버튼만 터치 액션 실행**
@@ -882,11 +894,16 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 
 ### Bottomsheet — `list/bottomsheet`
 
-- **Figma 노드 (샘플 인스턴스)**: `2431:7098`, `2431:7099`
+- **Figma 노드 (샘플 인스턴스)**: `2431:7098` (기본), `2431:7099` (선택) / 화면 예시: KeyScreen `2083:60989` (통신사 선택)
 - **용도**: 바텀시트 내부의 옵션 나열 리스트 (지역 선택·정렬 옵션 등)
-- **레이아웃**: 각 행 최소 56px, 좌우 padding 20, 텍스트만 배치
-  - 기본: List Title (`body/1-regular` 15px 검정) 좌측 정렬
-  - 선택된 옵션: `body/1-Bold` + `color/font/brand` #805AE9 (Select List 응용과 동일)
+- **레이아웃**:
+  - 한 줄 높이 **56px** = 상·하 padding 16(`spacing-medium`) + 텍스트 24
+  - 좌우 padding **0** — 행 폭 320, 좌우 20은 감싸는 리스트 컨테이너가 줌
+  - List Title ↔ 선택 아이콘 gap **16px** (`spacing-medium`)
+  - 구분선: 줄마다 하단 `color/divider/primary` 1px — **56 안쪽에 포함**(높이 늘지 않음), 마지막 줄 아래에도 있음
+- **상태**:
+  - 기본: List Title `body/1-regular` 15/24 `color/font/primary` 좌측 정렬 + 선택 아이콘 숨김(opacity 0, 20px 자리는 유지)
+  - 선택: `body/1-Bold` + `color/font/brand` #805AE9 + 우측 `ic_system/ic_select_on` 20×20 보라 체크 노출
 - **바텀시트 컨테이너**:
   - 배경 `color/background/primary` #FFFFFF, 상단 corner radius 큰 값(20+, `konacard-ds-rule.md` § "팝업·바텀시트" 참조)
   - 상단 드래그 핸들(4px 회색 pill 그립) — 관례상 노출
@@ -894,7 +911,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 
 ## Select List 안티패턴
 
-- ❌ **Selected 상태에 배경색 채우기** (반드시 텍스트 Bold + Brand 색만으로 표기 — 배경 채움은 Card-select에서만)
+- ❌ **Selected 상태에 배경색 채우기** (텍스트 Bold + Brand 색, 바텀시트는 우측 `ic_select_on` 체크까지만 — 배경 채움 금지)
 - ❌ 리스트 항목이 3개 이하일 때 바텀시트 사용 (라디오 인라인이 더 나음)
 - ❌ Card-select의 이미지 슬롯을 빈 회색 박스로 대체 (반드시 실 이미지 또는 placeholder 아이콘)
 
@@ -907,7 +924,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - ❌ Main text를 3줄 이상으로 (반드시 2줄 이하, 초과 시 `...` 말줄임)
 - ❌ **진입형 + 액션형을 같은 행에** (chevron`>` 과 Small 버튼 동시 배치 금지 — 하나만 선택)
 - ❌ Expand 안에 또 Expand 중첩 (2 depth 초과 시 별도 화면 진입 유도)
-- ❌ Select List 선택 상태를 체크박스로 대체 (다중 선택이면 05_Control Checkbox, 단일 선택이면 텍스트 Bold+브랜드 색)
+- ❌ Select List 선택 상태를 체크박스로 대체 (다중 선택이면 05_Control Checkbox, 단일 선택이면 텍스트 Bold+브랜드 색 — 바텀시트는 + `ic_select_on` 체크 아이콘)
 
 ---
 

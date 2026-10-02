@@ -38,7 +38,7 @@ description: >
   - **action-bar/header 56px 고정** — `resize(w, 56)` 명시 필수 (`konacard-ds-components.md` § "01_Actionbar" 참조)
   - 이미지 placeholder, 의도된 카드 고정 사이즈 등
 - **좌우 padding: 20px** · **콘텐츠 영역 너비: 320px** (= 360 - 20×2) — § "3) 간격 (Spacing)" 참조
-- **텍스트 필드(input) 간 상하 gap: 40px** — 필드 라벨↔입력창 gap 8과 별개
+- **필드 묶음(라벨+입력창) 간 상하 gap: 32px** (`spacing-2xlarge`) — 묶음 내부(라벨↔입력창·입력창↔입력창·입력창↔안내문구) gap 8(`spacing-xsmall`)과 별개
 
 ### 아이콘 사용 규칙 (중요)
 
@@ -376,7 +376,18 @@ description: >
 
 ### 정렬 드롭다운
 
-리스트/그리드 우상단 정렬 트리거. "할인 순 ▼" 텍스트+아이콘 → 탭 시 화면 안 즉시 열리는 lightweight 옵션 카드 (모달·바텀시트 아님). 옵션 예: "할인 순 / 판매량 순 / 가격 순", 선택된 옵션 = `font/brand` bold *(추측)*.
+리스트/그리드 우상단 정렬 트리거. "할인 순 ▼" 텍스트+아이콘 → 탭 시 화면 안 즉시 열리는 lightweight 옵션 카드 (모달·바텀시트 아님). 옵션 예: "할인 순 / 판매량 순 / 가격 순". 예시 화면: KeyScreen `10934:7290` (코나콘 메인).
+
+- **트리거**:
+  - 텍스트 `body/2-Regular` 14/22 `color/font/tertiary` #666 + `ic_arrow/ic_arrow_down_12_g` 12×8, gap 4 (`spacing-2xsmall`)
+  - 우측 정렬, 영역 padding 상하 12(`spacing-small`)·좌우 20(`spacing-large`) → 높이 46
+- **옵션 카드**:
+  - 폭 96, 테두리 1px #EBEBEB(토큰 미바인딩), radius 8(`radius-small`), **그림자 없음**, 배경 `color/background/primary`
+  - 옵션 1줄 38 = padding 상하 8(`spacing-xsmall`)·좌우 12(`spacing-small`) + 텍스트 22, 가운데 정렬
+  - 옵션 사이 구분선 1px #EBEBEB (마지막 줄 제외)
+  - 기본 옵션: `body/2-Regular` 14 `color/font/tertiary` #666
+  - **선택된 옵션: 배경 `color/background/secondary` #F8F9FB + `body/2-bold` #666** (보라 아님)
+  - 위치: 트리거 바로 아래(4px 겹침), 우측 끝을 화면 여백 20에 맞춤, 아래 리스트 위에 겹쳐서 열림
 
 ### 상품 카드 표기 규칙 (커머스 공통)
 
@@ -458,15 +469,19 @@ MAIN에서 진입한 개인 보관·소유 성격의 목록 화면. 커머스 �
 
 ### 개인 보관 목록 리스트 카드 (예: 코나콘 목록)
 
+예시 화면: KeyScreen `10180:14968` (내 코나콘).
+
 | 영역 | 요소 |
 |---|---|
-| 좌 (80×80 *(추측)*) | 상품 이미지 (라운드 rectangle) — 사용 완료 시 dim 처리 |
-| 우 상단 | 브랜드명(로고 + 회색 caption) |
-| 우 중단 | 상품명 (`body/1-Bold` 검정, 1~2줄 "..." 말줄임) |
-| 우 하단 | **D-day 카운트** (`font/tertiary` 회색 caption) — "D-2", "D-365" |
-| 우 상단 배지 (조건부) | 상태 pill 5종 중 해당 상태 |
+| 좌 (64×64) | 상품 이미지 — radius 8(`radius-small`), 배경 `color/background/secondary` #F8F9FB, 세로 중앙 — 사용 완료 시 dim 처리 |
+| 우 상단 | 브랜드명 — 로고 16×16(원형) + gap 4 + `body/3-Regular` 12/18 `color/font/tertiary` |
+| 우 중단 | 상품명 (`body/1-Bold` 15/24 검정, 1~2줄 "..." 말줄임) |
+| 우 하단 | **D-day 카운트** (`body/3-Regular` 12/18 `color/font/tertiary`) — "D-2", "D-365" |
+| 우측 배지 (조건부) | 상태 pill 5종 중 해당 상태 — 텍스트 묶음과 **세로 중앙 정렬**, 텍스트와 gap 8 (예: "만료 예정" `color/label/accent-red`) |
 
-- 카드 사이 `divider/primary` 얇은 라인
+- 카드 padding 상하 16(`spacing-medium`)·좌우 0, 이미지 ↔ 텍스트 gap 16(`spacing-medium`), 텍스트 줄 간 gap 0
+- 카드 높이: 상품명 1줄 96 / 2줄 116
+- 카드 사이 `line/solid` 1px
 - 클릭 → 상세 화면(§ MY_DETAIL 규칙 예정)
 
 ### 구매 내역 리스트 카드 (거래 기록 성격)
@@ -499,9 +514,12 @@ MAIN에서 진입한 개인 보관·소유 성격의 목록 화면. 커머스 �
 
 ### "더보기 ∨" 페이지네이션 링크
 
-- 위치: 리스트 하단 중앙정렬
-- 구조: "더보기" 텍스트 + `ic_16_arrow_down` (∨)
-- 스타일: `font/primary` 검정 텍스트 *(추측)*
+예시 화면: KeyScreen `10180:15033` (내 코나콘 10개 이상).
+
+- 위치: 리스트 하단 중앙정렬 — 마지막 카드 아래 16, 링크 아래 padding 32(`spacing-2xlarge`)
+- 구조: "더보기" 텍스트 + `ic_arrow/ic_arrow_down_12_g` (12×8, ∨), gap 4 (`spacing-2xsmall`)
+- 스타일: `body/2-Regular` 14/22 `color/font/tertiary` #666 — § "정렬 드롭다운" 트리거와 같은 텍스트·아이콘·간격
+- 마지막 카드 아래 구분선은 숨김
 - **인피니트 스크롤 아닌 명시적 클릭** — 사용자가 요청해야 다음 페이지 로드
 - 리스트 처음 10건 노출 후, 초과분은 "더보기"로 확장
 
@@ -823,9 +841,14 @@ chevron 유무 = 진입 컨텍스트 표시: 그리드·검색 = 카드 전체 �
 
 ### 하단 상품 선택 pill 탭
 
-- 활성: `background/button-brand` 채움 + 흰 텍스트
-- 비활성: 아웃라인 회색 + 검정 텍스트 *(추측)*
-- 가로 스크롤, 1건일 때 pill 탭 생략
+DS 컴포넌트 `tab/sub-ui` (pill = `tab/Sub`). 예시 화면: KeyScreen `10315:6004` (코나콘 사용하기 — 상품권).
+
+- 활성: `color/background/button-brand` #805AE9 채움 + `body/2-bold` 14/22 흰 텍스트
+- 비활성: `color/button/white` 흰 배경 + 1px `color/border/default` #DDD + `body/2-Regular` 14/22 `color/font/tertiary` #666
+- pill: 높이 38 (padding 상하 8·좌우 16), radius `radius/button/round` (9999)
+- pill 간 gap 4 (`spacing-2xsmall`), 좌측 시작 20
+- 가로 스크롤, 우측 끝은 마스크로 fade-out (잘린 pill이 흐리게 보임), 1건일 때 pill 탭 생략
+- 탭 영역: 상단 `line/solid` 구분선 → gap 12 → pill 줄 → 하단 padding 16 → "닫기" CTA
 
 **pill 3종 비교**: MAIN 서브 카테고리 = 회색 채움 필터 / MY 세그먼트 = 트랙+흰 활성 카드 고정 라벨 / QUICK = brand 채움 활성 동적 라벨.
 
@@ -864,11 +887,11 @@ chevron 유무 = 진입 컨텍스트 표시: 그리드·검색 = 카드 전체 �
 
 - **액션바**: `<` 뒤로만 + 중앙 타이틀 없음 (스택형 진행 성격)
 - **큰 상품 이미지** (상단, 회색 배경 정사각형 컨테이너, 이미지 중앙)
-- **상품 정보 (이미지 아래)**:
-  - 브랜드명 (로고 + 회색 caption)
-  - 상품명 (`heading/2-bold` 검정)
-  - **할인율 + 원가 취소선**: "10% ~~50,000원~~" (§ `accent/primary` 6용도 ⑥ 매칭)
-  - **판매가**: 검정 bold 크게 (`heading/1-bold` 사이즈 *(추측)*)
+- **상품 정보 (이미지 아래)** — 영역 padding 상하 24(`spacing-xlarge`)·좌우 20, 줄 간 gap 2(`spacing-3xsmall`). 예시 화면: KeyScreen `10180:17910`
+  - 브랜드명: 로고 16×16 + gap 4 + `body/2-Regular` 14/22 `color/font/tertiary`
+  - 상품명: `body/1-regular` 15/24 `color/font/secondary` #333
+  - **할인율 + 원가 취소선**: "10% ~~50,000원~~" (§ `accent/primary` 6용도 ⑥ 매칭) — 할인율 `body/1-Bold` 15 `color/font/accent-red` + gap 4 + 원가 `body/1-regular` 15 `color/font/quaternary` #999 취소선
+  - **판매가**: `heading/1-bold` 24/32 `color/font/primary` 검정
 - **유효기간 라인 (섹션)** — 좌 라벨 · 우 값 (§ 아래)
 - **(스크롤 시) 아코디언 3섹션** — § "ITEM 아코디언 3섹션"
 - **하단 이중 CTA 영역** — § "하단 구매 영역 (수량·가격 + CTA)"
@@ -886,11 +909,15 @@ chevron 유무 = 진입 컨텍스트 표시: 그리드·검색 = 카드 전체 �
 
 수량 조절용 컴포넌트 — `konacard-ds-components.md`에 미등록, 신규 등록 필요.
 
+예시 화면: KeyScreen `10180:17910` (수량 2) / `10180:17956` (수량 5 = 최대).
+
 | 요소 | 스타일 |
 |---|---|
-| `−` 버튼 | 원형 (아웃라인 회색 + 검정 `−` 아이콘) *(추측)*, 32×32 |
-| 숫자 표시 | 중앙 흰 rectangle + 검정 bold, 좌우 padding 여유 |
-| `+` 버튼 | 원형 (동일 스타일 + `+` 아이콘) |
+| 컨테이너 | `color/background/quaternary` #F0F1F3 회색 상자, radius 6(`radius-xsmall`), padding 4(`spacing-2xsmall`) → 152×48 |
+| `−` 버튼 | `ic_stepper_minus_40` 40×40 (테두리·배경 없음, #333 2px 라인) |
+| 숫자 표시 | 흰 칸 64×40, radius 6, 1px `color/border/primay` + `heading/2-bold` 20/28 검정 중앙정렬 |
+| `+` 버튼 | `ic_stepper_plus_40` 40×40 (동일 스타일) |
+| 비활성 | 해당 아이콘 opacity 40% |
 | 최소값 | 1 (또는 상황별) — 최소 이하일 때 `−` 비활성 |
 | 최대값 | 제한 조건별 — 최대 이상일 때 `+` 비활성 |
 
@@ -901,9 +928,10 @@ chevron 유무 = 진입 컨텍스트 표시: 그리드·검색 = 카드 전체 �
 
 상품 구매 화면 전용 이중 CTA 영역.
 
-- 상단 (정보 라인): 좌 총 금액 (`heading/2-bold` 검정) + (조건부) 서브 텍스트 / 우 수량 스테퍼
-- 하단 (Fixed CTA): "구매하기" (Large Brand)
-- **좌측 서브 텍스트 조건부**: 제한 있을 때만 (예: "최대 5개", "최대 5개 / 인당 8개 제한"). 여러 제한은 " / "로 병기.
+- 상단 `line/solid` 구분선
+- 정보 라인 (padding 상하 12·좌우 20): 좌 총 금액 (`heading/2-bold` 20/28 검정) + (조건부) 서브 텍스트 / 우 수량 스테퍼
+- 하단 (Fixed CTA): "구매하기" (Large Brand, `button/fixed-bottom`)
+- **좌측 서브 텍스트 조건부**: 제한 있을 때만 (예: "최대 5개", "최대 5개 / 인당 8개 제한"). `body/3-Regular` 12/18 `color/font/brand` 보라. 여러 제한은 " / "로 병기.
 
 ### ITEM 아코디언 3섹션 (구매 전)
 
@@ -1462,10 +1490,10 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | `neutral/quaternary` (비활성 CTA 배경, 회색 아웃라인 secondary 버튼 테두리, Toggle 비활성 트랙) | `#DDDDDD` |
 | `accent/primary` (**6용도 통합** — 아래 § "`accent/primary` 6용도 규칙" 참조) | `#FF364B` |
 | `background/primary` (모든 화면 기본 배경) | `#FFFFFF` |
-| `background/secondary` (완료·정보 요약 카드, 팝업 안 안내 카드, 두꺼운 섹션 bar divider, 보조 CTA 배경, 이탈 방지 리마인더) | `#F8F9FB` |
+| `background/secondary` (완료·정보 요약 카드, 팝업 안 안내 카드, 보조 CTA 배경, 이탈 방지 리마인더) | `#F8F9FB` |
 | `divider/primary` (얇은 아이템 구분선, 카드 테두리, 탭 하단선) | `#0000000F` (black 6%) |
 | `divider/dotted` (팝업 카드 내부 계층 분리 점선) | `black 6%`(`#0F000000`) — solid line과 동일 색, `dasharray 2 2`만 다름 |
-| `overlay/dim` (팝업·바텀시트 뒤 딤) (추측) | `#000000` 60% |
+| `color/background/dimed` (팝업·바텀시트 뒤 딤 — `bg-dimed` 컴포넌트) | `#000000A3` (black 64%) |
 | `decoration/soft` (로그인 배경 장식) (추측) | 아주 옅은 회색 반투명 |
 
 **색 사용 규칙**
@@ -1630,11 +1658,13 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 
 - 화면 좌우 padding: **20px**
 - 액션바/탭 → 헤드라인·본문 / 헤드라인 → 첫 필드·카드: 별도의 40px 간격값이 없고, **`action-bar/headline` 컴포넌트 자체가 상하 24px(`layout/margin-top`)·좌우 20px(`layout/margin`) 패딩을 내장**. 앞뒤 컨테이너(액션바 헤더, 다음 콘텐츠)는 서로 gap 없이 바로 붙음 — 간격은 전부 헤드라인 컴포넌트의 내장 패딩에서 나옴 (섹션 타이틀 `py-24` 등과 같은 유형의 "컴포넌트 자체 내장 패딩" 패턴).
-- 필드 라벨 → 입력창: ~8px
-- 필드 간 세로 gap: ~8px
+- 필드 라벨 → 입력창: 8px (`spacing-xsmall`)
+- 같은 묶음 안 입력창 → 입력창 / 입력창 → 안내문구(`input/info-text`): 8px (`spacing-xsmall`) — 예: 통신사 select ↔ 번호 입력, 은행 선택 ↔ 계좌번호 입력
+- 필드 묶음(라벨+입력창) → 다음 필드 묶음: 32px (`spacing-2xlarge`) — 예: 휴대폰 번호 → 주민등록번호 → 이름
+- 입력 영역 컨테이너 padding: 상 24px(`spacing-xlarge`) / 하 40px(`spacing-3xlarge`) / 좌우 20px(`layout/margin`) — 헤드라인 바로 아래에 붙음
 - 카드 간 세로 gap: ~16px
-- **큰 섹션 간 두꺼운 회색 bar**: ~10px `background/secondary`
-- CTA: 하단 고정, 좌우 20px, 병렬 gap ~8px
+- **큰 섹션 간 두꺼운 회색 bar**: `line/divider` 컴포넌트 10px — 면 `color/divider/primary`(black 6%) + 상·하단 1px 라인(동일 색)
+- CTA: 하단 고정 `button/fixed-bottom` 높이 72 (상 0 / 하 16 / 좌우 20 padding), 병렬 gap 8px (`spacing-xsmall`)
 - 리스트 아이템 아래 얇은 `divider/primary`
 - 팝업 카드 gap ~8px, 내부 padding 넉넉히
 
@@ -1657,7 +1687,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | 종류 | 두께 / 색 | 사용처 |
 |---|---|---|
 | **아이템 구분 (얇은)** | 1px, `divider/primary` (black 6%) | 리스트 아이템 사이, 카드 헤더 밑, 탭 하단선 |
-| **섹션 구분 (두꺼운 bar)** | 10px, `background/secondary` | 화면 안 큰 섹션 그룹 사이 |
+| **섹션 구분 (두꺼운 bar)** | `line/divider` 10px, `color/divider/primary` | 화면 안 큰 섹션 그룹 사이 |
 | **총합 구분 (요약 카드 내)** | 1px, `divider/primary` | 라벨-값 리스트와 총합 Bold 라인 사이 |
 | **Dotted divider** | 점선, ✅ 실측 `black 6%`(solid line과 동일 색, dasharray만 다름) | 팝업 안 정보 카드 내부 계층 분리 전용 |
 
@@ -2284,6 +2314,7 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 - ❌ `font/accent-blue`를 무승인 매입 미수금 화면의 카드번호 마스킹 외 다른 곳에 사용
 - ❌ 설정 우측 값 색 혼동 — 사용자 설정값·링크성 = 보라 / 시스템 표시값 = 회색
 - ❌ QR 코드 유효시간을 검정으로 — 반드시 `font/accent-red` (긴급 알림)
+- ❌ 정렬 드롭다운 선택 옵션을 보라(`font/brand`)로 — 회색 배경(`background/secondary`) + `body/2-bold` 회색만
 
 ### 헤드라인·타이포
 
