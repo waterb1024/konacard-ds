@@ -15,7 +15,7 @@
       "codeProp": "Storybook 코드 prop 매핑 (Code Connect 기준, 있을 때만)",
       "docRef": "용도·규칙·안티패턴은 md 문서 해당 섹션이 진실의 소스"
     },
-    "importNote": "이 키들은 AX 파일의 로컬 컴포넌트(remote=false) 키. search_design_system 결과에는 AX 의 button/button 이 나오지 않고 NEW 라이브러리의 button/primary 가 나옴 → AX 가 라이브러리로 publish 되었는지 미확인. 다른 파일에서 importComponentSetByKeyAsync 로 쓸 수 있는지 3단계 전에 검증 필요."
+    "importNote": "2026-10-02 검증: 작업 파일(4inuJPmyGI1LfsuAiS5bts)에서 AX 키 5종(button/button, input/text field, select/select box, action-bar/header, input/basic) importComponentSetByKeyAsync / importComponentByKeyAsync 모두 성공 — AX 구조(variant·속성) 그대로 remote 로 로드됨. 주의: search_design_system 은 AX 컴포넌트 대신 NEW 라이브러리(button/primary 등, 사용 중단)를 반환하므로 키 조회에 search 를 쓰면 구버전을 가져옴 → 이 카탈로그 키를 우선 사용."
   },
   "components": {
     "button/button": {
@@ -462,6 +462,40 @@
         "속성명·값 PascalCase 원본 그대로"
       ],
       "docRef": "konacard-ds-rule.md · konacard-ds-components.md (Form UI Title)"
+    },
+    "controls/swtich": {
+      "type": "COMPONENT_SET",
+      "key": "4a5a1b46e2b732c1ba4e63c39aa6fb0b1344c199",
+      "props": {
+        "size": [
+          "large",
+          "medium",
+          "small",
+          "tiny"
+        ],
+        "state": [
+          "true",
+          "false"
+        ],
+        "status": [
+          "true",
+          "false"
+        ]
+      },
+      "semantics": {
+        "state": "켜짐/꺼짐 (true = 보라 트랙, false = 회색 트랙)",
+        "status": "활성/비활성 (false = opacity 40%)"
+      },
+      "aliases": {
+        "Switch": "controls/swtich",
+        "control/swtich": "controls/swtich (문서 표기)"
+      },
+      "notes": [
+        "Figma 원본 오타(swtich) 그대로. 세트 이름은 'controls/' (복수형) — 이름으로 찾을 때 includes('swtich') 사용",
+        "list/list type=control 안에 medium 으로 내장됨",
+        "nodeId 미확인 — 키는 작업 파일의 list/list 인스턴스 mainComponent 에서 추출 (2026-10-02)"
+      ],
+      "docRef": "konacard-ds-components.md § Switch"
     }
   }
 }
