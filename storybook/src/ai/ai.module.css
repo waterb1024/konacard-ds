@@ -1,0 +1,53 @@
+/* AI & Tools 페이지 공통 — 값은 foundation 토큰 */
+
+.draft {
+  margin: 0 0 32px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f2eefd;
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-secondary);
+}
+
+.draft strong {
+  color: var(--color-brand-primary);
+}
+
+.todo {
+  margin: 16px 0;
+  padding: 20px;
+  border: 1px dashed var(--color-border-default);
+  border-radius: 12px;
+  font: var(--text-body-2-regular);
+  color: var(--color-font-tertiary);
+}
+
+.todo ul {
+  margin: 8px 0 0;
+}
+
+.table {
+  width: 100%;
+  margin: 16px 0;
+  border-collapse: collapse;
+  font: var(--text-body-2-regular);
+}
+
+.table th {
+  text-align: left;
+  font: var(--text-body-2-bold);
+  background: var(--color-background-secondary);
+}
+
+.table th,
+.table td {
+  padding: 12px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--color-border-default) !important;
+  vertical-align: top;
+}
+
+.table tr {
+  background: transparent !important;
+}

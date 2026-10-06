@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/blocks";
+import styles from "./ai.module.css";
+
+<Meta title="AI & Tools/LLMS.txt" />
+
+# LLMS.txt
+
+AI 에이전트가 KONACARD 디자인 시스템 문서를 찾아 읽을 수 있게 정리한 문서 목록입니다.
+
+<div className={styles.draft}>
+  <strong>작성 중</strong> — 목록 파일은 스킬 배포와 함께 이 사이트에 올립니다.
+</div>
+
+스킬은 문서 내용을 복사해 갖고 있지 않고, 요청할 때마다 이 목록을 먼저 읽은 뒤 목록이 가리키는 원본을 엽니다. 그래서 문서가 바뀌어도 스킬을 다시 배포할 필요가 없습니다.
+
+## 담을 문서
+
+<table className={styles.table}>
+  <thead>
+    <tr><th>문서</th><th>내용</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>konacard-ds-foundation.md</code></td><td>색 · 글꼴 · 간격 · 모서리 · 그림자 토큰 값</td></tr>
+    <tr><td><code>konacard-ds-components.md</code></td><td>컴포넌트별 variant · 상태 · 속성</td></tr>
+    <tr><td><code>konacard-ds-rule.md</code></td><td>화면 성격 분류 · 조립 원칙 · 하지 말 것</td></tr>
+    <tr><td><code>components.catalog.json</code></td><td>Figma 컴포넌트 키와 variant 목록 (화면 조립용)</td></tr>
+  </tbody>
+</table>
+
+```text
+# 주소는 확정 후 채움
+```

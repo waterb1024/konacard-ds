@@ -23,6 +23,8 @@ const preview: Preview = {
             "Elevation",
           ],
           "Component",
+          "AI & Tools",
+          ["Skill", "LLMS.txt"],
         ],
       },
     },

@@ -52,7 +52,7 @@ http
     if (urlPath === "/iframe") {
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
       return res.end(`<!doctype html><script>
-var q = "";
+var q = "viewMode=docs&id=introduction--docs&"; // ?path= 가 없는 첫 화면(루트) 기본값
 try {
   var p = new URLSearchParams(parent.location.search).get("path") || "";
   var m = p.match(/^\\/(docs|story)\\/(.+)$/);
