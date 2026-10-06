@@ -47,7 +47,20 @@ http
       return res.end("ok");
     }
 
-    if (urlPath === "/iframe") return send(res, path.join(ROOT, "iframe.html"));
+    // 옛 301 을 기억한 브라우저는 ?id= 없이 /iframe 으로 온다 → 상위(manager) 주소의 ?path= 로
+    // 보여 줄 문서를 복원하고, 그 301 이 기억되지 않은 새 주소(r=1 추가)로 넘긴다
+    if (urlPath === "/iframe") {
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
+      return res.end(`<!doctype html><script>
+var q = "";
+try {
+  var p = new URLSearchParams(parent.location.search).get("path") || "";
+  var m = p.match(/^\\/(docs|story)\\/(.+)$/);
+  if (m) q = "viewMode=" + m[1] + "&id=" + encodeURIComponent(m[2]) + "&";
+} catch (e) {}
+location.replace("/iframe.html?" + q + "r=1");
+</script>`);
+    }
 
     const file = path.normalize(path.join(ROOT, urlPath));
     if (!file.startsWith(ROOT)) {
