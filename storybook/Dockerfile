@@ -1,5 +1,4 @@
-# KONA Nest 배포용 — Storybook 정적 빌드 후 serve 로 서빙
-# serve.json(cleanUrls:false, .storybook/public 에서 복사됨) 필수 — 없으면 iframe.html → /iframe 리다이렉트로 ?id= 가 사라져 본문이 안 뜬다
+# KONA Nest 배포용 — Storybook 정적 빌드 후 server.js(의존성 없는 Node 정적 서버)로 서빙
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json ./
@@ -9,9 +8,9 @@ RUN npx storybook build -o storybook-static
 
 FROM node:22-alpine
 WORKDIR /app
-RUN npm install -g serve
+COPY server.js ./
 COPY --from=build /app/storybook-static ./storybook-static
 ENV PORT=3000
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=20s CMD wget -qO- http://127.0.0.1:3000/health || exit 1
-CMD ["sh", "-c", "serve -s storybook-static -l ${PORT:-3000}"]
+CMD ["node", "server.js"]
