@@ -51,3 +51,15 @@
 .table tr {
   background: transparent !important;
 }
+
+/* 표 칸 안의 메인 문구 + 회색 보조 문구 (File Structure "언제 쓰이나요") */
+.cellMain {
+  display: block;
+  color: var(--color-font-primary);
+}
+
+.cellSub {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-font-quaternary);
+}
