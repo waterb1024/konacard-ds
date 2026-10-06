@@ -496,6 +496,72 @@
         "nodeId 미확인 — 키는 작업 파일의 list/list 인스턴스 mainComponent 에서 추출 (2026-10-02)"
       ],
       "docRef": "konacard-ds-components.md § Switch"
+    },
+    "controls/checkbox label": {
+      "type": "COMPONENT_SET",
+      "key": "c65fb7e797a5e5edef6cc1dc48758312ac7c9807",
+      "nodeId": "2004:5148",
+      "props": {
+        "type": [
+          "title",
+          "1depth",
+          "2depth"
+        ],
+        "state": [
+          "false",
+          "true"
+        ]
+      },
+      "defaults": {
+        "type": "title",
+        "state": "false"
+      },
+      "semantics": {
+        "state": "체크 여부 (true = 체크됨)"
+      },
+      "heights": {
+        "title": 44,
+        "1depth": 44,
+        "2depth": 40
+      },
+      "aliases": {
+        "control/agree": "controls/checkbox label (문서·이전 이름)",
+        "약관 동의": "controls/checkbox label"
+      },
+      "notes": [
+        "2026-10-06 사용자가 정리: control/agree → controls/checkbox label, ❖ Controls 페이지로 이동, 속성명 앞 숨은 문자(\\b) 제거, check → state (키 유지)",
+        "내장 체크박스: title·1depth = controls/check box style=circle size=medium(28), 2depth = style=line size=small(24). 1depth·2depth 는 우측 ic_arrow_right_12 포함",
+        "텍스트: title = body/1-Bold, 1depth·2depth = body/2-Regular. title 은 gap 12 / padding 상하 8",
+        "문서 불일치 (md 미수정): 문서는 title 체크박스 32·1depth body/1-regular 15px·gap 8·2depth 를 '팝업 전용' 으로 기술 — AX 실측과 다름"
+      ],
+      "docRef": "konacard-ds-components.md § 조합 컴포넌트 — control/agree"
+    },
+    "controls/radio label": {
+      "type": "COMPONENT_SET",
+      "key": "216eaff3801327588789903419e4fe9e8895d6e5",
+      "nodeId": "2408:5563",
+      "props": {
+        "size": [
+          "small"
+        ]
+      },
+      "defaults": {
+        "size": "small"
+      },
+      "heights": {
+        "small": 40
+      },
+      "aliases": {
+        "control/radio-text": "controls/radio label (문서·이전 이름)"
+      },
+      "notes": [
+        "2026-10-06 사용자가 정리: control/radio-text → controls/radio label, ❖ Controls 페이지로 이동 (키 유지)",
+        "2026-10-06 실사용 화면 기준으로 정리: 기존 large(1905:5181)만 남기고 size=small 로 이름 변경, 기존 medium·small variant 삭제 → variant 1개",
+        "variant = 라디오+텍스트 2쌍 (선택 1 + 미선택 1). 선택 여부 속성은 세트에 없음 — 내장 controls/radio button 인스턴스의 state 를 바꿔서 제어",
+        "내장 라디오 = controls/radio button size=small(24). 텍스트 body/1-regular. 라디오↔텍스트 gap 8, 쌍 사이 gap 16, 높이 40",
+        "문서 불일치 (md 미수정): 문서는 Basic(라디오 28)·Small(라디오 24) 2종으로 기술 — AX 는 1종(라디오 24, body/1-regular, h40)"
+      ],
+      "docRef": "konacard-ds-components.md § control/radio-text"
     }
   }
 }
