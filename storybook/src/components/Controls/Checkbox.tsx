@@ -73,6 +73,7 @@ function CheckboxSvg({
   const brand = "var(--color-brand-primary)";
   const white = "var(--color-font-white)";
   const off = "var(--color-border-default)"; /* #DDDDDD */
+  const lineOff = "var(--color-icon-quaternary)"; /* #999999 */
 
   return (
     <svg
@@ -140,7 +141,7 @@ function CheckboxSvg({
       {style === "line" && (
         <path
           d="M6.67 15.33 L12.89 21.33 L25.33 9.33"
-          stroke={checked ? brand : off}
+          stroke={checked ? brand : lineOff} /* line 만 미체크 #999 (Figma Vector 686) */
           strokeWidth="2.67"
           strokeLinecap="round"
           strokeLinejoin="round"

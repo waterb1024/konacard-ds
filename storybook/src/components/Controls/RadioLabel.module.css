@@ -1,0 +1,35 @@
+/*
+ * konacard-ds-components.md § control/radio-text
+ * Figma: controls/radio label (2408:5563) — 값은 전부 AX 실측
+ */
+
+/* 항목 사이 gap 16 */
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-medium);
+}
+
+/* 라디오 ↔ 텍스트 gap 8, padding 8 0 */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  padding: var(--spacing-xsmall) var(--spacing-none);
+}
+
+/* body/1-regular, font/primary */
+.text {
+  min-width: 48px;
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+  cursor: pointer;
+  word-break: break-word;
+}
+
+/* Figma 에 disabled variant 없음 — 라디오 자체 disabled(opacity) 만 따르고 텍스트 커서만 막음 */
+.disabled .text {
+  cursor: not-allowed;
+}

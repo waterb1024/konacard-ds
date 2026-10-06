@@ -1,9 +1,13 @@
 import type { Preview } from "@storybook/react";
 import "../src/styles/tokens.css";
 import "../src/styles/global.css";
+import { konacardTheme } from "./konacardTheme";
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      theme: konacardTheme,
+    },
     options: {
       storySort: {
         method: "alphabetical",

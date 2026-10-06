@@ -1,0 +1,402 @@
+/* Introduction.mdx 전용 — 레이아웃은 vibe.monday.com Welcome 구성 참고, 값은 foundation 토큰 */
+
+/* 이 페이지(.page 를 품은 docs 본문)만 기본 폭 제한(1000px) 해제 */
+:global(.sbdocs-content):has(.page) {
+  max-width: none !important;
+}
+
+.page {
+  width: 100%;
+  max-width: 1288px; /* 내용 1160 + 좌우 여백 64 × 2 */
+  margin: 0 auto;
+  padding: 0 64px 64px;
+  box-sizing: border-box;
+  color: var(--color-font-primary);
+}
+
+/* ── 공지 띠 ─────────────────────────── */
+.banner {
+  display: block;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #f2eefd, #f8f9fb 50%, #f2eefd);
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-secondary) !important;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.banner :global(p) {
+  margin: 0 !important;
+  font: inherit !important;
+  color: inherit !important;
+}
+
+.banner {
+  transition: opacity 0.15s ease;
+}
+
+.banner:hover {
+  opacity: 0.7;
+}
+
+.banner strong {
+  color: var(--color-font-primary);
+}
+
+/* ── 히어로 ─────────────────────────── */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 560px;
+  text-align: center;
+}
+
+/* KONACARD 공식 워드마크 (200×24 원본 비율 유지) */
+.heroLogo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 320px; /* 아래 "Design System"(48px, 실측 폭 323) 과 같은 폭 — 높이 약 38 */
+  max-width: 80%;
+  height: auto;
+  margin: 0 0 12px;
+}
+
+.heroTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font-family: var(--font-family-body) !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 58px !important;
+  letter-spacing: -1.2px;
+  color: var(--color-font-primary) !important;
+}
+
+.heroText {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 24px !important;
+  font: var(--text-body-1-regular) !important;
+  font-size: 17px !important;
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-tertiary) !important;
+}
+
+.heroActions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  background: var(--color-background-secondary);
+  font: var(--text-body-2-bold);
+  color: var(--color-font-primary) !important;
+  text-decoration: none !important;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pill:hover {
+  background: #eceef3;
+}
+
+/* ── 떠 있는 장식 (움직임은 IntroParts.tsx 의 마우스·스크롤 패럴랙스) ── */
+.floatingWrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.float {
+  position: absolute;
+  display: flex;
+  gap: 4px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+  will-change: transform;
+}
+
+.f1 { top: 64px;    left: 6%; }
+.f2 { top: 48px;    right: 8%; }
+.f3 { top: 190px;   left: 22%; }
+.f4 { bottom: 72px; left: 4%; }
+.f5 { bottom: 96px; right: 4%; }
+.f6 { top: 200px;   right: 20%; }
+.f7 { bottom: 32px; left: 46%; }
+
+/* ── 등장 애니메이션 ─────────────────────────── */
+/* 히어로: 로고 → 제목 → 문장 → 버튼 순서로 아래에서 올라옴 */
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.enter {
+  opacity: 0;
+  animation: enterUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes enterUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 섹션: 화면에 들어오면 100px 아래에서 올라옴 (IntroParts.tsx Reveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter { animation: none; opacity: 1; }
+  .reveal { transition: none; }
+}
+
+.chipOn,
+.chipOff {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 9999px;
+}
+
+.chipOn {
+  background: var(--color-brand-primary);
+  font: var(--text-body-2-bold);
+  color: var(--color-font-white);
+}
+
+.chipOff {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-default);
+  font: var(--text-body-2-regular);
+  color: var(--color-font-primary);
+}
+
+.toast {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.65);
+  font: var(--text-body-2-regular);
+  color: var(--color-font-white);
+}
+
+/* ── 섹션 공통 ─────────────────────────── */
+.section {
+  margin: 96px 0 0;
+}
+
+.h2 {
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font-family: var(--font-family-body) !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 40px !important;
+  letter-spacing: -0.64px;
+  color: var(--color-font-primary) !important;
+}
+
+.lead {
+  white-space: nowrap;
+  margin: 0 0 32px !important;
+  font: var(--text-body-2-regular) !important;
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary) !important;
+}
+
+/* ── 리소스 카드 ─────────────────────────── */
+/* vibe.monday.com Resources 와 같은 구성: 넓으면 3장 한 줄, 좁으면 2 + 1 로 접힘 */
+.resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.resource {
+  display: flex;
+  flex: 1 1 280px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 32px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 20px;
+  background: var(--color-background-primary);
+  text-decoration: none !important;
+  transition: background 0.2s ease;
+}
+
+.resource:hover {
+  background: var(--color-background-secondary);
+}
+
+/* 아이콘: 기본 회색 solid → hover 시 검정·보라 solid 로 교체 */
+.cardIcon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 20px;
+}
+
+.cardIcon svg {
+  display: block;
+}
+
+.iconHover {
+  display: none;
+}
+
+.resource:hover .iconBase {
+  display: none;
+}
+
+.resource:hover .iconHover {
+  display: block;
+}
+
+/* Pattern 카드: 아직 링크 없음, hover 효과는 유지 */
+.resourceSoon {
+  cursor: default;
+}
+
+
+.resourceTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+.resourceText {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+}
+
+/* ── 좌 제목 · 우 내용 ─────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.h2Big {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font-family: var(--font-family-body) !important;
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  line-height: 44px !important;
+  letter-spacing: -0.72px;
+  color: var(--color-font-primary) !important;
+}
+
+.principles {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+  counter-reset: p;
+}
+
+.principle {
+  display: grid;
+  grid-template-columns: 40px 160px 1fr;
+  align-items: baseline;
+  margin: 0 !important;
+  padding: 16px 0 !important;
+  border-bottom: 1px solid var(--color-border-default);
+  counter-increment: p;
+}
+
+.principle::before {
+  content: counter(p, decimal-leading-zero);
+  font: var(--text-body-2-bold);
+  color: var(--color-brand-primary);
+}
+
+.principleTitle {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.principleText {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-tertiary);
+}
+
+/* ── 바로가기 칩 ─────────────────────────── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 9999px;
+  font: var(--text-body-2-regular);
+  color: var(--color-font-primary) !important;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary) !important;
+}
+
+/* ── 푸터 ─────────────────────────── */
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 96px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border-default);
+  font: var(--text-body-3-regular);
+  color: var(--color-font-quaternary);
+}
+
+@media (max-width: 720px) {
+  .page { padding: 0 0 48px; }
+  .heroTitle { font-size: 40px !important; line-height: 48px !important; }
+  .split { grid-template-columns: 1fr; }
+  .principle { grid-template-columns: 32px 1fr; }
+  .principleText { grid-column: 2; }
+  .f3, .f6, .f7 { display: none; }
+}

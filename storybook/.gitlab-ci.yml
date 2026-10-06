@@ -1,0 +1,5 @@
+# 배포는 공유 CI 템플릿(apps/ci-templates)이 처리합니다. 보통 이 파일은 건드릴 필요 없습니다.
+include:
+  - project: 'apps/ci-templates'
+    ref: main
+    file: '/nest-deploy.yml'

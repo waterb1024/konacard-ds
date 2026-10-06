@@ -1,77 +1,141 @@
 import { Meta } from "@storybook/blocks";
+import LinkTo from "@storybook/addon-links/react";
+import { FloatingObjects, Reveal } from "./IntroParts";
+import styles from "./Introduction.module.css";
+import logo from "./assets/brand/img_logo_konacard.svg";
 
 <Meta title="Introduction" />
 
-# KONACARD Design System
+export const FIGMA_URL = "https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9";
 
-한국콘텐츠진흥원 KONACARD 앱의 컴포넌트 라이브러리입니다.
-React · CSS Modules · Storybook 8 로 구축되며, **Figma 원본 파일이 진실의 소스**입니다.
+export const ArrowIcon = () => (
+  <svg width="8" height="12" viewBox="0 0 8 12" fill="none" aria-hidden="true"><path d="M2 11L7 6L2 1" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></svg>
+);
 
----
+{/* 카드 아이콘: 기본은 회색 solid, hover 시 검정·보라 solid 로 교체 (vibe.monday.com 카드 hover 참고) */}
+export const CardIcon = ({ base, hover }) => (
+  <span className={styles.cardIcon}>
+    <span className={styles.iconBase}>{base}</span>
+    <span className={styles.iconHover}>{hover}</span>
+  </span>
+);
 
-## 📐 Figma 원본
+export const FoundationIcon = () => (
+  <CardIcon
+    base={<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="12" cy="12" r="8" fill="#999999" /><circle cx="20" cy="20" r="8" fill="#DDDDDD" stroke="#fff" strokeWidth="2" /></svg>}
+    hover={<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="12" cy="12" r="8" fill="#000" /><circle cx="20" cy="20" r="8" fill="#805AE9" stroke="#fff" strokeWidth="2" /></svg>}
+  />
+);
 
-- **파일**: [-AX- KONACARD - COMMON](https://www.figma.com/design/dHJa65PGtCQHq2n4qgL9Z9)
-- **파일 키**: `dHJa65PGtCQHq2n4qgL9Z9`
-- **주요 페이지**:
-  - `17:827` — 02_Components (컴포넌트 카탈로그)
-  - `295:3042` — 01_Foundations (토큰)
+export const ComponentIcon = () => (
+  <CardIcon
+    base={<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="8" width="28" height="16" rx="8" fill="#999999" /><circle cx="22" cy="16" r="5" fill="#fff" /></svg>}
+    hover={<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="8" width="28" height="16" rx="8" fill="#805AE9" /><circle cx="22" cy="16" r="5" fill="#fff" /></svg>}
+  />
+);
 
-## 📁 Sidebar 계층
+export const PatternIcon = () => (
+  <CardIcon
+    base={<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="12" height="12" rx="3" fill="#999999" /><rect x="17" y="3" width="12" height="12" rx="3" fill="#DDDDDD" /><rect x="3" y="17" width="12" height="12" rx="3" fill="#DDDDDD" /><rect x="17" y="17" width="12" height="12" rx="3" fill="#999999" /></svg>}
+    hover={<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="12" height="12" rx="3" fill="#000" /><rect x="17" y="3" width="12" height="12" rx="3" fill="#805AE9" /><rect x="3" y="17" width="12" height="12" rx="3" fill="#805AE9" /><rect x="17" y="17" width="12" height="12" rx="3" fill="#000" /></svg>}
+  />
+);
 
-```
-Foundation
-├── Color · Typography · Spacing · Radius · Iconography · Elevation
+<div className={styles.page}>
 
-Component
-├── Button
-│   ├── Box · Icon · Text
-├── Input
-│   ├── TextField · SearchBar
-├── Controls
-│   ├── Checkbox · Radio button
-├── Select
-├── Tooltip · Label · Banner · Tab · List · Popup · Toast · Info · Chips
-```
+  <a className={styles.banner} href={FIGMA_URL} target="_blank" rel="noreferrer">
+    <strong>Figma AX 파일 기준</strong>으로 재정리 중이에요. 문서와 다르면 <u>Figma 원본</u>을 따라 주세요.
+  </a>
 
-## 🧭 사용 원칙
+  <section className={styles.hero}>
+    <FloatingObjects />
+    <div className={styles.heroContent}>
+      <img className={`${styles.heroLogo} ${styles.enter}`} style={{ animationDelay: "0ms" }} src={logo} alt="KONACARD" />
+      <h1 className={`${styles.heroTitle} ${styles.enter}`} style={{ animationDelay: "120ms" }}>Design System</h1>
+      <p className={`${styles.heroText} ${styles.enter}`} style={{ animationDelay: "240ms" }}>KONACARD 앱 화면을 만드는 토큰과 컴포넌트를 한곳에 모았어요.</p>
+      <div className={`${styles.heroActions} ${styles.enter}`} style={{ animationDelay: "360ms" }}>
+        <LinkTo className={styles.pill} title="Foundation/Color" name="Overview">시작하기</LinkTo>
+        <a className={styles.pill} href={FIGMA_URL} target="_blank" rel="noreferrer">Figma</a>
+      </div>
+    </div>
+  </section>
 
-1. **Figma 원본 우선** — 문서·기존 코드와 어긋나면 Figma 가 진실
-2. **아이콘은 직접 그리지 않음** — Figma vector 좌표 그대로 이식
-3. **토큰 사용** — hex 하드코딩 금지 (`--color-brand-primary` 등 CSS variable)
-4. **Pretendard 통일** — Regular / Bold 두 굵기만
+  <section className={styles.section}>
+    <Reveal>
+      <h2 className={styles.h2}>Our Resources</h2>
+      <p className={styles.lead}>화면을 만들 때 필요한 재료를 순서대로 살펴보세요.</p>
+      <div className={styles.resources}>
+        <LinkTo className={styles.resource} title="Foundation/Color" name="Overview">
+          <FoundationIcon />
+          <span className={styles.resourceTitle}>Foundation</span>
+          <span className={styles.resourceText}>색, 타이포그래피, 간격, 모서리, 아이콘 — 모든 화면의 바탕이 되는 토큰.</span>
+        </LinkTo>
+        <LinkTo className={styles.resource} title="Component/Button/Box" name="Docs">
+          <ComponentIcon />
+          <span className={styles.resourceTitle}>Component</span>
+          <span className={styles.resourceText}>버튼, 입력, 컨트롤, 리스트 — Figma 와 같은 이름·variant 로 만든 블록.</span>
+        </LinkTo>
+        <div className={`${styles.resource} ${styles.resourceSoon}`} aria-disabled="true">
+          <PatternIcon />
+          <span className={styles.resourceTitle}>Pattern</span>
+          <span className={styles.resourceText}>입력·조회·결과 화면처럼 자주 쓰는 화면 구성을 모은 조립 가이드.</span>
+        </div>
+      </div>
+    </Reveal>
+  </section>
 
-## 🔗 Code Connect
+  <section className={styles.section}>
+    <Reveal className={styles.split}>
+      <h2 className={styles.h2Big}>Core<br />Principles</h2>
+      <ol className={styles.principles}>
+        {[
+          ["보라는 강조에만", "brand/primary #805AE9 는 필요한 한 곳에만. 배경 전면·본문 텍스트 금지."],
+          ["한 화면 = 한 과업", "헤드라인 강조는 한 구절, CTA 는 원칙적으로 1개."],
+          ["모노톤 뼈대", "배경은 흰색, 카드는 background/secondary 회색. 빨강은 오류에만."],
+          ["Pretendard 통일", "Regular · Bold 두 굵기만."],
+          ["좌우 20px", "모든 화면의 좌우 여백은 layout/margin 20."],
+        ].map(([t, d]) => (
+          <li key={t} className={styles.principle}>
+            <span className={styles.principleTitle}>{t}</span>
+            <span className={styles.principleText}>{d}</span>
+          </li>
+        ))}
+      </ol>
+    </Reveal>
+  </section>
 
-Figma 컴포넌트 인스턴스와 코드가 자동 연결돼 있어요.
-Dev Mode 에서 컴포넌트 선택 시 아래와 같은 스니펫이 자동 반환됩니다:
+  <section className={styles.section}>
+    <Reveal className={styles.split}>
+      <h2 className={styles.h2Big}>Quick<br />Links</h2>
+      <div className={styles.chips}>
+        {[
+          ["Button", "Component/Button/Box"],
+          ["Text field", "Component/Input/TextField"],
+          ["Checkbox", "Component/Controls/Checkbox"],
+          ["Checkbox label", "Component/Controls/Checkbox label"],
+          ["Radio label", "Component/Controls/Radio label"],
+          ["Switch", "Component/Controls/Switch"],
+          ["Select", "Component/Select"],
+          ["Header", "Component/Header"],
+          ["Tabs", "Component/Tabs"],
+          ["List", "Component/List"],
+          ["Popup", "Component/Popup"],
+          ["Toast", "Component/Toast"],
+          ["Tooltip", "Component/Tooltip"],
+          ["Label", "Component/Label"],
+          ["Chips", "Component/Chips"],
+        ].map(([label, title]) => (
+          <LinkTo key={title} className={styles.chip} title={title} name="Docs">
+            {label} <ArrowIcon />
+          </LinkTo>
+        ))}
+      </div>
+    </Reveal>
+  </section>
 
-```tsx
-<Button size="large" color="Brand">확인</Button>
-<Input state="active" placeholder="입력하세요" />
-<Tooltip variant="line" placement="bottom-left">Tooltip Text</Tooltip>
-```
+  <footer className={styles.footer}>
+    <span>관련 문서 · <code>konacard-ds-foundation.md</code> · <code>konacard-ds-components.md</code> · <code>konacard-ds-rule.md</code> · <code>components.catalog.json</code></span>
+    <span>Code Connect 매핑 반영 · <code>cd storybook && npm run figma:publish</code></span>
+  </footer>
 
-새 컴포넌트 매핑 추가 시:
-
-```bash
-cd storybook
-npm run figma:publish
-```
-
-## 📚 관련 문서
-
-- `konacard-ds-foundation.md` — 토큰 정의
-- `konacard-ds-components.md` — 컴포넌트별 스펙
-- `konacard-ds-rule.md` — 화면 조립 규칙 · 안티패턴
-- `storybook/README.md` — Storybook 셋업 · Figma 규칙
-
-## 🚀 시작하기
-
-```bash
-cd storybook
-npm install
-npm run storybook   # http://localhost:6006
-```
-
-컴포넌트별 스토리에서 variant / props 매트릭스와 실제 렌더링을 확인할 수 있습니다.
+</div>

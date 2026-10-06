@@ -1,0 +1,68 @@
+/*
+ * konacard-ds-components.md § 조합 컴포넌트 — control/agree
+ * Figma: controls/checkbox label (2004:5148) — 값은 전부 AX 실측
+ */
+
+.root {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 체크박스 + 텍스트 묶음: gap 12, padding 8 0 */
+.txt {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--spacing-small);
+  min-width: 0;
+  padding: var(--spacing-xsmall) var(--spacing-none);
+}
+
+.text {
+  flex: 1 0 0;
+  min-width: 0;
+  cursor: pointer;
+  word-break: break-word;
+}
+
+/* type=title — body/1-Bold, font/primary */
+.title {
+  font: var(--text-body-1-bold);
+  letter-spacing: var(--font-letterspacing-medium);
+  color: var(--color-font-primary);
+}
+
+/* type=1depth·2depth — body/2-Regular, font/secondary */
+.depth {
+  font: var(--text-body-2-regular);
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-secondary);
+}
+
+/* 우측 화살표 영역: 좌 padding 32, 상하 16(1depth) / 12(2depth) */
+.arrow {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: var(--spacing-2xlarge);
+  padding-right: var(--spacing-none);
+  border: 0;
+  background: none;
+}
+
+button.arrow {
+  cursor: pointer;
+}
+
+.arrow-1depth {
+  padding-top: var(--spacing-medium);
+  padding-bottom: var(--spacing-medium);
+}
+
+.arrow-2depth {
+  padding-top: var(--spacing-small);
+  padding-bottom: var(--spacing-small);
+}

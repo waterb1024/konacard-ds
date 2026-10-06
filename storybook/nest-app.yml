@@ -1,0 +1,7 @@
+name: konacard-ds                    # 한 번 정하면 바꾸지 않음 (바꾸면 새 앱이 생김)
+display_name: KONACARD 디자인 시스템
+category: 사내 도구
+tags: [디자인 시스템, 컴포넌트, 스토리북, 코나카드]
+domain: konacard-ds.konanest.com
+size: tiny                           # 정적 페이지
+description: KONACARD 앱 화면을 만드는 색·글꼴 같은 기본 규칙과 화면 부품을 모아 보여 주는 사이트
