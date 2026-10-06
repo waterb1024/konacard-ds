@@ -72,13 +72,18 @@ konacard-design 스킬은 AI 에이전트가 KONACARD 화면과 디자인 시스
 
 <table className={styles.table}>
   <thead>
-    <tr><th>파일</th><th>언제 읽는가</th></tr>
+    <tr><th>구분</th><th>파일</th><th>언제 쓰이나요</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>skills/konacard-design/SKILL.md</code></td><td>진입점. 요청이 화면 생산인지 DS 유지관리인지 나누고 에이전트에게 넘깁니다</td></tr>
-    <tr><td><code>{"agents/screen-*.md"}</code></td><td>화면 생산 흐름의 각 단계</td></tr>
-    <tr><td><code>agents/figma-composer.md</code></td><td>Figma 조립. DS 컴포넌트 키는 <code>components.catalog.json</code> 에서 가져옵니다</td></tr>
-    <tr><td><code>{"agents/ds-*.md"}</code></td><td>DS 유지관리 흐름의 각 단계</td></tr>
+    <tr><td>시작</td><td><code>SKILL.md</code></td><td>스킬을 부르면 가장 먼저 읽어요. 요청이 화면 만들기인지 디자인 시스템 관리인지 나눠서 아래 담당에게 넘겨요</td></tr>
+    <tr><td rowSpan="4">화면 만들기</td><td><code>screen-spec-reader.md</code></td><td>기획서·Figma 링크·이미지를 받았을 때 — 화면에 필요한 내용을 정리해요</td></tr>
+    <tr><td><code>screen-planner.md</code></td><td>정리가 끝났을 때 — 어떤 종류의 화면인지 판단하고 쓸 컴포넌트와 배치를 계획해요</td></tr>
+    <tr><td><code>figma-composer.md</code></td><td>계획을 승인했을 때 — Figma 에 실제 화면을 조립해요</td></tr>
+    <tr><td><code>screen-reviewer.md</code></td><td>화면이 완성됐을 때 — 디자인 규칙에 어긋난 곳을 찾아 알려 줘요 (직접 고치지는 않아요)</td></tr>
+    <tr><td rowSpan="4">디자인 시스템 관리</td><td><code>ds-figma-inspector.md</code></td><td>컴포넌트를 새로 만들거나 값을 확인할 때 — Figma 원본에서 크기·색·글꼴을 뽑아요</td></tr>
+    <tr><td><code>ds-component-implementer.md</code></td><td>뽑은 값으로 Storybook 에 컴포넌트를 만들거나 고칠 때</td></tr>
+    <tr><td><code>ds-publisher.md</code></td><td>Figma 에서 컴포넌트를 선택하면 코드가 보이도록 연결(Code Connect)을 반영할 때</td></tr>
+    <tr><td><code>ds-doc-curator.md</code></td><td>디자인 시스템 문서와 Figma 가 서로 다를 때 — 문서를 Figma 기준으로 맞춰요</td></tr>
   </tbody>
 </table>
 
