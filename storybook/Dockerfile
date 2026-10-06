@@ -1,4 +1,5 @@
 # KONA Nest 배포용 — Storybook 정적 빌드 후 serve 로 서빙
+# serve.json(cleanUrls:false, .storybook/public 에서 복사됨) 필수 — 없으면 iframe.html → /iframe 리다이렉트로 ?id= 가 사라져 본문이 안 뜬다
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json ./
