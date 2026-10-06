@@ -28,12 +28,15 @@ const TYPES = {
   ".map": "application/json; charset=utf-8",
 };
 
+const ASSETS = path.join(ROOT, "assets") + path.sep;
+
 function send(res, file) {
   const ext = path.extname(file);
   res.writeHead(200, {
     "Content-Type": TYPES[ext] || "application/octet-stream",
-    // html 은 매번 새로 받게 해 재배포가 바로 보이게 한다. 해시 붙은 assets 는 길게 캐시
-    "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=31536000, immutable",
+    // 이름에 해시가 붙는 assets/ 만 길게 캐시. index.json(메뉴 목록)·html·로고 등은
+    // 이름이 고정이라 매번 확인해야 재배포가 바로 보인다
+    "Cache-Control": file.startsWith(ASSETS) ? "public, max-age=31536000, immutable" : "no-cache",
   });
   fs.createReadStream(file).pipe(res);
 }
