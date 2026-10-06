@@ -3,6 +3,20 @@
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
 />
 <link rel="icon" type="image/svg+xml" href="kona-k.svg" />
+<script>
+  /* v0.1.2~0.1.4 에서 index.json(메뉴 목록)을 1년 캐시로 내보낸 탓에, 그때 방문한 브라우저는
+     새 메뉴를 못 본다. 캐시본과 서버 최신본을 비교해 다르면 캐시를 갱신하고 한 번만 새로고침 */
+  (function () {
+    if (location.hostname === "localhost" || sessionStorage.getItem("kona-index-checked")) return;
+    sessionStorage.setItem("kona-index-checked", "1");
+    Promise.all([
+      fetch("index.json", { cache: "force-cache" }).then(function (r) { return r.text(); }),
+      fetch("index.json", { cache: "reload" }).then(function (r) { return r.text(); }),
+    ]).then(function (v) {
+      if (v[0] !== v[1]) location.reload();
+    }).catch(function () {});
+  })();
+</script>
 <style>
   /* ── 사이드바: vibe.monday.com 참고 — 흰 배경 · 아이콘 없는 평평한 메뉴 · 둥근 선택 배경 ── */
   .sidebar-container {
