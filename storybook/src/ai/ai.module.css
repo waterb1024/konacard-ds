@@ -36,30 +36,44 @@
 
 .table th {
   text-align: left;
-  font: var(--text-body-2-bold);
   background: var(--color-background-secondary);
 }
 
+/* Storybook 문서 기본 스타일이 칸·span 마다 13~16px 를 덮어써서, 모든 칸을 body/2(14/22)로 고정 */
 .table th,
 .table td {
+  font: var(--text-body-2-regular) !important;
+  letter-spacing: var(--font-letterspacing-small);
   padding: 12px 16px !important;
   border: 0 !important;
   border-bottom: 1px solid var(--color-border-default) !important;
   vertical-align: top;
 }
 
+.table th {
+  font: var(--text-body-2-bold) !important;
+}
+
 .table tr {
   background: transparent !important;
+}
+
+.table td :global(code),
+.table td span {
+  font-size: inherit !important;
+  line-height: inherit !important;
 }
 
 /* 표 칸 안의 메인 문구 + 회색 보조 문구 (File Structure "언제 쓰이나요") */
 .cellMain {
   display: block;
+  font: inherit !important;
   color: var(--color-font-primary);
 }
 
 .cellSub {
   display: block;
+  font: inherit !important;
   margin-top: 2px;
   color: var(--color-font-quaternary);
 }
