@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { Switch, SwitchSetting } from "./Switch";
+import { Switch } from "./Switch";
 
 const meta = {
   title: "Component/Controls/Switch",
@@ -87,31 +87,6 @@ export const Matrix: Story = {
             <Switch size={s} checked disabled />
           </div>
         ))}
-      </div>
-    );
-  },
-};
-
-export const SwitchSettingRow: Story = {
-  name: "switch_setting (Title + Desc + Switch)",
-  render: () => {
-    const [notif, setNotif] = useState(true);
-    const [marketing, setMarketing] = useState(false);
-    return (
-      <div style={{ display: "grid", gap: 8, width: 320 }}>
-        <SwitchSetting
-          title="알림 받기"
-          description="새로운 혜택과 안내를 알려드려요."
-          checked={notif}
-          onChange={setNotif}
-        />
-        <SwitchSetting
-          title="마케팅 정보 수신"
-          description="이메일·문자로 이벤트 소식을 받습니다."
-          checked={marketing}
-          onChange={setMarketing}
-          background="gray"
-        />
       </div>
     );
   },

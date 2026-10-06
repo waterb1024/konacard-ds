@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes } from "react";
 import styles from "./Switch.module.css";
 
 /**
@@ -62,44 +62,3 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch
     </button>
   );
 });
-
-export interface SwitchSettingProps {
-  title: string;
-  description?: ReactNode;
-  checked?: boolean;
-  onChange?: (next: boolean) => void;
-  background?: "white" | "gray";
-  disabled?: boolean;
-}
-
-/**
- * control/swtich_setting 조합 — Title + Description + Switch(large)
- */
-export function SwitchSetting({
-  title,
-  description,
-  checked = false,
-  onChange,
-  background = "white",
-  disabled,
-}: SwitchSettingProps) {
-  return (
-    <div
-      className={cx(
-        styles.settingRow,
-        background === "gray" && styles["settingRow-gray"],
-      )}
-    >
-      <div className={styles.settingText}>
-        <span className={styles.settingTitle}>{title}</span>
-        {description && <span className={styles.settingDesc}>{description}</span>}
-      </div>
-      <Switch
-        size="large"
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-      />
-    </div>
-  );
-}

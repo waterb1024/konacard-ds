@@ -1,0 +1,83 @@
+/*
+ * konacard-ds-components.md § control/swtich_setting
+ * Figma: controls/swtich label (2143:5491) — 값은 전부 AX 실측
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 var(--spacing-large); /* layout/margin 20 */
+  box-sizing: border-box;
+}
+
+/* 타이틀 ↔ 스위치 gap 16 */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium);
+}
+
+.title {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--color-font-primary);
+  word-break: break-word;
+}
+
+.action {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.guide {
+  margin: 0 !important;
+  color: var(--color-font-quaternary);
+  word-break: break-word;
+}
+
+/* 하단 구분선 — line/solid light (#000 6%) */
+.line {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--color-divider-primary);
+}
+
+/* ── size=large ── */
+.large .title {
+  padding: var(--spacing-medium) var(--spacing-none);
+  font: var(--text-body-1-regular);
+  letter-spacing: var(--font-letterspacing-medium);
+}
+
+.large .action {
+  width: 56px;
+  height: 56px;
+}
+
+.large .guide {
+  padding-bottom: var(--spacing-medium);
+  font: var(--text-body-2-regular) !important;
+  letter-spacing: var(--font-letterspacing-small);
+}
+
+/* ── size=small ── */
+.small .title {
+  padding: var(--spacing-small) var(--spacing-none);
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
+
+.small .action {
+  height: 44px;
+}
+
+.small .guide {
+  padding-bottom: var(--spacing-small);
+  font: var(--text-body-3-regular) !important;
+  letter-spacing: var(--font-letterspacing-xsmall);
+}
