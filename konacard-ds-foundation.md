@@ -967,7 +967,7 @@ wrapper (360×800, white)
 | 결제·혜택 행 | `list/payment`, `list/benefit`, `list/benefit-store` | |
 | 본문 타이틀(섹션 제목) | `title/title` (Type=Con_list/Input, Size, Color=Black/Gray) | h2 텍스트 직접 입력 금지 |
 | 가격·정보 텍스트 그룹 | `info/text-title` | |
-| 태그·라벨 칩 | `label/basic-label` (size, type=color/line, color=brand/brand-light/gray-dark/white/warning…), `label/color-label` (점 라벨), `label/link-label` | 직접 cornerRadius+fill로 칩 만들지 말 것 |
+| 태그·라벨 칩 | `label` (구 label/basic-label — size, type=color/line, color=brand-gradient/brand/brand-light/gray-dark/warning, line 은 3색·tiny 없음) | 직접 cornerRadius+fill로 칩 만들지 말 것 |
 | 배지 (점/숫자/new) | `badges/badge` (type=dot/new/num-min/num-max) | |
 | CTA 버튼 (대) | `button/primary` (size=large/medium, type=brand/gray-light) | |
 | 하단 고정 버튼 | `button/fixed-bottom` (Device=AOS) | h=72px |

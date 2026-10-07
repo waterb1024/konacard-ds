@@ -32,7 +32,7 @@ related_docs:
 | **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
 | **08_Indicator** | ✅ 완료 | Page dot, Navigator(chevron button), N/NN count pill, YYYY.MM period navigator |
-| **09_Label** | ✅ 완료 | Basic Label(Fill·Line 5색), Link Label(icon+text), label-State(deprecated) |
+| **09_Label** | ✅ 완료 | label (type color 5색 × 4사이즈 · line 3색 × 3사이즈) |
 | **10_Info** | ✅ 완료 | Text info(1·2Depth bullet), Info-box(Item List + Box Case) |
 | **11_Tooltip** | ✅ 완료 | Popup Type(?, dialog), Bubble Type(!, inline Line/Brand) + 제작 가이드 |
 | **12_Banner** | ✅ 완료 | Benefit Banner(1line), Action Banner(1+2depth) + 6 파스텔 color |
@@ -1083,46 +1083,39 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 > Figma 카테고리 노드: `149:1240`
 > 사용자가 선택할 수 없고 **정보 전달 기능만** 가진 pill 형 태그.
 
-## Basic Label
+## Label (`label`, 구 `label/basic-label`)
 
-- **사이즈·기하**:
-  - **Fixed 24** (height)
-  - **Corner radius = 50%** (완전 pill)
-  - 좌우 padding **8px**
-  - 문구 입력 영역 = 가변(화면이 늘어날 경우 늘어나는 영역)
-  - Line 1dp(pt) (아웃라인 variant에서만)
-- **Type — Fill (배경 채움)** 5색조:
-  - `Brand` — 보라 채움 + 흰 텍스트
-  - `Brand_Light` — 옅은 보라 채움 + 보라 텍스트
-  - `Gray_Light` — 옅은 회색 채움 + 검정 텍스트
-  - `Dark` — 진한 회색 채움 + 흰 텍스트
-  - `White` — 흰 채움 + 검정 텍스트 (음영·그림자 없음)
-- **Type — Line (아웃라인)** 5색조: 같은 5색 (Brand/Brand_Light/Gray_Light/Dark/White) — 흰 배경 + 해당 색 border 1dp + 해당 색 텍스트
-- **텍스트**: `body/3-Bold` 12px 권장 (짧은 태그)
+- **Figma 노드**: `2121:5513` (❖ Label 페이지) — 2026-10-07 KeyScreen AOS 실사용 기준 정리, 29 variant
+- **Variant 속성 3개** (소문자): `size` × `type` × `color`. 타입마다 쓸 수 있는 색·사이즈가 다름
 
-## Link Label
+| type | color | size | variant |
+|---|---|---|---|
+| `color` (배경 채움) | `brand-gradient` · `brand` · `brand-light` · `gray-dark` · `warning` | `large` · `medium` · `small` · `tiny` | 5 × 4 = 20 |
+| `line` (안쪽 1px 테두리, 바탕 없음) | `brand-gradient` · `brand` · `warning` | `large` · `medium` · `small` (tiny 없음) | 3 × 3 = 9 |
 
-- **용도**: 아이콘 + 짧은 텍스트 조합 태그 (링크·첨부·상태 표기)
-- **사이즈·기하**:
-  - **Fixed 22** (height, Basic보다 낮음)
-  - 좌측 아이콘 12px + gap **2px** + 텍스트 + 우측 padding 8px, 좌 padding 4px
-  - Corner radius 50%
-- **Type — Fill / Line 각 5색** (Basic Label과 동일 5색조)
-- **주로 링크 아이콘 🔗** 등 액션 힌트 아이콘과 함께 사용
+- **사이즈·기하** (AX 실측) — 모서리 `radius/components/label` (9999, 완전 pill), 폭 = 텍스트 hug
 
-## label - State (⚠️ 향후 제거 예정)
+| size | 높이 | padding | 텍스트 |
+|---|---|---|---|
+| `large` | 30 | 4 / 12 | `body/2-bold` 14/22 |
+| `medium` | 26 | 4 / 12 | `body/3-Bold` 12/18 |
+| `small` | 24 고정 | 좌우 8 | `body/4-Bold` 11/16 |
+| `tiny` | 20 | 4 / 8 | Bold 9/12, 자간 -2% (텍스트 스타일 없음) |
 
-- **Figma에 존재하나 신규 화면 사용 지양** (deprecated)
-- 좌측 dot 아이콘 + 텍스트 pill (Fixed 24, dot 색으로 상태 표기)
-- 6색 dot: red / purple / mint / blue / darkgray / orange
-- **대체**: Basic Label의 `Fill` 5색으로 표현 (dot 대신 배경 색으로)
+- **color 시각**:
+  - `brand-gradient` — #804EE2 → #526ED3 가로 그라데이션 + 흰 텍스트 (line 은 테두리·텍스트 모두 그라데이션). KeyScreen 에서 가장 많이 씀
+  - `brand` — #805AE9 채움 + 흰 텍스트 (line: 보라 테두리 + 보라 텍스트)
+  - `brand-light` — #F4F0FD 채움 + #805AE9 텍스트 (color 전용)
+  - `gray-dark` — #999 (`color/label/neutral-tertiary`) 채움 + 흰 텍스트 (color 전용)
+  - `warning` — #FF364B (`color/label/accent-red`) 채움 + 흰 텍스트 (line: 빨강 테두리 + 빨강 텍스트)
+- **정리 이력 요약**: gray-light · white 색, line tiny, `label/color-label` · `label/link-label` 세트는 KeyScreen 실사용 0곳(white 는 숨김 6곳)이라 삭제. 오타 `gray-drak` → `gray-dark`
 
 ## 09_Label 안티패턴
 
 - ❌ **Label을 클릭 가능한 요소로 사용** (반드시 정보 표시 전용 — 클릭이 필요하면 `02_Button § Small` 사용)
-- ❌ Label에 그림자·gradient (플랫 스타일 유지)
+- ❌ Label에 그림자 (플랫 스타일 유지). 그라데이션은 `brand-gradient` 색으로만
 - ❌ Label 안 텍스트 6자 이상 (짧은 태그 원칙)
-- ❌ 신규 화면에 `label - State` (dot 형) 사용 (Basic Label Fill로 대체)
+- ❌ line 타입에 `brand-light` · `gray-dark` 또는 `tiny` 사용 (Figma 에 없는 조합)
 
 ---
 
@@ -1343,7 +1336,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 | 06 | List | list (4형), expand, card-select, bottomsheet |
 | 07 | Line | Solid, Dotted, Divider |
 | 08 | Indicator | Page dot, Navigator, N/NN badge, Alert badge (dot/new/count) |
-| 09 | Label | Basic (Fill·Line 5색), Link, label-State(deprecated) |
+| 09 | Label | label (color 5색 · line 3색) |
 | 10 | Info | Text info (bullet 2depth), Info-box |
 | 11 | Tooltip | Popup(?), Bubble(!, Line/Brand) |
 | 12 | Banner | Benefit(1line), Action(1+2depth), 6 파스텔 |

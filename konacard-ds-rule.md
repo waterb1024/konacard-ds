@@ -189,7 +189,7 @@ description: >
 
 1. **팝업 헤딩 (필수)** — `popup/popup_Title` 컴포넌트의 **`type=guide` variant 사용** (§ "`popup/popup_Title` 컴포넌트 4 variant 규칙" 참조). `heading/1-bold` 24/32, **전체 보라(font/brand) 통일**, 중앙정렬 (2줄 허용). 예: "카드 폐기 전 / 꼭 확인해주세요!"
 2. **회색 안내 카드** (`background/secondary`, radius 12):
-   - **"중요!" pill 배지 (필수)** — brand 배경 + 흰 텍스트, 카드 안 상단 중앙 (`label/basic-lable` 재사용)
+   - **"중요!" pill 배지 (필수)** — brand 배경 + 흰 텍스트, 카드 안 상단 중앙 (`label` type=color color=brand 재사용)
    - **위험 안내 텍스트**:
      - 위험 사항 1개 → **중앙정렬 단일 문장** (`body/1-regular` 15/24)
      - 위험 사항 여러 개 → **bullet 리스트 좌측정렬** (`body/2-Regular` 14/22)
@@ -700,7 +700,7 @@ placeholder 상태 콘텐츠. 섹션 헤딩 "최근 검색" + 아웃라인 round
 | **리스트 카드 (검색 결과)** | **우측 정보 영역 상단** (브랜드명 위) | 별개 라인 pill |
 
 - 리스트에서는 이미지가 좌측 정사각이라 오버레이가 어려움 → 우측 정보 라인으로 이동
-- **배지 색, 위치별로 다름** — MAIN 그리드의 BEST: `color/icon/accent-red` #FF364B / 검색 결과 리스트의 BEST: `color/base/brand-primary` #805AE9. 같은 `label/basic-lable` 컴포넌트에서 배경색만 다르게 오버라이드됨.
+- **배지 색, 위치별로 다름** — MAIN 그리드의 BEST: `color/icon/accent-red` #FF364B / 검색 결과 리스트의 BEST: `color/base/brand-primary` #805AE9. 같은 `label` 컴포넌트(구 label/basic-lable)에서 배경색만 다르게 오버라이드됨.
 
 ### 검색 결과 없음 빈 상태
 
