@@ -8,7 +8,7 @@ import {
 } from "./Info";
 
 const meta = {
-  title: "Component/Info",
+  title: "Component/Info/Text info",
   component: TextInfo,
   tags: ["autodocs"],
   parameters: {

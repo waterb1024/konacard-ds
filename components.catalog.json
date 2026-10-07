@@ -784,10 +784,10 @@
         "2026-10-07 사용자 정리 완료: input/info-text → info 이름 변경, ❖ Info 페이지(10950:8835)로 이동, size 속성 삭제(large·medium·small → medium 모양 하나), 쓰지 않던 type=guide 삭제 → 5 variant (키 유지 여부: 키 7fd1467b…)",
         "정리 근거: medium 과 small 이 완전히 같았고, KeyScreen AOS 파일에서 large 는 보이는 곳 1곳(9-2-4 거래내역신청 이메일 안내)뿐, guide 는 0곳",
         "구조: 폭 230 고정 · 높이 hug, 좌우 padding 4, gap 4, 글자 body/3-Regular(12/18, -0.24) 폭 FILL·줄바꿈. 아이콘형은 ic 프레임 14×16(위 padding 2) 안에 input/bullet size=large 14×14 → 여러 줄일 때 아이콘은 첫 줄에 붙음(위 정렬)",
-        "type=error 만 세로 정렬 CENTER (나머지 MIN) — 한 줄일 땐 차이 없음, 여러 줄이면 다름 (정리 후보)",
         "input/bullet(2234:5516, 9 variant: icon_danger·alert_brand·alert_black·alert_gray·alert_white × large 14 / small 12)도 같은 ❖ Info 페이지에 있음. info 는 large(14) 3종만 씀",
         "KeyScreen AOS 파일은 라이브러리 키 4b72567e… 의 input/info-text 를 씀 (AX 키와 다름 — NEW 라이브러리일 수 있음)",
-        "Storybook: 지금은 Input 의 GuideText 가 비슷한 걸 따로 그림 (톤 5종 이름·색이 AX 와 다름) — 대응 컴포넌트 미정"
+        "2026-10-07 사용자가 type=error 세로 정렬을 다른 type 과 같은 위(MIN)로 수정",
+        "Storybook: Component/Info/Info text (InfoText.tsx) 로 AX 기준 구현. Input 의 안내 문구(GuideText)는 Input 정리 후 InfoText 로 교체 예정 — 그 전까지 Input 쪽 색·여백은 AX 와 다름"
       ],
       "docRef": "konacard-ds-components.md § Inputbox Guide Text"
     }

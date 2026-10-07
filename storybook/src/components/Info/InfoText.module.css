@@ -1,0 +1,37 @@
+/*
+ * KONACARD DS Info text — Figma info (41:1241), AX 실측 2026-10-07
+ * 좌우 padding 4 · gap 4 · 위 정렬 · 글자 body/3-Regular 12/18 (-0.24)
+ * 아이콘 자리 14×16 (위 padding 2) — 여러 줄이면 아이콘이 첫 줄에 붙음
+ */
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2xsmall); /* 4 */
+  padding: 0 var(--spacing-2xsmall); /* 0 4 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ic {
+  display: flex;
+  flex-shrink: 0;
+  width: 14px;
+  padding-top: 2px;
+  line-height: 0;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  font: var(--text-body-3-regular);
+  letter-spacing: var(--font-letterspacing-xsmall); /* -0.24 */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.info .text { color: var(--color-font-tertiary); } /* #666 */
+.error .text,
+.icon-error .text { color: var(--color-font-error); } /* #FF364B */
+.icon-info .text { color: var(--color-font-primary); } /* #000 */
+.icon-guide .text { color: var(--color-font-tertiary); } /* #666 */
