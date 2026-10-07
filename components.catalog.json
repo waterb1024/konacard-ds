@@ -706,6 +706,52 @@
         "문서 불일치 (md 미수정): 문서는 24·28 2사이즈, Disable 은 별도 이미지 에셋으로 기술 — AX 도 24·28 2사이즈, 비활성은 위처럼 색·opacity"
       ],
       "docRef": "konacard-ds-components.md § Radio"
+    },
+    "tooltip/tooltip": {
+      "type": "COMPONENT_SET",
+      "key": "7da5e7b59f16225c0e76c8bea6d86a9a66ed5009",
+      "nodeId": "200:1909",
+      "props": {
+        "style": [
+          "line",
+          "brand"
+        ],
+        "placement": [
+          "top-left",
+          "top",
+          "top-right",
+          "bottom-left",
+          "bottom",
+          "bottom-right",
+          "right",
+          "left"
+        ]
+      },
+      "defaults": {
+        "style": "line",
+        "placement": "bottom-left"
+      },
+      "semantics": {
+        "style": "line = 흰 바탕 + #805AE9 안쪽 1px 테두리 + 검정 글자 / brand = #805AE9 바탕 + 흰 글자",
+        "placement": "top-* · bottom-* = 말풍선 위치(핀은 반대쪽, -left/-right 는 핀 중심이 끝에서 20) / left · right = 핀이 붙는 쪽"
+      },
+      "heights": {
+        "top-* · bottom-*": "53 (말풍선 46 + 핀 8 - 겹침 1)",
+        "left · right": "46 (폭 = 말풍선 + 7)"
+      },
+      "aliases": {
+        "tooltip": "tooltip/tooltip",
+        "말풍선 툴팁": "tooltip/tooltip"
+      },
+      "notes": [
+        "2026-10-07 사용자 지목으로 대조 (❖ Tooltip 페이지 10801:6213). 16 variant = 2 style × 8 placement",
+        "내부 부품: tooltip/body (200:1960, type=line·brand) + tooltip/pin (세트 2416:6624, type=line·brand·white) — 직접 쓰지 말고 tooltip/tooltip 사용",
+        "말풍선: padding 12/16, radius 8, 글자 body/2-Regular (14/22, -0.28), 폭은 글자에 맞춤(hug). line 테두리 color/border/focus 1px 안쪽 — 크기에 안 들어감",
+        "핀: 12×8 마스크 안에 꼭짓점 모서리 2 인 삼각형 12×10 (밑변 2px 잘림). line 핀 테두리 color/border/brand. 말풍선과 1px 겹치고 핀이 항상 위에 그려짐(bottom·left 는 레이어 순서 반대)",
+        "Figma 이름 규칙이 섞여 있음: top/bottom 은 말풍선 위치, left/right 는 핀 위치 기준 (일관성 확인 후보) — Storybook 은 Figma 이름 그대로 따름",
+        "tooltip/pin 세트에 type=white 도 있으나 tooltip/tooltip 에서는 안 씀"
+      ],
+      "docRef": "konacard-ds-components.md § 11_Tooltip"
     }
   }
 }

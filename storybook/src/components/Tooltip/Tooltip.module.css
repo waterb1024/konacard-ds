@@ -7,7 +7,9 @@
  *
  * Body — padding 12v × 16h, radius 8 (radius/components/box-info)
  *        font: body/2-Regular (14 / 22 / -0.28)
- * Pin  — 12×8, body 와 -1px 오버랩, line 은 fill (white) + stroke 는 base 제외 open path
+ * Pin  — 12×8, body 와 -1px 오버랩, Figma tooltip/pin 원본 SVG (Tooltip.tsx)
+ * 크기 — line 도 brand 와 같이 248×46 (텍스트 216×22 기준): Figma 테두리는 안쪽(INSIDE) 이라
+ *        크기에 안 들어감 → CSS border 대신 inset box-shadow (border 쓰면 2px 커짐)
  * 슬롯 폭 40px (Figma 규격) → pin 중앙 배치 + items-start/center/end 로 좌/중/우 offset
  *
  * ── Body-Pin 이음새(seam) 방지 패턴 ────────────────────────────
@@ -16,8 +18,8 @@
  * 2) `.arrowSlot` 에 base 로 `z-index: 2` 부여 (body 는 1) — 배치와 무관하게
  *    arrow 가 항상 body 위에 그려져야 fill 이 body border 를 덮을 수 있음.
  * 3) 여기에 -1px 오버랩(margin) 을 조합해 pin 이 body border 를 정확히 1px 겹치게.
- * 4) Pin SVG 는 Tooltip.tsx 안에서 Figma polygon2 원본 cubic bezier 그대로 사용
- *    (strokeLinejoin: round 만으로는 실제 rounded tip 표현 불가).
+ * 4) Pin SVG 는 Figma tooltip/pin 원본 path 그대로 — 밑변은 8px 마스크 밖이라 안 보이고,
+ *    핀 아래 1px 가 body 테두리를 덮어 말풍선과 이어져 보임.
  */
 
 .tooltip {
@@ -40,7 +42,6 @@
   flex-direction: row;
   align-items: center;
 }
-.p-left { justify-content: flex-end; }
 
 /* ── Body ─────────────────────────────────────── */
 .body {
@@ -57,7 +58,7 @@
 
 .line .body {
   background: var(--color-background-primary);
-  border: 1px solid var(--color-border-focus);
+  box-shadow: inset 0 0 0 1px var(--color-border-focus);
   color: var(--color-font-primary);
 }
 
@@ -99,13 +100,13 @@
   margin-bottom: -1px;
 }
 
-/* left: body 왼쪽, arrow 오른쪽 → body 우측이 arrow 좌측 1px 덮음 */
-.p-left .body {
+/* left: arrow 왼쪽, body 오른쪽 → arrow 우측이 body 좌측 1px 덮음 */
+.p-left .arrowSlot {
   margin-right: -1px;
 }
 
-/* right: arrow 왼쪽, body 오른쪽 → arrow 우측이 body 좌측 1px 덮음 */
-.p-right .arrowSlot {
+/* right: body 왼쪽, arrow 오른쪽 → 1px 겹침 (arrow 가 z-index 로 위) */
+.p-right .body {
   margin-right: -1px;
 }
 

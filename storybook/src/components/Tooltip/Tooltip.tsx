@@ -7,11 +7,12 @@ import styles from "./Tooltip.module.css";
  * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 200:1909
  * spec: konacard-ds-components.md § 11_Tooltip
  *
- * Placement 명명 규칙 = "툴팁이 앵커에 대해 어디에 위치하는지"
- *   top-*   : 툴팁이 앵커 위에 있음, arrow 하단에서 아래로 향함
- *   bottom-*: 툴팁이 앵커 아래에 있음, arrow 상단에서 위로 향함
- *   left    : 툴팁이 앵커 왼쪽, arrow 우측에서 오른쪽으로 향함
- *   right   : 툴팁이 앵커 오른쪽, arrow 좌측에서 왼쪽으로 향함
+ * Placement — Figma(AX) 이름 그대로 (2026-10-07 대조):
+ *   top-*   : 말풍선이 위, 핀은 아래쪽에서 아래를 가리킴 (-left/-right = 핀 중심이 끝에서 20)
+ *   bottom-*: 말풍선이 아래, 핀은 위쪽에서 위를 가리킴
+ *   left    : 핀이 말풍선 왼쪽에 붙어 왼쪽을 가리킴
+ *   right   : 핀이 말풍선 오른쪽에 붙어 오른쪽을 가리킴
+ *   ※ top/bottom 은 "말풍선 위치", left/right 는 "핀 위치" 기준이라 Figma 이름 규칙이 서로 다름
  */
 
 export type TooltipPlacement =
@@ -30,14 +31,25 @@ const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
 /* ── Pin (arrow) SVG ──────────────────────────────
- * Figma polygon2 원본을 그대로 반영:
- *   - Tip 은 cubic bezier 로 둥글게 처리 (`strokeLinejoin: round` 만으로는
- *     실제 tip 이 각져 보였음 — Figma 는 진짜 rounded tip).
- *   - Diagonals 는 pin container 의 base edge 까지 연장돼 fill 이 body
- *     border 를 완전히 덮음 (seam 방지).
- *   - Stroke path 는 base 를 뺀 open path — body 의 border 와 이어져 보이도록.
+ * Figma tooltip/pin (2416:6624) 원본 SVG 그대로 (2026-10-07 AX 재추출):
+ *   - 12×8 마스크 안에 꼭짓점 모서리 2 인 삼각형(12×10) → 아래 2px 가 잘려 밑변이 안 보임
+ *   - line: 흰 바탕 + #805AE9 안쪽 1px 선 / brand: #805AE9 채움 (선 없음)
+ *   - 위를 향한 모양 하나만 두고, 방향은 SVG transform 으로 돌림
  */
 type PinDirection = "down" | "up" | "left" | "right";
+
+const PIN_PATH = {
+  line: "M4.71387 3.11523C5.29652 2.14461 6.70348 2.14461 7.28613 3.11523L11.1172 9.5L0.882812 9.5L4.71387 3.11523Z",
+  brand: "M4.28501 2.85831C5.06182 1.56363 6.93818 1.56363 7.71499 2.85831L12 10L0 10L4.28501 2.85831Z",
+};
+
+/* 위(12×8) 기준 좌표를 방향별로 옮기는 행렬 */
+const PIN_TRANSFORM: Record<PinDirection, string | undefined> = {
+  up: undefined,
+  down: "matrix(-1 0 0 -1 12 8)",
+  left: "matrix(0 -1 1 0 0 12)",
+  right: "matrix(0 1 -1 0 8 0)",
+};
 
 function Pin({
   style,
@@ -46,18 +58,10 @@ function Pin({
   style: TooltipStyle;
   direction: PinDirection;
 }) {
-  const isBrand = style === "brand";
-  const fill = isBrand
-    ? "var(--color-background-brand)"
-    : "var(--color-background-primary)";
-  const stroke = "var(--color-border-focus)";
-
-  const render = (
-    fillPath: string,
-    strokePath: string,
-    w: number,
-    h: number,
-  ) => (
+  const vertical = direction === "up" || direction === "down";
+  const w = vertical ? 12 : 8;
+  const h = vertical ? 8 : 12;
+  return (
     <svg
       width={w}
       height={h}
@@ -65,69 +69,32 @@ function Pin({
       fill="none"
       aria-hidden
       focusable="false"
+      style={{ overflow: "hidden" }}
     >
-      <path d={fillPath} fill={fill} />
-      {!isBrand && (
-        <path
-          d={strokePath}
-          fill="none"
-          stroke={stroke}
-          strokeWidth="1"
-          strokeLinejoin="round"
-        />
-      )}
+      <g transform={PIN_TRANSFORM[direction]}>
+        {style === "brand" ? (
+          <path d={PIN_PATH.brand} fill="var(--color-background-brand)" />
+        ) : (
+          <path
+            d={PIN_PATH.line}
+            fill="var(--color-background-primary)"
+            stroke="var(--color-border-brand)"
+          />
+        )}
+      </g>
     </svg>
-  );
-
-  /* Figma polygon2 원본 tip curve:
-   *   (4.71, 1.23) → C(5.30, 0.26) (6.70, 0.26) (7.29, 1.23)
-   * viewBox 12×8 기준 (Figma 8.113 → 8 로 살짝 스케일).
-   * Diagonals 는 tip 끝점에서 pin 의 base edge 코너 (0/12, 0/8) 까지 연장 →
-   * 원본보다 base 가 약간 넓어지지만 fill 이 body border 를 완전히 덮어 seam 방지.
-   */
-
-  if (direction === "up") {
-    /* tip up, base at bottom (bottom-* placement) */
-    return render(
-      "M0 8 L4.71 1.23 C5.30 0.26 6.70 0.26 7.29 1.23 L12 8 Z",
-      "M0 8 L4.71 1.23 C5.30 0.26 6.70 0.26 7.29 1.23 L12 8",
-      12,
-      8,
-    );
-  }
-  if (direction === "down") {
-    /* tip down, base at top (top-* placement). 세로 뒤집기: y' = 8 - y */
-    return render(
-      "M0 0 L4.71 6.77 C5.30 7.74 6.70 7.74 7.29 6.77 L12 0 Z",
-      "M0 0 L4.71 6.77 C5.30 7.74 6.70 7.74 7.29 6.77 L12 0",
-      12,
-      8,
-    );
-  }
-  if (direction === "right") {
-    /* tip right, base at left (left placement). 시계방향 90도 회전 */
-    return render(
-      "M0 0 L6.77 4.71 C7.74 5.30 7.74 6.70 6.77 7.29 L0 12 Z",
-      "M0 0 L6.77 4.71 C7.74 5.30 7.74 6.70 6.77 7.29 L0 12",
-      8,
-      12,
-    );
-  }
-  /* left — tip left, base at right (right placement). 좌우 반전 */
-  return render(
-    "M8 0 L1.23 4.71 C0.26 5.30 0.26 6.70 1.23 7.29 L8 12 Z",
-    "M8 0 L1.23 4.71 C0.26 5.30 0.26 6.70 1.23 7.29 L8 12",
-    8,
-    12,
   );
 }
 
-/* ── Placement → pin direction ─────────────────── */
+/* ── Placement → pin direction ─────────────────
+ * Figma 이름 그대로: top-* / bottom-* 는 말풍선 위치(핀은 반대쪽),
+ * left / right 는 핀이 붙는 쪽 (left = 핀이 왼쪽에서 왼쪽을 가리킴)
+ */
 function pinDirectionFor(placement: TooltipPlacement): PinDirection {
   if (placement.startsWith("top")) return "down";
   if (placement.startsWith("bottom")) return "up";
-  if (placement === "left") return "right";
-  return "left";
+  if (placement === "left") return "left";
+  return "right";
 }
 
 /* ── Tooltip (inline bubble) ───────────────────── */
@@ -189,14 +156,14 @@ export function Tooltip({
       )}
       {isLeft && (
         <>
-          {body}
           {arrow}
+          {body}
         </>
       )}
       {placement === "right" && (
         <>
-          {arrow}
           {body}
+          {arrow}
         </>
       )}
     </div>

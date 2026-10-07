@@ -11,7 +11,9 @@ const meta = {
       description: {
         component:
           "KONACARD DS Tooltip (Bubble Type). Figma ${FIGMA_DS_FILE_KEY} / node 200:1909. " +
-          "8 placement × 2 style (line / brand). Popup Type ( ? 아이콘 ) 은 별도 다이얼로그 컴포넌트 — 여기선 트리거만.",
+          "8 placement × 2 style (line / brand). AX 실측 값 · 핀은 Figma 원본 SVG. " +
+          "placement 는 Figma 이름 그대로 — top-* / bottom-* 는 말풍선 위치, left / right 는 핀이 붙는 쪽. " +
+          "Popup Type ( ? 아이콘 ) 은 별도 다이얼로그 컴포넌트 — 여기선 트리거만.",
       },
     },
   },
