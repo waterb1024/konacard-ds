@@ -16,6 +16,9 @@
  *   Selected(True)  : 트랙 브랜드 보라 · 썸 border 브랜드 · 썸 우측
  *   Default (False) : 트랙 회색       · 썸 border 회색   · 썸 좌측
  *   Disable         = status false → opacity 0.4
+ *
+ * 썸 테두리는 border 대신 inset box-shadow — 브라우저가 소수점 border(1.667 · 1.6)를
+ * 1px 로 내림해서 Figma 와 달라지기 때문 (2026-10-07 AX 실측 대조에서 발견)
  */
 
 .switch {
@@ -47,11 +50,12 @@
   top: 0;
   bottom: 0;
   left: 0;
+  --thumb-border: 2px;
+  --thumb-color: var(--color-button-quarternary);
   background: var(--color-button-white);
-  border: 2px solid var(--color-button-quarternary);
   border-radius: var(--radius-round);
-  box-sizing: border-box;
-  transition: left 0.18s ease, right 0.18s ease, border-color 0.15s ease;
+  box-shadow: inset 0 0 0 var(--thumb-border) var(--thumb-color);
+  transition: left 0.18s ease, right 0.18s ease, box-shadow 0.15s ease;
 }
 
 /* ── On (state=true) ─────────────────────────────────── */
@@ -61,7 +65,7 @@
 .on .thumb {
   left: auto;
   right: 0;
-  border-color: var(--color-background-button-brand);
+  --thumb-color: var(--color-background-button-brand);
 }
 
 /* ── Sizes ───────────────────────────────────────────── */
@@ -99,7 +103,7 @@
 }
 .size-small .thumb {
   width: 20px;
-  border-width: 1.667px;
+  --thumb-border: 1.667px;
 }
 
 .size-tiny {
@@ -112,5 +116,5 @@
 }
 .size-tiny .thumb {
   width: 16px;
-  border-width: 1.6px;
+  --thumb-border: 1.6px;
 }

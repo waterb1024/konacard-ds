@@ -10,12 +10,14 @@ import styles from "./Radio.module.css";
  * Figma variants:
  *   - size:   large(32) / medium(28) / small(24) / tiny(20)
  *   - state:  true(selected) / false(unselected)
- *   - status: true(enabled) / false(disabled → opacity 0.4)
+ *   - status: true(enabled) / false(disabled)
  *
- * Figma vector 좌표 (모든 사이즈 공통 32×32 viewBox 로 이식):
- *   Outer: circle cx=16 cy=16 r=15.5 fill=white stroke=#DDD width=1
- *   Inner dot (selected): circle cx=16 cy=16 r=7.47 fill=brand
- * (Figma inset 26.67% → dot 반지름 = 32 * (1 - 0.5334) / 2 ≈ 7.47)
+ * 2026-10-07 AX 실측 대조 (사이즈마다 따로 그려져 있어 비율 계산 대신 표로 둠):
+ *   - 바깥 원: fill #FFFFFF · 안쪽 테두리 #DDDDDD — 두께 large 1 / medium 0.875 / small 0.857 / tiny 0.714
+ *   - 가운데 점(선택): 지름 large 14.93 / medium 13.07 / small 12 / tiny 10, 색 brand
+ *   - 비활성(status=false) — Figma 그대로:
+ *       선택 + 비활성   → 바깥 원 #F8F9FB · 점 #DDDDDD · 흐림 없음
+ *       미선택 + 비활성 → 바깥 원 #F8F9FB · 전체 opacity 0.4
  */
 
 export type RadioSize = "large" | "medium" | "small" | "tiny";
@@ -30,49 +32,48 @@ export interface RadioProps
 const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
-const SIZE_PX: Record<RadioSize, number> = {
-  large: 32,
-  medium: 28,
-  small: 24,
-  tiny: 20,
+const GEOM: Record<RadioSize, { px: number; border: number; dot: number }> = {
+  large: { px: 32, border: 1, dot: 14.933 },
+  medium: { px: 28, border: 0.875, dot: 13.067 },
+  small: { px: 24, border: 0.857, dot: 12 },
+  tiny: { px: 20, border: 0.714, dot: 10 },
 };
 
 function RadioSvg({
   checked,
+  disabled,
   size,
 }: {
   checked: boolean;
-  size: number;
+  disabled: boolean;
+  size: RadioSize;
 }) {
-  /* viewBox 를 각 display size 와 1:1 매칭 → SVG 1 unit = 1 물리 px 항상 유지 →
-     stroke 1 이 사이즈 무관하게 정확히 1 physical pixel 로 렌더.
-     Figma 는 각 사이즈별 SVG 를 native 로 export 하는 방식과 동등 결과. */
-  const c = size / 2;
-  const outerR = c - 0.5; /* stroke 절반이 viewBox 안에 들어가도록 */
-  const dotR = size * (7.47 / 32); /* Figma 비율 그대로: dot 반지름 = 23.3% of outer */
+  const { px, border, dot } = GEOM[size];
+  const c = px / 2;
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${size} ${size}`}
+      width={px}
+      height={px}
+      viewBox={`0 0 ${px} ${px}`}
       fill="none"
       aria-hidden
       focusable="false"
     >
+      {/* 안쪽 테두리: 선 중심을 border/2 만큼 안으로 */}
       <circle
         cx={c}
         cy={c}
-        r={outerR}
-        fill="var(--color-background-primary)"
+        r={c - border / 2}
+        fill={disabled ? "var(--color-background-secondary)" : "var(--color-background-primary)"}
         stroke="var(--color-border-default)"
-        strokeWidth="0.75"
+        strokeWidth={border}
       />
       {checked && (
         <circle
           cx={c}
           cy={c}
-          r={dotR}
-          fill="var(--color-brand-primary)"
+          r={dot / 2}
+          fill={disabled ? "var(--color-border-default)" : "var(--color-brand-primary)"}
         />
       )}
     </svg>
@@ -101,7 +102,8 @@ export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
       disabled={disabled}
       className={cx(
         styles.radio,
-        disabled && styles.disabled,
+        /* Figma: 미선택 + 비활성만 opacity 0.4 */
+        disabled && !checked && styles.dim,
         className,
       )}
       onClick={(e) => {
@@ -110,7 +112,7 @@ export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
       }}
       {...rest}
     >
-      <RadioSvg checked={checked} size={SIZE_PX[size]} />
+      <RadioSvg checked={checked} disabled={!!disabled} size={size} />
     </button>
   );
 });

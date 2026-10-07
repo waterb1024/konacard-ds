@@ -11,7 +11,7 @@ const meta = {
       description: {
         component:
           "KONACARD DS Checkbox. konacard-ds-components.md § 05_Control (controls/check box). " +
-          "4 style × 4 size. Figma vector path 이식.",
+          "4 style × 4 size × state × status. 사이즈별 Figma(AX) 실측 좌표·선 두께·모서리 그대로. Disable = opacity 40%.",
       },
     },
   },

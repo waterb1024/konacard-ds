@@ -11,7 +11,7 @@ const meta = {
       description: {
         component:
           "KONACARD DS Radio. konacard-ds-components.md § 05_Control (controls/radio button). " +
-          "4 size × 2 state × 2 status. Figma vector 좌표 이식.",
+          "4 size × 2 state × 2 status. 사이즈별 Figma(AX) 실측 테두리·점 지름. 비활성: 선택은 회색 바탕+회색 점, 미선택은 회색 바탕+opacity 40%.",
       },
     },
   },
