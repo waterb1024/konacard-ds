@@ -25,7 +25,7 @@ related_docs:
 |---|---|---|
 | **00_Basic** | ✅ 완료 | OS/status-bar (AOS·iOS·notch·Chrome), OS/keyboard (AOS·iOS), spacing 8-based 원칙 |
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
-| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), tetiary, text button, icon, fixed-bottom, select |
+| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom, select |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
 | **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/basic, input/search bar, input/email, input/card-number, input/button, select/select box (구 Input/Select), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
@@ -153,18 +153,6 @@ related_docs:
   - Brand → `brand` — 보라 배경 + 흰 텍스트
   - Brand_Line → `brand-line` — 흰 배경 + 보라 아웃라인 + 보라 텍스트
   - Gray_Line → `gray-line` — 흰 배경 + 회색 아웃라인 + 검정 텍스트
-
-## 추가 버튼 (`button/tetiary` — Figma 원본 오타)
-
-- **Figma 노드**: `1212:4553` (별도 component set)
-- **Variant**: `Type` = `Dark` / `Gray` / `line` (속성명 대문자 `Type` 원본 그대로)
-- **사이즈·기하** (2026-10-02 get_design_context 실측):
-  - Fixed height: **28px**
-  - Padding: 좌우 12px / 상하 4px, 아이콘↔텍스트 gap 4px
-  - Corner radius: **4px** (`radius/button/small`)
-  - 구성: `ic_system/ic_plus_12` 아이콘 + 텍스트 (Pretendard Bold 14px)
-- **Type 시각**: `Dark` = #999 채움 + 흰 텍스트 / `Gray` = #DDD 채움 + 검정 텍스트 / `line` = 흰 배경 + #DDD 테두리 + #333 텍스트
-- **용도**: rule.md 규칙 없음 — "+ 추가" 성격 액션으로 추정되나 미정의
 
 ## Text 버튼 (`button/text button`)
 
@@ -1348,7 +1336,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 |---|---|---|
 | 00 | Basic | OS/status-bar, keyboard, spacing 원칙 |
 | 01 | Actionbar | header (Main·Sub AOS/iOS·Scroll Title), headline, button |
-| 02 | Button | primary, secondary, tetiary, text, icon, fixed-bottom, select |
+| 02 | Button | primary, secondary, text, icon, fixed-bottom, select |
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |
 | 04 | Forms | input, search, select, email, card-number, button + Form UI |
 | 05 | Control | swtich, checkbox, radio + agree/setting/radio-text |
