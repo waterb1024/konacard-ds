@@ -12,7 +12,7 @@
  *
  * 테두리: Figma 는 안쪽(INSIDE) 1px — 크기에 안 들어가므로 CSS border 대신 inset box-shadow
  * 비활성(state=false): 같은 모양 + opacity 0.4.
- *   예외 — primary brand 는 바탕 #DDD + 흰 글자, large 만 흐림 없음 (medium·small 은 0.4). Figma 그대로
+ *   예외 — primary brand 는 바탕 #DDD + 흰 글자, large 만 흐림 없음 (medium·small 은 0.4). 의도된 디자인 (사용자 확인)
  */
 
 .button {
