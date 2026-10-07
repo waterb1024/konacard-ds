@@ -3,6 +3,7 @@
  * 높이 40 / 32 / 24 · 좌우 padding 0 · 글자↔화살표 4 · 세로 가운데
  * 글자: large body/1 (15/24, -0.30) · medium body/2 (14/22, -0.28) · small body/3 (12/18, -0.24)
  * 글자색: gray #666 · black #000 · brand #805AE9 (화살표 색은 IconButton.tsx)
+ * 비활성: Figma variant 없음 — DS 공통 규칙(전체 opacity 0.4)으로 처리 (2026-10-07 사용자 결정)
  */
 
 .iconButton {
@@ -14,6 +15,11 @@
   background: transparent;
   cursor: pointer;
   white-space: nowrap;
+}
+
+.iconButton:disabled {
+  opacity: var(--opacity-disable-button); /* 0.4 — DS 공통 비활성 규칙 */
+  cursor: not-allowed;
 }
 
 .label {

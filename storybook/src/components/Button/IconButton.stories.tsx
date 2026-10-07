@@ -10,11 +10,12 @@ const meta = {
       description: {
         component:
           "KONACARD DS Icon Button — 글자 + 오른쪽 화살표(>). Figma button/icon button, AX 실측 값 · 화살표는 Figma 원본 SVG. " +
-          "size large 40 · medium 32 · small 24 × weight × type. 비활성 디자인 없음.",
+          "size large 40 · medium 32 · small 24 × weight × type. 비활성은 Figma variant 없이 DS 공통 규칙(전체 40% 흐림)으로 처리.",
       },
     },
   },
   argTypes: {
+    disabled: { control: "boolean" },
     size: {
       control: "inline-radio",
       options: ["large", "medium", "small"],
@@ -60,6 +61,11 @@ export const Gray: Story = {
 
 export const Regular: Story = {
   args: { weight: "regular", children: "약관 보기" },
+};
+
+export const Disabled: Story = {
+  name: "비활성 (DS 공통 규칙 · 40% 흐림)",
+  args: { disabled: true, children: "자세히 보기" },
 };
 
 export const Matrix: Story = {

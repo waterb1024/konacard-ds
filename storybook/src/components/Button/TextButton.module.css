@@ -6,6 +6,7 @@
  *                 small 24 · 11/16 (button/tiny-regular, -0.22)
  *   - 밑줄: 글자 아래 1px 사각형, 글자색과 같은 색, 투명도 0.8, 폭 = 글자 폭
  *   - 색: black #000 · brand #805AE9 · gray #666 · gray-light #999
+ *   - 비활성: Figma variant 없음 — DS 공통 규칙(전체 opacity 0.4)으로 처리 (2026-10-07 사용자 결정)
  */
 
 .textButton {
@@ -22,6 +23,11 @@
   line-height: 0;
   text-align: left;
   margin: 0;
+}
+
+.textButton:disabled {
+  opacity: var(--opacity-disable-button); /* 0.4 — DS 공통 비활성 규칙 */
+  cursor: not-allowed;
 }
 
 .label {

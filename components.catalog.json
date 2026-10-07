@@ -189,7 +189,8 @@
         "2026-10-07 정리 확정: 예전 small(12/18, 28) 삭제, 예전 tiny(11/16, 24) → small 로 이름 변경 (사용자), state=false 삭제 → state 속성 없어짐 (KeyScreen 에서 비활성 0곳). 12 variant",
         "원본 세트(17:793, 키 732152b1…) 지우고 정리본 확정 → 키·nodeId 바뀜. AX 안 인스턴스 교체 완료",
         "밑줄 있음 (line 사각형). 옛 Button/Text(글자 13/18 Body_02) = size=large 의 이전 버전",
-        "2026-10-07 Storybook TextButton 을 AX 실측으로 맞춤: size 3종(small 11/16), 글자·밑줄 묶음 세로 가운데 (텍스트 y6.5 · 밑줄 y28.5 등 Figma 와 같음), 밑줄 투명도 0.8"
+        "2026-10-07 Storybook TextButton 을 AX 실측으로 맞춤: size 3종(small 11/16), 글자·밑줄 묶음 세로 가운데 (텍스트 y6.5 · 밑줄 y28.5 등 Figma 와 같음), 밑줄 투명도 0.8",
+        "비활성 규칙 (2026-10-07 사용자 결정): Figma 에 비활성 variant 없음. 필요하면 DS 공통 규칙대로 버튼 전체 opacity 0.4 — Storybook 은 disabled 속성으로 0.4 처리. 실제 비활성 화면이 생기면 state 속성 재추가"
       ],
       "docRef": "konacard-ds-components.md § Text 버튼",
       "textStyles": {
@@ -246,7 +247,8 @@
         "원본 세트(202:2574, 키 6385e2bf…) 지우고 정리본 확정. AX 안 인스턴스 교체 완료",
         "KeyScreen 실사용: medium·regular·gray 가 대부분 (옛 Button/Icon 포함 175곳), 색은 gray 위주",
         "2026-10-07 추가 정리 (사용자 승인): small 6개 높이 28 → 24 (실제로 쓰는 small·regular·gray 가 24), tiny 는 small 과 모양이 같아(12/18, 24) small 로 합치고 size=tiny 삭제 → 18 variant. AX 안 tiny 인스턴스 0개. KeyScreen 의 tiny 81곳(보이는 38)은 화면 파일이 AX 로 옮길 때 small 로 교체 — 모양 변화 없음, tiny·bold·black 숨김 5곳만 글자 11 → 12",
-        "2026-10-07 Storybook IconButton 을 AX 실측으로 맞춤: size 3종, 화살표 Figma 원본 SVG (large 8×14 선 1.5 · medium/small 8×12 선 1), 화살표 색 gray #666 · black #333 · brand, small·gray 화살표만 #333 투명도 0.6"
+        "2026-10-07 Storybook IconButton 을 AX 실측으로 맞춤: size 3종, 화살표 Figma 원본 SVG (large 8×14 선 1.5 · medium/small 8×12 선 1), 화살표 색 gray #666 · black #333 · brand, small·gray 화살표만 #333 투명도 0.6",
+        "비활성 규칙 (2026-10-07 사용자 결정): Figma 에 비활성 variant 없음. 필요하면 DS 공통 규칙대로 버튼 전체 opacity 0.4 — Storybook 은 disabled 속성으로 0.4 처리. 실제 비활성 화면이 생기면 state 속성 재추가"
       ],
       "docRef": "konacard-ds-components.md § 02_Button"
     },

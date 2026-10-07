@@ -10,11 +10,12 @@ const meta = {
       description: {
         component:
           "KONACARD DS Text Button — 밑줄 있는 글자 버튼. Figma button/text button, AX 실측 값. " +
-          "size large 36 (14) · medium 32 (12) · small 24 (11) × color 4종. 비활성 디자인 없음.",
+          "size large 36 (14) · medium 32 (12) · small 24 (11) × color 4종. 비활성은 Figma variant 없이 DS 공통 규칙(전체 40% 흐림)으로 처리.",
       },
     },
   },
   argTypes: {
+    disabled: { control: "boolean" },
     size: {
       control: "inline-radio",
       options: ["large", "medium", "small"],
@@ -52,6 +53,11 @@ export const Gray: Story = { args: { color: "gray", children: "다시 보기" } 
 export const GrayLight: Story = {
   name: "Gray_Light",
   args: { color: "gray-light", children: "지원 안 됨" },
+};
+
+export const Disabled: Story = {
+  name: "비활성 (DS 공통 규칙 · 40% 흐림)",
+  args: { disabled: true, children: "약관 보기" },
 };
 
 export const Matrix: Story = {
