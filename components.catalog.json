@@ -626,12 +626,6 @@
           "square-line",
           "line"
         ],
-        "size": [
-          "large",
-          "medium",
-          "small",
-          "tiny"
-        ],
         "state": [
           "false",
           "true"
@@ -643,7 +637,6 @@
       },
       "defaults": {
         "style": "circle",
-        "size": "large",
         "state": "true",
         "status": "true"
       },
@@ -652,10 +645,10 @@
         "status": "활성/비활성 (false = 전체 opacity 0.4)"
       },
       "heights": {
-        "large": 32,
-        "medium": 28,
-        "small": 24,
-        "tiny": 20
+        "circle": 28,
+        "square-fill": 20,
+        "square-line": 24,
+        "line": 24
       },
       "aliases": {
         "control/checkbox": "controls/check box (문서 표기)",
@@ -663,10 +656,10 @@
       },
       "notes": [
         "2026-10-07 사용자 확인: ❖ Controls 페이지 정리 완료. 세트 이름에 띄어쓰기('check box') 그대로",
-        "64 variant 전부 존재 (4 style × 4 size × state × status). 정사각형",
+        "2026-10-07 사용자가 size 속성 삭제 (64 → 16 variant, 키 유지) — 실화면에서 style 마다 한 크기만 써서 style 별 크기로 고정: circle 28(구 medium) · square-fill 20(구 tiny) · square-line 24(구 small) · line 24(구 small). 정사각형",
         "색: circle 체크=#805AE9 / 미체크=#DDDDDD 바탕 + 흰 체크 · square-fill 체크=보라 채움+흰 체크 / 미체크=흰 바탕+#DDD 테두리·체크 · square-line 체크=흰 바탕+보라 테두리·체크 · line 체크=보라 / 미체크=#999",
-        "사이즈마다 체크 위치·선 두께·모서리를 따로 그림 (32 를 비율로 줄인 값 아님) — 예: tiny 는 circle 체크 1.43, square 테두리 1 · 모서리 4. Storybook Checkbox.tsx GEOM 표에 실측값",
-        "문서 불일치 (md 미수정): 문서는 24(아이콘형·박스형)·28·32 3사이즈와 'State=활성 / Type=선택' 으로 기술 — AX 는 4 style·4 size(20 포함), state=체크·status=활성"
+        "크기마다 체크 위치·선 두께·모서리를 따로 그림 (비율 축소 아님) — circle 체크 2 · square-fill 테두리 1·모서리 4·체크 1.5 · square-line 테두리 1.5·모서리 4·체크 2 · line 체크 2. Storybook Checkbox.tsx GEOM 표에 실측값",
+        "문서 불일치 (md 미수정): 문서는 24(아이콘형·박스형)·28·32 3사이즈와 'State=활성 / Type=선택' 으로 기술 — AX 는 4 style(크기 고정: 28·20·24·24), size 속성 없음, state=체크·status=활성"
       ],
       "docRef": "konacard-ds-components.md § Checkbox"
     },

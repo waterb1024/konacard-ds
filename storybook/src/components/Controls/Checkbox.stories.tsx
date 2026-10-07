@@ -11,7 +11,7 @@ const meta = {
       description: {
         component:
           "KONACARD DS Checkbox. konacard-ds-components.md § 05_Control (controls/check box). " +
-          "4 style × 4 size × state × status. 사이즈별 Figma(AX) 실측 좌표·선 두께·모서리 그대로. Disable = opacity 40%.",
+          "4 style × state × status. 크기는 style 마다 고정 (circle 28 · square-fill 20 · square-line 24 · line 24). Figma(AX) 실측 좌표·선 두께·모서리 그대로. Disable = opacity 40%.",
       },
     },
   },
@@ -19,10 +19,6 @@ const meta = {
     style: {
       control: "inline-radio",
       options: ["circle", "square-fill", "square-line", "line"],
-    },
-    size: {
-      control: "inline-radio",
-      options: ["large", "medium", "small", "tiny"],
     },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -33,7 +29,6 @@ const meta = {
   },
   args: {
     style: "circle",
-    size: "large",
     checked: false,
     disabled: false,
   },
@@ -70,45 +65,30 @@ export const Line: Story = {
 };
 
 export const Matrix: Story = {
-  name: "Style × Size Matrix",
+  name: "Style × State Matrix",
   render: () => {
     const styles = ["circle", "square-fill", "square-line", "line"] as const;
-    const sizes = ["large", "medium", "small", "tiny"] as const;
     return (
-      <div style={{ display: "grid", gap: 24 }}>
+      <div style={{ display: "grid", gap: 16 }}>
         {styles.map((st) => (
-          <section key={st}>
-            <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
-              style = {st}
-            </h4>
-            <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-              {sizes.map((sz) => (
-                <div
-                  key={sz}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 6,
-                    alignItems: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      font: "var(--text-body-3-regular)",
-                      color: "var(--color-font-tertiary)",
-                    }}
-                  >
-                    {sz}
-                  </span>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <Checkbox style={st} size={sz} checked={false} />
-                    <Checkbox style={st} size={sz} checked />
-                    <Checkbox style={st} size={sz} checked disabled />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          <div
+            key={st}
+            style={{ display: "flex", gap: 16, alignItems: "center" }}
+          >
+            <span
+              style={{
+                font: "var(--text-body-3-regular)",
+                width: 90,
+                color: "var(--color-font-tertiary)",
+              }}
+            >
+              {st}
+            </span>
+            <Checkbox style={st} checked={false} />
+            <Checkbox style={st} checked />
+            <Checkbox style={st} checked={false} disabled />
+            <Checkbox style={st} checked disabled />
+          </div>
         ))}
       </div>
     );

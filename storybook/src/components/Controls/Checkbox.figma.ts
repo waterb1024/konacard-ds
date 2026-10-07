@@ -5,7 +5,7 @@ import figma from 'figma'
 
 const instance = figma.selectedInstance
 
-// Figma variant 4종: style / size / state / status
+// Figma variant 3종: style / state / status (size 는 2026-10-07 삭제 — style 마다 크기 고정)
 // - state=true → checked=true, state=false → checked=false
 // - status=true → 활성, status=false → disabled=true (opacity 0.4)
 const style = instance.getEnum('style', {
@@ -15,18 +15,11 @@ const style = instance.getEnum('style', {
   line: 'line',
 })
 
-const size = instance.getEnum('size', {
-  large: 'large',
-  medium: 'medium',
-  small: 'small',
-  tiny: 'tiny',
-})
-
 const checked = instance.getBoolean('state')
 const disabled = instance.getBoolean('status', { true: false, false: true })
 
 export default {
-  example: figma.code`<Checkbox style="${style}" size="${size}" checked={${checked}} disabled={${disabled}} />`,
+  example: figma.code`<Checkbox style="${style}" checked={${checked}} disabled={${disabled}} />`,
   imports: ['import { Checkbox } from "./Checkbox"'],
   id: 'checkbox',
   metadata: { nestable: true },

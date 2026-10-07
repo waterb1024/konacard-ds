@@ -68,7 +68,6 @@ export function CheckboxLabel({
   const control = (
     <Checkbox
       style={type === "2depth" ? "line" : "circle"}
-      size={type === "2depth" ? "small" : "medium"}
       checked={checked}
       onChange={onChange}
       aria-label={typeof children === "string" ? children : undefined}
