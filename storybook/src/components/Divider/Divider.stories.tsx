@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  Divider,
-  DividerDotted,
-  DividerSection,
-  DividerSolid,
-  DividerVertical,
-} from "./Divider";
+import type React from "react";
+import { Divider } from "./Divider";
+import type { DividerType } from "./Divider";
+
+const TYPES: DividerType[] = ["solid", "dotted", "section", "vertical-12", "vertical-8"];
 
 const meta = {
   title: "Component/Divider",
@@ -15,31 +13,20 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Divider (07_Line). Figma: ${FIGMA_DS_FILE_KEY} / 9362:7756. " +
-          "Solid · Dotted (dashed 2/2) · Section (10px band) · Vertical (1×8/12/16 인라인 구분자).",
+          "KONACARD DS Divider — Figma `line` (2026-10-07 line/solid · dotted · divider · divider-line 4개를 하나로 합침). " +
+          "type: solid(실선) · dotted(점선 2/2) · section(섹션 사이 높이 10 띠) · vertical-12 / vertical-8(세로선) × color light · dark. " +
+          "color 는 type 마다 실제 색이 다름 — 가로선 light 6% · dark 8%, 세로선 light 8% · dark 12%. section 은 light 만.",
       },
     },
   },
   argTypes: {
-    variant: {
-      control: "inline-radio",
-      options: ["solid", "dotted", "section", "vertical"],
-    },
-    color: {
-      control: "inline-radio",
-      options: ["light", "dark", "white"],
-    },
-    size: {
-      control: "inline-radio",
-      options: ["8", "12", "16"],
-    },
+    type: { control: "inline-radio", options: TYPES },
+    color: { control: "inline-radio", options: ["light", "dark"] },
   },
-  args: { variant: "solid", color: "light", size: "12" },
+  args: { type: "solid", color: "light" },
   decorators: [
     (Story) => (
-      <div
-        style={{ padding: 24, background: "#FFFFFF", width: 320 }}
-      >
+      <div style={{ padding: 24, background: "#FFFFFF", width: 320 }}>
         <Story />
       </div>
     ),
@@ -49,151 +36,76 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {};
-
-/* ── Solid ────────────────────────────────── */
-export const Solid: Story = {
-  name: "Solid (1px 가로선)",
-  render: () => (
-    <div style={{ display: "grid", gap: 24 }}>
-      <div>
-        <div style={labelStyle}>color=light — rgba(0,0,0,0.06)</div>
-        <DividerSolid color="light" />
-      </div>
-      <div>
-        <div style={labelStyle}>color=dark — rgba(0,0,0,0.08)</div>
-        <DividerSolid color="dark" />
-      </div>
-    </div>
-  ),
-};
-
-/* ── Dotted ───────────────────────────────── */
-export const Dotted: Story = {
-  name: "Dotted (dash 2/2)",
-  render: () => (
-    <div style={{ display: "grid", gap: 24 }}>
-      <div>
-        <div style={labelStyle}>color=light</div>
-        <DividerDotted color="light" />
-      </div>
-      <div>
-        <div style={labelStyle}>color=dark</div>
-        <DividerDotted color="dark" />
-      </div>
-      <div style={{ background: "#000", padding: 12, borderRadius: 4 }}>
-        <div style={{ ...labelStyle, color: "#ccc" }}>color=white (다크 배경)</div>
-        <DividerDotted color="white" />
-      </div>
-    </div>
-  ),
-};
-
-/* ── Section (10px 두꺼운 밴드) ────────────── */
-export const Section: Story = {
-  name: "Section (10px 섹션 구분)",
-  render: () => (
-    <div style={{ display: "grid", gap: 24 }}>
-      <div>
-        <div style={labelStyle}>color=light</div>
-        <p style={{ margin: 0, font: "var(--text-body-2-regular)" }}>
-          섹션 A · 위 컨텐츠
-        </p>
-        <DividerSection color="light" />
-        <p style={{ margin: 0, font: "var(--text-body-2-regular)" }}>
-          섹션 B · 아래 컨텐츠
-        </p>
-      </div>
-      <div>
-        <div style={labelStyle}>color=dark</div>
-        <p style={{ margin: 0, font: "var(--text-body-2-regular)" }}>섹션 A</p>
-        <DividerSection color="dark" />
-        <p style={{ margin: 0, font: "var(--text-body-2-regular)" }}>섹션 B</p>
-      </div>
-    </div>
-  ),
-};
-
-/* ── Vertical (인라인 텍스트 구분자) ────────── */
-export const Vertical: Story = {
-  name: "Vertical (1×8/12/16 인라인 구분자)",
-  render: () => (
-    <div style={{ display: "grid", gap: 20 }}>
-      {(["8", "12", "16"] as const).map((s) => (
-        <div key={s}>
-          <div style={labelStyle}>size={s}</div>
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              font: "var(--text-body-2-regular)",
-              color: "var(--color-font-primary)",
-            }}
-          >
-            혜택
-            <DividerVertical size={s} color="light" />
-            사용내역
-            <DividerVertical size={s} color="light" />
-            설정
-          </span>
-        </div>
-      ))}
-      <div style={{ background: "#000", padding: 12, borderRadius: 4 }}>
-        <div style={{ ...labelStyle, color: "#ccc" }}>
-          color=white — 다크 배경 위
-        </div>
-        <span
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            font: "var(--text-body-2-regular)",
-            color: "#fff",
-          }}
-        >
-          Item A
-          <DividerVertical size="12" color="white" />
-          Item B
-          <DividerVertical size="12" color="white" />
-          Item C
-        </span>
-      </div>
-    </div>
-  ),
-};
-
-/* ── 실제 사용예 — 리스트 사이 구분 ─────────── */
-export const InListContext: Story = {
-  name: "사용예 — 리스트 사이",
-  render: () => (
-    <div
-      style={{
-        border: "1px solid var(--color-border-default)",
-        borderRadius: 8,
-        overflow: "hidden",
-      }}
-    >
-      {["이용 안내", "자주 묻는 질문", "공지사항"].map((t, i, arr) => (
-        <div key={t}>
-          <div
-            style={{
-              padding: "16px 20px",
-              font: "var(--text-body-1-regular)",
-            }}
-          >
-            {t}
-          </div>
-          {i < arr.length - 1 && <DividerSolid color="light" />}
-        </div>
-      ))}
-    </div>
-  ),
-};
-
 const labelStyle: React.CSSProperties = {
   font: "var(--text-body-3-regular)",
   letterSpacing: "var(--font-letterspacing-xsmall)",
   color: "var(--color-font-tertiary)",
   marginBottom: 8,
+};
+
+export const Playground: Story = {};
+
+export const Matrix: Story = {
+  name: "Matrix — Figma 배치 (type × color)",
+  render: () => (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 24px", width: 440 }}>
+      {TYPES.flatMap((t) =>
+        (["light", "dark"] as const).map((c) =>
+          t === "section" && c === "dark" ? (
+            <div key={t + c} />
+          ) : (
+            <div key={t + c}>
+              <div style={labelStyle}>
+                {t} · {c}
+              </div>
+              <Divider type={t} color={c} />
+            </div>
+          ),
+        ),
+      )}
+    </div>
+  ),
+};
+
+/* ── 사용 예 ─────────────────────────────── */
+export const InList: Story = {
+  name: "사용 예 — 리스트 사이 (solid)",
+  render: () => (
+    <div>
+      {["이용 안내", "자주 묻는 질문", "공지사항"].map((t, i, arr) => (
+        <div key={t}>
+          <div style={{ padding: "16px 0", font: "var(--text-body-1-regular)" }}>{t}</div>
+          {i < arr.length - 1 && <Divider type="solid" />}
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+export const BetweenSections: Story = {
+  name: "사용 예 — 섹션 사이 (section)",
+  render: () => (
+    <div style={{ margin: "0 -24px" }}>
+      <p style={{ margin: "0 24px 16px", font: "var(--text-body-2-regular)" }}>섹션 A</p>
+      <Divider type="section" />
+      <p style={{ margin: "16px 24px 0", font: "var(--text-body-2-regular)" }}>섹션 B</p>
+    </div>
+  ),
+};
+
+export const InlineVertical: Story = {
+  name: "사용 예 — 글자 사이 (vertical-12 · vertical-8)",
+  render: () => (
+    <div style={{ display: "grid", gap: 16 }}>
+      {(["vertical-12", "vertical-8"] as const).map((t) => (
+        <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 8, font: "var(--text-body-2-regular)" }}>
+          혜택
+          <Divider type={t} />
+          사용내역
+          <Divider type={t} />
+          설정
+        </span>
+      ))}
+    </div>
+  ),
 };

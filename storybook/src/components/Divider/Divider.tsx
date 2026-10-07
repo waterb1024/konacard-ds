@@ -1,128 +1,40 @@
 import styles from "./Divider.module.css";
 
 /**
- * KONACARD DS Divider (07_Line)
- * Figma: ${FIGMA_DS_FILE_KEY} / component 9362:7756, usage 99:1134
+ * KONACARD DS Divider — Figma `line` (10997:164) · ❖ Divider 페이지
  *
- * 4 sub-components:
- *   Solid   — 1px 가로선
- *   Dotted  — 1px 가로선 (dashed 2/2 pattern)
- *   Section — 10px 두꺼운 섹션 구분 밴드
- *   Vertical — 1px 세로선 (인라인 구분자, size 8/12/16)
+ * 2026-10-07 line/solid · line/dotted · line/divider · line/divider-line 4개 세트를 하나로 합침 (variant 키 유지)
+ * Figma variants: type × color
+ *   type  solid       — 가로 실선 1px (폭은 늘려 씀)
+ *         dotted      — 가로 점선 1px (2/2)
+ *         section     — 섹션 사이 높이 10 회색 띠 (구 line/divider) · light 만
+ *         vertical-12 — 세로선 1×12 (구 line/divider-line size=12)
+ *         vertical-8  — 세로선 1×8  (구 line/divider-line size=8)
+ *   color light / dark — type 마다 실제 색이 다름 (Divider.module.css)
  */
 
+export type DividerType = "solid" | "dotted" | "section" | "vertical-12" | "vertical-8";
 export type DividerColor = "light" | "dark";
-export type DividerColorWithWhite = DividerColor | "white";
-export type VerticalDividerSize = "8" | "12" | "16";
+
+export interface DividerProps {
+  type?: DividerType;
+  /** section 은 light 만 있음 — dark 를 주면 light 로 그림 */
+  color?: DividerColor;
+  className?: string;
+}
 
 const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
-/* ── Solid (1px 가로선) ───────────────────── */
-export function DividerSolid({
-  color = "light",
-  className,
-}: {
-  color?: DividerColor;
-  className?: string;
-}) {
+export function Divider({ type = "solid", color = "light", className }: DividerProps) {
+  const c = type === "section" ? "light" : color;
+  const vertical = type.startsWith("vertical");
+  const Tag = vertical ? "span" : "div";
   return (
-    <hr
-      className={cx(styles.solid, styles[`solid-${color}`], className)}
-      aria-hidden
-    />
-  );
-}
-
-/* ── Dotted (dashed 2/2) ─────────────────── */
-export function DividerDotted({
-  color = "light",
-  className,
-}: {
-  color?: DividerColorWithWhite;
-  className?: string;
-}) {
-  return (
-    <hr
-      className={cx(styles.dotted, styles[`dotted-${color}`], className)}
-      aria-hidden
-    />
-  );
-}
-
-/* ── Section (10px 두꺼운 구분 밴드) ───────── */
-export function DividerSection({
-  color = "light",
-  className,
-}: {
-  color?: DividerColor;
-  className?: string;
-}) {
-  return (
-    <div
+    <Tag
       role="separator"
-      className={cx(styles.section, styles[`section-${color}`], className)}
+      aria-orientation={vertical ? "vertical" : "horizontal"}
+      className={cx(styles.line, styles[type], styles[`${vertical ? "vertical" : type}-${c}`], className)}
     />
   );
-}
-
-/* ── Vertical (인라인 구분자) ────────────── */
-export function DividerVertical({
-  size = "12",
-  color = "light",
-  className,
-}: {
-  size?: VerticalDividerSize;
-  color?: DividerColorWithWhite;
-  className?: string;
-}) {
-  return (
-    <span
-      className={cx(
-        styles.vertical,
-        styles[`vertical-size-${size}`],
-        styles[`vertical-${color}`],
-        className,
-      )}
-      aria-hidden
-    />
-  );
-}
-
-/**
- * Backwards-compat default export.
- * `variant` 로 4가지 서브 컴포넌트 스위치.
- */
-export interface DividerProps {
-  variant?: "solid" | "dotted" | "section" | "vertical";
-  color?: DividerColorWithWhite;
-  size?: VerticalDividerSize;
-  className?: string;
-}
-
-export function Divider({
-  variant = "solid",
-  color = "light",
-  size = "12",
-  className,
-}: DividerProps) {
-  if (variant === "solid") {
-    return (
-      <DividerSolid
-        color={color === "white" ? "light" : (color as DividerColor)}
-        className={className}
-      />
-    );
-  }
-  if (variant === "dotted")
-    return <DividerDotted color={color} className={className} />;
-  if (variant === "section") {
-    return (
-      <DividerSection
-        color={color === "white" ? "light" : (color as DividerColor)}
-        className={className}
-      />
-    );
-  }
-  return <DividerVertical size={size} color={color} className={className} />;
 }
