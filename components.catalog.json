@@ -752,6 +752,44 @@
         "tooltip/pin 세트에 type=white 도 있으나 tooltip/tooltip 에서는 안 씀"
       ],
       "docRef": "konacard-ds-components.md § 11_Tooltip"
+    },
+    "info": {
+      "type": "COMPONENT_SET",
+      "key": "7fd1467be7555ac642ecf4bae8d6d2bb8b4bfb39",
+      "nodeId": "41:1241",
+      "props": {
+        "type": [
+          "icon-error",
+          "icon-info",
+          "icon-guide",
+          "error",
+          "info"
+        ]
+      },
+      "defaults": {
+        "type": "icon-error"
+      },
+      "semantics": {
+        "type": "info = 회색 글자(color/font/tertiary #666), 아이콘 없음 / error = 빨간 글자(color/font/error #FF364B), 아이콘 없음 / icon-error = input/bullet icon_danger(빨강) + 빨간 글자 / icon-info = input/bullet icon_alert_black(#333) + 검정 글자(color/font/primary) / icon-guide = input/bullet icon_alert_gray(#999) + 회색 글자(#666)"
+      },
+      "heights": {
+        "한 줄": "18 (body/3-Regular 12/18)"
+      },
+      "aliases": {
+        "input/info-text": "info (구 이름, ❖ Info 페이지로 이동)",
+        "Guide Text": "info",
+        "입력 안내 문구": "info"
+      },
+      "notes": [
+        "2026-10-07 사용자 정리 완료: input/info-text → info 이름 변경, ❖ Info 페이지(10950:8835)로 이동, size 속성 삭제(large·medium·small → medium 모양 하나), 쓰지 않던 type=guide 삭제 → 5 variant (키 유지 여부: 키 7fd1467b…)",
+        "정리 근거: medium 과 small 이 완전히 같았고, KeyScreen AOS 파일에서 large 는 보이는 곳 1곳(9-2-4 거래내역신청 이메일 안내)뿐, guide 는 0곳",
+        "구조: 폭 230 고정 · 높이 hug, 좌우 padding 4, gap 4, 글자 body/3-Regular(12/18, -0.24) 폭 FILL·줄바꿈. 아이콘형은 ic 프레임 14×16(위 padding 2) 안에 input/bullet size=large 14×14 → 여러 줄일 때 아이콘은 첫 줄에 붙음(위 정렬)",
+        "type=error 만 세로 정렬 CENTER (나머지 MIN) — 한 줄일 땐 차이 없음, 여러 줄이면 다름 (정리 후보)",
+        "input/bullet(2234:5516, 9 variant: icon_danger·alert_brand·alert_black·alert_gray·alert_white × large 14 / small 12)도 같은 ❖ Info 페이지에 있음. info 는 large(14) 3종만 씀",
+        "KeyScreen AOS 파일은 라이브러리 키 4b72567e… 의 input/info-text 를 씀 (AX 키와 다름 — NEW 라이브러리일 수 있음)",
+        "Storybook: 지금은 Input 의 GuideText 가 비슷한 걸 따로 그림 (톤 5종 이름·색이 AX 와 다름) — 대응 컴포넌트 미정"
+      ],
+      "docRef": "konacard-ds-components.md § Inputbox Guide Text"
     }
   }
 }
