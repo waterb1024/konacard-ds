@@ -153,12 +153,12 @@ export const StateMatrix: Story = {
 };
 
 export const BasicComposition: Story = {
-  name: "input/basic — Title + Field + Guide",
+  name: "Title + Field + Guide 조합",
   parameters: {
     docs: {
       description: {
         story:
-          "input/basic 조합 컴포넌트. 요소 간 상하 gap 8px (spacing-xsmall).",
+          "화면에서 title/title + 입력칸 + info 를 직접 묶는 구성 (전용 컴포넌트 없음, KeyScreen 300곳 남짓). 요소 간 상하 gap 8px (spacing-xsmall).",
       },
     },
   },

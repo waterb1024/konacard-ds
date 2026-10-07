@@ -27,7 +27,7 @@ related_docs:
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
 | **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom, select |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/basic, input/search bar, input/email, input/card-number, input/button, select/select box (구 Input/Select), Form UI(Title·Guide Text) |
+| **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/search bar, input/card-number, input/button, select/select box (구 Input/Select), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
 | **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
@@ -273,11 +273,10 @@ related_docs:
 
 ---
 
-## Inputbox (`input/text field`, `input/basic`)
+## Inputbox (`input/text field`)
 
 - **Figma 노드 (샘플 인스턴스)**:
   - `99:881` (Default) / `99:884` (Focus) / `99:932` (Active + clear 아이콘)
-  - `386:2868` (input/basic — Title + Input + Guide Text 조합 컴포넌트)
 - **용도**: 텍스트 자유 입력 필드. 이름·전화·주소 등 문자 입력 전반.
 - **Figma 컴포넌트 세트**: `41:505` — AX 파일 이름 **`input/text field`** (NEW 파일의 `input/input` 에서 개명). variant 속성은 `state` 하나 (2026-10-02 AX get_metadata 확인)
   - `state`: `default` / `focus` / `active` / `complete` / `disabled` / `error` — 6종 모두 높이 48
@@ -295,7 +294,7 @@ related_docs:
 - **하위 슬롯**:
   - Left: 텍스트(플레이스홀더 또는 입력값)
   - Right (선택): clear 아이콘 (Active·Complete·Error) — `input/icon` `type=icon_delete` 24px
-- **input/basic 확장**: input/text field 에 상단 Title(`body/3-Bold` 12px)과 하단 Guide Text(`body/3-Regular` 12px) 슬롯이 결합된 조합 컴포넌트 — 요소 간 상하 gap **8px** (`spacing-xsmall`)
+- **Title + Guide 조합** (전용 컴포넌트 없음): 화면에서 `title/title` + 입력칸 + `info` 를 직접 묶어 씀 — 요소 간 상하 gap **8px** (`spacing-xsmall`). KeyScreen 에서 300곳 남짓이 이 구성. (조합 컴포넌트 `input/basic` 은 실제로는 `@` 분할 이메일 입력 + Title + Guide 였고 KeyScreen 0곳이라 2026-10-07 삭제)
 
 ## Inputbox 관련 안티패턴
 
@@ -394,17 +393,6 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - **버튼 색조**:
   - 액션 트리거(인증번호 요청·검색) = **Brand** (보라 채움)
   - 보조 액션(초기화·재요청) = **`gray-line`**
-
-### Form - Email (`input/email`)
-
-- **Figma 노드**: `386:2894`
-- **용도**: 이메일 로컬파트 + `@` + 도메인 선택 3단 구조
-- **레이아웃**:
-  - **좌측 Input · 우측 Selectbox 각각 Fill (1/N)** — 동등 비율 반반 분할
-  - 실제 가로 산식: **`Inputbox 가로 = (Contents area - 24) / 2`**
-  - 중앙 `@` 텍스트 자리 폭 = **24px** (`spacing-large` 계열)
-  - 좌우 필드 정렬 baseline은 `@` 텍스트 세로 중앙과 일치
-- **State**: 좌·우 필드 각각 독립 상태 (한쪽 에러 시 해당 필드만 빨강)
 
 ### Form - Card number (`input/card-number`)
 

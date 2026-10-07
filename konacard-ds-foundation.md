@@ -959,7 +959,7 @@ wrapper (360×800, white)
 | 페이지 헤더 (back/title/right action) | `action-bar/header` (type=main/page_icon/page_button) | 56px 고정, FILL width |
 | 본문 헤드라인 (타이틀+서브) | `action-bar/headline` (type=1line/2line/3line) | 직접 만든 heading + sub 텍스트 조합 금지 |
 | 검색 입력 | `input/search` (size=large/medium/small, state=default/focus/complete) | 검색 아이콘·clear 아이콘 내장 |
-| 일반 입력 | `input/basic`, `input/email`, `input/id`, `input/num`, `input/card-number`, `input/select(-round)`, `input/text-area` 등 | 용도별 입력 컴포넌트 |
+| 일반 입력 | `input/id`, `input/num`, `input/card-number`, `input/select(-round)`, `input/text-area` 등 | 용도별 입력 컴포넌트 |
 | 카테고리/서브 탭 | `tab/sub-ui` (device=AOS/iOS, type=first/last), `tab/Sub` | 7개 sub-tab 슬롯 내장 |
 | 메인 탭 | `tab/main`, `tab/main-multi`, `tab/main-full` | |
 | 리스트 행 | `list/list` (size, type=link/button/control), `list/menu`, `list/card-select`, `list/benefit-store` 등 | 구분선 내장 |

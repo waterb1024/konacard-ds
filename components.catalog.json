@@ -257,19 +257,6 @@
       },
       "docRef": "konacard-ds-components.md § Inputbox"
     },
-    "input/basic": {
-      "type": "COMPONENT",
-      "key": "8ba9417efa31e79c4d1c4a0273f7d639dc08e965",
-      "nodeId": "99:804",
-      "size": [
-        270,
-        100
-      ],
-      "notes": [
-        "Title + input/text field + Guide Text 조합. variant 없음"
-      ],
-      "docRef": "konacard-ds-components.md § Inputbox (input/basic 확장)"
-    },
     "input/search bar": {
       "type": "COMPONENT_SET",
       "key": "0294e4f5dc01568c6bbbfae696ef2294c12b42c2",
