@@ -12,13 +12,10 @@ const size = instance.getEnum('size', {
   small: 'small',
 })
 
-const guide = instance.getBoolean('guide', {
-  true: '항목에 따른 안내 가이드를 보여줍니다.',
-  false: undefined,
-})
+const guide = instance.getBoolean('guide')
 
 export default {
-  example: figma.code`<SwitchLabel size="${size}" title="타이틀" guide="${guide}" checked onChange={setChecked} />`,
+  example: figma.code`<SwitchLabel size="${size}" title="타이틀" guide={${guide}} checked onChange={setChecked} />`,
   imports: ['import { SwitchLabel } from "./SwitchLabel"'],
   id: 'switch-label',
   metadata: { nestable: false },

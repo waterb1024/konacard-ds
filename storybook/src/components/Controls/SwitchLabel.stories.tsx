@@ -18,7 +18,8 @@ const meta = {
   argTypes: {
     size: { control: "inline-radio", options: ["large", "small"] },
     title: { control: "text" },
-    guide: { control: "text" },
+    guide: { control: "boolean", description: "Figma 속성 guide — 아래 회색 안내 문구 켜기/끄기" },
+    guideText: { control: "text" },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
     onChange: { table: { disable: true } },
@@ -26,7 +27,8 @@ const meta = {
   args: {
     size: "large",
     title: "타이틀",
-    guide: "항목에 따른 안내 가이드를 보여줍니다.",
+    guide: true,
+    guideText: "항목에 따른 안내 가이드를 보여줍니다.",
     checked: true,
     disabled: false,
   },
@@ -50,13 +52,13 @@ export const Playground: Story = {
 };
 
 export const Matrix: Story = {
-  name: "size × 안내 문구 매트릭스",
+  name: "size × guide 매트릭스",
   render: () => (
     <div style={{ display: "grid" }}>
-      <SwitchLabel size="large" title="타이틀" guide="항목에 따른 안내 가이드를 보여줍니다." checked />
-      <SwitchLabel size="large" title="타이틀" />
-      <SwitchLabel size="small" title="타이틀" guide="항목에 따른 안내 가이드를 보여줍니다." checked />
-      <SwitchLabel size="small" title="타이틀" />
+      <SwitchLabel size="large" title="타이틀" checked />
+      <SwitchLabel size="large" title="타이틀" guide={false} />
+      <SwitchLabel size="small" title="타이틀" checked />
+      <SwitchLabel size="small" title="타이틀" guide={false} />
     </div>
   ),
 };
@@ -68,8 +70,8 @@ export const SettingsExample: Story = {
     const [marketing, setMarketing] = useState(false);
     return (
       <div style={{ display: "grid" }}>
-        <SwitchLabel title="알림 받기" guide="새로운 혜택과 안내를 알려드려요." checked={push} onChange={setPush} />
-        <SwitchLabel title="마케팅 정보 수신" guide="이메일·문자로 이벤트 소식을 받습니다." checked={marketing} onChange={setMarketing} />
+        <SwitchLabel title="알림 받기" guideText="새로운 혜택과 안내를 알려드려요." checked={push} onChange={setPush} />
+        <SwitchLabel title="마케팅 정보 수신" guideText="이메일·문자로 이벤트 소식을 받습니다." checked={marketing} onChange={setMarketing} />
       </div>
     );
   },

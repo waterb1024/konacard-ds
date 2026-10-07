@@ -9,7 +9,7 @@ import styles from "./SwitchLabel.module.css";
  *
  * Figma variants:
  *   - size:  large / small
- *   - guide: boolean (아래 회색 안내 문구 표시)
+ *   - guide: boolean (아래 회색 안내 문구 표시) → prop `guide`, 문구는 `guideText`
  *   - 켜짐/꺼짐은 내장 controls/swtich 의 state 로 제어
  *
  * Figma 실측 (2026-10-07):
@@ -27,8 +27,10 @@ export interface SwitchLabelProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "title"> {
   size?: SwitchLabelSize;
   title: ReactNode;
-  /** 아래 회색 안내 문구 — 없으면 Figma guide=false */
-  guide?: ReactNode;
+  /** 아래 회색 안내 문구 표시 여부 — Figma boolean 속성 guide (기본 true) */
+  guide?: boolean;
+  /** 안내 문구 내용 */
+  guideText?: ReactNode;
   checked?: boolean;
   onChange?: (next: boolean) => void;
   disabled?: boolean;
@@ -40,7 +42,8 @@ const cx = (...names: Array<string | false | undefined>) =>
 export function SwitchLabel({
   size = "large",
   title,
-  guide,
+  guide = true,
+  guideText = "항목에 따른 안내 가이드를 보여줍니다.",
   checked = false,
   onChange,
   disabled,
@@ -61,7 +64,7 @@ export function SwitchLabel({
           />
         </span>
       </div>
-      {guide && <p className={styles.guide}>{guide}</p>}
+      {guide && guideText && <p className={styles.guide}>{guideText}</p>}
       <hr className={styles.line} />
     </div>
   );
