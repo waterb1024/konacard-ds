@@ -874,6 +874,65 @@
         "2026-10-07 사용자 결정: 세트 이름을 line → divider 로 변경 (키 유지)"
       ],
       "docRef": "konacard-ds-components.md § 07_Line"
+    },
+    "label": {
+      "type": "COMPONENT_SET",
+      "key": "371b6bc0e2a5fe1390853a947703b3b02e0fa22f",
+      "nodeId": "2121:5513",
+      "props": {
+        "size": [
+          "large",
+          "medium",
+          "small",
+          "tiny"
+        ],
+        "type": [
+          "color",
+          "line"
+        ],
+        "color": [
+          "brand-gradient",
+          "brand",
+          "brand-light",
+          "gray-dark",
+          "warning"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "type": "color",
+        "color": "brand"
+      },
+      "rules": {
+        "type=color": "5색(brand-gradient·brand·brand-light·gray-dark·warning) × 4사이즈 = 20",
+        "type=line": "3색(brand-gradient·brand·warning) × 3사이즈(large·medium·small) = 9, tiny 없음"
+      },
+      "heights": {
+        "large": 30,
+        "medium": 26,
+        "small": 24,
+        "tiny": 20
+      },
+      "codeProp": {
+        "size": "size",
+        "type": "type",
+        "color": "color"
+      },
+      "aliases": {
+        "label/basic-label": "label (사용자가 세트 이름 변경, 키 유지)",
+        "label/basic-lable": "label (KeyScreen 이 쓰는 NEW 라이브러리 옛 오타 이름)",
+        "gray-drak": "gray-dark"
+      },
+      "notes": [
+        "2026-10-07 KeyScreen AOS 전체 100페이지 실사용 기준 정리: 48 → 29 variant. color=gray-light·gray-dark(line 전용, 0곳) 삭제 → gray-drak 을 gray-dark 로 이름 수정 → 규칙 확정으로 white(보이는 곳 0, 숨김 6) · line tiny(0곳) 삭제. 원본에서 지워 키 유지",
+        "KeyScreen 사용 수(보이는 곳): color brand-gradient 301 · brand 97 · brand-light 54 · warning 43 · gray-dark 26 / line brand-gradient 65 · brand 22 · warning 11",
+        "KeyScreen 숨김 6곳(color small white)은 화면 파일을 AX 로 옮길 때 다른 색으로 교체 필요",
+        "label/color-label · label/link-label 은 KeyScreen 0곳 → AX 에서 삭제됨 (사용자). Storybook LinkLabel 도 삭제",
+        "크기: large 30(pad 4 12, body/2-bold) · medium 26(4 12, body/3-Bold) · small 24 고정(좌우 8, body/4-Bold 11/16) · tiny 20(4 8, 9/12 -2%, 텍스트 스타일 없음). radius radius/components/label",
+        "brand-gradient: #804EE2 → #526ED3 가로. line brand-gradient 는 테두리·글자 모두 그라데이션",
+        "Storybook: Label type × size × color, Figma 와 1:1 (line 은 type 상 3색·3사이즈만 허용)"
+      ],
+      "docRef": "konacard-ds-components.md § Basic Label"
     }
   }
 }

@@ -1,177 +1,101 @@
 /*
- * konacard-ds — Label
- * Figma: ${FIGMA_DS_FILE_KEY} (-AX-)
- *  - Basic (component): node 2121:5513
- *  - Link (variant):   node 2415:6389
+ * KONACARD DS Label — Figma label (2121:5513), AX 실측 2026-10-07
  *
- * Basic: 4 size × 2 type (color/line) × 7 color
- * Link : icon + text, 5 color × 2 type — regular weight (basic 은 bold)
- * Radius: pill (radius/components/label = 9999, `--radius-round` 와 동일 값)
+ * 크기 (높이 · padding · 글자) — 모서리 radius/components/label (9999)
+ *   large  30 · 4 12 · 14/22 Bold -0.28 (body/2-bold)
+ *   medium 26 · 4 12 · 12/18 Bold -0.24 (body/3-Bold)
+ *   small  24 고정 · 좌우 8 · 11/16 Bold -0.22 (body/4-Bold)
+ *   tiny   20 · 4 8 · 9/12 Bold -2% (텍스트 스타일 없음)
  *
- * ── 사이즈별 스펙 (Figma AX 실측) ────────────────
- *   Large : 30h, padding 4v 12h, body/2-bold (14/22/-0.28)
- *   Medium: 26h, padding 4v 12h, body/3-bold (12/18/-0.24)
- *   Small : 24h(fixed), padding 8 all, body/4-bold (11/16/-0.22)
- *   Tiny  : 20h, padding 4v 8h,   9/12/-0.18 (semantic body token 없음)
+ * line 테두리: Figma 안쪽(INSIDE) 1px — 크기에 안 들어가므로 border 대신 inset box-shadow
+ * brand-gradient: #804EE2 → #526ED3 가로 (끝 stop 이 폭의 103.93%)
  */
 
 .label {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-round);
-  border: 1px solid transparent;
   box-sizing: border-box;
+  border-radius: var(--radius-round);
   white-space: nowrap;
   font-family: var(--font-family-body);
   font-weight: var(--font-weight-bold);
 }
 
-/* ── Size (Basic) ──────────────────────────── */
-/* large: pv4 ph12 · body/2-bold (14/22) */
+/* ── Size ─────────────────────────────────────────────── */
 .size-large {
-  padding: var(--spacing-2xsmall) var(--spacing-small);
-  gap: var(--spacing-xsmall);
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: -0.28px;
+  padding: var(--spacing-2xsmall) var(--spacing-small); /* 4 12 */
+  font: var(--text-body-2-bold); /* 14/22 */
+  letter-spacing: var(--font-letterspacing-small); /* -0.28 */
 }
-
-/* medium: pv4 ph12 · body/3-bold (12/18) */
 .size-medium {
-  padding: var(--spacing-2xsmall) var(--spacing-small);
-  gap: var(--spacing-xsmall);
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: -0.24px;
+  padding: var(--spacing-2xsmall) var(--spacing-small); /* 4 12 */
+  font: var(--text-body-3-bold); /* 12/18 */
+  letter-spacing: var(--font-letterspacing-xsmall); /* -0.24 */
 }
-
-/* small: h24 fixed, padding 8 all sides · body/4-bold (11/16) */
 .size-small {
-  height: 24px;
-  padding: var(--spacing-xsmall); /* Figma spec: 8px 전방향 */
-  gap: var(--spacing-xsmall);
+  height: 24px; /* Figma 높이 고정 */
+  padding: 0 var(--spacing-xsmall); /* 좌우 8 */
   font-size: 11px;
   line-height: 16px;
-  letter-spacing: -0.22px;
+  letter-spacing: var(--font-letterspacing-2xsmall); /* -0.22 */
 }
-
-/* tiny: pv4 ph8 · 9px/12 */
 .size-tiny {
-  padding: var(--spacing-2xsmall) var(--spacing-xsmall);
-  gap: var(--spacing-2xsmall);
+  padding: var(--spacing-2xsmall) var(--spacing-xsmall); /* 4 8 */
   font-size: 9px;
   line-height: 12px;
-  letter-spacing: -0.18px;
+  letter-spacing: -0.02em; /* -2% */
 }
 
-/* ── Color × Type ─────────────────────────── */
-/* brand */
-.color-color-brand {
-  background: var(--color-brand-primary);
+/* ── type=color ───────────────────────────────────────── */
+.color-brand-gradient {
+  background: linear-gradient(90deg, #804ee2 0%, #526ed3 103.93%);
   color: var(--color-font-white);
-  border-color: var(--color-brand-primary);
 }
-.color-line-brand {
-  background: transparent;
+.color-brand {
+  background: var(--color-brand-primary); /* #805AE9 */
+  color: var(--color-font-white);
+}
+.color-brand-light {
+  background: var(--color-brand-secondary); /* #F4F0FD */
   color: var(--color-font-brand);
-  border-color: var(--color-brand-primary);
+}
+.color-gray-dark {
+  background: var(--color-font-quaternary); /* label/neutral-tertiary #999 */
+  color: var(--color-font-white);
+}
+.color-warning {
+  background: var(--color-font-error); /* label/accent-red #FF364B */
+  color: var(--color-font-white);
 }
 
-/* brand-light — Fill only (no line variant in Figma) */
-.color-color-brand-light {
-  background: var(--color-brand-secondary);
+/* ── type=line (바탕 없음 · 안쪽 1px 테두리 · 글자 같은 색) ── */
+.line-brand {
+  box-shadow: inset 0 0 0 1px var(--color-brand-primary);
   color: var(--color-font-brand);
-  border-color: var(--color-brand-secondary);
 }
-.color-line-brand-light {
-  background: transparent;
-  color: var(--color-font-brand);
-  border-color: var(--color-brand-secondary);
-}
-
-/* brand-gradient */
-.color-color-brand-gradient {
-  background: linear-gradient(to right, #804ee2, #526ed3 103.93%);
-  color: var(--color-font-white);
-  border-color: transparent;
-}
-.color-line-brand-gradient {
-  background: transparent;
-  color: transparent;
-  border: 1px solid #804ee2;
-  background-image: linear-gradient(to right, #804ee2, #526ed3);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* gray-dark (Figma 원본 오타 gray-drak 도 지원) */
-.color-color-gray-dark,
-.color-color-gray-drak {
-  background: var(--color-font-quaternary);
-  color: var(--color-font-white);
-  border-color: var(--color-font-quaternary);
-}
-.color-line-gray-dark,
-.color-line-gray-drak {
-  background: transparent;
-  color: var(--color-font-tertiary);
-  border-color: var(--color-font-tertiary);
-}
-
-/* gray-light */
-.color-color-gray-light {
-  background: var(--color-background-secondary);
-  color: var(--color-font-primary);
-  border-color: var(--color-background-secondary);
-}
-.color-line-gray-light {
-  background: transparent;
-  color: var(--color-font-quaternary);
-  border-color: var(--color-font-quaternary);
-}
-
-/* white */
-.color-color-white {
-  background: var(--color-background-primary);
-  color: var(--color-font-tertiary);
-  border-color: var(--color-background-primary);
-}
-.color-line-white {
-  background: transparent;
-  color: var(--color-font-white);
-  border-color: var(--color-font-white);
-}
-
-/* warning (red) */
-.color-color-warning {
-  background: var(--color-font-error);
-  color: var(--color-font-white);
-  border-color: var(--color-font-error);
-}
-.color-line-warning {
-  background: transparent;
+.line-warning {
+  box-shadow: inset 0 0 0 1px var(--color-font-error);
   color: var(--color-font-error);
-  border-color: var(--color-font-error);
 }
-
-/* ── Link Label ───────────────────────────── */
-.link {
-  padding: var(--spacing-3xsmall) var(--spacing-xsmall) var(--spacing-3xsmall)
-    var(--spacing-2xsmall);
-  gap: var(--spacing-3xsmall);
-  font-weight: var(--font-weight-regular);
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: -0.24px;
+/* 테두리·글자 모두 그라데이션: 글자는 background-clip, 테두리는 ::before 링 */
+.line-brand-gradient {
+  background: linear-gradient(90deg, #804ee2 0%, #526ed3 103.93%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #804ee2;
 }
-
-.linkIcon {
-  width: 16px;
-  height: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.line-brand-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, #804ee2 0%, #526ed3 103.93%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
