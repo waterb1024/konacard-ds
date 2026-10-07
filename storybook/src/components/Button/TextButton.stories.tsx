@@ -9,28 +9,26 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Text Button. konacard-ds-components.md § 02_Button > Text 버튼. " +
-          "배경 없는 텍스트 링크성 버튼. 36h · 4 size × 4 color.",
+          "KONACARD DS Text Button — 밑줄 있는 글자 버튼. Figma button/text button, AX 실측 값. " +
+          "size large 36 (14) · medium 32 (12) · small 24 (11) × color 4종. 비활성 디자인 없음.",
       },
     },
   },
   argTypes: {
     size: {
       control: "inline-radio",
-      options: ["large", "medium", "small", "tiny"],
+      options: ["large", "medium", "small"],
     },
     color: {
       control: "inline-radio",
       options: ["black", "brand", "gray", "gray-light"],
     },
-    disabled: { control: "boolean" },
     children: { control: "text" },
   },
   args: {
     children: "약관 보기",
-    size: "medium",
+    size: "large",
     color: "black",
-    disabled: false,
   },
   decorators: [
     (Story) => (
@@ -56,14 +54,10 @@ export const GrayLight: Story = {
   args: { color: "gray-light", children: "지원 안 됨" },
 };
 
-export const Disabled: Story = {
-  args: { color: "brand", disabled: true, children: "완료" },
-};
-
 export const Matrix: Story = {
   name: "Matrix — Size × Color",
   render: () => {
-    const sizes = ["large", "medium", "small", "tiny"] as const;
+    const sizes = ["large", "medium", "small"] as const;
     const colors = ["black", "brand", "gray", "gray-light"] as const;
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

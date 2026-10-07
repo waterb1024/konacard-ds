@@ -9,30 +9,28 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Icon Button. konacard-ds-components.md § 02_Button > Icon 버튼. " +
-          "텍스트 + 우측 chevron(>). 진입형 리스트 아이템·설정 아이템 등에 사용.",
+          "KONACARD DS Icon Button — 글자 + 오른쪽 화살표(>). Figma button/icon button, AX 실측 값 · 화살표는 Figma 원본 SVG. " +
+          "size large 40 · medium 32 · small 24 × weight × type. 비활성 디자인 없음.",
       },
     },
   },
   argTypes: {
     size: {
       control: "inline-radio",
-      options: ["large", "medium", "small", "tiny"],
+      options: ["large", "medium", "small"],
     },
     weight: { control: "inline-radio", options: ["bold", "regular"] },
     type: {
       control: "inline-radio",
       options: ["black", "brand", "gray"],
     },
-    disabled: { control: "boolean" },
     children: { control: "text" },
   },
   args: {
     children: "자세히 보기",
-    size: "medium",
-    weight: "bold",
-    type: "black",
-    disabled: false,
+    size: "large",
+    weight: "regular",
+    type: "gray",
   },
   decorators: [
     (Story) => (
@@ -64,40 +62,25 @@ export const Regular: Story = {
   args: { weight: "regular", children: "약관 보기" },
 };
 
-export const Disabled: Story = {
-  args: { disabled: true, children: "완료 대기" },
-};
-
 export const Matrix: Story = {
-  name: "Matrix — Size × Weight × Type",
+  name: "Matrix — Figma 배치 (size × weight × type)",
   render: () => {
-    const sizes = ["large", "medium", "small", "tiny"] as const;
-    const types = ["black", "brand", "gray"] as const;
+    const sizes = ["large", "medium", "small"] as const;
+    const cols = [
+      ["regular", "gray"], ["regular", "black"], ["regular", "brand"],
+      ["bold", "gray"], ["bold", "black"], ["bold", "brand"],
+    ] as const;
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {types.map((t) => (
-          <section key={t}>
-            <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
-              type = {t}
-            </h4>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              {sizes.map((s) => (
-                <IconButton key={`${s}-bold`} size={s} weight="bold" type={t}>
-                  {s} bold
-                </IconButton>
-              ))}
-              {sizes.map((s) => (
-                <IconButton
-                  key={`${s}-regular`}
-                  size={s}
-                  weight="regular"
-                  type={t}
-                >
-                  {s} regular
-                </IconButton>
-              ))}
-            </div>
-          </section>
+      <div style={{ display: "grid", gap: 16 }}>
+        {sizes.map((s) => (
+          <div key={s} style={{ display: "flex", gap: 24, alignItems: "center" }}>
+            <span style={{ width: 56, font: "var(--text-body-3-regular)", color: "var(--color-font-quaternary)" }}>{s}</span>
+            {cols.map(([w, t]) => (
+              <IconButton key={w + t} size={s} weight={w} type={t}>
+                Button
+              </IconButton>
+            ))}
+          </div>
         ))}
       </div>
     );

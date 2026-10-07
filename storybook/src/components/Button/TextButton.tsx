@@ -4,13 +4,13 @@ import styles from "./TextButton.module.css";
 
 /**
  * KONACARD DS Text Button
- * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 17:793
- * spec: konacard-ds-components.md § 02_Button > Text 버튼
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 10973:796 (button/text button)
+ * Figma variants (2026-10-07 정리 후): size large·medium·small × color 4종 (state 속성 없음 — 비활성 디자인 없음)
  * 형태: 배경 없는 텍스트 링크성 버튼. **항상 밑줄 표시**.
  * 용도: 하단 유틸리티 링크, CTA 위 반대 액션, 부가 정보 링크 등.
  */
 
-export type TextButtonSize = "large" | "medium" | "small" | "tiny";
+export type TextButtonSize = "large" | "medium" | "small";
 export type TextButtonColor = "black" | "brand" | "gray" | "gray-light";
 
 export interface TextButtonProps
@@ -25,7 +25,7 @@ const cx = (...names: Array<string | false | undefined>) =>
 
 export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
   function TextButton(
-    { size = "medium", color = "black", className, children, ...rest },
+    { size = "large", color = "gray-light", className, children, ...rest },
     ref,
   ) {
     return (

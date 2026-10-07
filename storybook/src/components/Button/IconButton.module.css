@@ -1,109 +1,38 @@
 /*
- * konacard-ds-components.md § 02_Button > Icon 버튼 (button/icon, node 202:2574)
- * 형태: 텍스트 + 우측 chevron(>)
- * Height: 자연스럽게 padding + lineHeight 로 결정. spec 상 medium 기준 34h.
+ * KONACARD DS Icon Button — Figma button/icon button (10973:651), AX 실측 2026-10-07
+ * 높이 40 / 32 / 24 · 좌우 padding 0 · 글자↔화살표 4 · 세로 가운데
+ * 글자: large body/1 (15/24, -0.30) · medium body/2 (14/22, -0.28) · small body/3 (12/18, -0.24)
+ * 글자색: gray #666 · black #000 · brand #805AE9 (화살표 색은 IconButton.tsx)
  */
 
 .iconButton {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-2xsmall); /* 4px */
+  gap: var(--spacing-2xsmall); /* 4 */
   padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: opacity 0.12s ease;
-}
-
-.iconButton:disabled {
-  opacity: var(--opacity-disable-button); /* 0.4 */
-  cursor: not-allowed;
+  white-space: nowrap;
 }
 
 .label {
   display: inline-flex;
 }
 
-/* chevron 은 text 색보다 한 톤 살짝 다르게 처리 — Figma spec 대로 */
-.chevron {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ── Size ─────────────────────────────────── */
+.size-large { height: 40px; letter-spacing: var(--font-letterspacing-medium); }
+.size-medium { height: 32px; letter-spacing: var(--font-letterspacing-small); }
+.size-small { height: 24px; letter-spacing: var(--font-letterspacing-xsmall); }
 
-/* ── Height per size (Figma spec: 40/32/28/24) ─────────────── */
-.size-large.iconButton,
-.iconButton.size-large {
-  height: 40px;
-}
-.size-medium.iconButton,
-.iconButton.size-medium {
-  height: 32px;
-}
-.size-small.iconButton,
-.iconButton.size-small {
-  height: 28px;
-}
-.size-tiny.iconButton,
-.iconButton.size-tiny {
-  height: 24px;
-}
+.size-large.weight-regular { font: var(--text-body-1-regular); }
+.size-large.weight-bold { font: var(--text-body-1-bold); }
+.size-medium.weight-regular { font: var(--text-body-2-regular); }
+.size-medium.weight-bold { font: var(--text-body-2-bold); }
+.size-small.weight-regular { font: var(--text-body-3-regular); }
+.size-small.weight-bold { font: var(--text-body-3-bold); }
 
-/* ── Size × Weight ─────────────────────────────────── */
-/* regular */
-.size-large.weight-regular {
-  font: var(--text-body-1-regular);
-  letter-spacing: var(--font-letterspacing-medium);
-}
-.size-medium.weight-regular {
-  font: var(--text-body-2-regular);
-  letter-spacing: var(--font-letterspacing-small);
-}
-.size-small.weight-regular {
-  font: var(--text-body-3-regular);
-  letter-spacing: var(--font-letterspacing-xsmall);
-}
-.size-tiny.weight-regular {
-  font: 400 11px/16px var(--font-family-body);
-  letter-spacing: var(--font-letterspacing-2xsmall);
-}
-
-/* bold */
-.size-large.weight-bold {
-  font: var(--text-body-1-bold);
-  letter-spacing: var(--font-letterspacing-medium);
-}
-.size-medium.weight-bold {
-  font: var(--text-body-2-bold);
-  letter-spacing: var(--font-letterspacing-small);
-}
-.size-small.weight-bold {
-  font: var(--text-body-3-bold);
-  letter-spacing: var(--font-letterspacing-xsmall);
-}
-.size-tiny.weight-bold {
-  font: 700 11px/16px var(--font-family-body);
-  letter-spacing: var(--font-letterspacing-2xsmall);
-}
-
-/* ── Color (type) — 텍스트 색과 chevron 색 분리 (Figma spec) ─────── */
-.type-black {
-  color: var(--color-font-primary); /* text #000000 */
-}
-.type-black .chevron {
-  color: var(--color-icon-secondary); /* icon #333333 (텍스트보다 한 톤 옅음) */
-}
-
-.type-brand {
-  color: var(--color-font-brand); /* #805AE9 */
-}
-.type-brand .chevron {
-  color: var(--color-icon-brand); /* #805AE9 (동일) */
-}
-
-.type-gray {
-  color: var(--color-font-tertiary); /* text #666666 */
-}
-.type-gray .chevron {
-  color: var(--color-icon-tertiary); /* icon #666666 (동일) */
-}
+/* ── Type (글자색) ─────────────────────────── */
+.type-gray { color: var(--color-font-tertiary); } /* #666 */
+.type-black { color: var(--color-font-primary); } /* #000 */
+.type-brand { color: var(--color-font-brand); } /* #805AE9 */

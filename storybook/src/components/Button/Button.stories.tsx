@@ -9,16 +9,23 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Button. konacard-ds-components.md § 02_Button 기준. " +
-          "Size × Color × State(Default/Disable) 조합. Disable = Default × opacity 40%.",
+          "KONACARD DS Button (Box). Figma button/button — AX 실측 값. " +
+          "variant(primary · secondary) × size × color × 비활성(disabled). " +
+          "primary 는 large 56 · medium 48 · small 40 (Bold), secondary 는 large 40 · medium 32 · small 24 · tiny 24 (Regular). " +
+          "비활성은 opacity 40% — 단 primary brand 는 회색 바탕(#DDD), large 만 흐림 없음.",
       },
     },
   },
   argTypes: {
+    variant: {
+      control: "inline-radio",
+      options: ["primary", "secondary"],
+      description: "Figma style",
+    },
     size: {
       control: "inline-radio",
-      options: ["large", "medium", "small"],
-      description: "Large=56 / Medium=48 / Small=32",
+      options: ["large", "medium", "small", "tiny"],
+      description: "primary: large 56 / medium 48 / small 40 · secondary: large 40 / medium 32 / small 24 / tiny 24 (tiny 는 secondary 전용)",
     },
     color: {
       control: "select",
@@ -26,7 +33,6 @@ const meta = {
         "Brand",
         "Brand_Light",
         "Brand_Line",
-        "Brand_Gradient",
         "Gray",
         "Gray_Light",
         "Gray_Line",
@@ -39,6 +45,7 @@ const meta = {
   },
   args: {
     children: "다음",
+    variant: "primary",
     size: "large",
     color: "Brand",
     disabled: false,
@@ -147,54 +154,54 @@ export const FixedBottomPair: Story = {
   ),
 };
 
-/* ── 전체 매트릭스 (문서용) ────────────────────────── */
+/* ── 전체 매트릭스 (Figma 배치 그대로) ───────────────── */
+const COLORS = [
+  "Brand_Light",
+  "Brand",
+  "Brand_Line",
+  "Gray_Light",
+  "Gray",
+  "Gray_Line",
+  "Gray_Line_Light",
+] as const;
+
+const ROWS = [
+  ["primary", "large"],
+  ["primary", "medium"],
+  ["primary", "small"],
+  ["secondary", "large"],
+  ["secondary", "medium"],
+  ["secondary", "small"],
+  ["secondary", "tiny"],
+] as const;
+
 export const Matrix: Story = {
-  name: "Matrix — Size × Color",
+  name: "Matrix — variant × size × color × 비활성",
   parameters: {
     docs: {
       description: {
-        story:
-          "Size(Large/Medium/Small) × Color 조합. Small 만 Dark 사용, Large·Medium 은 미사용.",
+        story: "Figma button/button 과 같은 배치. 각 묶음 윗줄 = 활성, 아랫줄 = 비활성(disabled).",
       },
     },
   },
-  render: () => {
-    const allColors: Array<
-      | "Brand"
-      | "Brand_Light"
-      | "Brand_Line"
-      | "Brand_Gradient"
-      | "Gray"
-      | "Gray_Light"
-      | "Gray_Line"
-      | "Gray_Line_Light"
-    > = [
-      "Brand",
-      "Brand_Light",
-      "Brand_Line",
-      "Brand_Gradient",
-      "Gray",
-      "Gray_Light",
-      "Gray_Line",
-      "Gray_Line_Light",
-    ];
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        {(["large", "medium", "small"] as const).map((s) => (
-          <section key={s}>
-            <h4 style={{ margin: "0 0 8px", font: "var(--text-body-2-bold)" }}>
-              {s}
-            </h4>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {allColors.map((c) => (
-                <Button key={c} size={s} color={c}>
-                  {c}
+  render: () => (
+    <div style={{ display: "grid", gap: 24 }}>
+      {ROWS.map(([v, s]) => (
+        <section key={v + s}>
+          <h4 style={{ margin: "0 0 8px", font: "var(--text-body-3-bold)", color: "var(--color-font-tertiary)" }}>
+            {v} / {s}
+          </h4>
+          {[false, true].map((dis) => (
+            <div key={String(dis)} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+              {COLORS.map((c) => (
+                <Button key={c} variant={v} size={s} color={c} disabled={dis}>
+                  Button
                 </Button>
               ))}
             </div>
-          </section>
-        ))}
-      </div>
-    );
-  },
+          ))}
+        </section>
+      ))}
+    </div>
+  ),
 };
