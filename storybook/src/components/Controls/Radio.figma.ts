@@ -6,10 +6,8 @@ import figma from 'figma'
 const instance = figma.selectedInstance
 
 const size = instance.getEnum('size', {
-  large: 'large',
   medium: 'medium',
   small: 'small',
-  tiny: 'tiny',
 })
 
 // state=true → 선택됨(checked=true), state=false → 미선택

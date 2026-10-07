@@ -11,14 +11,14 @@ const meta = {
       description: {
         component:
           "KONACARD DS Radio. konacard-ds-components.md § 05_Control (controls/radio button). " +
-          "4 size × 2 state × 2 status. 사이즈별 Figma(AX) 실측 테두리·점 지름. 비활성: 선택은 회색 바탕+회색 점, 미선택은 회색 바탕+opacity 40%.",
+          "2 size (medium 28 / small 24) × 2 state × 2 status. 사이즈별 Figma(AX) 실측 테두리·점 지름. 비활성: 선택은 회색 바탕+회색 점, 미선택은 회색 바탕+opacity 40%.",
       },
     },
   },
   argTypes: {
     size: {
       control: "inline-radio",
-      options: ["large", "medium", "small", "tiny"],
+      options: ["medium", "small"],
     },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -27,7 +27,7 @@ const meta = {
     onChange: { table: { disable: true } },
   },
   args: {
-    size: "large",
+    size: "medium",
     checked: false,
     disabled: false,
   },
@@ -50,15 +50,15 @@ export const Playground: Story = {
   },
 };
 
-export const Selected: Story = { args: { size: "large", checked: true } };
+export const Selected: Story = { args: { size: "medium", checked: true } };
 export const Unselected: Story = {
-  args: { size: "large", checked: false },
+  args: { size: "medium", checked: false },
 };
 
 export const Matrix: Story = {
   name: "Size × State Matrix",
   render: () => {
-    const sizes = ["large", "medium", "small", "tiny"] as const;
+    const sizes = ["medium", "small"] as const;
     return (
       <div style={{ display: "grid", gap: 16 }}>
         {sizes.map((s) => (
@@ -111,7 +111,7 @@ export const RadioGroup: Story = {
             }}
           >
             <Radio
-              size="large"
+              size="medium"
               checked={value === o.id}
               onChange={() => setValue(o.id)}
             />

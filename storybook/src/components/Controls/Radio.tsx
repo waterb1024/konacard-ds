@@ -8,19 +8,19 @@ import styles from "./Radio.module.css";
  * spec: konacard-ds-components.md § 05_Control
  *
  * Figma variants:
- *   - size:   large(32) / medium(28) / small(24) / tiny(20)
+ *   - size:   medium(28) / small(24)  — large·tiny 는 2026-10-07 Figma 에서 삭제
  *   - state:  true(selected) / false(unselected)
  *   - status: true(enabled) / false(disabled)
  *
  * 2026-10-07 AX 실측 대조 (사이즈마다 따로 그려져 있어 비율 계산 대신 표로 둠):
- *   - 바깥 원: fill #FFFFFF · 안쪽 테두리 #DDDDDD — 두께 large 1 / medium 0.875 / small 0.857 / tiny 0.714
- *   - 가운데 점(선택): 지름 large 14.93 / medium 13.07 / small 12 / tiny 10, 색 brand
+ *   - 바깥 원: fill #FFFFFF · 안쪽 테두리 #DDDDDD — 두께 medium 0.875 / small 0.857
+ *   - 가운데 점(선택): 지름 medium 13.07 / small 12, 색 brand
  *   - 비활성(status=false) — Figma 그대로:
  *       선택 + 비활성   → 바깥 원 #F8F9FB · 점 #DDDDDD · 흐림 없음
  *       미선택 + 비활성 → 바깥 원 #F8F9FB · 전체 opacity 0.4
  */
 
-export type RadioSize = "large" | "medium" | "small" | "tiny";
+export type RadioSize = "medium" | "small";
 
 export interface RadioProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onChange" | "value"> {
@@ -33,10 +33,8 @@ const cx = (...names: Array<string | false | undefined>) =>
   names.filter(Boolean).join(" ");
 
 const GEOM: Record<RadioSize, { px: number; border: number; dot: number }> = {
-  large: { px: 32, border: 1, dot: 14.933 },
   medium: { px: 28, border: 0.875, dot: 13.067 },
   small: { px: 24, border: 0.857, dot: 12 },
-  tiny: { px: 20, border: 0.714, dot: 10 },
 };
 
 function RadioSvg({
@@ -82,7 +80,7 @@ function RadioSvg({
 
 export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
   {
-    size = "large",
+    size = "medium",
     checked = false,
     onChange,
     className,
