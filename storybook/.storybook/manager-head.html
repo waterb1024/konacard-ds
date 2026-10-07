@@ -66,4 +66,13 @@
   [class*="SearchField"] {
     border-radius: 9999px !important;
   }
+
+  /* 컨트롤 패널 True/False 토글: 선택된 쪽 글자 흰색, 포커스 보라 테두리 없음 */
+  label:has(> input[role="switch"]) input:focus {
+    box-shadow: none !important;
+  }
+  label:has(> input[role="switch"]) input:checked ~ span:last-of-type,
+  label:has(> input[role="switch"]) input:not(:checked) ~ span:first-of-type {
+    color: #ffffff !important;
+  }
 </style>
