@@ -49,7 +49,8 @@
   border-radius: var(--radius-components-box-info); /* 8 */
   font: var(--text-body-2-regular);
   letter-spacing: var(--font-letterspacing-small);
-  white-space: nowrap;
+  white-space: pre-line; /* 문구 안 줄바꿈(\n) 유지 + maxWidth 에서 줄바꿈 */
+  word-break: keep-all;
   box-sizing: border-box;
   flex-shrink: 0;
   position: relative; /* z-index 활성화 위해 필수 */
@@ -110,29 +111,18 @@
   margin-right: -1px;
 }
 
-/* ── Trigger (? or !) ─────────────────────────── */
-.trigger {
+/* ── BubbleTooltip: 아이콘 + 툴팁 ───────────────── */
+.anchor {
+  position: relative;
   display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-2xsmall);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  line-height: normal;
+  vertical-align: middle;
 }
 
-.triggerIcon {
-  width: 16px;
-  height: 16px;
-  border-radius: var(--radius-round);
-  background: var(--color-icon-quaternary);
-  color: var(--color-icon-white);
+.iconButton {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font: 700 10px/1 var(--font-family-body);
-  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
 }

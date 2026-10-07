@@ -801,7 +801,10 @@
         "말풍선: padding 12/16, radius 8, 글자 body/2-Regular (14/22, -0.28), 폭은 글자에 맞춤(hug). line 테두리 color/border/focus 1px 안쪽 — 크기에 안 들어감",
         "핀: 12×8 마스크 안에 꼭짓점 모서리 2 인 삼각형 12×10 (밑변 2px 잘림). line 핀 테두리 color/border/brand. 말풍선과 1px 겹치고 핀이 항상 위에 그려짐(bottom·left 는 레이어 순서 반대)",
         "Figma 이름 규칙이 섞여 있음: top/bottom 은 말풍선 위치, left/right 는 핀 위치 기준 (일관성 확인 후보) — Storybook 은 Figma 이름 그대로 따름",
-        "tooltip/pin 세트에 type=white 도 있으나 tooltip/tooltip 에서는 안 씀"
+        "tooltip/pin 세트에 type=white 도 있으나 tooltip/tooltip 에서는 안 씀",
+        "2026-10-07 사용법(❖ Tooltip 예시 화면 4개 기준): 글자 옆 회색 원형 아이콘을 누르면 열림 — 입력칸 제목 옆 ic_info/ic_noti_16_g(16 ?), 정보 값 옆 ic_20/ic_question_20_g(20 ?, 설명) · ic_20/ic_guide_20_g(20 !, 주의·조건). 말풍선은 아이콘 바로 아래/위(간격 0), 왼쪽 아이콘 -left · 오른쪽 아이콘 -right, 화면 좌우 여백 20 안, 긴 문구는 의미 단위로 줄바꿈",
+        "Storybook: Tooltip 에 maxWidth(기본 320) · 줄바꿈 추가, BubbleTooltip = Figma 원본 아이콘 + 핀이 아이콘 가운데를 가리키게 배치. 사용 예시 3종",
+        "Figma 정리 후보: 예시 화면들이 tooltip/tooltip 인스턴스가 아니라 떼어낸 부품(tooltip/line · tooltip/pin · tooltip/chevron-up)으로 만들어짐 / 바코드 화면 툴팁은 글자 12 · 여백 16 · 모서리 12 로 컴포넌트(14 · 12/16 · 8)와 다름 / 이용내역 화면은 핀이 아이콘 가운데보다 12 오른쪽"
       ],
       "docRef": "konacard-ds-components.md § 11_Tooltip"
     },
