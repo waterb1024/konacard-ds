@@ -202,8 +202,7 @@
         "size": [
           "large",
           "medium",
-          "small",
-          "tiny"
+          "small"
         ],
         "weight": [
           "bold",
@@ -227,14 +226,12 @@
       "heights": {
         "large": 40,
         "medium": 32,
-        "small": "28 (regular·gray 만 24)",
-        "tiny": 24
+        "small": 24
       },
       "textStyles": {
         "large": "body/1 (15/24)",
         "medium": "body/2 (14/22)",
-        "small": "body/3 (12/18)",
-        "tiny": "regular body/3 (12/18) · bold body/4 (11/16)"
+        "small": "body/3 (12/18)"
       },
       "aliases": {
         "button/icon": "button/icon button (NEW 이름)",
@@ -243,8 +240,8 @@
       "notes": [
         "2026-10-07 KeyScreen AOS 실사용 기준 정리 확정: state=false 삭제 → state 속성 없어짐 (비활성 0곳). 이름 깨진 variant(size=button, weight=icon, type=small, state=bold) 는 size=small, weight=bold, type=gray 로 이름 수정 → 24 variant",
         "원본 세트(202:2574, 키 6385e2bf…) 지우고 정리본 확정. AX 안 인스턴스 교체 완료",
-        "Figma 정리 후보: small·regular 중 gray 만 높이 24 (black·brand 는 28) · tiny regular 글자가 small 과 같은 12/18 (tiny bold 는 11/16)",
-        "KeyScreen 실사용: medium·regular·gray 가 대부분 (옛 Button/Icon 포함 175곳), 색은 gray 위주"
+        "KeyScreen 실사용: medium·regular·gray 가 대부분 (옛 Button/Icon 포함 175곳), 색은 gray 위주",
+        "2026-10-07 추가 정리 (사용자 승인): small 6개 높이 28 → 24 (실제로 쓰는 small·regular·gray 가 24), tiny 는 small 과 모양이 같아(12/18, 24) small 로 합치고 size=tiny 삭제 → 18 variant. AX 안 tiny 인스턴스 0개. KeyScreen 의 tiny 81곳(보이는 38)은 화면 파일이 AX 로 옮길 때 small 로 교체 — 모양 변화 없음, tiny·bold·black 숨김 5곳만 글자 11 → 12"
       ],
       "docRef": "konacard-ds-components.md § 02_Button"
     },
