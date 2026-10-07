@@ -1,0 +1,34 @@
+/* Figma button/tetiary (1212:4553), AX 실측 2026-10-07 */
+.tertiary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall); /* 4 */
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--radius-button-small); /* 4 */
+  font: var(--text-body-2-bold); /* 700 14/22 */
+  letter-spacing: -0.03em; /* Figma -3% (텍스트 스타일 미연결) */
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.tertiary:disabled {
+  opacity: var(--opacity-disable-button); /* DS 공통 비활성 규칙 */
+  cursor: not-allowed;
+}
+
+.type-Dark {
+  background: var(--color-button-quarternary); /* #999 */
+  color: var(--color-font-white);
+}
+.type-Gray {
+  background: var(--color-button-tertiary); /* #DDD */
+  color: var(--color-font-primary); /* #000 */
+}
+.type-line {
+  background: var(--color-button-white);
+  box-shadow: inset 0 0 0 1px var(--color-button-tertiary); /* #DDD 안쪽 1px */
+  color: var(--color-font-secondary); /* #333 */
+}

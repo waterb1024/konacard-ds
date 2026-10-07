@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
+import { FixedBottom } from "./FixedBottom";
+import { TertiaryButton } from "./TertiaryButton";
 
 const meta = {
   title: "Component/Button/Box",
@@ -121,35 +123,47 @@ export const SmallBrandLine: Story = {
 };
 
 /* ── 병렬 CTA (3.5 : 6.5) ─────────────────────────── */
-export const FixedBottomPair: Story = {
-  name: "Fixed-Bottom 병렬 CTA (3.5:6.5)",
+/* ── button/fixed-bottom (17:1049) ─────────────────────── */
+export const FixedBottomBar: Story = {
+  name: "Fixed bottom",
   parameters: {
     docs: {
       description: {
         story:
-          "components.md § Fixed-Bottom 병렬 규칙: 좌 3.5 = 보조(Gray/Line), 우 6.5 = 주(Brand). 파괴적 액션은 좌측.",
+          "Figma button/fixed-bottom (17:1049). 흰 바탕 · padding 0 20 16 · 버튼 사이 8. 왼쪽 보조 버튼(large · Gray_Light) 폭 115 고정, 오른쪽 주 버튼(large · Brand) 남은 폭. Device AOS 360 / iOS 375 는 폭 차이뿐이라 부모 폭을 따름.",
       },
     },
   },
   render: () => (
-    <div
-      style={{
-        display: "flex",
-        gap: 8,
-        width: 320,
-        padding: "8px 0",
-      }}
-    >
-      <div style={{ flex: "3.5" }}>
-        <Button size="large" color="Gray" fullWidth>
-          취소
-        </Button>
+    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      {[360, 375].map((w) => (
+        <div key={w} style={{ width: w, outline: "1px dashed #ccc" }}>
+          <FixedBottom secondary="취소" primary="확인" />
+        </div>
+      ))}
+      <div style={{ width: 360, outline: "1px dashed #ccc" }}>
+        <FixedBottom primary="다음" />
       </div>
-      <div style={{ flex: "6.5" }}>
-        <Button size="large" color="Brand" fullWidth>
-          확인
-        </Button>
-      </div>
+    </div>
+  ),
+};
+
+/* ── button/tetiary (1212:4553) ─────────────────────────── */
+export const Tertiary: Story = {
+  name: "Tertiary",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Figma button/tetiary (1212:4553, 원본 이름 오타 그대로). 높이 28 · padding 12 · 모서리 4 · 14/22 Bold · ic_plus_12. Type Dark / Gray / line.",
+      },
+    },
+  },
+  render: () => (
+    <div style={{ display: "flex", gap: 12 }}>
+      <TertiaryButton type="Dark">Button</TertiaryButton>
+      <TertiaryButton type="Gray">Button</TertiaryButton>
+      <TertiaryButton type="line">Button</TertiaryButton>
     </div>
   ),
 };

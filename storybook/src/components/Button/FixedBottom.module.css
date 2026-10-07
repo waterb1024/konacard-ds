@@ -1,0 +1,20 @@
+/* Figma button/fixed-bottom (17:1049) — 흰 바탕 · padding 0 20 16 · gap 8 · 보조 버튼 폭 115 */
+.fixedBottom {
+  display: flex;
+  gap: var(--spacing-xsmall); /* 8 */
+  padding: 0 var(--screen-h-padding, 20px) var(--spacing-medium); /* 0 20 16 */
+  background: var(--color-background-primary);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.secondary {
+  width: 115px;
+  flex-shrink: 0;
+}
+
+/* 주 버튼: 남은 폭 채움 (Button 기본 flex-shrink 0 을 덮어씀) */
+.primary {
+  flex: 1 1 0;
+  min-width: 0;
+}
