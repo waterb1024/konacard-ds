@@ -1,9 +1,9 @@
 import styles from "./Divider.module.css";
 
 /**
- * KONACARD DS Divider — Figma `line` (10997:164) · ❖ Divider 페이지
+ * KONACARD DS Divider — Figma `divider` (10997:164) · ❖ Divider 페이지
  *
- * 2026-10-07 line/solid · line/dotted · line/divider · line/divider-line 4개 세트를 하나로 합침 (variant 키 유지)
+ * 2026-10-07 line/solid · line/dotted · line/divider · line/divider-line 4개 세트를 하나로 합침 (variant 키 유지) · 세트 이름 divider
  * Figma variants: type × color
  *   type  solid       — 가로 실선 1px (폭은 늘려 씀)
  *         dotted      — 가로 점선 1px (2/2)

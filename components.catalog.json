@@ -846,7 +846,7 @@
       ],
       "docRef": "konacard-ds-components.md § Inputbox Guide Text"
     },
-    "line": {
+    "divider": {
       "type": "COMPONENT_SET",
       "key": "279a0aeefd21403d1b2e5c3d6987ba3eadb13338",
       "nodeId": "10997:164",
@@ -879,18 +879,20 @@
         "vertical-8": "8 (폭 1)"
       },
       "aliases": {
-        "line/solid": "line type=solid",
-        "line/dotted": "line type=dotted",
-        "line/divider": "line type=section",
-        "line/divider-line": "line type=vertical-12 · vertical-8",
-        "Line/Solid · Line/Dotted · Line/Divider · Line/Divider_Line": "옛 컴포넌트 (NEW 라이브러리 이전 이름)"
+        "line/solid": "divider type=solid",
+        "line/dotted": "divider type=dotted",
+        "line/divider": "divider type=section",
+        "line/divider-line": "divider type=vertical-12 · vertical-8",
+        "Line/Solid · Line/Dotted · Line/Divider · Line/Divider_Line": "옛 컴포넌트 (NEW 라이브러리 이전 이름)",
+        "line": "divider (합칠 때 잠깐 쓴 이름)"
       },
       "notes": [
         "2026-10-07 KeyScreen AOS 전체 100페이지 실사용 기준 정리: line/dotted color=white · line/divider color=dark · line/divider-line size=16 · color=white 삭제(0곳, 사용자), drak → dark 오타 수정",
         "2026-10-07 4개 세트(line/solid 99:1228 · line/dotted 149:2964 · line/divider 2411:6403 · line/divider-line 17:7431)를 variant 를 옮겨서 하나로 합침 → variant 키 유지, AX 안 인스턴스 86곳 그대로 연결. section 은 light 만(dark 0곳), section type 이름은 사용자 결정",
         "KeyScreen 사용 수(보이는 곳): solid light 996 · dark 122 / dotted light 525 · dark 111 / section 439 / vertical-12 light 254 · dark 52 / vertical-8 light 41 · dark 4",
         "solid · dotted · vertical 은 아래에 흰 바탕(background/primary) 사각형이 깔려 있음 — 회색 바탕 위에서도 선 자리는 흰 바탕 + 선 색. Storybook 도 그대로 재현",
-        "Storybook: Divider type × color, Figma 와 1:1"
+        "Storybook: Divider type × color, Figma 와 1:1",
+        "2026-10-07 사용자 결정: 세트 이름을 line → divider 로 변경 (키 유지)"
       ],
       "docRef": "konacard-ds-components.md § 07_Line"
     }

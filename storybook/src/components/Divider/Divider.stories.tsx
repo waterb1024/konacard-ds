@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Divider — Figma `line` (2026-10-07 line/solid · dotted · divider · divider-line 4개를 하나로 합침). " +
+          "KONACARD DS Divider — Figma `divider` (2026-10-07 line/solid · line/dotted · line/divider · line/divider-line 4개를 하나로 합침). " +
           "type: solid(실선) · dotted(점선 2/2) · section(섹션 사이 높이 10 띠) · vertical-12 / vertical-8(세로선) × color light · dark. " +
           "color 는 type 마다 실제 색이 다름 — 가로선 light 6% · dark 8%, 세로선 light 8% · dark 12%. section 은 light 만.",
       },

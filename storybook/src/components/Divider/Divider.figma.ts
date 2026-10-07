@@ -5,7 +5,7 @@ import figma from 'figma'
 
 const instance = figma.selectedInstance
 
-// Figma line: type 5종 × color 2종 — 코드와 1:1
+// Figma divider: type 5종 × color 2종 — 코드와 1:1
 const type = instance.getEnum('type', {
   solid: 'solid',
   dotted: 'dotted',
