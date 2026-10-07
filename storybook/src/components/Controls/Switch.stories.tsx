@@ -11,14 +11,14 @@ const meta = {
       description: {
         component:
           "KONACARD DS Switch. konacard-ds-components.md § 05_Control (controls/swtich). " +
-          "4 size × 2 state × 2 status. Disable = Default × opacity 40%.",
+          "2 size (large · medium) × 2 state × 2 status. Disable = opacity 40%. AX 실측 값 (small · tiny 는 2026-10-07 Figma 에서 삭제).",
       },
     },
   },
   argTypes: {
     size: {
       control: "inline-radio",
-      options: ["large", "medium", "small", "tiny"],
+      options: ["large", "medium"],
     },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -48,8 +48,6 @@ export const Playground: Story = {
 
 export const Large: Story = { args: { size: "large", checked: true } };
 export const Medium: Story = { args: { size: "medium", checked: true } };
-export const Small: Story = { args: { size: "small", checked: true } };
-export const Tiny: Story = { args: { size: "tiny", checked: true } };
 
 export const Disabled: Story = {
   name: "Disabled (opacity 40%)",
@@ -64,7 +62,7 @@ export const Disabled: Story = {
 export const Matrix: Story = {
   name: "Size × State Matrix",
   render: () => {
-    const sizes = ["large", "medium", "small", "tiny"] as const;
+    const sizes = ["large", "medium"] as const;
     return (
       <div style={{ display: "grid", gap: 16 }}>
         {sizes.map((s) => (

@@ -10,15 +10,13 @@
  * 사이즈별 실측:
  *   large : 50×28 · track top/bot 6px (=21.43%) · thumb 28×28 · border 2px
  *   medium: 42×24 · track top/bot 5px (=20.83%) · thumb 24×24 · border 2px
- *   small : 34×20 · track top/bot 4px (=20%)    · thumb 20×20 · border 1.667px
- *   tiny  : 28×16 · track top/bot 3px (=18.75%) · thumb 16×16 · border 1.6px
+ *   (small · tiny 는 2026-10-07 Figma 에서 삭제)
  *
  *   Selected(True)  : 트랙 브랜드 보라 · 썸 border 브랜드 · 썸 우측
  *   Default (False) : 트랙 회색       · 썸 border 회색   · 썸 좌측
  *   Disable         = status false → opacity 0.4
  *
- * 썸 테두리는 border 대신 inset box-shadow — 브라우저가 소수점 border(1.667 · 1.6)를
- * 1px 로 내림해서 Figma 와 달라지기 때문 (2026-10-07 AX 실측 대조에서 발견)
+ * 썸 테두리는 border 대신 inset box-shadow — 브라우저가 소수점 border 를 정수로 내림하는 문제를 피함
  */
 
 .switch {
@@ -91,30 +89,4 @@
 }
 .size-medium .thumb {
   width: 24px;
-}
-
-.size-small {
-  width: 34px;
-  height: 20px;
-}
-.size-small .track {
-  top: 4px;
-  bottom: 4px;
-}
-.size-small .thumb {
-  width: 20px;
-  --thumb-border: 1.667px;
-}
-
-.size-tiny {
-  width: 28px;
-  height: 16px;
-}
-.size-tiny .track {
-  top: 3px;
-  bottom: 3px;
-}
-.size-tiny .thumb {
-  width: 16px;
-  --thumb-border: 1.6px;
 }

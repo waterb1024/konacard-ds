@@ -8,12 +8,12 @@ import styles from "./Switch.module.css";
  * spec: konacard-ds-components.md § 05_Control
  *
  * Figma variants:
- *   - size:   large(50×28) / medium(42×24) / small(34×20) / tiny(28×16)
+ *   - size:   large(50×28) / medium(42×24)  (small · tiny 는 2026-10-07 Figma 에서 삭제)
  *   - state:  true(on, 트랙 브랜드 보라, 핸들 우측) / false(off, 트랙 회색, 핸들 좌측)
  *   - status: true(enabled) / false(disabled → opacity 0.4)
  */
 
-export type SwitchSize = "large" | "medium" | "small" | "tiny";
+export type SwitchSize = "large" | "medium";
 
 export interface SwitchProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {

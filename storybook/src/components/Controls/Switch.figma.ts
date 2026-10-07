@@ -11,8 +11,6 @@ const instance = figma.selectedInstance
 const size = instance.getEnum('size', {
   large: 'large',
   medium: 'medium',
-  small: 'small',
-  tiny: 'tiny',
 })
 
 const checked = instance.getBoolean('state')

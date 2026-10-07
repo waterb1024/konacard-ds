@@ -469,9 +469,7 @@
       "props": {
         "size": [
           "large",
-          "medium",
-          "small",
-          "tiny"
+          "medium"
         ],
         "state": [
           "true",
@@ -494,16 +492,16 @@
         "Figma 원본 오타(swtich) 그대로. 세트 이름은 'controls/' (복수형) — 이름으로 찾을 때 includes('swtich') 사용",
         "list/list type=control 안에 medium 으로 내장됨",
         "2026-10-07 사용자 확인: ❖ Controls 페이지 정리 완료. nodeId 28:409 확인",
-        "트랙 높이 large 16 / medium 14 / small 12 / tiny 10 (세로 가운데), 썸 = 전체 높이 원 + 안쪽 테두리 large·medium 2 / small 1.67 / tiny 1.6. 꺼짐 #999 · 켜짐 #805AE9 · 비활성 opacity 0.4",
-        "Figma 자잘한 어긋남 (정리 후보): tiny 꺼짐+비활성 variant 의 썸이 오른쪽(x12)에 있음 · large 켜짐+비활성 트랙 y7(나머지 6) · tiny 켜짐+비활성 트랙 폭 27.38 — Storybook 은 정상값으로 구현"
+        "2026-10-07 사용자가 small · tiny 사이즈 삭제 → large · medium 2종 (8 variant, 키 유지). 삭제 전 AX 파일 안에 small · tiny 인스턴스 0개 확인",
+        "트랙 높이 large 16 / medium 14 (세로 가운데), 썸 = 전체 높이 원 + 안쪽 테두리 2. 꺼짐 #999 · 켜짐 #805AE9 · 비활성 opacity 0.4",
+        "Figma 남은 어긋남 (정리 후보): large 켜짐+비활성 variant 의 트랙이 y7 (나머지 y6) — Storybook 은 y6 으로 구현",
+        "문서 불일치 (md 미수정): 문서는 large·medium·small·tiny 4사이즈로 기술 — AX 는 2사이즈"
       ],
       "docRef": "konacard-ds-components.md § Switch",
       "nodeId": "28:409",
       "heights": {
         "large": "50×28",
-        "medium": "42×24",
-        "small": "34×20",
-        "tiny": "28×16"
+        "medium": "42×24"
       }
     },
     "controls/checkbox label": {
