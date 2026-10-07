@@ -20,8 +20,8 @@
   "components": {
     "button/button": {
       "type": "COMPONENT_SET",
-      "key": "4277674fb460f1714bc4be7c3ee5d25b0f241f35",
-      "nodeId": "17:703",
+      "key": "2669ada7e56a96a5d09ac4289aed53a169d5a101",
+      "nodeId": "10973:356",
       "props": {
         "style": [
           "primary",
@@ -37,7 +37,6 @@
           "brand",
           "brand-light",
           "brand-line",
-          "brand-gradient",
           "gray",
           "gray-light",
           "gray-line",
@@ -91,7 +90,6 @@
           "brand": "Brand",
           "brand-light": "Brand_Light",
           "brand-line": "Brand_Line",
-          "brand-gradient": "Brand_Gradient",
           "gray": "Gray",
           "gray-light": "Gray_Light",
           "gray-line": "Gray_Line",
@@ -100,7 +98,9 @@
       },
       "notes": [
         "PascalCase(Gray_Line 등)는 코드 prop 값. Figma 에서는 type 값(소문자·하이픈) 사용",
-        "primary 에는 size=tiny 조합 없음"
+        "primary 에는 size=tiny 조합 없음",
+        "2026-10-07 KeyScreen AOS 실사용 기준 정리 확정: 속성 값 한 줄 전체가 0곳일 때만 삭제하는 규칙 → type=brand-gradient 삭제 (98 variant). 나머지 값은 모두 사용 중 (tiny 는 secondary 41곳)",
+        "2026-10-07 정리하면서 원본 세트(17:703, 키 4277674f…)를 지우고 정리본 복사본을 이름 그대로 확정 → 키·nodeId 바뀜. AX 파일 안 인스턴스는 새 세트로 교체 완료. 다른 파일 사용 이력 없음(사용자 확인)"
       ],
       "docRef": "konacard-ds-components.md § 02_Button"
     },
@@ -157,8 +157,47 @@
     },
     "button/text button": {
       "type": "COMPONENT_SET",
-      "key": "732152b17bc78fb0e663fb210b0a56351a6fb0bf",
-      "nodeId": "17:793",
+      "key": "92e0db2853658a2b69bc6f96fdb2e55ce4d16369",
+      "nodeId": "10973:796",
+      "props": {
+        "size": [
+          "large",
+          "medium",
+          "small"
+        ],
+        "color": [
+          "black",
+          "brand",
+          "gray",
+          "gray-light"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "color": "gray-light"
+      },
+      "heights": {
+        "large": 36,
+        "medium": 32,
+        "small": 24
+      },
+      "notes": [
+        "문서 표기도 'button/text button' 으로 통일 (2026-10-02)",
+        "2026-10-07 정리 확정: 예전 small(12/18, 28) 삭제, 예전 tiny(11/16, 24) → small 로 이름 변경 (사용자), state=false 삭제 → state 속성 없어짐 (KeyScreen 에서 비활성 0곳). 12 variant",
+        "원본 세트(17:793, 키 732152b1…) 지우고 정리본 확정 → 키·nodeId 바뀜. AX 안 인스턴스 교체 완료",
+        "밑줄 있음 (line 사각형). 옛 Button/Text(글자 13/18 Body_02) = size=large 의 이전 버전"
+      ],
+      "docRef": "konacard-ds-components.md § Text 버튼",
+      "textStyles": {
+        "large": "button/medium-regular (14/22)",
+        "medium": "button/small-regular (12/18)",
+        "small": "button/tiny-regular (11/16)"
+      }
+    },
+    "button/icon button": {
+      "type": "COMPONENT_SET",
+      "key": "0f6b371cbcae93b204b55936044f3b8c5a3ddce9",
+      "nodeId": "10973:651",
       "props": {
         "size": [
           "large",
@@ -166,39 +205,48 @@
           "small",
           "tiny"
         ],
-        "color": [
+        "weight": [
+          "bold",
+          "regular"
+        ],
+        "type": [
           "black",
           "brand",
-          "gray",
-          "gray-light"
-        ],
-        "state": [
-          "true",
-          "false"
+          "gray"
         ]
       },
       "defaults": {
         "size": "large",
-        "color": "gray-light",
-        "state": "true"
+        "weight": "regular",
+        "type": "gray"
+      },
+      "semantics": {
+        "구성": "글자 + 오른쪽 화살표(ic_arrow_right) · 간격 4",
+        "type": "글자 색 gray #666 / black / brand"
       },
       "heights": {
-        "large": 36,
+        "large": 40,
         "medium": 32,
-        "small": 28,
+        "small": "28 (regular·gray 만 24)",
         "tiny": 24
       },
-      "notes": [
-        "문서 표기도 'button/text button' 으로 통일 (2026-10-02)",
-        "컴포넌트 자체에 밑줄 없음"
-      ],
-      "docRef": "konacard-ds-components.md § Text 버튼",
       "textStyles": {
-        "large": "button/medium-regular",
-        "medium": "button/small-regular",
-        "small": "button/small-regular",
-        "tiny": "button/tiny-regular"
-      }
+        "large": "body/1 (15/24)",
+        "medium": "body/2 (14/22)",
+        "small": "body/3 (12/18)",
+        "tiny": "regular body/3 (12/18) · bold body/4 (11/16)"
+      },
+      "aliases": {
+        "button/icon": "button/icon button (NEW 이름)",
+        "Button/Icon": "옛 컴포넌트 = size=medium, weight=regular, type=gray 의 이전 버전 (글자 13/18 Body_02)"
+      },
+      "notes": [
+        "2026-10-07 KeyScreen AOS 실사용 기준 정리 확정: state=false 삭제 → state 속성 없어짐 (비활성 0곳). 이름 깨진 variant(size=button, weight=icon, type=small, state=bold) 는 size=small, weight=bold, type=gray 로 이름 수정 → 24 variant",
+        "원본 세트(202:2574, 키 6385e2bf…) 지우고 정리본 확정. AX 안 인스턴스 교체 완료",
+        "Figma 정리 후보: small·regular 중 gray 만 높이 24 (black·brand 는 28) · tiny regular 글자가 small 과 같은 12/18 (tiny bold 는 11/16)",
+        "KeyScreen 실사용: medium·regular·gray 가 대부분 (옛 Button/Icon 포함 175곳), 색은 gray 위주"
+      ],
+      "docRef": "konacard-ds-components.md § 02_Button"
     },
     "input/text field": {
       "type": "COMPONENT_SET",
