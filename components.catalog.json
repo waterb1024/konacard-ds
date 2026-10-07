@@ -107,34 +107,6 @@
       ],
       "docRef": "konacard-ds-components.md § 02_Button"
     },
-    "button/tetiary": {
-      "type": "COMPONENT_SET",
-      "key": "2d10e22c9cd4fcf2b70a2bba8cdcdcf91e7f39fc",
-      "nodeId": "1212:4553",
-      "props": {
-        "Type": [
-          "Dark",
-          "Gray",
-          "line"
-        ]
-      },
-      "defaults": {
-        "Type": "Dark"
-      },
-      "heights": {
-        "*": 28
-      },
-      "aliases": {
-        "추가 버튼": "button/tetiary"
-      },
-      "notes": [
-        "Figma 원본 오타(tetiary) 그대로",
-        "속성명 대문자 Type, 값 line 은 소문자",
-        "2026-10-07 Storybook 대조: TertiaryButton 신규 (높이 28 · padding 12 · gap 4 · radius 4 · 14/22 Bold 자간 -3%, 텍스트 스타일 미연결 · ic_plus_12 원본 SVG)",
-        "아직 02_Components 페이지에 있음 (이름 오타·페이지 이동 정리 대상)"
-      ],
-      "docRef": "konacard-ds-components.md § 추가 버튼"
-    },
     "button/fixed-bottom": {
       "type": "COMPONENT_SET",
       "key": "da746135da5bad5cdd6efff82f4b904a7ab8edc8",

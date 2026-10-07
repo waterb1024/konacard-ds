@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 import { FixedBottom } from "./FixedBottom";
-import { TertiaryButton } from "./TertiaryButton";
 
 const meta = {
   title: "Component/Button/Box",
@@ -144,26 +143,6 @@ export const FixedBottomBar: Story = {
       <div style={{ width: 360, outline: "1px dashed #ccc" }}>
         <FixedBottom primary="다음" />
       </div>
-    </div>
-  ),
-};
-
-/* ── button/tetiary (1212:4553) ─────────────────────────── */
-export const Tertiary: Story = {
-  name: "Tertiary",
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Figma button/tetiary (1212:4553, 원본 이름 오타 그대로). 높이 28 · padding 12 · 모서리 4 · 14/22 Bold · ic_plus_12. Type Dark / Gray / line.",
-      },
-    },
-  },
-  render: () => (
-    <div style={{ display: "flex", gap: 12 }}>
-      <TertiaryButton type="Dark">Button</TertiaryButton>
-      <TertiaryButton type="Gray">Button</TertiaryButton>
-      <TertiaryButton type="line">Button</TertiaryButton>
     </div>
   ),
 };
