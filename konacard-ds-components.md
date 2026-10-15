@@ -25,9 +25,9 @@ related_docs:
 |---|---|---|
 | **00_Basic** | ✅ 완료 | OS/status-bar (AOS·iOS·notch·Chrome), OS/keyboard (AOS·iOS), spacing 8-based 원칙 |
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
-| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom, select |
+| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), Form UI(Title·Guide Text) |
+| **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), select/select button · group (버튼형 선택지), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
 | **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
@@ -206,12 +206,6 @@ related_docs:
   - **파괴적 액션/미루기 = 좌측** (rule.md § "CTA 병렬 위계" 참조)
 - **Variant `Device`**: `AOS` (360×72) / `iOS` (375×72) — 폭만 다르고 구조·padding·버튼 radius(8) 동일 (AX 실측)
 
-## Select 버튼 (`button/select`)
-
-- **Figma 노드**: `247:2113`
-- **용도**: 필드형 셀렉트(드롭다운) 버튼 — 밖 라벨 아래에서 값 선택 UI로 사용
-- 별도 버튼 컴포넌트가 아니라 04_Forms의 **`Input/Select`(select/select box, node `41:550`)와 동일한 컴포넌트**. size=large 기준 state 5종(`default / active / select / disabled / error`)이며, Storybook `Selectbox`(Selectbox.stories.tsx)로 구현되어 있음. "button/select"는 카탈로그 상의 별칭일 뿐 Selectbox와 같은 컴포넌트이므로 별도 구현 불필요.
-
 ## Margin (버튼 병렬 배치 규칙)
 
 - 성격이 다른 버튼이 2개 이상 위치할 경우, **좌우/상하 = 8px 간격**을 두고 배열.
@@ -245,12 +239,12 @@ related_docs:
 # 04_Forms
 
 > Figma 카테고리 노드: `36:409` (04_Forms)
-> 2개 대분류(Input / Selectbox) + Form UI 조합 규칙(Title / Guide Text). Input 은 2026-10-15 text field · search bar · text area · button · card-number · 주민등록번호를 하나의 세트 `input` 으로 합침
+> 2개 대분류(Input / Select — 필드형 select box · 버튼형 select button) + Form UI 조합 규칙(Title / Guide Text). Input 은 2026-10-15 text field · search bar · text area · button · card-number · 주민등록번호를 하나의 세트 `input` 으로 합침
 
 **공통 토큰** (모든 Form 컴포넌트 공유)
 
 - **Corner radius**: `radius/components/form` = **6px**
-- **Height**: **48px** (fixed) — `input` 전 style/case AX 실측 확인 (2026-10-15, `41:505`, text area 만 124). Selectbox 는 미검증
+- **Height**: **48px** (fixed) — `input` 전 style/case AX 실측 확인 (2026-10-15, `41:505`, text area 만 124) · `select/select box` 도 48 (2026-10-15, `41:550`)
 - **내부 좌우 padding**: `spacing-medium` = **16px**
 - **아이콘·요소 간 gap**: `spacing-small` = **12px** (내부), `spacing-xsmall` = **8px** (필드끼리)
 - **배경**: `color/background/primary` = #FFFFFF
@@ -258,7 +252,7 @@ related_docs:
 - **폰트**: Pretendard, `body/1-regular` (15px / lineHeight 24 / letterSpacing -0.3) 기본, Active·Error·Complete 상태는 `body/1-Bold`
 - **Width**: Flexible (부모 컨테이너 가변 — "화면이 늘어날 경우 늘어나는 영역")
 
-**상태(State) 스펙 — 공통** (`input` 6개, Selectbox는 별도 5개 — § Selectbox 참조)
+**상태(State) 스펙 — 공통** (`input` 6개, Select 필드형은 별도 5개 — § Select — 필드형 참조)
 
 | State | 테두리 | 텍스트/아이콘 | 굵기 | 배경 | 사용 시점 |
 |---|---|---|---|---|---|
@@ -271,7 +265,7 @@ related_docs:
 
 > `input` style/case=text area 만 Complete · Error 글자가 **Regular** (의도, 사용자 확인 2026-10-15).
 >
-> Selectbox는 `focus`·`complete` 대신 `active`(펼침)·`select`(선택 완료)를 사용 — `default` → `active` → `select` / `disabled` / `error` 5단계.
+> Select 필드형은 `focus`·`complete` 대신 `active`(펼침)·`select`(선택 완료)를 사용 — `default` → `active` → `select` / `disabled` / `error` 5단계.
 
 ---
 
@@ -311,12 +305,14 @@ related_docs:
 
 ---
 
-## Selectbox (`select/select box`)
+## Select — 필드형 (`select/select box`)
 
-- **Figma 노드**: 컴포넌트 세트 `41:550` — AX 이름 **`select/select box`** (카탈로그 페이지 인스턴스 이름은 `Input/Select`, 샘플 `99:951`)
-- **Variant 속성**: `size` = `large` (1종) × `State` (대문자 S) = `default` / `active` / `select` / `disabled` / `error`
-- **용도**: 정해진 옵션 목록에서 하나 고르는 필드 (드롭다운 트리거)
-- **사이즈·기하**: `input` 과 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
+- **Figma 노드**: 컴포넌트 세트 `41:550` — AX 이름 **`select/select box`** (❖ Select 페이지. NEW 파일 이름 `input/select`, 카탈로그 페이지 인스턴스 이름 `Input/Select`)
+- **속성** (2026-10-15 사용자 정리 — 값 1개뿐인 `style/case` 삭제, `State` → `state`, 원본을 고쳐 키 유지)
+  - `state` = `default` / `active` / `select` / `disabled` / `error`
+  - `title` · `info` (boolean, 기본 켜짐) — `input` 과 같은 틀: 위에 `title/title`, 아래에 `info` (Error 면 `type=icon-error`)
+- **용도**: 정해진 옵션 목록을 **열어서** 하나 고르는 필드 (드롭다운 트리거). 옵션이 많거나(5개 이상) 길 때
+- **사이즈·기하**: `input` 과 동일 (전체 100 · 칸 48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
 - **하위 슬롯**:
   - Left: 텍스트(플레이스홀더 "선택" 또는 선택값)
   - Right: **chevron** 12×8 — `active` 만 위방향 `ic_arrow/ic_arrow_up_12`, 나머지는 아래방향 `ic_arrow/ic_arrow_down_12` (AX 실측)
@@ -329,23 +325,47 @@ related_docs:
   - `error` — 검증 실패 (빨간 테두리 + 빨간 Bold 텍스트)
   - **Focus 상태 없음**
 - **터치 영역**: 필드 전체 48px 유지
-- **button/select와의 관계**: `02_Button § Select 버튼(247:2113)`은 이 Selectbox와 동일 렌더링을 재활용한 별도 버튼 인스턴스 (Forms 카탈로그에서는 `Input/Select` = `select/select box`, Buttons 카탈로그에서는 `button/select` 로 이중 노출). **폼 안 = Selectbox 사용, 폼 밖 필터 트리거 = button/select 사용**
+- KeyScreen 실사용: `input/select` 97곳 (전부 large, 폭 320 또는 148). `input/select-round` 13곳은 해외송금(TBD)만
 
-## Selectbox 관련 안티패턴
+## Select 필드형 관련 안티패턴
 
 - ❌ **Focus 상태 추가로 그리기** — 펼침은 `active`, 선택 완료는 `select` 로 표현 (`input` 과 다름)
 - ❌ chevron 방향을 항상 아래로 고정 (열림 상태 시각 피드백 상실)
-- ❌ 옵션이 3개 이하일 때 Selectbox 사용 — 라디오 버튼(`05_Control`) 사용 고려
+- ❌ 옵션이 2~4개뿐인데 드롭다운 사용 — 한눈에 보이게 **select button** 사용
+
+---
+
+## Select button — 버튼형 선택지 (`select/select button`, `select/select button group`)
+
+- **Figma 노드**: `select/select button` `11061:3729` · `select/select button group` `11061:3760` (❖ Select 페이지, 2026-10-15 확정)
+- **용도**: 보이는 선택지 2~4개 중 **바로 눌러 하나 고르기** (라디오 역할). 예: 자동충전 기준 금액·기준 일자, 충전 +금액, AML "네 / 아니요", 캐시 전환 금액, 거래내역 기간
+  - KeyScreen 에서 `button/primary` medium 을 나란히 놓아 쓰던 패턴(70곳 남짓)을 컴포넌트로 만든 것
+  - 옛 `button/select`(80×80 보라 채움형) · `button/select-2line` 은 KeyScreen 0곳이라 삭제
+- **속성**:
+  - `state` = `default` / `selected`
+  - `status` = `true` / `false` — false 면 비활성(투명도 40%). 체크박스·라디오·스위치·탭과 같은 규칙 (true = 활성)
+  - group: `columns` = `2` / `3` / `4`
+- **사이즈·기하** (AX 실측): 높이 **48** · padding 12 16 · radius **6** · 안쪽 1px 테두리 · 글자 14/22 Bold (`button/medium-bold`)
+  - `default` — #DDD 테두리 + #333 글자 (= button `gray-line-light`)
+  - `selected` — #805AE9 테두리 + #805AE9 글자 (= button `brand-line`)
+- **묶음(group)**: 폭(기본 320)을 선택지 수로 **같은 크기로 나누고 사이 8** — 2열 156 · 3열 101 · 4열 74. 선택 위치는 안의 인스턴스 `state` 로 바꿈
+
+## Select button 관련 안티패턴
+
+- ❌ 선택지를 `button/button` 으로 직접 나란히 놓기 — `select/select button` 사용 (선택 상태·비활성이 일관되게)
+- ❌ 선택지 폭을 글자 길이마다 다르게 — 묶음 안에서는 같은 폭
+- ❌ 선택지 5개 이상을 한 줄에 — 4개까지. 그 이상은 `select/select box`(드롭다운) 사용
+- ❌ "발급 취소 / 주소 변경"처럼 **서로 다른 동작**을 하는 버튼 줄에 사용 — 그건 액션 버튼(`button/button`)
 
 ---
 
 ## Form UI 조합 규칙 (Title / Guide Text)
 
-Input·Selectbox 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙. `input` 은 `title` · `info` boolean 으로 내장, Selectbox 는 화면에서 `title/title` + `info` 를 직접 묶어 씀.
+Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙. `input` · `select/select box` 모두 `title` · `info` boolean 으로 내장.
 
 - **요소 간 상·하 gap**: `spacing-xsmall` = **8px** (Title↔Field↔Guide Text 모두)
 - **Title** (필드 상단 라벨)
-  - 사용 시점: "Input/Selectbox 상단에 제목이 있는 경우" (`input` 은 `title` 켜기)
+  - 사용 시점: "Input/Select 상단에 제목이 있는 경우" (`title` 켜기)
   - 타이포: `body/3-Bold` = Pretendard Bold **12px** / lineHeight 18 / letterSpacing -0.24
   - 색: `color/font/secondary` #333333
 - **Guide Text** (필드 하단 안내/에러 문구) = **`info` 컴포넌트** (`Info / Info text`)
@@ -374,7 +394,7 @@ Input·Selectbox 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙.
 - ❌ **Corner radius를 4/8/16 등 임의로 변경** — 6px 고정 (`radius/components/form`)
 - ❌ 필드 위 Title 라벨 없이 Placeholder만으로 라벨링 (접근성 저하)
 - ❌ 에러 메시지를 툴팁·모달로 띄우기 (반드시 `info` 슬롯 `icon-error` 로 인라인)
-- ❌ 하나의 폼에 Selectbox와 button/select 를 혼용 (일관성 저하 — 폼 내부는 Selectbox 통일)
+- ❌ 같은 질문을 화면마다 드롭다운(`select box`)과 버튼형(`select button`)으로 다르게 받기 — 선택지 2~4개는 select button, 5개 이상·긴 목록은 select box
 
 ---
 
@@ -1276,9 +1296,9 @@ Input·Selectbox 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙.
 |---|---|---|
 | 00 | Basic | OS/status-bar, keyboard, spacing 원칙 |
 | 01 | Actionbar | header (Main·Sub AOS/iOS·Scroll Title), headline, button |
-| 02 | Button | primary, secondary, text, icon, fixed-bottom, select |
+| 02 | Button | primary, secondary, text, icon, fixed-bottom |
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |
-| 04 | Forms | input (text field · search bar · text area · button · card-number · 주민등록번호), select + Form UI |
+| 04 | Forms | input (text field · search bar · text area · button · card-number · 주민등록번호), select (select box · select button) + Form UI |
 | 05 | Control | swtich, checkbox, radio + agree/setting/radio-text |
 | 06 | List | list (4형), expand, card-select, bottomsheet |
 | 07 | Line | Solid, Dotted, Divider |

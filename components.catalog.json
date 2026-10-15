@@ -944,7 +944,7 @@
         "KeyScreen: input/select 97곳(전부 large). input/select-round 13곳은 해외송금(TBD)만",
         "Storybook: Component/Select (Selectbox) — AX 와 대조 완료"
       ],
-      "docRef": "konacard-ds-components.md § Selectbox"
+      "docRef": "konacard-ds-components.md § Select — 필드형"
     },
     "select/select button": {
       "type": "COMPONENT_SET",
