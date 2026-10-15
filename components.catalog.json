@@ -40,13 +40,15 @@
           "error"
         ],
         "title": "BOOLEAN",
-        "info": "BOOLEAN"
+        "info": "BOOLEAN",
+        "timer": "BOOLEAN"
       },
       "defaults": {
         "style/case": "text field",
         "state": "default",
         "title": true,
-        "info": true
+        "info": true,
+        "timer": false
       },
       "heights": {
         "*": "100 (title 18 + 8 + 입력칸 48 + 8 + info 18)",
@@ -56,7 +58,8 @@
         "style/case": "variant (text-field · search-bar · text-area · button · card-number · registration-number)",
         "state": "state",
         "title": "title (글자 있으면 보임)",
-        "info": "info (글자 있으면 보임, error 면 icon-error)"
+        "info": "info (글자 있으면 보임, error 면 icon-error)",
+        "timer": "timer (글자 있으면 보임, text-field 전용)"
       },
       "aliases": {
         "input/text field": "input style/case=text field (세트 이름 변경, 키 유지)",
@@ -75,9 +78,11 @@
         "text area: 입력칸 padding 16 · gap 12 · 글자 영역 64 · 글자 수 11/16 #999 오른쪽 · complete · error 글자가 Regular (다른 style 은 Bold) — Figma 그대로",
         "button: 입력칸 FILL + 8 + button/button primary · medium · brand",
         "card-number: 0000 4칸 FILL · ic_input_dash 24 · 가운데 정렬. registration number: 앞 6자리 FILL – 뒤 첫자리 40×48 + 점 6개(8×8 검정 10%, 사이 8)",
-        "인증 타이머(3:00 + icon_refresh) · icon-pass 자리는 Figma 에 숨김으로만 있음 → Storybook 미구현",
         "title 은 title/title Type=Input · Medium · Black (12/18 Bold #333), info 는 info 컴포넌트 (error state 면 type=icon-error)",
-        "Storybook: Component/Input 하나 (variant × state). 옛 TextField · SearchBar 메뉴는 합침"
+        "Storybook: Component/Input 하나 (variant × state). 옛 TextField · SearchBar 메뉴는 합침",
+        "2026-10-15 사용자 수정: boolean timer 추가 (기본 꺼짐, text field 6 state 에만 연결) — 3:00 body/2-Regular 14/22 #FF364B + 12 + icon_refresh. button · 주민번호 안의 타이머 자리와 card-number 의 icon-pass 는 숨김으로만 남아 있음(속성 연결 없음) → Storybook 미구현",
+        "text area 의 complete · error Regular 글자는 의도 (사용자 확인 2026-10-15)",
+        "card-number Storybook: 4칸 입력이지만 4자리 차면 다음 칸, 빈 칸 백스페이스면 이전 칸으로 이동"
       ],
       "docRef": "konacard-ds-components.md § Inputbox"
     },
