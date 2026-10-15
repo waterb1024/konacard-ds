@@ -27,7 +27,7 @@ related_docs:
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
 | **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom, select |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input/text field (구 input/input), input/search bar, input/card-number, input/button, select/select box (구 Input/Select), Form UI(Title·Guide Text) |
+| **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
 | **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
@@ -245,12 +245,12 @@ related_docs:
 # 04_Forms
 
 > Figma 카테고리 노드: `36:409` (04_Forms)
-> 3개 대분류(Inputbox / Search bar / Selectbox) + Form UI 조합 규칙(Title / Guide Text) + 특수 폼(Email / Card number / Input+Button)
+> 2개 대분류(Input / Selectbox) + Form UI 조합 규칙(Title / Guide Text). Input 은 2026-10-15 text field · search bar · text area · button · card-number · 주민등록번호를 하나의 세트 `input` 으로 합침
 
 **공통 토큰** (모든 Form 컴포넌트 공유)
 
 - **Corner radius**: `radius/components/form` = **6px**
-- **Height**: **48px** (fixed) — Inputbox 는 AX 실측 확인 (2026-10-02, `41:475`). Search bar/Selectbox 는 미검증
+- **Height**: **48px** (fixed) — `input` 전 style/case AX 실측 확인 (2026-10-15, `41:505`, text area 만 124). Selectbox 는 미검증
 - **내부 좌우 padding**: `spacing-medium` = **16px**
 - **아이콘·요소 간 gap**: `spacing-small` = **12px** (내부), `spacing-xsmall` = **8px** (필드끼리)
 - **배경**: `color/background/primary` = #FFFFFF
@@ -258,7 +258,7 @@ related_docs:
 - **폰트**: Pretendard, `body/1-regular` (15px / lineHeight 24 / letterSpacing -0.3) 기본, Active·Error·Complete 상태는 `body/1-Bold`
 - **Width**: Flexible (부모 컨테이너 가변 — "화면이 늘어날 경우 늘어나는 영역")
 
-**상태(State) 스펙 — 공통** (Inputbox·Search bar 기준 6개, Selectbox는 별도 5개 — § Selectbox 참조)
+**상태(State) 스펙 — 공통** (`input` 6개, Selectbox는 별도 5개 — § Selectbox 참조)
 
 | State | 테두리 | 텍스트/아이콘 | 굵기 | 배경 | 사용 시점 |
 |---|---|---|---|---|---|
@@ -266,58 +266,48 @@ related_docs:
 | **Focus** | `color/border/focus` #805AE9 (보라) | Placeholder 유지 | Regular | White | 필드 탭 후 아직 값 없음 |
 | **Active** | `color/border/focus` #805AE9 | 입력값 `color/font/brand` #805AE9 | **Bold** | White | 값 입력 완료·유효 (편집 중) |
 | **Complete** | `color/border/default` #DDDDDD | 입력값 `color/font/primary` #000000 | **Bold** | White | 값 확정(편집 종료·읽기 전용에 준함) |
-| **Inactive** (variant 값 `disabled`) | `color/border/default` #DDDDDD | `color/font/placeholder` #999999 | Regular | **#F8F9FB** — Inputbox·Selectbox `color/background/disabled`, Search bar `color/background/secondary` (같은 hex, 토큰명 다름 — AX 원본 그대로) | 비활성/입력 불가 |
+| **Disabled** | `color/border/default` #DDDDDD | `color/font/placeholder` #999999 | Regular | **#F8F9FB** `color/background/disabled` | 비활성/입력 불가 |
 | **Error** | `color/border/error` #FF364B (레드) | 입력값 `color/font/error` #FF364B | **Bold** | White | 검증 실패 |
 
+> `input` style/case=text area 만 Complete · Error 글자가 **Regular** (의도, 사용자 확인 2026-10-15).
+>
 > Selectbox는 `focus`·`complete` 대신 `active`(펼침)·`select`(선택 완료)를 사용 — `default` → `active` → `select` / `disabled` / `error` 5단계.
 
 ---
 
-## Inputbox (`input/text field`)
+## Input (`input`)
 
-- **Figma 노드 (샘플 인스턴스)**:
-  - `99:881` (Default) / `99:884` (Focus) / `99:932` (Active + clear 아이콘)
-- **용도**: 텍스트 자유 입력 필드. 이름·전화·주소 등 문자 입력 전반.
-- **Figma 컴포넌트 세트**: `41:505` — AX 파일 이름 **`input/text field`** (NEW 파일의 `input/input` 에서 개명). variant 속성은 `state` 하나 (2026-10-02 AX get_metadata 확인)
-  - `state`: `default` / `focus` / `active` / `complete` / `disabled` / `error` — 6종 모두 높이 48
-  - size variant 없음 (NEW 파일에 있던 large/medium/small/tiny 는 AX 에 없음)
-- **사이즈·기하**:
-  - Height **48px** 고정 / Radius **6px** (`radius/components/form`) / Padding 좌우 16px (`spacing-medium`)·상하 12px (`spacing-small`) / 내부 gap 16px — AX `41:475` 실측
-  - 텍스트: `body/1-regular` 15/24
-  - 문구 영역 = 가변 (컨테이너 너비에 맞춰 확장)
-  - **터치 영역** = 필드 전체 (48px 세로 유지, `konacard-ds-rule.md` § "터치 영역 32px 최소" 규칙 충족)
-- **텍스트 정렬**: Fill — **Align: Left** (플레이스홀더·입력값 모두 좌측 정렬)
-- **State 변형**:
-  - `Default` / `Focus` / `Active` / `Complete` / `Inactive` (variant 값 `disabled`) / `Error` — 위 공통 표 그대로 (variant 값: `default / focus / active / complete / disabled / error`)
-  - **clear 버튼(×) 슬롯은 Active·Complete·Error 에 내장** (`input/icon` `type=icon_delete` 24px). Default·Focus·Disabled 에는 없음 (AX `41:505` 실측). 카탈로그 페이지 State 열 인스턴스(`386:2778`~`386:2782`)는 override 로 Error 에만 노출, 좌측 예시 `99:932` 는 Active + clear
-  - Complete 에는 인증 타이머 슬롯도 내장: `3:00` (`body/2-Regular` `color/font/error`) + `input/icon` `type=icon_refresh`
-- **하위 슬롯**:
-  - Left: 텍스트(플레이스홀더 또는 입력값)
-  - Right (선택): clear 아이콘 (Active·Complete·Error) — `input/icon` `type=icon_delete` 24px
-- **Title + Guide 조합** (전용 컴포넌트 없음): 화면에서 `title/title` + 입력칸 + `info` 를 직접 묶어 씀 — 요소 간 상하 gap **8px** (`spacing-xsmall`). KeyScreen 에서 300곳 남짓이 이 구성. (조합 컴포넌트 `input/basic` 은 실제로는 `@` 분할 이메일 입력 + Title + Guide 였고 KeyScreen 0곳이라 2026-10-07 삭제)
+- **Figma 컴포넌트 세트**: `41:505` — AX 이름 **`input`** (2026-10-15 사용자 정리. 옛 `input/text field` 세트에 search bar · text area · button · card-number · id 를 합침, 키 유지)
+- **속성**: `style/case` 6 × `state` 6 = 36 variant + boolean `title` · `info` · `timer`
+  - `state`: `default` / `focus` / `active` / `complete` / `disabled` / `error` — 위 공통 표
+  - `title` (기본 켜짐): 위에 `title/title` Type=Input · Medium · Black (`body/3-Bold` 12/18 #333)
+  - `info` (기본 켜짐): 아래에 `info` 컴포넌트. Error state 면 `type=icon-error`, 나머지는 `type=info`
+  - `timer` (기본 꺼짐, **text field 전용**): 인증 남은 시간 `3:00` (`body/2-Regular` 14/22 `color/font/error`) + 12 + `input/icon` `type=icon_refresh`
+- **틀**: title → 입력칸 → info, 세로 gap **8px** (`spacing-xsmall`). 전체 높이 100 (text area 176). 폭은 부모에 맞춰 늘어남
+- **입력칸 공통**: 높이 **48** / radius **6** (`radius/components/form`) / padding 상하 12 · 좌우 16 / 내부 gap 16 / 안쪽 1px 테두리 / 글자 `body/1` 15/24 왼쪽 정렬
+- **터치 영역** = 필드 전체 (48px 세로 유지, `konacard-ds-rule.md` § "터치 영역 32px 최소" 규칙 충족)
 
-## Inputbox 관련 안티패턴
+| style/case | 구성 | 오른쪽 슬롯 |
+|---|---|---|
+| `text field` | 입력칸 하나. 이름·전화·주소 등 문자 입력 전반 | Active·Complete·Error 에 지우기(×) `input/icon` `type=icon_delete` 24 · `timer` 켜면 그 오른쪽에 타이머 |
+| `search bar` | 목록·데이터를 키워드로 거르는 입력칸 | **검색 아이콘** `ic_24/ic_search_24` 항상 · Active·Complete·Error 에 지우기(×) 를 검색 아이콘 왼쪽에(왼쪽 padding 12) |
+| `text area` | 여러 줄 입력. 입력칸 padding 16 · 세로 gap 12 · 글자 영역 64 → 입력칸 124 | 오른쪽 아래 글자 수 `0/500` (`body/4-Regular` 11/16 #999) |
+| `button` | 입력칸 FILL + 8 + `button/button` primary · medium · brand (48h). 예: 인증번호 요청, 중복확인 | 입력칸에 지우기(×) (Active·Complete·Error) |
+| `card-number` | 카드번호 4×4. `0000` 4칸 **Fill (1/N)** + 사이 `ic_24/ic_input_dash` 24 · **가운데 정렬** | 없음 |
+| `registration number` | 주민등록번호. 앞 6자리 입력칸 FILL – 대시 24 – 뒤 첫자리 40×48 칸 + 점 6개(8×8, 검정 10%, 사이 8) | 없음 (뒷자리 칸은 state 와 상관없이 #DDD 테두리) |
 
-- ❌ **Placeholder를 Label 대신 사용** — 반드시 필드 상단 Title 라벨 사용 (Placeholder는 예시값 힌트 전용)
+- **카드번호 입력 UX**: 화면은 4칸이지만 한 칸처럼 동작 — 4자리가 차면 다음 칸으로, 빈 칸에서 백스페이스면 이전 칸으로 (Storybook 구현). 숫자 전용 키패드
+- **검색 아이콘**은 항상 오른쪽 고정, 눌러도 별도 액션 없음(엔터·자동검색). 왼쪽에 아이콘 두지 말 것
+- **button 의 버튼**: 액션 트리거(인증번호 요청·검색) = Brand. 버튼 여러 개면 사이도 8px
+- 정리 이력: `input/basic` · `input/email` (@ 분할 이메일 입력)은 KeyScreen 0곳이라 2026-10-07 삭제. 이메일은 `text field` 하나로 받음
+
+## Input 관련 안티패턴
+
+- ❌ **Placeholder를 Label 대신 사용** — 반드시 `title` 켜서 필드 상단 라벨 사용 (Placeholder는 예시값 힌트 전용)
 - ❌ **Complete와 Active 색상 혼동** — Active(보라)는 편집 중, Complete(검정)는 확정. 화면 목적에 따라 구분
-- ❌ Error 상태에서 clear(×) 버튼 생략 (사용자가 잘못된 값을 지우고 재입력할 수 있어야 함)
+- ❌ Error 상태에서 clear(×) 버튼 생략 (text field · search bar · button — 잘못된 값을 지우고 재입력할 수 있어야 함)
 - ❌ 세로 높이를 48px보다 낮게 축소 (터치 영역 확보 실패)
-
----
-
-## Search bar (`input/search bar`)
-
-- **Figma 노드 (샘플 인스턴스)**: `2408:7204` (Default) / `2408:7213` (Active with clear)
-- **용도**: 목록·데이터를 텍스트 키워드로 필터링. 상단 툴바 하단 배치 또는 필터 카드 상단.
-- **사이즈·기하**: Inputbox와 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
-- **하위 슬롯**:
-  - Left: 텍스트 (플레이스홀더/입력값)
-  - Right: **검색 아이콘** `ic_24/ic_search_24` 24px (항상 노출. Disabled 에서는 `opacity/disable/icon` 24%)
-  - Right (Active·Complete·Error): **clear 아이콘(×)** `input/icon` `type=icon_delete` — 검색 아이콘 좌측, 좌측 padding 12
-- **State 변형**: Inputbox와 동일 6단계 — variant 값 `default / focus / active / complete / disabled / error`
-- **Search bar 자체 사용 규칙**:
-  - 검색 아이콘은 항상 우측 고정, 클릭해도 별도 액션 없음(엔터·자동검색으로 동작)
-  - 좌측에 아이콘 두지 말 것 (Inputbox와 시각적으로 구분 안 됨)
+- ❌ text field 가 아닌 style/case 에 인증 타이머 붙이기 (`timer` 는 text field 전용)
 
 ---
 
@@ -326,7 +316,7 @@ related_docs:
 - **Figma 노드**: 컴포넌트 세트 `41:550` — AX 이름 **`select/select box`** (카탈로그 페이지 인스턴스 이름은 `Input/Select`, 샘플 `99:951`)
 - **Variant 속성**: `size` = `large` (1종) × `State` (대문자 S) = `default` / `active` / `select` / `disabled` / `error`
 - **용도**: 정해진 옵션 목록에서 하나 고르는 필드 (드롭다운 트리거)
-- **사이즈·기하**: Inputbox와 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
+- **사이즈·기하**: `input` 과 동일 (48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
 - **하위 슬롯**:
   - Left: 텍스트(플레이스홀더 "선택" 또는 선택값)
   - Right: **chevron** 12×8 — `active` 만 위방향 `ic_arrow/ic_arrow_up_12`, 나머지는 아래방향 `ic_arrow/ic_arrow_down_12` (AX 실측)
@@ -334,7 +324,7 @@ related_docs:
 - **State 변형** (5단계, AX 실측):
   - `default` — 옵션 미선택 (#DDD 테두리 + #999 Regular 플레이스홀더)
   - `active` — **드롭다운 펼침 중** (보라 테두리 + 보라 Bold 텍스트 + chevron ↑)
-  - `select` — **선택 완료·닫힘** (#DDD 테두리 + 검정 Bold 선택값) — Inputbox `complete` 대응
+  - `select` — **선택 완료·닫힘** (#DDD 테두리 + 검정 Bold 선택값) — `input` `complete` 대응
   - `disabled` — 비활성 (배경 `color/background/disabled` #F8F9FB + #999 Regular)
   - `error` — 검증 실패 (빨간 테두리 + 빨간 Bold 텍스트)
   - **Focus 상태 없음**
@@ -343,7 +333,7 @@ related_docs:
 
 ## Selectbox 관련 안티패턴
 
-- ❌ **Focus 상태 추가로 그리기** — 펼침은 `active`, 선택 완료는 `select` 로 표현 (Inputbox와 다름)
+- ❌ **Focus 상태 추가로 그리기** — 펼침은 `active`, 선택 완료는 `select` 로 표현 (`input` 과 다름)
 - ❌ chevron 방향을 항상 아래로 고정 (열림 상태 시각 피드백 상실)
 - ❌ 옵션이 3개 이하일 때 Selectbox 사용 — 라디오 버튼(`05_Control`) 사용 고려
 
@@ -351,61 +341,30 @@ related_docs:
 
 ## Form UI 조합 규칙 (Title / Guide Text)
 
-Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙.
+Input·Selectbox 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙. `input` 은 `title` · `info` boolean 으로 내장, Selectbox 는 화면에서 `title/title` + `info` 를 직접 묶어 씀.
 
 - **요소 간 상·하 gap**: `spacing-xsmall` = **8px** (Title↔Field↔Guide Text 모두)
 - **Title** (필드 상단 라벨)
-  - 사용 시점: "Inputbox/Selectbox 상단에 제목이 있는 경우"
+  - 사용 시점: "Input/Selectbox 상단에 제목이 있는 경우" (`input` 은 `title` 켜기)
   - 타이포: `body/3-Bold` = Pretendard Bold **12px** / lineHeight 18 / letterSpacing -0.24
   - 색: `color/font/secondary` #333333
-- **Guide Text** (필드 하단 안내/에러 문구)
+- **Guide Text** (필드 하단 안내/에러 문구) = **`info` 컴포넌트** (`Info / Info text`)
   - 타이포: `body/3-Regular` = Pretendard Regular **12px** / lineHeight 18
-  - 5가지 톤 variant:
+  - `type` 5종:
 
-  | Variant | 색 | 아이콘 | 사용 시점 |
+  | type | 글자 색 | 아이콘 | 사용 시점 |
   |---|---|---|---|
-  | `info (Gray)` | `color/font/placeholder` #999999 | 없음 | 부가 힌트 (예: "숫자만 입력 가능") |
-  | `info (Black)` | `color/font/primary` #000000 | 없음 | 강조 힌트 (예: 잔액 표시) |
-  | `Guide (Gray)` | #999999 | ! 아이콘 `color/icon/quaternary` | 가이드성 안내 (검증 전) |
-  | `Guide (Black)` | #000000 | ! 아이콘 `color/icon/secondary` | 강조 가이드 |
-  | **`Error`** | `color/font/error` **#FF364B** | ⓘ 아이콘 `color/icon/accent-red` #FF364B | 검증 실패 메시지 (Error state와 항상 페어링) |
+  | `info` | #666 | 없음 | 부가 힌트 (예: "숫자만 입력 가능") — `input` 기본 |
+  | `error` | #FF364B | 없음 | 아이콘 없는 오류 문구 |
+  | **`icon-error`** | #FF364B | ! 빨강 `icon_danger` | 검증 실패 메시지 — `input` Error state 기본 |
+  | `icon-info` | #000 | ! 검정 `icon_alert_black` | 강조 안내 |
+  | `icon-guide` | #666 | ! 회색 `icon_alert_gray` | 가이드성 안내 |
 
 ## Form UI 안티패턴
 
 - ❌ Title을 필드 안 Placeholder로 대체 (접근성·재입력 편의 하락)
-- ❌ Guide Text에 라이트 회색(#999999) 남발 — 검증 결과·필수값은 반드시 `Error`(#FF364B) 사용
+- ❌ 검증 결과·필수값을 회색 `info` 로 안내 — 반드시 `icon-error`(#FF364B) 사용
 - ❌ Title/Guide Text 간격을 8px 외의 값으로 변경 (`spacing-xsmall` 고정)
-
----
-
-## 특수 폼 조합 (Form - Button / Email / Card number)
-
-### Form - Button (`input/button`)
-
-- **Figma 노드**: `386:2895`
-- **용도**: 인풋 + 우측 액션 버튼 조합 (예: "인증번호 요청", "중복확인")
-- **레이아웃**:
-  - **인풋 영역 = 가변** (화면이 늘어나면 늘어남)
-  - **버튼 영역 = 고정** (내용 너비 + Small/Medium 사이즈)
-  - **인풋 ↔ 버튼 gap = 8px** (`spacing-xsmall`)
-  - 버튼 여러 개일 경우 각 버튼 사이도 **8px 씩**
-- **버튼 사이즈**: 인풋 높이(48px)와 맞추기 위해 Medium 이상 사용 권장 (Small은 회색·경량 액션에 한정)
-- **버튼 색조**:
-  - 액션 트리거(인증번호 요청·검색) = **Brand** (보라 채움)
-  - 보조 액션(초기화·재요청) = **`gray-line`**
-
-### Form - Card number (`input/card-number`)
-
-- **Figma 노드**: `386:2893`
-- **용도**: 카드번호 4×4 자리 입력. 4구간을 `-`로 시각 구분.
-- **레이아웃**:
-  - 4구간 각 `0000` 자리 = **Fill (1/N)** — 동일 폭 4등분
-  - 구간 사이 구분자 폭 = **24px** (총 24×3 = 72px 고정 공제)
-  - 실제 가로 산식: **`카드번호 텍스트 영역 = (Text area - (24 × 이미지개수)) / 4`**
-  - **텍스트 정렬 = 가운데 정렬** (Inputbox 일반 좌측 정렬과 다름 — 카드번호 전용 규칙)
-  - 카드번호 영역 자체는 가변 (컨테이너 확장 시 각 구간이 늘어남)
-- **키보드**: 숫자 전용 키패드, 자리 입력 완료 시 자동 다음 구간 포커스 이동 (구현측 관례)
-- **주의**: 각 4자리 구간을 별도 인풋으로 분리하지 말고 한 인풋 내부에서 시각 구분자로만 처리 (백스페이스 UX 유지)
 
 ---
 
@@ -414,7 +373,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 - ❌ **필드 높이를 32/40/56 등 다양하게 섞기** — 반드시 48px 고정
 - ❌ **Corner radius를 4/8/16 등 임의로 변경** — 6px 고정 (`radius/components/form`)
 - ❌ 필드 위 Title 라벨 없이 Placeholder만으로 라벨링 (접근성 저하)
-- ❌ 에러 메시지를 툴팁·모달로 띄우기 (반드시 Guide Text 슬롯 `Error` variant에 인라인)
+- ❌ 에러 메시지를 툴팁·모달로 띄우기 (반드시 `info` 슬롯 `icon-error` 로 인라인)
 - ❌ 하나의 폼에 Selectbox와 button/select 를 혼용 (일관성 저하 — 폼 내부는 Selectbox 통일)
 
 ---
@@ -1319,7 +1278,7 @@ Inputbox·Search bar·Selectbox 위·아래에 붙는 라벨/안내 텍스트의
 | 01 | Actionbar | header (Main·Sub AOS/iOS·Scroll Title), headline, button |
 | 02 | Button | primary, secondary, text, icon, fixed-bottom, select |
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |
-| 04 | Forms | input, search, select, email, card-number, button + Form UI |
+| 04 | Forms | input (text field · search bar · text area · button · card-number · 주민등록번호), select + Form UI |
 | 05 | Control | swtich, checkbox, radio + agree/setting/radio-text |
 | 06 | List | list (4형), expand, card-select, bottomsheet |
 | 07 | Line | Solid, Dotted, Divider |

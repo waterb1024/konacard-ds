@@ -73,6 +73,19 @@
   margin-left: var(--spacing-small);
 }
 
+/* 인증 타이머 (text field · boolean timer): 3:00 –12– 새로고침 */
+.timer {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--spacing-small); /* 12 */
+}
+.timerText {
+  font: var(--text-body-2-regular); /* 14/22 */
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-error); /* #FF364B */
+}
+
 .dash {
   flex-shrink: 0;
 }

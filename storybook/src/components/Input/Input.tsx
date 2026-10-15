@@ -1,5 +1,5 @@
 import { Fragment, forwardRef, useId, useState } from "react";
-import type { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
+import type { ChangeEvent, FormEvent, InputHTMLAttributes, KeyboardEvent, ReactNode } from "react";
 import { Button } from "../Button/Button";
 import { InfoText } from "../Info/InfoText";
 import styles from "./Input.module.css";
@@ -23,7 +23,8 @@ import styles from "./Input.module.css";
  *            error     테두리 #FF364B · 입력값 #FF364B Bold · 지우기(×) · info 는 icon-error
  *   - 지우기(×)는 text field · search bar · button 에만 (card-number · 주민번호 · text area 는 없음)
  *   - text area 만 complete · error 글자가 Regular (Figma 그대로)
- *   - 인증 타이머(3:00 + 새로고침) 자리는 Figma 에 숨김으로만 있어 코드에 넣지 않음
+ *   - 인증 타이머: boolean timer (기본 꺼짐) — text field 에만. "3:00" 14/22 Regular #FF364B + 12 + 새로고침(icon_refresh)
+ *     순서는 글자 → 지우기(×) → 타이머 (사이 16)
  */
 
 export type InputVariant =
@@ -50,6 +51,9 @@ export interface InputProps
   buttonLabel?: string;
   onButtonClick?: () => void;
   onClear?: () => void;
+  /** Figma boolean "timer" — variant=text-field 에만. 남은 시간 글자를 주면 보임 (예: "3:00") */
+  timer?: string;
+  onTimerRefresh?: () => void;
   /** variant=text-area 글자 수 제한 (오른쪽 아래 0/500) */
   maxLength?: number;
   /** variant=text-area 글자 영역 높이(px). 기본 64 → 입력칸 124 (Figma) */
@@ -80,6 +84,25 @@ function SearchIcon() {
   );
 }
 
+/* Figma input/icon type=icon_refresh · size=large 원본 SVG */
+function RefreshIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden focusable="false">
+      <circle cx="12" cy="12" r="12" fill="var(--color-icon-quinary)" />
+      <path
+        d="M14.6046 16.1708C14.0199 16.5371 13.3483 16.7854 12.6189 16.8784C9.92613 17.2217 7.46489 15.3171 7.1216 12.6243C6.7783 9.93151 8.68294 7.47027 11.3757 7.12697C14.0685 6.78367 16.5298 8.68831 16.8731 11.3811L17.0663 12.5628"
+        stroke="var(--color-icon-white)"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18.9884 10.6196L17.502 13.243C17.3833 13.4525 17.1056 13.5065 16.9171 13.3569L14.4028 11.3617"
+        stroke="var(--color-icon-white)"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 /* Figma ic_24/ic_input_dash 원본 SVG */
 function Dash() {
   return (
@@ -100,6 +123,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     buttonLabel = "Button",
     onButtonClick,
     onClear,
+    timer,
+    onTimerRefresh,
     maxLength = 500,
     areaHeight = 64,
     className,
@@ -123,6 +148,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const handleChange = (e: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => {
     setCount(e.target.value.length);
     onChange?.(e);
+  };
+
+  // card-number: 4칸이지만 한 칸처럼 — 4자리가 차면 다음 칸, 빈 칸에서 백스페이스면 이전 칸
+  const cells = (el: HTMLInputElement) => [...(el.closest(`.${styles.cardNumber}`)?.querySelectorAll("input") ?? [])];
+  const moveCard = (e: FormEvent<HTMLInputElement>) => {
+    const el = e.currentTarget;
+    if (el.value.length >= 4) cells(el)[cells(el).indexOf(el) + 1]?.focus();
+  };
+  const backCard = (e: KeyboardEvent<HTMLInputElement>) => {
+    const el = e.currentTarget;
+    if (e.key === "Backspace" && el.value === "") cells(el)[cells(el).indexOf(el) - 1]?.focus();
   };
 
   const box = (children: ReactNode, extra?: string) => (
@@ -167,7 +203,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           {[0, 1, 2, 3].map((i) => (
             <Fragment key={i}>
               {i > 0 && <Dash />}
-              {field({ id: i === 0 ? inputId : undefined, inputMode: "numeric", maxLength: 4, placeholder: "0000", defaultValue: String(defaultValue ?? "").replace(/\D/g, "").slice(i * 4, i * 4 + 4) || undefined, "aria-label": `카드번호 ${i + 1}번째 4자리` }, true)}
+              {field({ id: i === 0 ? inputId : undefined, inputMode: "numeric", maxLength: 4, placeholder: "0000", onInput: moveCard, onKeyDown: backCard, defaultValue: String(defaultValue ?? "").replace(/\D/g, "").slice(i * 4, i * 4 + 4) || undefined, "aria-label": `카드번호 ${i + 1}번째 4자리` }, true)}
             </Fragment>
           ))}
         </div>,
@@ -198,6 +234,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
             <button type="button" aria-label="지우기" className={cx(styles.icon, styles.clear)} onClick={onClear}>
               <DeleteIcon />
             </button>
+          )}
+          {variant === "text-field" && timer && (
+            <span className={styles.timer}>
+              <span className={styles.timerText}>{timer}</span>
+              <button type="button" aria-label="인증 시간 다시 받기" className={styles.icon} onClick={onTimerRefresh}>
+                <RefreshIcon />
+              </button>
+            </span>
           )}
           {variant === "search-bar" && (
             <span className={styles.icon}>

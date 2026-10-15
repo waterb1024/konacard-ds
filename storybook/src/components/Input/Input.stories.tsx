@@ -24,6 +24,7 @@ const meta = {
     title: { control: "text" },
     info: { control: "text" },
     placeholder: { control: "text" },
+    timer: { control: "text", description: "text field 전용 인증 타이머 (예: 3:00)" },
   },
   args: { variant: "text-field", state: "default", title: "Title", info: "안내 문구", placeholder: "Default" },
   decorators: [(Story) => <div style={{ width: 320 }}><Story /></div>],
@@ -70,3 +71,14 @@ export const TextArea: Story = matrix("text-area", "Text area");
 export const WithButton: Story = matrix("button", "Button");
 export const CardNumber: Story = matrix("card-number", "Card number");
 export const RegistrationNumber: Story = matrix("registration-number", "주민등록번호");
+
+export const TextFieldTimer: Story = {
+  name: "Text field + 인증 타이머",
+  render: () => (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 280px)", gap: 24 }}>
+      {STATES.map((s) => (
+        <Input key={s} state={s} title={s} info="Input bottom info text" placeholder="인증번호" timer="3:00" defaultValue={VALUE[s] && "123456"} />
+      ))}
+    </div>
+  ),
+};
