@@ -971,7 +971,7 @@ wrapper (360×800, white)
 | 배지 (점/숫자/new) | `badges/badge` (type=dot/new/num-min/num-max) | |
 | CTA 버튼 (대) | `button/primary` (size=large/medium, type=brand/gray-light) | |
 | 하단 고정 버튼 | `button/fixed-bottom` (Device=AOS) | h=72px |
-| 선택 버튼 (체크 박스형) | `button/select`, `button/select-2line` | |
+| 선택 버튼 (보이는 선택지 중 하나 고르기) | `select/select button` (state=default/selected · status), `select/select button group` (columns=2/3/4) | 옛 button/select · select-2line 은 삭제 |
 | 아이콘 (배경 약함) | `input/icon`, `input/icon-pass`, `input/bullet` | |
 | 얇은 가로 구분선 | `line/solid` (color=light/dark) | ComponentSet — `importComponentSetByKeyAsync` 사용 |
 | 두꺼운 섹션 구분 | `line/divider` (color=light/dark, h=10px) | |
