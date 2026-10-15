@@ -4,11 +4,24 @@
  *   - 48h · radius 6 (radius/components/form) · padding 12v 16h · border 1px
  *   - gap 16 (spacing-medium)
  *   - chevron 12×8 (v 또는 ^)
- *   - State 5종: default / active(펼침) / select(선택완료) / disabled / error
+ *   - state 5종: default / active(펼침) / select(선택완료) / disabled / error · boolean title · info
  *   - Font: body/1-regular (default/disabled), body/1-Bold (active/select/error)
  *   - Chevron 색은 텍스트와 별개 톤 (Figma spec):
  *       default: quaternary #999, active: tertiary #666, error: accent-red
  */
+
+/* title → 칸 → info, 세로 8 (input 과 같은 틀) */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall); /* 8 */
+  width: 100%;
+}
+.title {
+  font: var(--text-body-3-bold); /* 12/18 Bold */
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-secondary); /* #333 */
+}
 
 .wrap {
   display: flex;
@@ -80,13 +93,13 @@
   letter-spacing: var(--font-letterspacing-medium);
 }
 
-/* Inactive (Figma "disabled") — 회색 배경 · placeholder 색 · chevron opacity 0.24 만 별도 */
-.state-inactive {
+/* Disabled — 회색 배경 · placeholder 색 · chevron opacity 0.24 만 별도 */
+.state-disabled {
   border-color: var(--color-border-default);
   background: var(--color-background-disabled);
   color: var(--color-font-placeholder);
 }
-.state-inactive .chevron {
+.state-disabled .chevron {
   opacity: 0.24; /* Figma opacity/disable/icon */
 }
 

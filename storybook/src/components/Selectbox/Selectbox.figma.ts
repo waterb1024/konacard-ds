@@ -5,22 +5,20 @@ import figma from 'figma'
 
 const instance = figma.selectedInstance
 
-// Figma variant 이름은 대문자 "State" (다른 폼 요소는 "state" 소문자)
-// 값 5종: default / active / select / disabled / error
-// - "disabled" → "inactive" 로 이름만 다름 (Input.tsx 와 동일 정책)
-const state = instance.getEnum('State', {
+// 2026-10-15 정리: select/select box · state 5종 (소문자) + boolean title · info
+const state = instance.getEnum('state', {
   default: 'default',
   active: 'active',
   select: 'select',
-  disabled: 'inactive',
+  disabled: 'disabled',
   error: 'error',
 })
 
-// Figma "size" 는 large 만 있음 (다른 폼 요소와 달리 처음부터 단일 사이즈)
-// 매핑 skip.
+const title = instance.getBoolean('title', { true: 'Title', false: undefined })
+const info = instance.getBoolean('info', { true: '안내 문구', false: undefined })
 
 export default {
-  example: figma.code`<Selectbox state="${state}" placeholder="선택" />`,
+  example: figma.code`<Selectbox state="${state}" title="${title}" info="${info}" placeholder="선택" />`,
   imports: ['import { Selectbox } from "./Selectbox"'],
   id: 'selectbox',
   metadata: { nestable: true },

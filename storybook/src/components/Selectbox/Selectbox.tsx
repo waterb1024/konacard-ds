@@ -1,115 +1,89 @@
-import { forwardRef } from "react";
-import type { ButtonHTMLAttributes } from "react";
+import { forwardRef, useId } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { InfoText } from "../Info/InfoText";
 import styles from "./Selectbox.module.css";
 
 /**
- * KONACARD DS Selectbox
- * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 41:550 (select/select box)
- * spec: konacard-ds-components.md § 04_Forms > Selectbox
+ * KONACARD DS Select (필드형 드롭다운)
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 41:550 (select/select box) · ❖ Select 페이지
  *
- * TextField 와 동일한 48h 폼 필드에 chevron 이 우측 상시 노출.
- * Figma "State" (capital S) variant 는 5종:
- *   default / active(펼침) / select(값 선택됨) / disabled / error
- * 코드는 "disabled" → "inactive" 로 이름만 다름.
- * chevron 방향: default/select/disabled/error 는 아래(v), active 는 위(^).
+ * 2026-10-15 정리 (AX 실측):
+ *   - 세트 이름 select → select/select box, style/case 삭제, State → state, boolean title · info 추가
+ *   - 틀은 input 과 같음: title/title(12/18 Bold #333) → 칸 → info, 세로 8
+ *   - 칸 48 · padding 12 16 · gap 16 · radius 6 · 안쪽 1px · 글자 body/1 15/24
+ *   - state: default   #DDD · 안내 글자 #999 Regular · 아래 화살표
+ *            active    #805AE9 · #805AE9 Bold · 위 화살표 (목록 열림)
+ *            select    #DDD · #000 Bold (선택 완료)
+ *            disabled  바탕 #F8F9FB · #999 Regular · 화살표 투명도 24%
+ *            error     #FF364B · #FF364B Bold · info 는 icon-error
+ *   - 화살표 ic_arrow_down_12 / ic_arrow_up_12 (12×8, #333) Figma 원본 SVG
  */
 
-export type SelectboxState =
-  | "default"
-  | "active"
-  | "select"
-  | "inactive"
-  | "error";
+export type SelectboxState = "default" | "active" | "select" | "disabled" | "error";
 
-export interface SelectboxProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value"> {
+export interface SelectboxProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value" | "title"> {
   state?: SelectboxState;
-  /** 선택된 값 (미선택 시 placeholder 노출) */
+  /** 선택된 값 (없으면 placeholder) */
   value?: string;
   placeholder?: string;
+  /** Figma boolean "title" — 글자를 주면 보임 */
+  title?: string;
+  /** Figma boolean "info" — 글자를 주면 보임. error state 면 icon-error */
+  info?: ReactNode;
 }
 
-const cx = (...names: Array<string | false | undefined>) =>
-  names.filter(Boolean).join(" ");
+const cx = (...names: Array<string | false | undefined>) => names.filter(Boolean).join(" ");
 
-/* Figma ic_arrow/ic_arrow_down_12 원본:
- *   Vector 6×11 (`<` shape) → CSS rotate(90) + scale-x(-1) 로 `v` 형태로 변환.
- *   최종 렌더 크기 11×6, viewBox 12×8 안에서 마크는 x=0.5~11.5, y=1~7.
- *   round linecap 으로 stroke 이 viewBox 경계까지 자연스럽게 확장. */
+/* Figma ic_arrow/ic_arrow_down_12 원본 SVG */
 function ChevronDown() {
   return (
-    <svg
-      width="12"
-      height="8"
-      viewBox="0 0 12 8"
-      fill="none"
-      aria-hidden
-      focusable="false"
-    >
-      <path
-        d="M0.5 1.5 L6 7 L11.5 1.5"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden focusable="false">
+      <path d="M0.999999 2L6 7L11 2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-/* active 상태 (펼침): ^ 모양. 세로 뒤집기 (y' = 8 - y) */
+/* Figma ic_arrow/ic_arrow_up_12 원본 SVG */
 function ChevronUp() {
   return (
-    <svg
-      width="12"
-      height="8"
-      viewBox="0 0 12 8"
-      fill="none"
-      aria-hidden
-      focusable="false"
-    >
-      <path
-        d="M0.5 6.5 L6 1 L11.5 6.5"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden focusable="false">
+      <path d="M1 6L6 1L11 6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-export const Selectbox = forwardRef<HTMLButtonElement, SelectboxProps>(
-  function Selectbox(
-    {
-      state = "default",
-      value,
-      placeholder = "선택",
-      className,
-      disabled,
-      type = "button",
-      ...rest
-    },
-    ref,
-  ) {
-    const effectiveDisabled = disabled ?? state === "inactive";
-    const displayText = value && value.length > 0 ? value : placeholder;
-    const isOpen = state === "active";
-    return (
+export const Selectbox = forwardRef<HTMLButtonElement, SelectboxProps>(function Selectbox(
+  { state = "default", value, placeholder = "선택", title, info, className, disabled, type = "button", id, ...rest },
+  ref,
+) {
+  const autoId = useId();
+  const fieldId = id ?? autoId;
+  const isDisabled = disabled ?? state === "disabled";
+  const isOpen = state === "active";
+  const text = value && value.length > 0 ? value : placeholder;
+  return (
+    <div className={cx(styles.field, className)}>
+      {title && (
+        <label htmlFor={fieldId} className={styles.title}>
+          {title}
+        </label>
+      )}
       <button
         ref={ref}
+        id={fieldId}
         type={type}
-        className={cx(styles.wrap, styles[`state-${state}`], className)}
-        disabled={effectiveDisabled}
+        className={cx(styles.wrap, styles[`state-${state}`])}
+        disabled={isDisabled}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         {...rest}
       >
-        <span className={styles.label}>{displayText}</span>
+        <span className={styles.label}>{text}</span>
         <span className={styles.chevron} aria-hidden>
           {isOpen ? <ChevronUp /> : <ChevronDown />}
         </span>
       </button>
-    );
-  },
-);
+      {info && <InfoText type={state === "error" ? "icon-error" : "info"}>{info}</InfoText>}
+    </div>
+  );
+});

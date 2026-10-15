@@ -1,0 +1,39 @@
+/* Figma select/select button (11061:3729) · group (11061:3760), AX 실측 2026-10-15 */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: var(--spacing-small) var(--spacing-medium); /* 12 16 */
+  border: none;
+  border-radius: var(--radius-button-medium); /* 6 */
+  background: var(--color-button-white);
+  box-shadow: inset 0 0 0 1px var(--color-button-tertiary); /* #DDD 안쪽 1px */
+  font: var(--text-button-medium); /* 700 14/22 */
+  letter-spacing: var(--font-letterspacing-small);
+  color: var(--color-font-secondary); /* #333 */
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.selected {
+  box-shadow: inset 0 0 0 1px var(--color-background-button-brand); /* #805AE9 */
+  color: var(--color-font-brand);
+}
+.button:disabled {
+  opacity: var(--opacity-disable-button); /* 0.4 */
+  cursor: not-allowed;
+}
+
+/* group: 폭 같은 크기 · 사이 8 */
+.group {
+  display: flex;
+  gap: var(--spacing-xsmall); /* 8 */
+  width: 100%;
+}
+.group > .button {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Selectbox } from "./Selectbox";
+import type { SelectboxState } from "./Selectbox";
 
 const meta = {
   title: "Component/Select",
@@ -9,31 +10,21 @@ const meta = {
     docs: {
       description: {
         component:
-          "KONACARD DS Selectbox. konacard-ds-components.md § 04_Forms 기준. " +
-          "State 5단계: Default / Active(펼침) / Select(선택완료) / Inactive / Error. " +
-          "Active 일 때 chevron 이 위쪽(^) 로 회전.",
+          "KONACARD DS Select (필드형 드롭다운) — Figma select/select box (41:550). " +
+          "state 5종: default · active(목록 열림, 위 화살표) · select(선택 완료) · disabled · error. " +
+          "제목(title)과 안내 문구(info)는 넣으면 보임 — input 과 같은 틀.",
       },
     },
   },
   argTypes: {
-    state: {
-      control: "inline-radio",
-      options: ["default", "active", "select", "inactive", "error"],
-    },
+    state: { control: "inline-radio", options: ["default", "active", "select", "disabled", "error"] },
     value: { control: "text" },
     placeholder: { control: "text" },
+    title: { control: "text" },
+    info: { control: "text" },
   },
-  args: {
-    state: "default",
-    placeholder: "선택",
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ padding: 20, background: "#FFFFFF", width: 320 }}>
-        <Story />
-      </div>
-    ),
-  ],
+  args: { state: "default", placeholder: "선택", title: "Title", info: "Input bottom info text" },
+  decorators: [(Story) => <div style={{ width: 320 }}><Story /></div>],
 } satisfies Meta<typeof Selectbox>;
 
 export default meta;
@@ -41,36 +32,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
-export const Default: Story = { args: { state: "default" } };
+const STATES: SelectboxState[] = ["default", "active", "select", "disabled", "error"];
+const VALUE: Partial<Record<SelectboxState, string>> = { active: "Active", select: "Select", error: "Error" };
 
-export const Active: Story = {
-  name: "Active (펼침)",
-  args: { state: "active", value: "신용카드" },
-};
-
-export const Select: Story = {
-  name: "Select (선택완료)",
-  args: { state: "select", value: "신용카드" },
-};
-
-export const Inactive: Story = {
-  args: { state: "inactive", placeholder: "선택 불가" },
-};
-
-export const ErrorState: Story = {
-  name: "Error",
-  args: { state: "error", value: "선택 필요" },
-};
-
-export const StateMatrix: Story = {
-  name: "State Matrix",
+export const AllStates: Story = {
+  name: "전체 state",
   render: () => (
-    <div style={{ display: "grid", gap: 12 }}>
-      <Selectbox state="default" placeholder="카드 종류 선택" />
-      <Selectbox state="active" value="신용카드" />
-      <Selectbox state="select" value="신용카드" />
-      <Selectbox state="inactive" placeholder="선택 불가" />
-      <Selectbox state="error" value="선택이 필요합니다" />
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 280px)", gap: 24 }}>
+      {STATES.map((s) => (
+        <Selectbox
+          key={s}
+          state={s}
+          title={s}
+          value={VALUE[s]}
+          placeholder={s === "disabled" ? "Disabled" : "Default"}
+          info={s === "error" ? "Input bottom error text" : "Input bottom info text"}
+        />
+      ))}
     </div>
   ),
+  decorators: [(Story: () => JSX.Element) => <Story />],
 };

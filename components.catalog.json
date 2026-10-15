@@ -299,40 +299,6 @@
       ],
       "docRef": "konacard-ds-components.md § 02_Button"
     },
-    "select/select box": {
-      "type": "COMPONENT_SET",
-      "key": "ddc7d340c3cd3d162621ca0d75e6bac8efbde8d7",
-      "nodeId": "41:550",
-      "props": {
-        "size": [
-          "large"
-        ],
-        "State": [
-          "default",
-          "active",
-          "select",
-          "disabled",
-          "error"
-        ]
-      },
-      "defaults": {
-        "size": "large",
-        "State": "default"
-      },
-      "heights": {
-        "*": 48
-      },
-      "aliases": {
-        "Selectbox": "select/select box",
-        "Input/Select": "select/select box (카탈로그 인스턴스 이름)"
-      },
-      "notes": [
-        "State 속성명 대문자 S",
-        "active = 드롭다운 펼침(chevron ↑), select = 선택 완료·닫힘 (Inputbox complete 대응)",
-        "disabled 는 chevron 투명도 24%"
-      ],
-      "docRef": "konacard-ds-components.md § Selectbox"
-    },
     "list/list": {
       "type": "COMPONENT_SET",
       "key": "d8ca8a0451596916517bfd9372dbe7fd068b94f9",
@@ -937,6 +903,108 @@
         "Storybook: Label type × size × color, Figma 와 1:1 (line 은 type 상 3색·3사이즈만 허용)"
       ],
       "docRef": "konacard-ds-components.md § Label"
+    },
+    "select/select box": {
+      "type": "COMPONENT_SET",
+      "key": "ddc7d340c3cd3d162621ca0d75e6bac8efbde8d7",
+      "nodeId": "41:550",
+      "props": {
+        "state": [
+          "default",
+          "active",
+          "select",
+          "disabled",
+          "error"
+        ],
+        "title": "BOOLEAN",
+        "info": "BOOLEAN"
+      },
+      "defaults": {
+        "state": "default",
+        "title": true,
+        "info": true
+      },
+      "heights": {
+        "*": "100 (title 18 + 8 + 칸 48 + 8 + info 18)"
+      },
+      "codeProp": {
+        "state": "state",
+        "title": "title (글자 있으면 보임)",
+        "info": "info (글자 있으면 보임, error 면 icon-error)"
+      },
+      "aliases": {
+        "select": "select/select box (합치기 전 잠깐 쓴 이름)",
+        "input/select": "select/select box (NEW 파일 이름)",
+        "Input/Select": "select/select box (카탈로그 페이지 인스턴스 이름)"
+      },
+      "notes": [
+        "2026-10-15 사용자 정리: style/case(값 1개) 삭제 · State → state · boolean title · info 추가 (input 과 같은 틀). 원본을 고쳐 키 유지",
+        "칸 48 · padding 12 16 · gap 16 · radius 6 · 글자 body/1 15/24. default #DDD/#999 R · active #805AE9 Bold + 위 화살표 · select #DDD/#000 Bold · disabled 바탕 #F8F9FB/#999 R + 화살표 투명도 24% · error #FF364B Bold",
+        "화살표 ic_arrow_down_12 · ic_arrow_up_12 (12×8, #333)",
+        "KeyScreen: input/select 97곳(전부 large). input/select-round 13곳은 해외송금(TBD)만",
+        "Storybook: Component/Select (Selectbox) — AX 와 대조 완료"
+      ],
+      "docRef": "konacard-ds-components.md § Selectbox"
+    },
+    "select/select button": {
+      "type": "COMPONENT_SET",
+      "key": "c12a8ea4468befdc528acad9b3c34220c42e62b7",
+      "nodeId": "11061:3729",
+      "props": {
+        "state": [
+          "default",
+          "selected"
+        ],
+        "status": [
+          "true",
+          "false"
+        ]
+      },
+      "defaults": {
+        "state": "default",
+        "status": "true"
+      },
+      "heights": {
+        "*": 48
+      },
+      "codeProp": {
+        "state": "selected (boolean)",
+        "status": "status (true = 활성)"
+      },
+      "aliases": {
+        "button/select": "select/select button (80×80 채움형 → KeyScreen 0곳이라 삭제 후 라인형으로 새로 만듦)"
+      },
+      "notes": [
+        "2026-10-15 확정: KeyScreen 에서 button/primary medium brand-line(선택) + gray-line-light(나머지)를 나란히 놓아 쓰던 '하나 고르기' 패턴(70곳 남짓: 자동충전 기준 금액·일자, 충전 +금액, AML 네/아니요, 캐시 전환, 거래내역 기간 등)을 컴포넌트로",
+        "높이 48 · padding 12 16 · radius 6 · 안쪽 1px · 글자 14/22 Bold. default #DDD/#333 · selected #805AE9/#805AE9 · status=false 투명도 40%",
+        "status 는 체크박스·라디오·스위치·탭과 같은 규칙 (true = 활성)",
+        "원본 button/select(80×80 채움형) · button/select-2line 은 KeyScreen 0곳이라 삭제",
+        "Storybook: Component/Select/Select button (SelectButton · SelectButtonGroup)"
+      ],
+      "docRef": "konacard-ds-components.md § Select button"
+    },
+    "select/select button group": {
+      "type": "COMPONENT_SET",
+      "key": "20a5afc2b4816f99db1608abb46812e8ff177d69",
+      "nodeId": "11061:3760",
+      "props": {
+        "columns": [
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "defaults": {
+        "columns": "2"
+      },
+      "heights": {
+        "*": 48
+      },
+      "notes": [
+        "select/select button 을 폭 320 안에 같은 크기로, 사이 8. 2열 156 · 3열 101 · 4열 74",
+        "2026-10-15 확정. 선택 위치는 안의 인스턴스 state 로 바꿈"
+      ],
+      "docRef": "konacard-ds-components.md § Select button"
     }
   }
 }
