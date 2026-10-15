@@ -1,197 +1,234 @@
-import { forwardRef, useId } from "react";
-import type { InputHTMLAttributes, ReactNode } from "react";
+import { Fragment, forwardRef, useId, useState } from "react";
+import type { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
+import { Button } from "../Button/Button";
+import { InfoText } from "../Info/InfoText";
 import styles from "./Input.module.css";
 
-export type InputState =
-  | "default"
-  | "focus"
-  | "active"
-  | "complete"
-  | "inactive"
-  | "error";
+/**
+ * KONACARD DS Input
+ * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / node 41:505 (input) · ❖ Input 페이지
+ *
+ * 2026-10-15 사용자 정리: input/text field · search bar · text-area · button · card-number · id 를
+ * 한 세트로 합침 → style/case 6종 × state 6종 = 36 variant + boolean title · info.
+ *
+ * AX 실측 (공통)
+ *   - 틀: 위에서부터 title/title(Input · Medium · Black, 12/18 Bold #333) → 입력칸 → info, 사이 8
+ *   - 입력칸: 높이 48 · padding 12 16 · gap 16 · radius 6 · 안쪽 1px 테두리
+ *   - 글자 body/1 15/24
+ *   - state: default   테두리 #DDD · 안내 글자 #999 Regular
+ *            focus     테두리 #805AE9 · 안내 글자 #999 Regular
+ *            active    테두리 #805AE9 · 입력값 #805AE9 Bold · 지우기(×)
+ *            complete  테두리 #DDD · 입력값 #000 Bold · 지우기(×)
+ *            disabled  바탕 #F8F9FB · 테두리 #DDD · 글자 #999 Regular
+ *            error     테두리 #FF364B · 입력값 #FF364B Bold · 지우기(×) · info 는 icon-error
+ *   - 지우기(×)는 text field · search bar · button 에만 (card-number · 주민번호 · text area 는 없음)
+ *   - text area 만 complete · error 글자가 Regular (Figma 그대로)
+ *   - 인증 타이머(3:00 + 새로고침) 자리는 Figma 에 숨김으로만 있어 코드에 넣지 않음
+ */
 
-export type GuideTone =
-  | "info-gray"
-  | "info-black"
-  | "guide-gray"
-  | "guide-black"
-  | "error";
+export type InputVariant =
+  | "text-field"
+  | "search-bar"
+  | "text-area"
+  | "button"
+  | "card-number"
+  | "registration-number";
+
+export type InputState = "default" | "focus" | "active" | "complete" | "disabled" | "error";
 
 export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  /** konacard-ds-components.md § Inputbox — 6 State */
+  extends Omit<InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>, "size"> {
+  /** Figma "style/case" */
+  variant?: InputVariant;
+  /** Figma "state" */
   state?: InputState;
-  /** 상단 Title 라벨 (body/3-Bold) */
+  /** Figma boolean "title" — 글자를 주면 보임 */
   title?: string;
-  /** 하단 Guide Text */
-  guide?: string;
-  /** Guide Text tone. `error`는 자동으로 error state 와 페어링 권장 */
-  guideTone?: GuideTone;
-  /** clear(×) 버튼 노출. Active·Error 에서 true 권장 */
-  showClear?: boolean;
+  /** Figma boolean "info" — 글자를 주면 보임. error state 면 icon-error */
+  info?: ReactNode;
+  /** variant=button 의 버튼 글자 */
+  buttonLabel?: string;
+  onButtonClick?: () => void;
   onClear?: () => void;
-  /** 라벨/필드 wrapper 커스터마이즈 */
-  wrapperClassName?: string;
+  /** variant=text-area 글자 수 제한 (오른쪽 아래 0/500) */
+  maxLength?: number;
+  /** variant=text-area 글자 영역 높이(px). 기본 64 → 입력칸 124 (Figma) */
+  areaHeight?: number;
+  className?: string;
 }
 
-const cx = (...names: Array<string | false | undefined>) =>
-  names.filter(Boolean).join(" ");
+const cx = (...n: Array<string | false | undefined>) => n.filter(Boolean).join(" ");
 
-// Figma: input/bullet (2234:5516). 원형 배경 + 흰색 "!" 마크.
-// - error 톤 → type=icon_danger (2×5 둥근사각 + 원 r=1)
-// - gray/black 톤 → type=icon_alert_gray/black (2.33×4.375 + 2.33×2.33 둥근사각 두 개)
-//   Figma 원본 SVG 를 그대로 옮긴 좌표.
-function BulletIcon({
-  tone,
-  size = 14,
-}: {
-  tone: "gray" | "black" | "error";
-  size?: 14 | 12;
-}) {
-  const bg =
-    tone === "error"
-      ? "var(--color-icon-accent-red)"
-      : tone === "black"
-        ? "var(--color-icon-secondary)"
-        : "var(--color-icon-quaternary)";
-
-  if (tone === "error") {
-    // icon_danger: rect(2×5) + circle(r=1)
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 14 14"
-        aria-hidden
-        focusable="false"
-        style={{ flexShrink: 0 }}
-      >
-        <circle cx="7" cy="7" r="7" fill={bg} />
-        <rect x="6" y="3" width="2" height="5" rx="1" fill="#fff" />
-        <circle cx="7" cy="10" r="1" fill="#fff" />
-      </svg>
-    );
-  }
-
-  // icon_alert_gray / icon_alert_black: 둥근사각 두 개 (rect + rect)
+/* Figma input/icon type=icon_delete · size=large 원본 SVG */
+function DeleteIcon() {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 14 14"
-      aria-hidden
-      focusable="false"
-      style={{ flexShrink: 0 }}
-    >
-      <circle cx="7" cy="7" r="7" fill={bg} />
-      <rect
-        x="5.833"
-        y="3.5"
-        width="2.334"
-        height="4.375"
-        rx="1"
-        fill="#fff"
-      />
-      <rect
-        x="5.833"
-        y="8.75"
-        width="2.334"
-        height="2.334"
-        rx="1"
-        fill="#fff"
-      />
-    </svg>
-  );
-}
-
-// Figma: input/icon type=icon_delete. 24×24 컨테이너 · 18×18 원(inset 12.5%) + 흰색 × 크로스.
-// Figma 원본 SVG 좌표 그대로: 원 r=9 at (12,12), × stroke width 1 (default), 7px 대각선.
-function DeleteIcon({ size = 24 }: { size?: 24 | 20 | 16 }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden
-      focusable="false"
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden focusable="false">
       <circle cx="12" cy="12" r="9" fill="var(--color-icon-quinary)" />
-      <path
-        d="M8.5 8.5 L15.5 15.5 M15.5 8.5 L8.5 15.5"
-        stroke="var(--color-icon-white)"
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
+      <path d="M9 9L15 15" stroke="var(--color-icon-white)" strokeLinecap="round" />
+      <path d="M15 9L9 15" stroke="var(--color-icon-white)" strokeLinecap="round" />
     </svg>
   );
 }
 
-function GuideText({ tone, children }: { tone: GuideTone; children: ReactNode }) {
-  const withIcon = tone.startsWith("guide-") || tone === "error";
-  const iconVariant =
-    tone === "error"
-      ? "error"
-      : tone === "guide-black"
-        ? "black"
-        : "gray";
+/* Figma ic_24/ic_search_24 원본 SVG */
+function SearchIcon() {
   return (
-    <span className={cx(styles.guide, styles[`guide-${tone}`])}>
-      {withIcon && <BulletIcon tone={iconVariant} />}
-      {children}
-    </span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden focusable="false">
+      <circle cx="11" cy="11" r="8" stroke="var(--color-icon-secondary)" strokeWidth="1.5" />
+      <path d="M17 17L21 21" stroke="var(--color-icon-secondary)" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
   );
 }
+
+/* Figma ic_24/ic_input_dash 원본 SVG */
+function Dash() {
+  return (
+    <svg className={styles.dash} width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden focusable="false">
+      <rect x="8" y="11" width="8" height="1" fill="var(--color-icon-secondary)" />
+    </svg>
+  );
+}
+
+const CLEARABLE: InputVariant[] = ["text-field", "search-bar", "button"];
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
+    variant = "text-field",
     state = "default",
     title,
-    guide,
-    guideTone = "info-gray",
-    showClear,
+    info,
+    buttonLabel = "Button",
+    onButtonClick,
     onClear,
-    wrapperClassName,
+    maxLength = 500,
+    areaHeight = 64,
     className,
-    disabled,
     id,
+    disabled,
+    onChange,
+    value,
+    defaultValue,
+    placeholder,
     ...rest
   },
   ref,
 ) {
   const autoId = useId();
   const inputId = id ?? autoId;
-  const effectiveDisabled = disabled ?? state === "inactive";
-  const shouldShowClear =
-    showClear ?? (state === "active" || state === "error");
+  const isDisabled = disabled ?? state === "disabled";
+  const showClear = CLEARABLE.includes(variant) && ["active", "complete", "error"].includes(state);
+
+  // text area 글자 수 표시용
+  const [count, setCount] = useState(String(value ?? defaultValue ?? "").length);
+  const handleChange = (e: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => {
+    setCount(e.target.value.length);
+    onChange?.(e);
+  };
+
+  const box = (children: ReactNode, extra?: string) => (
+    <div className={cx(styles.box, extra)}>{children}</div>
+  );
+  const field = (props: InputHTMLAttributes<HTMLInputElement>, center?: boolean) => (
+    <input
+      className={cx(styles.control, center && styles.center)}
+      disabled={isDisabled}
+      onChange={handleChange}
+      {...props}
+    />
+  );
+
+  let body: ReactNode;
+  switch (variant) {
+    case "text-area":
+      body = box(
+        <>
+          <textarea
+            id={inputId}
+            className={cx(styles.control, styles.textarea)}
+            style={{ height: areaHeight }}
+            maxLength={maxLength}
+            disabled={isDisabled}
+            placeholder={placeholder}
+            value={value as string | undefined}
+            defaultValue={defaultValue as string | undefined}
+            onChange={handleChange}
+            {...(rest as InputHTMLAttributes<HTMLTextAreaElement>)}
+          />
+          <span className={styles.counter}>
+            {count}/{maxLength}
+          </span>
+        </>,
+        styles.areaBox,
+      );
+      break;
+    case "card-number":
+      body = box(
+        <div className={styles.cardNumber}>
+          {[0, 1, 2, 3].map((i) => (
+            <Fragment key={i}>
+              {i > 0 && <Dash />}
+              {field({ id: i === 0 ? inputId : undefined, inputMode: "numeric", maxLength: 4, placeholder: "0000", defaultValue: String(defaultValue ?? "").replace(/\D/g, "").slice(i * 4, i * 4 + 4) || undefined, "aria-label": `카드번호 ${i + 1}번째 4자리` }, true)}
+            </Fragment>
+          ))}
+        </div>,
+      );
+      break;
+    case "registration-number":
+      body = (
+        <div className={styles.row}>
+          {box(field({ id: inputId, ref, inputMode: "numeric", maxLength: 6, placeholder, value, defaultValue, "aria-label": "주민등록번호 앞 6자리", ...rest } as InputHTMLAttributes<HTMLInputElement>))}
+          <Dash />
+          <div className={styles.back}>
+            <div className={styles.backBox}>
+              <input className={cx(styles.control, styles.center)} inputMode="numeric" maxLength={1} disabled={isDisabled} aria-label="주민등록번호 뒤 첫자리" />
+            </div>
+            <span className={styles.dots} aria-hidden>
+              {Array.from({ length: 6 }, (_, i) => <i key={i} />)}
+            </span>
+          </div>
+        </div>
+      );
+      break;
+    default: {
+      const control = field({ id: inputId, ref, placeholder, value, defaultValue, ...rest } as InputHTMLAttributes<HTMLInputElement>);
+      const inner = box(
+        <>
+          {control}
+          {showClear && (
+            <button type="button" aria-label="지우기" className={cx(styles.icon, styles.clear)} onClick={onClear}>
+              <DeleteIcon />
+            </button>
+          )}
+          {variant === "search-bar" && (
+            <span className={styles.icon}>
+              <SearchIcon />
+            </span>
+          )}
+        </>,
+      );
+      body =
+        variant === "button" ? (
+          <div className={styles.withButton}>
+            {inner}
+            <Button size="medium" color="Brand" onClick={onButtonClick}>
+              {buttonLabel}
+            </Button>
+          </div>
+        ) : (
+          inner
+        );
+    }
+  }
 
   return (
-    <div className={cx(styles.field, styles[`state-${state}`], wrapperClassName)}>
+    <div className={cx(styles.input, styles[`state-${state}`], styles[`variant-${variant}`], className)}>
       {title && (
         <label htmlFor={inputId} className={styles.title}>
           {title}
         </label>
       )}
-      <div className={styles.inputWrap}>
-        <input
-          ref={ref}
-          id={inputId}
-          className={cx(styles.input, className)}
-          disabled={effectiveDisabled}
-          {...rest}
-        />
-        {shouldShowClear && (
-          <button
-            type="button"
-            aria-label="지우기"
-            className={styles.clear}
-            onClick={onClear}
-          >
-            <DeleteIcon />
-          </button>
-        )}
-      </div>
-      {guide && <GuideText tone={guideTone}>{guide}</GuideText>}
+      {body}
+      {info && <InfoText type={state === "error" ? "icon-error" : "info"}>{info}</InfoText>}
     </div>
   );
 });

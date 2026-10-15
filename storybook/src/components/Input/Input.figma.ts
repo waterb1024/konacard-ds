@@ -1,26 +1,34 @@
-// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD---COMMON?node-id=41-505
+// url=https://www.figma.com/design/${FIGMA_DS_FILE_KEY}/-AX--KONACARD?node-id=41-505
 // source=storybook/src/components/Input/Input.tsx
 // component=Input
 import figma from 'figma'
 
 const instance = figma.selectedInstance
 
-// Figma "state" (default/focus/active/complete/disabled/error) → 코드 InputState
-// - "disabled" 는 코드 쪽 이름이 "inactive" 라서 이름만 다름
+// 2026-10-15 정리: style/case 6종 × state 6종 + boolean title · info
+const variant = instance.getEnum('style/case', {
+  'text field': 'text-field',
+  'search bar': 'search-bar',
+  'text area': 'text-area',
+  button: 'button',
+  'card-number': 'card-number',
+  'registration number': 'registration-number',
+})
+
 const state = instance.getEnum('state', {
   default: 'default',
   focus: 'focus',
   active: 'active',
   complete: 'complete',
-  disabled: 'inactive',
+  disabled: 'disabled',
   error: 'error',
 })
 
-// active / error 상태에서 clear(×) 버튼이 자동 노출되도록 Input.tsx 가 처리하므로
-// showClear 는 명시하지 않음. complete 상태의 refresh 아이콘은 현재 미지원.
+const title = instance.getBoolean('title', { true: 'Title', false: undefined })
+const info = instance.getBoolean('info', { true: '안내 문구', false: undefined })
 
 export default {
-  example: figma.code`<Input state="${state}" placeholder="입력하세요" />`,
+  example: figma.code`<Input variant="${variant}" state="${state}" title="${title}" info="${info}" />`,
   imports: ['import { Input } from "./Input"'],
   id: 'input',
   metadata: { nestable: true },
