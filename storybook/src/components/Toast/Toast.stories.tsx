@@ -24,8 +24,29 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/* ── Playground ─────────────────────────────── */
-export const Playground: Story = {};
+/* ── Playground ─────────────────────────────── 
+ * floating=true 면 position: fixed 라 미리보기 밖(Docs 페이지 전체)으로 빠져나감 →
+ * transform 을 준 360 폭 틀 안에 가둬서 true · false 모두 같은 자리(아래 40 · 좌우 20)에 보이게 함
+ */
+export const Playground: Story = {
+  render: (args) => (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-end",
+        width: 360,
+        height: 160,
+        padding: "0 20px 40px",
+        boxSizing: "border-box",
+        background: "var(--color-background-primary)",
+        boxShadow: "0 0 0 1px var(--color-border-default)",
+        transform: "translateZ(0)",
+      }}
+    >
+      <Toast {...args} />
+    </div>
+  ),
+};
 
 /* ── 화면 배치 — Figma #CBP_toast popup_CASE ─────
  * 360×800 화면 틀에 transform 을 줘서 position: fixed 인 토스트가 틀 안에 갇히게 함
