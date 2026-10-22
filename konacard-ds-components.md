@@ -859,7 +859,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - **세트 3개**
   - `accordion` — header + body 묶음. size(large · medium) × type(list · inquiry) × state(closed · open) = 8. open 이면 body 가 보임
   - `accordion/header` — 제목 줄. size × type × state = 8
-  - `accordion/body` — 본문. size × type(bg-color · bg-white) = 4. **제목 없이 단독으로도 씀** (공지사항 · 카드 혜택 · 브랜드머니 · 코나콘 상세)
+  - `accordion/body` — 본문. size × type(bg-color · bg-white) = 4 + boolean `caption` · `box` (기본 off). **제목 없이 단독으로도 씀** (공지사항 · 카드 혜택 · 브랜드머니 · 코나콘 상세)
 - **묶음 규칙**: 본문 크기 = 제목 size · 본문 바탕 = 제목 type (list → bg-color 회색 · inquiry → bg-white 흰색)
 
 ### Header (`accordion/header`)
@@ -887,13 +887,15 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 - 글 블록과 상자 사이 20. 상자(reply): 안쪽 16 · radius 8 · 1depth + 2depth
 - 바탕: **bg-color** = 회색 `background/secondary` 본문 + 흰 상자 / **bg-white** = 흰 본문 + 회색 상자
-- 아래 선 전체 폭. 본문 안 버튼 자리는 숨김 상태(사용 미확인)
+- 아래 선 전체 폭
+- **켜고 끄는 속성** (기본 off): `caption` = 1depth 아래 2depth 보조 문구 · `box` = 아래 상자. KeyScreen 보이는 본문 17곳 중 16곳이 1depth 글만 씀 → 필요할 때만 켬. 묶음 `accordion` 은 inquiry 만 둘 다 on (1:1 문의 답변 상자)
 
 ### 정리 이력 (2026-10-22, KeyScreen AOS 실사용 기준)
 - 본문 39곳 중 30곳이 제목 바로 아래 짝으로 쓰임(18곳은 본문을 숨겨 접힘 표현) → 묶음 `accordion` 새로 만듦
 - 보이는 곳 기준 large 제목–large 본문 3 · medium–medium 6 · medium–large 3(코나콘) · large–medium 0 → 본문 크기 = 제목 크기
 - inquiry 는 1:1 문의 한 화면, 펼친 답변은 bg-white → 본문 바탕 = 제목 type
 - inquiry 라벨 `list/expand-label` 삭제 → `label` small (gray-light 새로 추가 · brand)
+- body 에 `caption` · `box` boolean 추가(기본 off), 쓰지 않던 숨김 버튼 자리 삭제
 
 ## Accordion 안티패턴
 

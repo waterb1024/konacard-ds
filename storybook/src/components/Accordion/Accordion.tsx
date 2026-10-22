@@ -8,7 +8,7 @@ import styles from "./Accordion.module.css";
  * Figma: ${FIGMA_DS_FILE_KEY} (-AX-) / ❖ Accordion 페이지
  *   accordion        (묶음: header + body)  — size × type × state = 8
  *   accordion/header (202:2089, 구 list/expand)       — size × type × state = 8
- *   accordion/body   (607:4415, 구 list/expand-open)  — size × type = 4, 단독으로도 씀 (공지사항 등)
+ *   accordion/body   (607:4415, 구 list/expand-open)  — size × type = 4 + boolean caption · box (기본 off), 단독으로도 씀
  *
  * AX 실측 (2026-10-22 사용자 정리 완료)
  *   header list    : 좌우 20 · 위아래 16 · 글자–화살표 16 · 제목–설명 large 8 / medium 4
@@ -23,7 +23,8 @@ import styles from "./Accordion.module.css";
  *                    상자: 안쪽 16 · radius 8 · bg-color 본문엔 흰 상자 / bg-white 본문엔 회색 상자
  *                    아래 선 전체 폭
  *   묶음 규칙      : 본문 크기 = 제목 크기, 본문 바탕 = 제목 type (list → bg-color · inquiry → bg-white)
- *   본문의 숨겨진 버튼 자리는 KeyScreen 사용 미확인이라 구현하지 않음
+ *   caption · box 는 Figma boolean(기본 off) — 코드에서는 caption · boxContent 를 넘길 때만 보임
+ *   (KeyScreen 보이는 본문 17곳 중 16곳이 1depth 글만 씀)
  */
 
 export type AccordionSize = "large" | "medium";

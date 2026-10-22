@@ -1056,7 +1056,7 @@
       "heights": {
         "list large": "closed 83 · open 82 + 본문",
         "list medium": "closed 77 · open 76 + 본문",
-        "inquiry": "57 + 본문"
+        "inquiry": "57 + 본문(caption·box on)"
       },
       "codeProp": {
         "size": "size",
@@ -1065,7 +1065,8 @@
       },
       "notes": [
         "2026-10-22 새로 만든 묶음 세트. KeyScreen 에서 본문 39곳 중 30곳이 제목 바로 아래 짝으로 쓰였고(18곳은 본문을 숨겨 접힘을 표현), 이를 state 하나로 대신함",
-        "제목·본문 안쪽 인스턴스는 바깥에 노출(exposed) → 묶음에서 글자 바로 수정"
+        "제목·본문 안쪽 인스턴스는 바깥에 노출(exposed) → 묶음에서 글자 바로 수정",
+        "2026-10-22 body 의 caption·box 기본 off. inquiry variant 4개는 caption·box on (1:1 문의 답변 상자)"
       ],
       "docRef": "konacard-ds-components.md § Accordion (06_List)"
     },
@@ -1133,11 +1134,13 @@
       },
       "defaults": {
         "size": "large",
-        "type": "bg-white"
+        "type": "bg-white",
+        "caption": false,
+        "box": false
       },
       "heights": {
-        "large": "289 (예시 글 기준)",
-        "medium": "259 (예시 글 기준)"
+        "large": "129 (글 3줄 · caption·box off)",
+        "medium": "111 (글 3줄 · caption·box off)"
       },
       "semantics": {
         "type": "bg-color = 회색 #F8F9FB 본문 + 흰 상자 / bg-white = 흰 본문 + 회색 상자",
@@ -1146,7 +1149,9 @@
       },
       "codeProp": {
         "size": "size",
-        "type": "type"
+        "type": "type",
+        "caption": "caption (글자를 주면 보임)",
+        "box": "boxContent · boxCaption (글자를 주면 보임)"
       },
       "aliases": {
         "list/expand-open": "accordion/body (2026-10-22 이름 변경, 키 유지)",
@@ -1154,10 +1159,15 @@
       },
       "notes": [
         "단독으로도 씀: KeyScreen 본문만 쓴 곳 9곳(공지사항 · 카드 혜택 · 브랜드머니 · 코나콘)",
-        "숨겨진 버튼 자리(large text button · medium button small/medium)는 KeyScreen 사용 미확인 → Storybook 미구현",
-        "사용자 Figma 수정(2026-10-22): large bg-color 1depth 글자 #000 → #333"
+        "사용자 Figma 수정(2026-10-22): large bg-color 1depth 글자 #000 → #333",
+        "2026-10-22 caption · box boolean 추가(기본 off), 숨겨진 버튼 자리 삭제 — KeyScreen 보이는 본문 17곳 중 16곳이 1depth 글만 씀(2depth·상자 0곳). 1:1 문의 1곳만 2depth + 상자",
+        "묶음 accordion 은 inquiry variant 만 caption·box on, list 는 off"
       ],
-      "docRef": "konacard-ds-components.md § Accordion (06_List)"
+      "docRef": "konacard-ds-components.md § Accordion (06_List)",
+      "booleans": {
+        "caption": "false — 1depth 아래 2depth 보조 문구 (12/18 #999)",
+        "box": "false — 아래 상자(reply: 1depth + 2depth)"
+      }
     }
   }
 }
