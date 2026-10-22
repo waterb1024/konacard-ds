@@ -865,7 +865,8 @@
           "brand",
           "brand-light",
           "gray-dark",
-          "warning"
+          "warning",
+          "gray-light"
         ]
       },
       "defaults": {
@@ -874,7 +875,7 @@
         "color": "brand"
       },
       "rules": {
-        "type=color": "5색(brand-gradient·brand·brand-light·gray-dark·warning) × 4사이즈 = 20",
+        "type=color": "6색(brand-gradient·brand·brand-light·gray-dark·warning·gray-light) × 4사이즈 = 24",
         "type=line": "3색(brand-gradient·brand·warning) × 3사이즈(large·medium·small) = 9, tiny 없음"
       },
       "heights": {
@@ -900,7 +901,8 @@
         "label/color-label · label/link-label 은 KeyScreen 0곳 → AX 에서 삭제됨 (사용자). Storybook LinkLabel 도 삭제",
         "크기: large 30(pad 4 12, body/2-bold) · medium 26(4 12, body/3-Bold) · small 24 고정(좌우 8, body/4-Bold 11/16) · tiny 20(4 8, 9/12 -2%, 텍스트 스타일 없음). radius radius/components/label",
         "brand-gradient: #804EE2 → #526ED3 가로. line brand-gradient 는 테두리·글자 모두 그라데이션",
-        "Storybook: Label type × size × color, Figma 와 1:1 (line 은 type 상 3색·3사이즈만 허용)"
+        "Storybook: Label type × size × color, Figma 와 1:1 (line 은 type 상 3색·3사이즈만 허용)",
+        "2026-10-22 color=gray-light 추가 (type=color 4사이즈, 바탕 label/neutral-quinary #F8F9FB · 글자 font/tertiary #666) — accordion/header inquiry 의 '답변대기' 라벨(구 list/expand-label, 삭제)을 label 로 교체. 29 → 33 variant, 세트 키 유지"
       ],
       "docRef": "konacard-ds-components.md § Label"
     },
@@ -1022,6 +1024,140 @@
         "Storybook Toast(속성 없음, 항상 position fixed 로 아래 40 · 좌우 20). 노출 시간은 Figma 에 없음 → 코드에 넣지 않음"
       ],
       "docRef": "konacard-ds-rule.md § Toast 컴포넌트"
+    },
+    "accordion": {
+      "type": "COMPONENT_SET",
+      "key": "38f49e0174828fcf31fe15697166fbebe008f32b",
+      "nodeId": "11109:3834",
+      "props": {
+        "size": [
+          "large",
+          "medium"
+        ],
+        "type": [
+          "list",
+          "inquiry"
+        ],
+        "state": [
+          "closed",
+          "open"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "type": "list",
+        "state": "closed"
+      },
+      "rules": {
+        "구조": "header(accordion/header) + body(accordion/body), state=open 이면 body 보임",
+        "본문 크기": "= 제목 size",
+        "본문 바탕": "= 제목 type: list → body bg-color · inquiry → body bg-white"
+      },
+      "heights": {
+        "list large": "closed 83 · open 82 + 본문",
+        "list medium": "closed 77 · open 76 + 본문",
+        "inquiry": "57 + 본문"
+      },
+      "codeProp": {
+        "size": "size",
+        "type": "type",
+        "state": "open / defaultOpen (open=true)"
+      },
+      "notes": [
+        "2026-10-22 새로 만든 묶음 세트. KeyScreen 에서 본문 39곳 중 30곳이 제목 바로 아래 짝으로 쓰였고(18곳은 본문을 숨겨 접힘을 표현), 이를 state 하나로 대신함",
+        "제목·본문 안쪽 인스턴스는 바깥에 노출(exposed) → 묶음에서 글자 바로 수정"
+      ],
+      "docRef": "konacard-ds-components.md § Accordion (06_List)"
+    },
+    "accordion/header": {
+      "type": "COMPONENT_SET",
+      "key": "82c8cadc960688d62e183fc3027c5299c7b68ffd",
+      "nodeId": "202:2089",
+      "props": {
+        "size": [
+          "large",
+          "medium"
+        ],
+        "type": [
+          "inquiry",
+          "list"
+        ],
+        "state": [
+          "closed",
+          "open"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "type": "list",
+        "state": "closed"
+      },
+      "heights": {
+        "list large": "closed 83 · open 82",
+        "list medium": "closed 77 · open 76",
+        "inquiry": 57
+      },
+      "semantics": {
+        "type": "list = 제목 + 설명(12/18 #999), 좌우 20 들여 쓴 아래 선, 펼치면 선 숨김 / inquiry = label small(답변대기 gray-light · 답변완료 brand) + 제목, 전체 폭 아래 선 항상",
+        "size": "제목 large 15/24 · medium 14/22, 제목–설명 간격 large 8 · medium 4",
+        "state": "open 이면 제목 Bold, 화살표 ic_arrow_up_14 (closed ic_arrow_down_14)"
+      },
+      "codeProp": {
+        "size": "size",
+        "type": "type",
+        "state": "open"
+      },
+      "aliases": {
+        "list/expand": "accordion/header (2026-10-22 이름 변경, 키 유지)",
+        "accordion/expand": "accordion/header"
+      },
+      "notes": [
+        "2026-10-22 KeyScreen 실사용 기준 정리 후 이름 변경. inquiry 라벨을 list/expand-label → label small 로 교체",
+        "사용자 Figma 수정(2026-10-22): large inquiry open 제목 14/22 → 15/24 · medium list 제목–설명 간격 closed·open 4 로 통일"
+      ],
+      "docRef": "konacard-ds-components.md § Accordion (06_List)"
+    },
+    "accordion/body": {
+      "type": "COMPONENT_SET",
+      "key": "f254f3e9a5d88e760d7d2ea838461b6977d3e487",
+      "nodeId": "607:4415",
+      "props": {
+        "size": [
+          "large",
+          "medium"
+        ],
+        "type": [
+          "bg-color",
+          "bg-white"
+        ]
+      },
+      "defaults": {
+        "size": "large",
+        "type": "bg-white"
+      },
+      "heights": {
+        "large": "289 (예시 글 기준)",
+        "medium": "259 (예시 글 기준)"
+      },
+      "semantics": {
+        "type": "bg-color = 회색 #F8F9FB 본문 + 흰 상자 / bg-white = 흰 본문 + 회색 상자",
+        "size": "large 여백 24·20·32 · 1depth 15/24 · 안쪽 간격 12 / medium 20·20·24 · 14/22 · 8",
+        "상자": "안쪽 16 · radius 8 · 2depth 12/18 #999"
+      },
+      "codeProp": {
+        "size": "size",
+        "type": "type"
+      },
+      "aliases": {
+        "list/expand-open": "accordion/body (2026-10-22 이름 변경, 키 유지)",
+        "accordion/expand-open": "accordion/body"
+      },
+      "notes": [
+        "단독으로도 씀: KeyScreen 본문만 쓴 곳 9곳(공지사항 · 카드 혜택 · 브랜드머니 · 코나콘)",
+        "숨겨진 버튼 자리(large text button · medium button small/medium)는 KeyScreen 사용 미확인 → Storybook 미구현",
+        "사용자 Figma 수정(2026-10-22): large bg-color 1depth 글자 #000 → #333"
+      ],
+      "docRef": "konacard-ds-components.md § Accordion (06_List)"
     }
   }
 }

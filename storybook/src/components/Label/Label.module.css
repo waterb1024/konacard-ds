@@ -69,6 +69,11 @@
   background: var(--color-font-error); /* label/accent-red #FF364B */
   color: var(--color-font-white);
 }
+/* 2026-10-22 추가 — accordion inquiry "답변대기" (구 list/expand-label) */
+.color-gray-light {
+  background: var(--color-background-secondary); /* label/neutral-quinary #F8F9FB */
+  color: var(--color-font-tertiary); /* #666 */
+}
 
 /* ── type=line (바탕 없음 · 안쪽 1px 테두리 · 글자 같은 색) ── */
 .line-brand {

@@ -3,7 +3,6 @@
  * Basic (list/list, Figma 202:2536): size large 상하 12 · 우측 영역 40 → 한 줄 65
  *   / medium 상하 16 → 한 줄 55 (link), 좌우 padding 20, divider 1px #0000000F
  * Bottomsheet (list/bottomsheet): 한 줄 56 (상하 16 + 24, divider 안쪽), 선택 체크 20
- * Expand (list/expand): Header + open 시 Body + divider
  * Card select (list/card-select): 88h, R8, border 1px (Selected 시 브랜드)
  */
 
@@ -179,83 +178,6 @@
 
 .bottomsheetItem.selected .bottomsheetCheck {
   opacity: 1;
-}
-
-/* ── Expand ──────────────────────────────────────── */
-.expand {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid var(--color-divider-primary);
-}
-
-.expandHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-small);
-  min-height: 56px;
-  padding: var(--spacing-medium) var(--screen-h-padding);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.expandHeaderText {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2xsmall);
-}
-
-.expandTitle {
-  font: var(--text-body-1-bold);
-  letter-spacing: var(--font-letterspacing-medium);
-  color: var(--color-font-primary);
-}
-
-.expandDesc {
-  font: var(--text-body-2-regular);
-  letter-spacing: var(--font-letterspacing-small);
-  color: var(--color-font-quaternary);
-}
-
-.expandChevron {
-  width: 24px;
-  height: 24px;
-  color: var(--color-icon-secondary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.18s ease;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.expandChevron.open {
-  transform: rotate(180deg);
-}
-
-.expandBody {
-  padding: var(--spacing-medium) var(--screen-h-padding) var(--spacing-large);
-  border-top: 1px solid var(--color-divider-primary);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xsmall);
-}
-
-.expandBodyText {
-  font: var(--text-body-1-regular);
-  letter-spacing: var(--font-letterspacing-medium);
-  color: var(--color-font-primary);
-}
-
-.expandBodySub {
-  font: var(--text-body-3-regular);
-  letter-spacing: var(--font-letterspacing-xsmall);
-  color: var(--color-font-quaternary);
 }
 
 /* ── Card Select ─────────────────────────────────── */

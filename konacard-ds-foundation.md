@@ -963,11 +963,11 @@ wrapper (360×800, white)
 | 카테고리/서브 탭 | `tab/sub-ui` (device=AOS/iOS, type=first/last), `tab/Sub` | 7개 sub-tab 슬롯 내장 |
 | 메인 탭 | `tab/main`, `tab/main-multi`, `tab/main-full` | |
 | 리스트 행 | `list/list` (size, type=link/button/control), `list/menu`, `list/card-select`, `list/benefit-store` 등 | 구분선 내장 |
-| 확장 가능 행(아코디언) | `list/expand`, `list/expand-open`, `list/expand-label`, `list/expand-FAQ` | |
+| 확장 가능 행(아코디언) | `accordion` (header + body 묶음 · size × type=list/inquiry × state) · `accordion/header` · `accordion/body` | 구 list/expand · expand-open. 본문만 쓸 땐 accordion/body |
 | 결제·혜택 행 | `list/payment`, `list/benefit`, `list/benefit-store` | |
 | 본문 타이틀(섹션 제목) | `title/title` (Type=Con_list/Input, Size, Color=Black/Gray) | h2 텍스트 직접 입력 금지 |
 | 가격·정보 텍스트 그룹 | `info/text-title` | |
-| 태그·라벨 칩 | `label` (구 label/basic-label — size, type=color/line, color=brand-gradient/brand/brand-light/gray-dark/warning, line 은 3색·tiny 없음) | 직접 cornerRadius+fill로 칩 만들지 말 것 |
+| 태그·라벨 칩 | `label` (구 label/basic-label — size, type=color/line, color=brand-gradient/brand/brand-light/gray-dark/warning/gray-light, line 은 3색·tiny 없음) | 직접 cornerRadius+fill로 칩 만들지 말 것 |
 | 배지 (점/숫자/new) | `badges/badge` (type=dot/new/num-min/num-max) | |
 | CTA 버튼 (대) | `button/primary` (size=large/medium, type=brand/gray-light) | |
 | 하단 고정 버튼 | `button/fixed-bottom` (Device=AOS) | h=72px |

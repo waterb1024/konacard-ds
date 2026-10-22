@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { ReactNode } from "react";
 import styles from "./List.module.css";
 
@@ -13,20 +12,6 @@ function ChevronRight() {
         d="M2 2L7 7L2 12"
         stroke="currentColor"
         strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronDown() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M6 9L12 15L18 9"
-        stroke="currentColor"
-        strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -141,63 +126,6 @@ export function BottomsheetItem({
 /* ── List container ─────────────────────────────── */
 export function List({ children }: { children: ReactNode }) {
   return <div className={styles.list}>{children}</div>;
-}
-
-/* ── Expand ──────────────────────────────────────── */
-export interface ExpandProps {
-  title: ReactNode;
-  description?: ReactNode;
-  defaultOpen?: boolean;
-  open?: boolean;
-  onToggle?: (next: boolean) => void;
-  children?: ReactNode;
-  /** 2depth 부연 텍스트 */
-  subContent?: ReactNode;
-}
-
-export function Expand({
-  title,
-  description,
-  defaultOpen = false,
-  open: controlled,
-  onToggle,
-  children,
-  subContent,
-}: ExpandProps) {
-  const [internal, setInternal] = useState(defaultOpen);
-  const isOpen = controlled ?? internal;
-  return (
-    <div className={styles.expand}>
-      <button
-        type="button"
-        className={styles.expandHeader}
-        onClick={() => {
-          const next = !isOpen;
-          setInternal(next);
-          onToggle?.(next);
-        }}
-        aria-expanded={isOpen}
-      >
-        <div className={styles.expandHeaderText}>
-          <span className={styles.expandTitle}>{title}</span>
-          {description && (
-            <span className={styles.expandDesc}>{description}</span>
-          )}
-        </div>
-        <span className={cx(styles.expandChevron, isOpen && styles.open)}>
-          <ChevronDown />
-        </span>
-      </button>
-      {isOpen && (
-        <div className={styles.expandBody}>
-          <div className={styles.expandBodyText}>{children}</div>
-          {subContent && (
-            <div className={styles.expandBodySub}>{subContent}</div>
-          )}
-        </div>
-      )}
-    </div>
-  );
 }
 
 /* ── Card Select ─────────────────────────────────── */

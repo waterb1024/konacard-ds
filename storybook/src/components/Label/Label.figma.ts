@@ -6,6 +6,7 @@ import figma from 'figma'
 const instance = figma.selectedInstance
 
 // 2026-10-07 정리: color 5색 × 4사이즈 / line 3색 × 3사이즈 (gray-drak → gray-dark 이름 수정)
+// 2026-10-22: color=gray-light 추가 (accordion inquiry 답변대기) → color 6색 × 4사이즈
 const size = instance.getEnum('size', {
   large: 'large',
   medium: 'medium',
@@ -24,6 +25,7 @@ const color = instance.getEnum('color', {
   'brand-light': 'brand-light',
   'gray-dark': 'gray-dark',
   warning: 'warning',
+  'gray-light': 'gray-light',
 })
 
 export default {

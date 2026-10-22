@@ -29,10 +29,10 @@ related_docs:
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
 | **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), select/select button · group (버튼형 선택지), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
-| **06_List** | ✅ 완료 | list/list(4형), list/expand(header+body), list/card-select, list/bottomsheet + Select List 응용 |
+| **06_List** | ✅ 완료 | list/list(4형), accordion(header + body, 구 list/expand), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
 | **08_Indicator** | ✅ 완료 | Page dot, Navigator(chevron button), N/NN count pill, YYYY.MM period navigator |
-| **09_Label** | ✅ 완료 | label (type color 5색 × 4사이즈 · line 3색 × 3사이즈) |
+| **09_Label** | ✅ 완료 | label (type color 6색 × 4사이즈 · line 3색 × 3사이즈) |
 | **10_Info** | ✅ 완료 | Text info(1·2Depth bullet), Info-box(Item List + Box Case) |
 | **11_Tooltip** | ✅ 완료 | Popup Type(?, dialog), Bubble Type(!, inline Line/Brand) + 제작 가이드 |
 | **12_Banner** | ✅ 완료 | Benefit Banner(1line), Action Banner(1+2depth) + 6 파스텔 color |
@@ -787,7 +787,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 # 06_List
 
 > Figma 카테고리 노드: `375:2810` (06_List)
-> 3개 대분류: **Basic Type** (`list/list` — 진입·값·버튼 4형) / **Expand Type** (`list/expand` — 아코디언·FAQ) / **Select List** (`list/card-select` + `list/list` 선택 상태 응용 + `list/bottomsheet`)
+> 3개 대분류: **Basic Type** (`list/list` — 진입·값·버튼 4형) / **Accordion** (`accordion` · `accordion/header` · `accordion/body` — 아코디언·FAQ·1:1 문의) / **Select List** (`list/card-select` + `list/list` 선택 상태 응용 + `list/bottomsheet`)
 >
 > ⚠️ 카탈로그의 대분류 표기(list/menu, benefit, benefit-store, payment, expand-label, expand-open, expand-FAQ)는 이 페이지에서 별도 마스터 컴포넌트로 노출되지 않음 — 실제로는 `list/list`·`list/expand`의 콘텐츠 슬롯 응용. 필요 시 각 화면별로 `konacard-ds-rule.md` § "리스트 종류·카드 종류" 규칙과 조합.
 
@@ -852,34 +852,56 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 ---
 
-## Expand Type — `list/expand`
+## Accordion — `accordion` · `accordion/header` · `accordion/body`
 
-- **Figma 노드 (샘플 인스턴스)**: `2431:7045`, `2431:7093`, `2431:7095`, `2431:7097`
-- **용도**: 접이식(아코디언) 리스트. FAQ·상세 설명·이용약관 세부·이용 내역 상세 등.
-- **레이아웃 구성**:
-  - **Header** (항상 노출, 56px 이상):
-    - 좌: Main text `body/1-Bold` 15px 검정
-    - Main text 아래(선택): Description `body/2-Regular` 14px `color/font/quaternary` #999999
-    - 우: chevron 아이콘 (열림 시 `⌃`, 닫힘 시 `⌵`, `color/icon/secondary` #333333)
-  - **Divider** (1dp #0000000F, Header ↔ Body 사이 · 열림 상태에서만)
-  - **Body** (열림 상태에서만 노출):
-    - **1depth contents text**: `body/1-regular` 15px 검정 (본문)
-    - **2depth contents text**: `body/3-Regular` 12px `color/font/quaternary` #999999 (1depth 아래 부연)
-    - **Inner card** (선택): `color/background/secondary` 회색 카드 안에 다시 1depth·2depth 텍스트 (깊은 계층 강조 시)
-- **State**:
-  - `closed` — Header만
-  - `open` — Header + Body 노출
-- **애니메이션**: 높이 slide-down (구현측 관례)
+- **Figma 노드 (AX ❖ Accordion)**: `accordion` 11109:3834 (묶음) · `accordion/header` 202:2089 (구 `list/expand`) · `accordion/body` 607:4415 (구 `list/expand-open`)
+- **용도**: 접이식 리스트. FAQ·상세 설명·1:1 문의 답변·상품 부가 정보 등.
+- **세트 3개**
+  - `accordion` — header + body 묶음. size(large · medium) × type(list · inquiry) × state(closed · open) = 8. open 이면 body 가 보임
+  - `accordion/header` — 제목 줄. size × type × state = 8
+  - `accordion/body` — 본문. size × type(bg-color · bg-white) = 4. **제목 없이 단독으로도 씀** (공지사항 · 카드 혜택 · 브랜드머니 · 코나콘 상세)
+- **묶음 규칙**: 본문 크기 = 제목 size · 본문 바탕 = 제목 type (list → bg-color 회색 · inquiry → bg-white 흰색)
 
-### FAQ 응용
-- Header에 "Q. " 접두어 + Main text → 열리면 Body에 답변 노출
-- 카탈로그의 별도 `expand-FAQ` 컴포넌트는 없음. `list/expand`의 콘텐츠 응용으로 처리.
+### Header (`accordion/header`)
 
-## Expand 안티패턴
+| | list | inquiry |
+|---|---|---|
+| 구성 | 제목 + 설명(선택) · 화살표 | `label` small + 제목 · 화살표 |
+| 여백 | 좌우 20 · 위아래 16 · 글자–화살표 16 | 안쪽 16 20 · 왼쪽–화살표 24 · 라벨–제목 12 |
+| 제목 | large `body/1` 15/24 · medium `body/2` 14/22 — closed Regular, **open Bold** | 같음 |
+| 설명 | `body/3-Regular` 12/18 `font/quaternary` #999 · 제목–설명 large 8 · medium 4 | — |
+| 라벨 | — | 답변대기 `label` small · gray-light / 답변완료 `label` small · brand |
+| 아래 선 | `divider` light, 좌우 20 들여 그림 · **펼치면 숨김** (본문이 바로 붙음) | 전체 폭 · 항상 보임 |
+| 높이 | large closed 83 · open 82 / medium 77 · 76 | 57 |
 
-- ❌ **닫힌 상태에서도 Body divider 노출** (열림 시에만)
+- 화살표: `ic_arrow/ic_arrow_down_14` (closed) · `ic_arrow_up_14` (open), 14×8 #333
+
+### Body (`accordion/body`)
+
+| | large | medium |
+|---|---|---|
+| 여백 (위 · 좌우 · 아래) | 24 · 20 · 32 | 20 · 20 · 24 |
+| 1depth | `body/1-regular` 15/24 `font/secondary` #333 | `body/2-Regular` 14/22 #333 |
+| 2depth | `body/3-Regular` 12/18 #999 | 같음 |
+| 1depth–2depth 간격 | 12 | 8 |
+
+- 글 블록과 상자 사이 20. 상자(reply): 안쪽 16 · radius 8 · 1depth + 2depth
+- 바탕: **bg-color** = 회색 `background/secondary` 본문 + 흰 상자 / **bg-white** = 흰 본문 + 회색 상자
+- 아래 선 전체 폭. 본문 안 버튼 자리는 숨김 상태(사용 미확인)
+
+### 정리 이력 (2026-10-22, KeyScreen AOS 실사용 기준)
+- 본문 39곳 중 30곳이 제목 바로 아래 짝으로 쓰임(18곳은 본문을 숨겨 접힘 표현) → 묶음 `accordion` 새로 만듦
+- 보이는 곳 기준 large 제목–large 본문 3 · medium–medium 6 · medium–large 3(코나콘) · large–medium 0 → 본문 크기 = 제목 크기
+- inquiry 는 1:1 문의 한 화면, 펼친 답변은 bg-white → 본문 바탕 = 제목 type
+- inquiry 라벨 `list/expand-label` 삭제 → `label` small (gray-light 새로 추가 · brand)
+
+## Accordion 안티패턴
+
+- ❌ 제목 아래 본문을 직접 붙이고 숨겨서 접힘 표현 — `accordion` 의 state 사용
+- ❌ medium 제목에 large 본문 (본문 크기는 제목 크기를 따름)
 - ❌ chevron 방향을 항상 아래(⌵) 고정 (열림·닫힘 시각 피드백 상실)
-- ❌ Body 안에 또 다른 `list/expand` 중첩 (최대 2 depth까지만 계층 표현 — 그 이상은 별도 화면 진입)
+- ❌ inquiry 라벨을 직접 만든 칩으로 — `label` small (gray-light · brand)
+- ❌ Body 안에 또 다른 accordion 중첩 (최대 2 depth까지만 계층 표현 — 그 이상은 별도 화면 진입)
 
 ---
 
@@ -948,7 +970,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - ❌ **아이템 사이 divider 두께·색 임의 변경** (반드시 1dp #0000000F)
 - ❌ Main text를 3줄 이상으로 (반드시 2줄 이하, 초과 시 `...` 말줄임)
 - ❌ **진입형 + 액션형을 같은 행에** (chevron`>` 과 Small 버튼 동시 배치 금지 — 하나만 선택)
-- ❌ Expand 안에 또 Expand 중첩 (2 depth 초과 시 별도 화면 진입 유도)
+- ❌ Accordion 안에 또 Accordion 중첩 (2 depth 초과 시 별도 화면 진입 유도)
 - ❌ Select List 선택 상태를 체크박스로 대체 (다중 선택이면 05_Control Checkbox, 단일 선택이면 텍스트 Bold+브랜드 색 — 바텀시트는 + `ic_select_on` 체크 아이콘)
 
 ---
@@ -1053,12 +1075,12 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 ## Label (`label`, 구 `label/basic-label`)
 
-- **Figma 노드**: `2121:5513` (❖ Label 페이지) — 2026-10-07 KeyScreen AOS 실사용 기준 정리, 29 variant
+- **Figma 노드**: `2121:5513` (❖ Label 페이지) — 2026-10-07 KeyScreen AOS 실사용 기준 정리, 2026-10-22 gray-light 추가 → 33 variant
 - **Variant 속성 3개** (소문자): `size` × `type` × `color`. 타입마다 쓸 수 있는 색·사이즈가 다름
 
 | type | color | size | variant |
 |---|---|---|---|
-| `color` (배경 채움) | `brand-gradient` · `brand` · `brand-light` · `gray-dark` · `warning` | `large` · `medium` · `small` · `tiny` | 5 × 4 = 20 |
+| `color` (배경 채움) | `brand-gradient` · `brand` · `brand-light` · `gray-dark` · `warning` · `gray-light` | `large` · `medium` · `small` · `tiny` | 6 × 4 = 24 |
 | `line` (안쪽 1px 테두리, 바탕 없음) | `brand-gradient` · `brand` · `warning` | `large` · `medium` · `small` (tiny 없음) | 3 × 3 = 9 |
 
 - **사이즈·기하** (AX 실측) — 모서리 `radius/components/label` (9999, 완전 pill), 폭 = 텍스트 hug
@@ -1076,14 +1098,15 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
   - `brand-light` — #F4F0FD 채움 + #805AE9 텍스트 (color 전용)
   - `gray-dark` — #999 (`color/label/neutral-tertiary`) 채움 + 흰 텍스트 (color 전용)
   - `warning` — #FF364B (`color/label/accent-red`) 채움 + 흰 텍스트 (line: 빨강 테두리 + 빨강 텍스트)
-- **정리 이력 요약**: gray-light · white 색, line tiny, `label/color-label` · `label/link-label` 세트는 KeyScreen 실사용 0곳(white 는 숨김 6곳)이라 삭제. 오타 `gray-drak` → `gray-dark`
+  - `gray-light` — #F8F9FB (`color/label/neutral-quinary`) 채움 + #666 (`font/tertiary`) 텍스트 (color 전용). 대기·미처리 상태 (예: accordion inquiry "답변대기")
+- **정리 이력 요약**: (옛) line 전용 gray-light · white 색, line tiny, `label/color-label` · `label/link-label` 세트는 KeyScreen 실사용 0곳(white 는 숨김 6곳)이라 삭제. 오타 `gray-drak` → `gray-dark`. 2026-10-22 채움형 `gray-light` 새로 추가 (구 `list/expand-label` 답변대기를 label 로 통합)
 
 ## 09_Label 안티패턴
 
 - ❌ **Label을 클릭 가능한 요소로 사용** (반드시 정보 표시 전용 — 클릭이 필요하면 `02_Button § Small` 사용)
 - ❌ Label에 그림자 (플랫 스타일 유지). 그라데이션은 `brand-gradient` 색으로만
 - ❌ Label 안 텍스트 6자 이상 (짧은 태그 원칙)
-- ❌ line 타입에 `brand-light` · `gray-dark` 또는 `tiny` 사용 (Figma 에 없는 조합)
+- ❌ line 타입에 `brand-light` · `gray-dark` · `gray-light` 또는 `tiny` 사용 (Figma 에 없는 조합)
 
 ---
 
@@ -1326,10 +1349,10 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |
 | 04 | Forms | input (text field · search bar · text area · button · card-number · 주민등록번호), select (select box · select button) + Form UI |
 | 05 | Control | swtich, checkbox, radio + agree/setting/radio-text |
-| 06 | List | list (4형), expand, card-select, bottomsheet |
+| 06 | List | list (4형), accordion, card-select, bottomsheet |
 | 07 | Line | Solid, Dotted, Divider |
 | 08 | Indicator | Page dot, Navigator, N/NN badge, Alert badge (dot/new/count) |
-| 09 | Label | label (color 5색 · line 3색) |
+| 09 | Label | label (color 6색 · line 3색) |
 | 10 | Info | Text info (bullet 2depth), Info-box |
 | 11 | Tooltip | Popup(?), Bubble(!, Line/Brand) |
 | 12 | Banner | Benefit(1line), Action(1+2depth), 6 파스텔 |

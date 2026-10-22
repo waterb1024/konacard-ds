@@ -20,7 +20,7 @@ const meta = {
     type: { control: "inline-radio", options: ["color", "line"] },
     color: {
       control: "select",
-      options: ["brand-gradient", "brand", "brand-light", "gray-dark", "warning"],
+      options: ["brand-gradient", "brand", "brand-light", "gray-dark", "warning", "gray-light"],
       description: "line 은 brand-gradient · brand · warning 만",
     },
     children: { control: "text" },
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {};
 
 const SIZES: LabelSize[] = ["large", "medium", "small", "tiny"];
-const FILL: LabelColorFill[] = ["brand-gradient", "brand", "brand-light", "gray-dark", "warning"];
+const FILL: LabelColorFill[] = ["brand-gradient", "brand", "brand-light", "gray-dark", "warning", "gray-light"];
 const LINE: LabelColorLine[] = ["brand-gradient", "brand", "warning"];
 const LINE_SIZES = ["large", "medium", "small"] as const;
 

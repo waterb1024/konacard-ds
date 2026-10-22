@@ -1,0 +1,151 @@
+/*
+ * KONACARD DS Accordion — Figma accordion · accordion/header · accordion/body, AX 실측 2026-10-22
+ */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Header ─────────────────────────────────────── */
+.header {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: var(--color-background-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.headerContents {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.arrow {
+  flex-shrink: 0;
+}
+
+.title {
+  color: var(--color-font-primary);
+}
+.s-large .title {
+  font: var(--text-body-1-regular); /* 15/24 */
+  letter-spacing: var(--font-letterspacing-medium);
+}
+.s-medium .title {
+  font: var(--text-body-2-regular); /* 14/22 */
+  letter-spacing: var(--font-letterspacing-small);
+}
+/* 펼치면 제목 Bold */
+.open .title {
+  font-weight: var(--font-weight-bold);
+}
+
+/* list: 좌우 20 · 위아래 16 · 글자–화살표 16 · 아래 선은 좌우 20 들여서, 펼치면 숨김 */
+.h-list {
+  padding: 0 var(--layout-margin);
+}
+.h-list .headerContents {
+  gap: var(--spacing-medium); /* 16 */
+  padding: var(--spacing-medium) 0; /* 16 */
+  border-bottom: 1px solid var(--color-divider-primary);
+}
+.h-list.open .headerContents {
+  border-bottom: none; /* Figma: 펼치면 선 숨김 → 높이 large 82 · medium 76 */
+}
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.s-large .text {
+  gap: var(--spacing-xsmall); /* 8 */
+}
+.s-medium .text {
+  gap: var(--spacing-2xsmall); /* 4 */
+}
+.description {
+  font: var(--text-body-3-regular); /* 12/18 */
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary); /* #999 */
+}
+
+/* inquiry: 안쪽 16 20 · 왼쪽–화살표 24 · 라벨–제목 12 · 아래 선 전체 폭, 항상 보임 */
+.h-inquiry .headerContents {
+  gap: var(--spacing-xlarge); /* 24 */
+  padding: var(--spacing-medium) var(--layout-margin); /* 16 20 */
+  border-bottom: 1px solid var(--color-divider-primary);
+}
+.left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--spacing-small); /* 12 */
+  min-width: 0;
+}
+
+/* ── Body ───────────────────────────────────────── */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large); /* 20 — 글 블록–상자 */
+  border-bottom: 1px solid var(--color-divider-primary);
+}
+.body.s-large {
+  padding: var(--spacing-xlarge) var(--layout-margin) var(--spacing-2xlarge); /* 24 20 32 */
+}
+.body.s-medium {
+  padding: var(--layout-margin) var(--layout-margin) var(--spacing-xlarge); /* 20 20 24 */
+}
+.b-bg-color {
+  background: var(--color-background-secondary); /* #F8F9FB */
+}
+.b-bg-white {
+  background: var(--color-background-primary);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+.s-large .block {
+  gap: var(--spacing-small); /* 12 */
+}
+.s-medium .block {
+  gap: var(--spacing-xsmall); /* 8 */
+}
+
+.depth1 {
+  color: var(--color-font-secondary); /* #333 */
+  white-space: pre-line;
+}
+.s-large .depth1 {
+  font: var(--text-body-1-regular); /* 15/24 */
+  letter-spacing: var(--font-letterspacing-medium);
+}
+.s-medium .depth1 {
+  font: var(--text-body-2-regular); /* 14/22 */
+  letter-spacing: var(--font-letterspacing-small);
+}
+.depth2 {
+  font: var(--text-body-3-regular); /* 12/18 */
+  letter-spacing: var(--font-letterspacing-xsmall);
+  color: var(--color-font-quaternary); /* #999 */
+}
+
+/* 상자: 안쪽 16 · radius 8 · 본문과 반대 바탕 */
+.box {
+  padding: var(--spacing-medium);
+  border-radius: var(--radius-components-box-button); /* 8 */
+}
+.b-bg-color .box {
+  background: var(--color-background-primary);
+}
+.b-bg-white .box {
+  background: var(--color-background-secondary);
+}
