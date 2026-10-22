@@ -35,4 +35,10 @@
     border-color: #eeeeee !important;
     box-shadow: none !important;
   }
+
+  /* Docs 표의 true/false 토글 — 선택된 쪽(보라 바탕) 글자를 흰색으로 (Controls 패널과 같게) */
+  .docblock-argstable label input[role="switch"]:not(:checked) ~ span:first-of-type,
+  .docblock-argstable label input[role="switch"]:checked ~ span:last-of-type {
+    color: #ffffff !important;
+  }
 </style>
