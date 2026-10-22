@@ -41,4 +41,8 @@
   .docblock-argstable label input[role="switch"]:checked ~ span:last-of-type {
     color: #ffffff !important;
   }
+  /* true/false 토글 — 누른 뒤 생기는 보라 테두리(포커스 표시) 없앰 */
+  .docblock-argstable label input[role="switch"]:focus {
+    box-shadow: none !important;
+  }
 </style>
