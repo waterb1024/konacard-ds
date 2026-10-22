@@ -18,26 +18,27 @@ const meta = {
       },
     },
   },
-  args: { children: "신청이 완료되었습니다.", floating: false },
+  args: { children: "신청이 완료되었습니다." },
+  /* className · style 은 코드용 통로라 Docs 표·Controls 에서 숨김 (디자인 속성 아님) */
+  argTypes: {
+    className: { table: { disable: true } },
+    style: { table: { disable: true } },
+  },
 } satisfies Meta<typeof Toast>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/* ── Playground ─────────────────────────────── 
- * floating=true 면 position: fixed 라 미리보기 밖(Docs 페이지 전체)으로 빠져나감 →
- * transform 을 준 360 폭 틀 안에 가둬서 true · false 모두 같은 자리(아래 40 · 좌우 20)에 보이게 함
+/* ── Playground ───────────────────────────────
+ * Toast 는 position: fixed 라 그대로 두면 미리보기 밖(Docs 페이지 전체)으로 빠져나감 →
+ * transform 을 준 360 폭 틀 안에 가둬서 틀 기준 아래 40 · 좌우 20 에 보이게 함
  */
 export const Playground: Story = {
   render: (args) => (
     <div
       style={{
-        display: "flex",
-        alignItems: "flex-end",
         width: 360,
         height: 160,
-        padding: "0 20px 40px",
-        boxSizing: "border-box",
         background: "var(--color-background-primary)",
         boxShadow: "0 0 0 1px var(--color-border-default)",
         transform: "translateZ(0)",
@@ -71,7 +72,6 @@ function Screen({ children }: { children: ReactNode }) {
 
 export const OnScreen: Story = {
   name: "화면 배치 (아래 40 · 좌우 20)",
-  args: { floating: true },
   render: (args) => (
     <Screen>
       <Toast {...args} />

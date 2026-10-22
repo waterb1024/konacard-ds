@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 320px;
   height: 42px;
   box-sizing: border-box;
   background: var(--color-background-dimed); /* rgba(0,0,0,.64) */
@@ -17,14 +16,11 @@
   letter-spacing: var(--font-letterspacing-small); /* -0.28 */
   color: var(--color-font-white);
   text-align: center;
-}
 
-/* 화면 아래 40 · 좌우 20 — 폭은 화면 폭 − 40 (360 → 320) */
-.floating {
+  /* 화면 아래 40 · 좌우 20 고정 — 폭은 화면 폭 − 40 (360 → 320) */
   position: fixed;
   left: var(--layout-margin); /* 20 */
   right: var(--layout-margin); /* 20 */
   bottom: var(--spacing-3xlarge); /* 40 */
-  width: auto;
   z-index: 100;
 }

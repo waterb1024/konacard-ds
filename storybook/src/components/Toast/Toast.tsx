@@ -14,24 +14,21 @@ import styles from "./Toast.module.css";
  */
 
 export interface ToastProps {
+  /** 알림 문구 — Figma 에서 바꿔 쓰는 유일한 값 */
   children: ReactNode;
-  /**
-   * true(기본) = 화면 아래 40 · 좌우 20 에 고정 (position: fixed).
-   * false = 제자리에 그림 (문서·목록 미리보기용)
-   */
-  floating?: boolean;
   className?: string;
   style?: CSSProperties;
 }
 
 const cx = (...n: Array<string | false | undefined>) => n.filter(Boolean).join(" ");
 
-export function Toast({ children, floating = true, className, style }: ToastProps) {
+/** 항상 화면 아래 40 · 좌우 20 에 고정 (position: fixed). 미리보기에서는 transform 을 준 틀이 고정 기준이 됨 */
+export function Toast({ children, className, style }: ToastProps) {
   return (
     <div
       role="status"
       aria-live="polite"
-      className={cx(styles.toast, floating && styles.floating, className)}
+      className={cx(styles.toast, className)}
       style={style}
     >
       {children}
