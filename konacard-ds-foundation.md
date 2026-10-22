@@ -264,8 +264,9 @@ typography:
 
   # ─── font/weight/* ────────────────────────────────────────
   weight:
-    "font/weight/regular": 400   # ✅
-    "font/weight/bold":    700   # ✅
+    "font/weight/regular": 400   # ✅ 가이드 17종 사용
+    "font/weight/bold":    700   # ✅ 가이드 17종 사용
+    # Figma 변수에는 medium · semibold 도 있음 — 가이드 밖 (display/*-medium 만 사용, KeyScreen 0곳)
 
   # ─── font/size/* — 사이즈 스케일 ─────────────────────────
   size:
@@ -276,7 +277,11 @@ typography:
     "font/size/large":           18   # ✅
     "font/size/xlarge":          20   # ✅
     "font/size/2xlarge":         24   # ✅
-    "font/size/display/medium":  32   # ⚠️ 문서 기재만
+    # display/* — 변수는 있으나 가이드 17종 밖 (display 텍스트 스타일 전용)
+    "font/size/display/small":   28   # ✅ Figma 변수
+    "font/size/display/medium":  32   # ✅ Figma 변수
+    "font/size/display/large":   36   # ✅ Figma 변수
+    "font/size/display/xlarge":  40   # ✅ Figma 변수
 
   # ─── font/lineheight/* ────────────────────────────────────
   lineheight:
@@ -287,7 +292,10 @@ typography:
     "font/lineheight/large":           26   # ✅
     "font/lineheight/xlarge":          28   # ✅
     "font/lineheight/2xlarge":         32   # ✅
-    "font/lineheight/display/medium":  40   # ⚠️
+    "font/lineheight/display/small":   36   # ✅
+    "font/lineheight/display/medium":  40   # ✅
+    "font/lineheight/display/large":   44   # ✅
+    "font/lineheight/display/xlarge":  50   # ✅
 
   # ─── font/letterspacing/* (px 단위 음수) ────────────────
   letterspacing:
@@ -298,35 +306,43 @@ typography:
     "font/letterspacing/large":           -0.36   # ✅
     "font/letterspacing/xlarge":          -0.40   # ✅
     "font/letterspacing/2xlarge":         -0.48   # ✅
-    "font/letterspacing/display/medium":  -0.64   # ⚠️
+    "font/letterspacing/display/small":   -0.56   # ✅
+    "font/letterspacing/display/medium":  -0.64   # ✅
+    "font/letterspacing/display/large":   -0.72   # ✅
+    "font/letterspacing/display/xlarge":  -0.80   # ✅
+    "font/letterspacing/none":             0      # ✅ (guide/* 문서용 스타일)
   # 규칙: letterSpacing = size × -0.02
 
   # ─── Text style composite tokens (Figma 조합 스타일) ────
   # get_variable_defs에서 이 key로 노출됨. 하위 변수 조합값.
   styles:
     "heading/1-bold":     { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 700 }   # ✅
-    "heading/1-regular":  { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 400 }   # ⚠️
+    "heading/1-regular":  { size: 24, lineHeight: 32, letterSpacing: -0.48, weight: 400 }   # ✅
     "heading/2-bold":     { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 700 }   # ✅
-    "heading/2-regular":  { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 400 }   # ⚠️
+    "heading/2-regular":  { size: 20, lineHeight: 28, letterSpacing: -0.40, weight: 400 }   # ✅
     "heading/3-bold":     { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 700 }   # ✅
-    "heading/3-regular":  { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 400 }   # ⚠️
+    "heading/3-regular":  { size: 18, lineHeight: 26, letterSpacing: -0.36, weight: 400 }   # ✅
     "body/1-Bold":        { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
     "body/1-regular":     { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 400 }   # ✅
     "body/2-bold":        { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 700 }   # ✅
     "body/2-Regular":     { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅
     "body/3-Bold":        { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ✅
     "body/3-Regular":     { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 400 }   # ✅
-    "body/4-Bold":        { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 700 }   # ✅ (capital B 관측)
-    "body/4-regular":     { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ⚠️
+    "body/4-Bold":        { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 700 }   # ✅
+    "body/4-Regular":     { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ✅ (Figma 이름 대문자 R)
     "button/large-bold":  { size: 15, lineHeight: 24, letterSpacing: -0.30, weight: 700 }   # ✅
     "button/medium-bold": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 700 }   # ✅
-    "button/medium-regular": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅
-    "button/small-bold":  { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ⚠️ 스타일은 존재하나 button/button 에서 미사용 (AX 2026-10-02)
+    "button/small-bold":  { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 700 }   # ✅ 가이드 button-small (button/button 컴포넌트는 미사용)
+    # ↑ 여기까지 Typography 가이드(296:3051) 17종. 아래는 가이드 밖 등록 스타일
+    "button/medium-regular": { size: 14, lineHeight: 22, letterSpacing: -0.28, weight: 400 }   # ✅ 가이드 밖 (secondary large)
     "button/small-regular": { size: 12, lineHeight: 18, letterSpacing: -0.24, weight: 400 }   # ✅ AX 실측 (secondary medium·small)
-    "button/tiny-regular":  { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ✅ AX 실측 (secondary tiny)
+    "button/tiny-regular":  { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 400 }   # ✅ 가이드 밖 (secondary tiny)
+    "button/tiny-bold":     { size: 11, lineHeight: 16, letterSpacing: -0.22, weight: 700 }   # ✅ 가이드 밖 · KeyScreen 0곳
+    # display/{1,2,3,4}-{bold,medium,regular} 12종 — 40/50 · 36/44 · 32/40 · 28/36, 가이드 밖
+    # guide/detail-size (10/16 Bold) · guide/token-bold · guide/token-regular (13/20) — DS 가이드 문서 작성용
     # ⚠️ heading/*, body/*, button/* 이름은 API 반환값 기준 (대소문자 혼용 그대로 유지)
     #    "body/1-Bold" "body/3-Bold" "body/4-Bold" = capital B / "body/2-bold" = lowercase b
-    #    "body/1-regular" "body/2-Regular" "body/3-Regular" = capital/lowercase R 혼용
+    #    "body/1-regular" = lowercase r / "body/2-Regular" "body/3-Regular" "body/4-Regular" = capital R
 
 spacing:
   # ═══════════════════════════════════════════════════════════════
@@ -700,70 +716,61 @@ Figma 파일에는 시대별로 병행 사용되는 **legacy 이름**과 **raw �
 
 ## Typography
 
-> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Typography Guide (node 296:3051)
+> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Typography 가이드 (node 296:3051) — 2026-10-22 가이드 기준으로 다시 맞춤
 
-서체는 서비스의 톤앤매너를 결정하는 핵심 요소이므로 본 가이드를 명확히 인지하고 사용합니다.
-**임의로 추가·변경할 수 없습니다.**
+서체 또한 사용자와 커뮤니케이션하는 매우 중요 요소이므로, 정보의 목적과 기능에 따라 최적의 서체를 적용합니다.
+이를 위해 특수한 경우를 제외하고 시스템(OS) 최적화 폰트를 적용하도록 합니다.
 
 ### Typeface
 
-웹·Figma 디자인 컨텐츠 전반에는 **Pretendard 단일** 적용. OS 네이티브 앱은 아래 매핑을 참고합니다.
+개발환경에 최적화 되도록 OS 기본 서체를 사용합니다. (단, 디자인 파일 및 가이드는 코나아이 지정 서체인 프리텐다드 폰트로 제작/공유합니다.)
 
 | 플랫폼 | 국문 | 영문 / 숫자 |
 |--------|------|-------------|
-| **Web / Figma (기본)** | Pretendard | Pretendard |
-| Android | Noto Sans KR | Roboto |
-| iOS | Apple SD Gothic Neo | San Francisco |
+| Android | 노토산스 (Noto Sans KR) | Roboto |
+| iOS | 애플네오고딕 (Apple SD Gothic Neo) | San Francisco |
+| **웹 · 디자인 컨텐츠 전반** | Pretendard | Pretendard |
 
-지원 굵기: **Regular (400)** / **Bold (700)** — 디자인 시스템에서 사용하는 두 weight만 허용.
+지원 굵기: **Regular (400)** / **Bold (700)** — 가이드 17종이 이 두 굵기만 씀.
 
-### Size Scale
+### Font Size (가이드 17종)
 
-Figma `font/size/*` 변수와 1:1 매핑되는 8단계 스케일.
-letterSpacing은 px 단위 음수(track-tight).
+일관된 브랜드 경험과 사용성을 유지하기 위해 아래 제시된 가이드 이외의 폰트 사용을 지양합니다.
+스타일 이름은 Figma 텍스트 스타일 원본(대소문자 그대로), 설명은 가이드 Exemple 열 그대로.
 
-| 토큰 | 크기 | 라인하이트 | 자간 |
-|------|-----:|-----------:|-----:|
-| `font/size/display/medium` | 32 | 40 | -0.64 |
-| `font/size/2xlarge` | 24 | 32 | -0.48 |
-| `font/size/xlarge` | 20 | 28 | -0.40 |
-| `font/size/large` | 18 | 26 | -0.36 |
-| `font/size/medium` | 15 | 24 | -0.30 |
-| `font/size/small` | 14 | 22 | -0.28 |
-| `font/size/xsmall` | 12 | 18 | -0.24 |
-| `font/size/2xsmall` | 11 | 16 | -0.22 |
+| 스타일 | Value | size / lh / ls | 굵기 | 사용처 (가이드) |
+|--------|-------|----------------|------|-----------------|
+| `heading/1-bold` | 24 | 24 / 32 / -0.48 | Bold | 타이틀 및 서비스 중요 문구에 사용합니다. |
+| `heading/1-regular` | 24 | 24 / 32 / -0.48 | Regular | 서비스 중요 문구에 사용합니다. |
+| `heading/2-bold` | 20 | 20 / 28 / -0.40 | Bold | 버텀 팝업 타이틀과 서비스 중요 문구에 사용합니다. |
+| `heading/2-regular` | 20 | 20 / 28 / -0.40 | Regular | 컨텐츠 타이틀 및 서비스 중요 문구에 사용합니다. |
+| `heading/3-bold` | 18 | 18 / 26 / -0.36 | Bold | 본문 내 중요 문구와 타이틀 영역에 사용합니다. |
+| `heading/3-regular` | 18 | 18 / 26 / -0.36 | Regular | 본문 내 시각적으로 중요 정보를 전달할 때 사용합니다. |
+| `body/1-Bold` | 15 (base size) | 15 / 24 / -0.30 | Bold | 앱 전반에 사용되며, 본문 내 강조되는 문구에 사용합니다. |
+| `body/1-regular` | 15 (base size) | 15 / 24 / -0.30 | Regular | 시스템 기본 폰트로 앱 전반에 적극적으로 사용합니다. |
+| `body/2-bold` | 14 (base size) | 14 / 22 / -0.28 | Bold | 15 사이즈와 더불어 앱 전반에 기본 시스템 폰트로 사용합니다. |
+| `body/2-Regular` | 14 (base size) | 14 / 22 / -0.28 | Regular | 15 사이즈와 더불어 앱 전반에 기본 시스템 폰트로 사용합니다. |
+| `body/3-Bold` | 12 | 12 / 18 / -0.24 | Bold | 서비스 이용 안내 및 가이드 영역에서 적용되는 최소 폰트이지만, 적극적인 사용을 지양합니다. |
+| `body/3-Regular` | 12 | 12 / 18 / -0.24 | Regular | 서비스 이용 안내 및 가이드 영역에서 적용되는 최소 폰트이지만, 적극적인 사용을 지양합니다. |
+| `body/4-Bold` | 11 | 11 / 16 / -0.22 | Bold | 특수한 경우 뱃지와 태그에 사용할 수는 있으나 사용을 권장하지 않습니다. |
+| `body/4-Regular` | 11 | 11 / 16 / -0.22 | Regular | 특수한 경우 뱃지와 태그에 사용할 수는 있으나 사용을 권장하지 않습니다. |
+| `button/large-bold` | 15 | 15 / 24 / -0.30 | Bold | 페이지를 컨트롤하는 중요 액션 버튼에 적용합니다. |
+| `button/medium-bold` | 14 | 14 / 22 / -0.28 | Bold | 본문 내 중요 액션 버튼에 적용합니다. |
+| `button/small-bold` | 12 | 12 / 18 / -0.24 | Bold | 설명 및 가이드에 따른 액션 버튼에 적용합니다. |
 
-> 규칙: letterSpacing은 항상 `size × -0.02` 입니다.
+> 규칙: letterSpacing 은 항상 `size × -0.02` (Figma `font/letterspacing/*` 변수).
+> Storybook 토큰: `--text-heading-{1,2,3}-{bold,regular}` · `--text-body-{1..4}-{bold,regular}` · `--text-button-{large,medium,small}`
 
-### Text Styles
+### 가이드에 없는 등록 스타일 (참고)
 
-| 스타일 | size / lh / ls | 굵기 | 사용처 |
-|--------|----------------|------|--------|
-| `display/3-bold` | 32 / 40 / -0.64 | Bold | 대형 숫자·금액 표시 |
-| `heading/1-bold` | 24 / 32 / -0.48 | Bold | 타이틀, 서비스 중심 문구 |
-| `heading/1-regular` | 24 / 32 / -0.48 | Regular | 서비스 중심 문구 (가벼운 강조) |
-| `heading/2-bold` | 20 / 28 / -0.40 | Bold | 메뉴 항목, 서브 헤드, 카드명 |
-| `heading/2-regular` | 20 / 28 / -0.40 | Regular | 서비스 중심 문구 |
-| `heading/3-bold` | 18 / 26 / -0.36 | Bold | 본문 내 중간 타이틀 |
-| `heading/3-regular` | 18 / 26 / -0.36 | Regular | 본문 중요 문구 강조 |
-| `body/1-Bold` | 15 / 24 / -0.30 | Bold | 리스트 항목 강조, 버튼 레이블 |
-| `body/1-regular` | 15 / 24 / -0.30 | Regular | **기본 본문**, 리스트 항목 |
-| `body/2-bold` | 14 / 22 / -0.28 | Bold | 정보 레이블, 소제목 |
-| `body/2-Regular` | 14 / 22 / -0.28 | Regular | 보조 정보 |
-| `body/3-Bold` | 12 / 18 / -0.24 | Bold | 배지, 캡션 강조 |
-| `body/3-Regular` | 12 / 18 / -0.24 | Regular | 캡션, 날짜 |
-| `body/4-bold` | 11 / 16 / -0.22 | Bold | 최소 크기 강조 |
-| `body/4-regular` | 11 / 16 / -0.22 | Regular | 최소 크기 (법적 고지 등) |
-| `button/large-bold` | 15 / 24 / -0.30 | Bold | 대형 버튼 (height 56) |
-| `button/medium-bold` | 14 / 22 / -0.28 | Bold | 중형 버튼 — `style=primary, size=medium` (height 48) |
-| `button/medium-regular` | 14 / 22 / -0.28 | Regular | `style=secondary, size=large` (height 40) |
-| `button/small-regular` | 12 / 18 / -0.24 | Regular | 소형 버튼 — `style=secondary, size=medium` (height 32) · `size=small` (height 24) |
-| `button/tiny-regular` | 11 / 16 / -0.22 | Regular | `style=secondary, size=tiny` (height 24) |
-| `button/small-bold` | 12 / 18 / -0.24 | Bold | 스타일은 존재하나 `button/button` 에서 미사용 |
+Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없는 것. 가이드 기준으로는 새 화면에 쓰지 않음.
 
-> `button/button` 의 `style=primary, size=small` (height 40) 은 button 스타일이 아니라 `body/2-bold` 14/22 를 사용 (AX `2216:5518` 실측). 위 매핑은 모두 AX 파일 2026-10-02 get_design_context 기준.
-
-> **추가 display 스타일**: `display/1-bold` (40), `display/2-bold` (36), `display/4-bold` (28)도 텍스트 스타일로 등록되어 있습니다. Figma 변수 스케일에는 포함되지 않으므로 일반 화면에서는 `display/3-bold` 와 `heading/*` 사용을 우선합니다.
+| 스타일 | 값 | 현재 쓰임 (KeyScreen 보이는 텍스트, 2026-10-22) |
+|---|---|---|
+| `button/medium-regular` · `button/small-regular` · `button/tiny-regular` | 14/22 · 12/18 · 11/16 Regular | 234 · 245 · 116 — `button/button` secondary 내부 |
+| `button/tiny-bold` | 11/16 Bold | 0 |
+| `display/1~4-{bold, medium, regular}` (12) | 40/50 · 36/44 · 32/40 · 28/36 | display/4-bold 81 · 1-regular 15 · 1-bold 10 · 3-bold 9 · 4-regular 1, 나머지 0 (Medium 4종 모두 0) |
+| `guide/detail-size` · `guide/token-bold` · `guide/token-regular` | 10/16 · 13/20 | DS 가이드 문서 작성용 |
 
 ### 사용 규칙
 
@@ -771,7 +778,8 @@ letterSpacing은 px 단위 음수(track-tight).
 - fontSize / fontName / lineHeight / letterSpacing **직접 지정 금지** (스타일이 모든 값을 캡슐화)
 - Roboto·Apple SD Gothic Neo 등 OS 폰트가 컴포넌트 내부에 남아 있으면 **반드시 DS 스타일로 교체**
 - weight는 Regular(400) / Bold(700) **2종만** 사용 — Medium·SemiBold 등 직접 입력 금지
-- 기본 본문은 `body/1-regular` (15px) — 캡션·보조는 `body/2-regular` (14px) 이하로 단계 분리
+- 기본 본문은 `body/1-regular` · `body/2-Regular` (15 · 14 base size) — 12 이하(body/3 · body/4)는 안내·가이드 영역 최소 폰트로 적극 사용 지양
+- 가이드 17종 밖의 스타일(display · button regular 등)은 새 화면에 쓰지 않음
 
 ---
 
