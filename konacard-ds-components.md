@@ -19,7 +19,7 @@ related_docs:
 > 각 컴포넌트의 Figma 노드 ID·variant·state·용도를 정리합니다.
 > 토큰 상세는 `konacard-ds-foundation.md`, 사용 상황·조합 원칙은 `konacard-ds-rule.md` 참조.
 
-## 컴포넌트 카탈로그 개요 (12 대분류)
+## 컴포넌트 카탈로그 개요 (13 대분류)
 
 | 대분류 | 상태 | 포함 컴포넌트 |
 |---|---|---|
@@ -36,6 +36,7 @@ related_docs:
 | **10_Info** | ✅ 완료 | Text info(1·2Depth bullet), Info-box(Item List + Box Case) |
 | **11_Tooltip** | ✅ 완료 | Popup Type(?, dialog), Bubble Type(!, inline Line/Brand) + 제작 가이드 |
 | **12_Banner** | ✅ 완료 | Benefit Banner(1line), Action Banner(1+2depth) + 6 파스텔 color |
+| **13_Toast** | ✅ 완료 | toast (속성 없는 단일 컴포넌트, 화면 아래 40 · 좌우 20) |
 
 ---
 
@@ -1219,6 +1220,31 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - ❌ Action Banner의 2depth 3 line 이상
 - ❌ Corner radius 8 외의 값
 - ❌ Banner 안에 CTA 버튼 배치 (진입 시 배너 전체 터치 사용)
+
+---
+
+# 13_Toast
+
+## Toast (`toast`)
+
+화면 이동 없이 액션 결과를 바로 알려주는 짧은 알림. 용도·문구 예·다른 UI와의 구분은 `konacard-ds-rule.md` § "Toast 컴포넌트".
+
+| 속성 | 값 (AX 실측) |
+|---|---|
+| 구조 | 속성(variant) 없는 단일 컴포넌트 |
+| 크기 | 320 × 42 (높이 고정, 글자는 세로·가로 가운데) |
+| radius | 12 (`radius/components/tost` — Figma 변수명 오타 그대로) |
+| 배경 | `color/background/dimed` (검정 64%) |
+| 글자 | `body/2-Regular` 14/22 · `font/white` |
+| 배치 | 화면 아래에서 **40**, 좌우 **20** (`layout/margin`) — 360 화면에서 폭 320 |
+
+- 성공·실패 색 구분 없음. 문구로만 성격을 전달
+- 1줄 짧은 문구
+
+### Toast 안티패턴
+- ❌ 성공은 초록, 실패는 빨강처럼 바탕색을 바꾸기
+- ❌ 화면 중앙·상단 배치 (항상 아래 40 · 좌우 20)
+- ❌ Toast 안에 버튼·아이콘 넣기 (판단이 필요하면 중앙 얼럿 사용)
 
 ---
 

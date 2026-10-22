@@ -1,0 +1,30 @@
+/*
+ * KONACARD DS Toast — Figma toast (11099:3580), AX 실측 2026-10-22
+ * 320×42 · radius 12 · 검정 64% · 14/22 흰 글자 가운데
+ * 배치: 화면 아래 40 · 좌우 20 (예시 화면 #CBP_toast popup_CASE)
+ */
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 42px;
+  box-sizing: border-box;
+  background: var(--color-background-dimed); /* rgba(0,0,0,.64) */
+  border-radius: var(--radius-components-tost); /* 12 */
+  font: var(--text-body-2-regular); /* 14/22 */
+  letter-spacing: var(--font-letterspacing-small); /* -0.28 */
+  color: var(--color-font-white);
+  text-align: center;
+}
+
+/* 화면 아래 40 · 좌우 20 — 폭은 화면 폭 − 40 (360 → 320) */
+.floating {
+  position: fixed;
+  left: var(--layout-margin); /* 20 */
+  right: var(--layout-margin); /* 20 */
+  bottom: var(--spacing-3xlarge); /* 40 */
+  width: auto;
+  z-index: 100;
+}

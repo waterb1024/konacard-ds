@@ -159,6 +159,7 @@
   --radius-components-box-info: 8px;
   --radius-components-box-contents: 12px;
   --radius-components-bottomsheet: 24px;
+  --radius-components-tost: 12px; /* Figma radius/components/tost (원본 오타 그대로) = radius-medium */
 
   /* ─── opacity ────────────────────────────────────────── */
   --opacity-disable-button: 0.4;

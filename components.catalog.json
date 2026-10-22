@@ -1005,6 +1005,23 @@
         "2026-10-15 확정. 선택 위치는 안의 인스턴스 state 로 바꿈"
       ],
       "docRef": "konacard-ds-components.md § Select button"
+    },
+    "toast": {
+      "type": "COMPONENT",
+      "key": "46b33a7354377a2a73c865f1eefb8bab27c1c14e",
+      "nodeId": "11099:3580",
+      "props": {},
+      "heights": {
+        "toast": 42
+      },
+      "spec": "320×42 · radius 12 (radius/components/tost) · 바탕 color/background/dimed(검정 64%) · 글자 body/2-Regular 14/22 흰색 가운데",
+      "placement": "화면 아래에서 40, 좌우 20 — 360 화면에서 폭 320 (예시 화면 #CBP_toast popup_CASE 11099:3574). 화면에 넣을 때 bottom 40 · left/right 20 으로 배치",
+      "codeProp": {},
+      "notes": [
+        "2026-10-22 사용자 정리 완료: 속성 없는 단일 컴포넌트. 성공/실패 색 구분 없이 문구로만 성격 전달",
+        "Storybook Toast(floating 기본 true = position fixed, 아래 40 · 좌우 20). 노출 시간은 Figma 에 없음 → 코드에 넣지 않음"
+      ],
+      "docRef": "konacard-ds-rule.md § Toast 컴포넌트"
     }
   }
 }

@@ -1913,9 +1913,9 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | **좌우 여백** | 20 (`layout/margin`) — 콘텐츠 폭 320 |
 | **너비 × 높이** | 320 × 42 |
 | **radius** | 12 (`radius/components/tost` — Figma 변수명 오타 유지) |
-| **배경** | `color/background/dimed` (`#000000A6`, black 65%) |
+| **배경** | `color/background/dimed` (`#000000A3`, black 64% — 변수 `opacity/black-64`) |
 | **텍스트** | `body/2-Regular` 14/22 + `font/white` (`#FFFFFF`), 중앙정렬 |
-| **내부 padding** | 상하 10 (42 - 22 lineHeight = 20 / 2) |
+| **내부 padding** | 없음 — 높이 42 고정, 글자를 가운데 정렬 (22 줄높이 → 위아래 10씩) |
 
 **핵심 규칙**
 - **모든 Toast 통일 스타일** — 성공/실패 색 구분 없음, **문구로만 성격 전달**
