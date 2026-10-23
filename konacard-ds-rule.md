@@ -252,7 +252,7 @@ description: >
 **구조 (Bottomsheet 아님 — 중앙 배치 다이얼로그)**
 - 위치: 화면 **중앙** (딤 위)
 - 크기: 320×약 200~340
-- **Radius**: 사방 16 (`radius-layout-popup` `radius: 16`) — bottomsheet의 상단만 24와 다름
+- **Radius**: 사방 16 (`radius/components/popup` 16) — bottomsheet의 상단만 24와 다름
 - 배경: `background/primary` 흰색
 
 **구성**
@@ -1912,7 +1912,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | **위치** | 화면 하단에서 **40px 여백** 위 (screen height 800 기준 y=718 → bottom-40) |
 | **좌우 여백** | 20 (`layout/margin`) — 콘텐츠 폭 320 |
 | **너비 × 높이** | 320 × 42 |
-| **radius** | 12 (`radius/components/tost` — Figma 변수명 오타 유지) |
+| **radius** | 12 (`radius/components/toast` — 가이드 표기는 `$radius-tost`) |
 | **배경** | `color/background/dimed` (`#000000A3`, black 64% — 변수 `opacity/black-64`) |
 | **텍스트** | `body/2-Regular` 14/22 + `font/white` (`#FFFFFF`), 중앙정렬 |
 | **내부 padding** | 없음 — 높이 42 고정, 글자를 가운데 정렬 (22 줄높이 → 위아래 10씩) |
@@ -1943,7 +1943,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | 유형 | 사용 조건 | 시각 |
 |---|---|---|
 | **Bottomsheet (기본)** | 정보 조회·안내·확인·리스트·파괴적 확인·사용법·온보딩·결과 리포트 등 **대부분의 팝업** | 화면 하단에서 올라옴, 상단만 radius 24 (`radius/components/bottomsheet`), popup_Title 4 variant 사용 |
-| **중앙 얼럿 다이얼로그 (특수)** | **즉시 판단 필요한 짧은 확인·알림 전용** — 되돌릴 수 없는 액션 확인 / 조건 미충족 알림 / 에러 알림 | 화면 중앙, 사방 radius 16 (`radius-layout-popup`), 헤딩·서브 중앙정렬, medium 병렬 CTA (48) |
+| **중앙 얼럿 다이얼로그 (특수)** | **즉시 판단 필요한 짧은 확인·알림 전용** — 되돌릴 수 없는 액션 확인 / 조건 미충족 알림 / 에러 알림 | 화면 중앙, 사방 radius 16 (`radius/components/popup`), 헤딩·서브 중앙정렬, medium 병렬 CTA (48) |
 
 - **얼럿 사용 예**: 되돌릴 수 없는 액션 확인 (전환 확인), 조건 미충족 (카드 없음), 에러 알림 (일시적 오류)
 - **얼럿 상세 구조**는 § "표준 패턴 — 중앙 얼럿 다이얼로그" 참조

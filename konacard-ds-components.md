@@ -1258,7 +1258,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 |---|---|
 | 구조 | 속성(variant) 없는 단일 컴포넌트 |
 | 크기 | 320 × 42 (높이 고정, 글자는 세로·가로 가운데) |
-| radius | 12 (`radius/components/tost` — Figma 변수명 오타 그대로) |
+| radius | 12 (`radius/components/toast` — 가이드 표기는 `$radius-tost`) |
 | 배경 | `color/background/dimed` (검정 64%) |
 | 글자 | `body/2-Regular` 14/22 · `font/white` |
 | 배치 | 화면 아래에서 **40**, 좌우 **20** (`layout/margin`) — 360 화면에서 폭 320 |

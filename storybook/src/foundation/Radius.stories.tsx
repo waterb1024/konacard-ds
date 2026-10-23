@@ -1,14 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import styles from "./foundation.module.css";
 
+/**
+ * Foundation / Radius — Figma ${FIGMA_DS_FILE_KEY} (-AX-) Radius 가이드 (node 481:3296) 그대로
+ *   Radius  : 스케일 8단계 (2xsmall 4 ~ 2xlarge 32 · round 50%)
+ *   Buttons : radius/button/* 4개
+ *   Layout  : radius/components/* 6개
+ *   토큰 표기·설명 문구는 가이드 그대로, 실제 Figma 변수 이름은 옆에 함께 적음 (2026-10-23 대조)
+ */
+
 const meta: Meta = {
   title: "Foundation/Radius",
   parameters: {
     docs: {
       description: {
         component:
-          "konacard-ds-foundation.md § Radius. 2·4 배수 기반, 최대 반원(50%). " +
-          "시맨틱 별칭(radius/button/*, radius/components/*) 우선 사용.",
+          "Figma Radius 가이드(481:3296) 기준. 코너 라운드는 2와 4 배수를 기반으로 적용하며 최대 반원을 적용할 수 있습니다.",
       },
     },
     layout: "fullscreen",
@@ -17,38 +24,54 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-const scale = [
-  { token: "radius-2xsmall", value: "4px", usage: "최소 버튼" },
-  { token: "radius-xsmall", value: "6px", usage: "입력폼, 본문 내 버튼" },
-  { token: "radius-small", value: "8px", usage: "페이지 컨트롤 중요 액션 버튼" },
-  { token: "radius-medium", value: "12px", usage: "★ base — 본문 내 박스형 컨텐츠" },
-  { token: "radius-large", value: "16px", usage: "팝업" },
-  { token: "radius-xlarge", value: "24px", usage: "★ base — 바텀시트 팝업" },
-  { token: "radius-round", value: "9999px (50%)", usage: "라벨, 라운드 버튼" },
+interface Row {
+  /** 가이드 Token 열 */
+  token: string;
+  /** Figma 변수 이름 */
+  variable: string;
+  /** 가이드 Reference token 열 (Buttons · Layout) */
+  ref?: string;
+  /** 가이드 Value 열 */
+  value: string;
+  /** 칩에 그릴 실제 값 */
+  px: string;
+  /** 가이드 Exemple 열 */
+  usage: string;
+  deprecated?: boolean;
+}
+
+const scale: Row[] = [
+  { token: "$radius-2xsmall", variable: "radius/2xsmall", value: "4px", px: "4px", usage: "최소 버튼에 적용합니다." },
+  { token: "$radius-xsmall", variable: "radius/xsmall", value: "6px", px: "6px", usage: "입력폼과 본문 내 적용되는 버튼에 적용합니다." },
+  { token: "$radius-small", variable: "radius/small", value: "8px", px: "8px", usage: "페이지를 컨트롤하는 중요 액션 버튼에 적용합니다." },
+  { token: "$radius-medium", variable: "radius/medium", value: "12px (base size)", px: "12px", usage: "본문 내 박스형 컨텐츠에 적용합니다." },
+  { token: "$radius-large", variable: "radius/large", value: "16px", px: "16px", usage: "팝업에 적용합니다." },
+  { token: "$radius-xlarge", variable: "radius/xlarge", value: "24px (base size)", px: "24px", usage: "버텀시트 팝업에 주로 적용합니다." },
+  { token: "$radius-2xlarge", variable: "radius/2xlarge", value: "32px", px: "32px", usage: "홈 메인 상단/하단 구분하는 박스에 활용 (향후 제거 예정)", deprecated: true },
+  { token: "$radius-round", variable: "radius/round", value: "50%", px: "9999px", usage: "레이블과 라운드 버튼에 적용합니다." },
 ];
 
-const buttonAlias = [
-  { token: "radius/button/large", ref: "= radius-small", value: "8px", usage: "페이지 컨트롤 중요 액션" },
-  { token: "radius/button/medium", ref: "= radius-xsmall", value: "6px", usage: "본문 내 중요 액션" },
-  { token: "radius/button/small", ref: "= radius-2xsmall", value: "4px", usage: "설명·가이드 액션" },
-  { token: "radius/button/round", ref: "= radius-round", value: "50%", usage: "라운드형 버튼" },
+const buttons: Row[] = [
+  { token: "$radius-button-large", variable: "radius/button/large", ref: "$radius-small", value: "8px", px: "8px", usage: "페이지를 컨트롤하는 중요 액션 버튼에 적용합니다." },
+  { token: "$radius-button-medium", variable: "radius/button/medium", ref: "$radius-xsmall", value: "6px", px: "6px", usage: "본문 내 중요 액션 버튼에 적용합니다." },
+  { token: "$radius-button-small", variable: "radius/button/small", ref: "$radius-2xsmall", value: "4px", px: "4px", usage: "설명 및 가이드에 따른 액션 버튼에 적용합니다." },
+  { token: "$radius-button-round", variable: "radius/button/round", ref: "$radius-round", value: "50%", px: "9999px", usage: "라운드형 버튼에 적용합니다." },
 ];
 
-const componentAlias = [
-  { token: "radius/components/form", ref: "= radius-xsmall", value: "6px", usage: "Input · Select · Search · Selectbox" },
-  { token: "radius/components/box-button", ref: "= radius-small", value: "8px", usage: "card-select 등" },
-  { token: "radius/components/box-info", ref: "= radius-small", value: "8px", usage: "Banner · Bubble tooltip" },
-  { token: "radius-layout-contents", ref: "= radius-medium", value: "12px", usage: "컨텐츠 박스" },
-  { token: "radius-tost", ref: "= radius-medium", value: "12px", usage: "⚠ Figma 오타 그대로 (실제는 toast)" },
-  { token: "radius-layout-popup", ref: "= radius-large", value: "16px", usage: "팝업·모달" },
-  { token: "radius-layout-bottomsheet", ref: "= radius-xlarge", value: "24px", usage: "바텀시트 상단 코너만" },
-  { token: "radius-layout-label", ref: "= radius-round", value: "50%", usage: "라벨·배지 pill" },
+const layout: Row[] = [
+  { token: "$radius-form", variable: "radius/components/form", ref: "$radius-xsmall", value: "6px", px: "6px", usage: "입력폼에 적용합니다." },
+  { token: "$radius-contents", variable: "radius/components/box-contents", ref: "$radius-medium", value: "12px", px: "12px", usage: "컨텐츠에 적용합니다." },
+  { token: "$radius-tost", variable: "radius/components/toast", ref: "$radius-medium", value: "12px", px: "12px", usage: "토스트 팝업에 사용합니다." },
+  { token: "$radius-popup", variable: "radius/components/popup", ref: "$radius-large", value: "16px", px: "16px", usage: "팝업에 적용합니다." },
+  { token: "$radius-bottomsheet", variable: "radius/components/bottomsheet", ref: "$radius-xlarge", value: "24px", px: "24px", usage: "버텀시트 팝업에 적용합니다." },
+  { token: "$radius-label", variable: "radius/components/label", ref: "$radius-round", value: "50%", px: "9999px", usage: "라벨에 적용합니다." },
 ];
 
 function Chip({ radius }: { radius: string }) {
   return (
     <div
       style={{
+        flexShrink: 0,
         width: 96,
         height: 48,
         background: "var(--color-brand-secondary)",
@@ -60,65 +83,58 @@ function Chip({ radius }: { radius: string }) {
   );
 }
 
+function Table({ rows }: { rows: Row[] }) {
+  return (
+    <div className={styles.gridSingleCol}>
+      {rows.map((r) => (
+        <div key={r.token} className={styles.row} style={r.deprecated ? { opacity: 0.5 } : undefined}>
+          <span className={styles.rowLabel}>
+            {r.token}
+            <br />
+            <span style={{ color: "var(--color-font-quaternary)" }}>{r.variable}</span>
+          </span>
+          <span className={styles.rowValue}>
+            {r.ref && (
+              <>
+                {r.ref}
+                <br />
+              </>
+            )}
+            {r.value}
+          </span>
+          <span className={styles.rowSample} style={{ display: "flex", gap: 12, alignItems: "center" }}>
+            <Chip radius={r.px} />
+            <span>{r.usage}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export const Overview: Story = {
   render: () => (
     <div className={styles.wrap}>
       <h1 className={styles.h1}>Radius</h1>
       <p className={styles.intro}>
-        코너 라운드는 <b>2와 4의 배수</b>를 기반으로 적용하며, 최대 반원(50%)까지 허용.
-        시맨틱 별칭을 우선 사용하고, 스케일 토큰은 별칭이 없을 때만 사용.
+        일관된 패턴과 가이드는 사용자가 빠르게 정보를 인지할 수 있도록 돕고, 서비스 전반에 예측 가능한 사용성을 제공합니다.
+        <br />
+        아래 정의된 컴퍼넌트 가이드를 준수하여 일관된 사용성을 유지할 수 있도록 합니다.
       </p>
 
-      <h2 className={styles.h2}>Radius Scale</h2>
-      <div className={styles.gridSingleCol}>
-        {scale.map((s) => (
-          <div key={s.token} className={styles.row}>
-            <span className={styles.rowLabel}>{s.token}</span>
-            <span className={styles.rowValue}>{s.value}</span>
-            <span className={styles.rowSample} style={{ display: "flex", gap: 12, alignItems: "center" }}>
-              <Chip radius={s.value.split(" ")[0]} />
-              <span style={{ color: "var(--color-font-tertiary)" }}>{s.usage}</span>
-            </span>
-          </div>
-        ))}
-      </div>
+      <h2 className={styles.h2}>Radius</h2>
+      <p className={styles.intro}>코너 라운드는 2와 4 배수를 기반으로 적용하며 최대 반원을 적용할 수 있습니다.</p>
+      <Table rows={scale} />
 
-      <div className={styles.note}>
-        <strong>Deprecated</strong> — <code>radius-2xlarge</code> (32px, 홈 상/하단 박스)는
-        향후 제거 예정. 신규 화면 사용 금지.
-      </div>
+      <p className={styles.intro} style={{ marginTop: 40 }}>
+        일관된 디자인과 사용성을 유지하기 위하여 아래 제시된 영역은 동일한 가이드를 적용합니다.
+      </p>
 
-      <h2 className={styles.h2}>Button Aliases</h2>
-      <div className={styles.gridSingleCol}>
-        {buttonAlias.map((a) => (
-          <div key={a.token} className={styles.row}>
-            <span className={styles.rowLabel}>{a.token}</span>
-            <span className={styles.rowValue}>{a.ref} · {a.value}</span>
-            <span className={styles.rowSample}>{a.usage}</span>
-          </div>
-        ))}
-      </div>
+      <h2 className={styles.h2}>Buttons</h2>
+      <Table rows={buttons} />
 
-      <h2 className={styles.h2}>Components & Layout Aliases</h2>
-      <div className={styles.gridSingleCol}>
-        {componentAlias.map((a) => (
-          <div key={a.token} className={styles.row}>
-            <span className={styles.rowLabel}>{a.token}</span>
-            <span className={styles.rowValue}>{a.ref} · {a.value}</span>
-            <span className={styles.rowSample}>{a.usage}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.note}>
-        <strong>사용 규칙</strong>
-        <br />
-        • 시맨틱 별칭(radius/button/*, radius/components/*) 우선 · 스케일 직접 참조는 별칭 없을 때만
-        <br />
-        • 바텀시트는 상단 두 코너만 24px (좌우 하단은 0)
-        <br />
-        • radius-round 는 height/2 이상으로 적용해서 항상 반원 형태 유지
-      </div>
+      <h2 className={styles.h2}>Layout</h2>
+      <Table rows={layout} />
     </div>
   ),
 };

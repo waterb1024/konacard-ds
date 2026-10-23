@@ -18,7 +18,7 @@ figma_naming_notes: |
   3. legacy 별칭:    base/gray-300, color/gray-tertiary, color/brand-secondary
   4. raw:            333, 000, Primary/BG_01, BG_02, UI_Error
   5. 오타 (원본):    color/button/quarternary (quaternary), color/border/primay (primary),
-                    radius-tost (toast), opecity/--제거/--black-65 (opacity + "제거" 접두어),
+                    radius 가이드 표기 $radius-tost (변수는 radius/components/toast), opecity/--제거/--black-65 (opacity + "제거" 접두어),
                     Subcolor/redFF364D (실 값은 FF364B)
 
 colors:
@@ -382,53 +382,44 @@ spacing:
 
 radius:
   # ═══════════════════════════════════════════════════════════════
-  # Figma에서 radius는 3가지 명명 규칙 병존:
-  #   1. radius-{scale}        — kebab flat  (radius-small)
-  #   2. radius/button/{size}  — slash path  (radius/button/large)
-  #   3. radius/components/*   — slash path  (radius/components/form)
-  #   4. radius-layout-*       — kebab layout (radius-layout-form)
-  # 모두 그대로 유지.
+  # Figma 변수 이름 그대로 (2026-10-23 Radius 가이드 481:3296 · 로컬 변수 대조)
+  # 가이드 표기($radius-form 등)와 변수 이름(radius/components/form 등)이 다름 → 아래는 변수 이름
   # ═══════════════════════════════════════════════════════════════
-  scale:
-    "radius-none":     0      # ✅ 라운드 없음
-    "radius-2xsmall":  4      # ✅ 최소 버튼
-    "radius-xsmall":   6      # ✅ 입력폼, 본문 내 버튼
-    "radius-small":    8      # ✅ 페이지 중요 액션 버튼
-    "radius-medium":   12     # ✅ ★ base — 본문 내 박스형 컨텐츠
-    "radius-large":    16     # ✅ 팝업
-    "radius-xlarge":   24     # ✅ ★ base — 바텀시트
-    "radius-2xlarge":  32     # ✅ deprecated (홈 상/하단 박스)
-    "radius-round":    9999   # ✅ (50%) — 라벨, 라운드 버튼
+  scale:                         # collection _Theme (unit/* 참조)
+    "radius/none":     0
+    "radius/2xsmall":  4      # ✅ 최소 버튼
+    "radius/xsmall":   6      # ✅ 입력폼 · 본문 내 버튼
+    "radius/small":    8      # ✅ 페이지 중요 액션 버튼
+    "radius/medium":   12     # ✅ base — 본문 내 박스형 컨텐츠
+    "radius/large":    16     # ✅ 팝업
+    "radius/xlarge":   24     # ✅ base — 버텀시트
+    "radius/2xlarge":  32     # ✅ 향후 제거 예정 (홈 상/하단 박스)
+    "radius/round":    9999   # ✅ 가이드 표기 50% — 레이블 · 라운드 버튼
 
-  # ─── radius/button/* — 실제 사용 이름 ────────────────────
-  button:
-    "radius/button/large":  8      # ✅ = radius-small
-    "radius/button/medium": 6      # ✅ = radius-xsmall
-    "radius-button-small":  4      # ✅ = radius-2xsmall (legacy 명명 관측)
-    "radius/button/round":  9999   # ✅ = radius-round
-    "radius-button-large":  8      # ✅ (legacy 별칭 - 병행 관측)
+  button:                        # collection Component — 가이드 Buttons
+    "radius/button/large":  8      # = radius/small
+    "radius/button/medium": 6      # = radius/xsmall
+    "radius/button/small":  4      # = radius/2xsmall
+    "radius/button/round":  9999   # = radius/round
 
-  # ─── radius/components/* — 컴포넌트별 ─────────────────
-  components:
-    "radius/components/form":         6    # ✅ (입력폼)
-    "radius/components/form-small":   4    # ✅ (입력폼 — 작은 사이즈)
-    "radius/components/box-button":   8    # ✅ (card-select 등 박스형 버튼)
-    "radius/components/box-info":     8    # ✅ (info-box, tooltip 등)
-    "radius/components/box-contents": 12   # ✅ (컨텐츠 박스)
-    "radius/components/box-container":24   # ✅ (컨텐츠 컨테이너 — box-contents와 다른 용도이니 혼동 주의)
-    "radius/components/toast":        12   # ✅ (Figma 변수명은 "toast"로 정확히 표기됨 — 레거시 "radius-tost"는 구버전 오타 별칭)
-    "radius/components/popup":        16   # ✅ (팝업/모달)
-    "radius/components/bottomsheet":  24   # ✅ (바텀시트 상단 코너)
-    "radius/components/label":        9999 # ✅ (라벨/배지 pill)
+  components:                    # collection Component — 가이드 Layout (가이드 표기)
+    "radius/components/form":         6    # $radius-form
+    "radius/components/box-contents": 12   # $radius-contents
+    "radius/components/toast":        12   # $radius-tost (가이드 표기 오타, 변수는 toast)
+    "radius/components/popup":        16   # $radius-popup
+    "radius/components/bottomsheet":  24   # $radius-bottomsheet
+    "radius/components/label":        9999 # $radius-label
+    # ↓ 가이드 표에 없는 변수
+    "radius/components/form-small":   4
+    "radius/components/box-button":   8    # card-select 등
+    "radius/components/box-info":     8    # Banner · Bubble tooltip
+    "radius/components/box-container":24
 
-  # ─── radius-layout-* — 레이아웃 별칭 (legacy) ─────────
-  layout:
-    "radius-layout-form":     6      # ✅
-    "radius-layout-contents": 12     # ⚠️ 레거시 이름 자체는 미등록 — 현역 토큰 radius/components/box-contents(✅ 위 참조)를 사용할 것
-    "radius-layout-label":    9999   # ✅ = radius/components/label
-    # "radius-tost":                12   # ⚠️ 레거시 kebab-flat 오타 별칭 — 현역 토큰은 radius/components/toast
-    # "radius-layout-popup":        16   # ✅ = radius/components/popup
-    # "radius-layout-bottomsheet":  24   # ✅ = radius/components/bottomsheet
+  banner:                        # ⚠ 값이 spacing/* 변수를 가리킴
+    "radius/banner/small":  8      # → spacing/xsmall
+    "radius/banner/medium": 12     # → spacing/small
+    "radius/banner/large":  16     # → spacing/medium
+    "radius/banner/xlarge": 24     # → spacing/xlarge
 
 opacity:
   # ═══════════════════════════════════════════════════════════════
@@ -496,7 +487,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 > 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Color Guide (node 296:3042)
 > **토큰 이름은 Figma variable 원본 그대로** 표기합니다 (예: `color/font/tertiary`). `get_variable_defs` 반환값과 1:1 매칭.
-> **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary), `radius-tost` (실제 toast) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
+> **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary), Radius 가이드 표기 `$radius-tost` (변수는 `radius/components/toast`) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
 
 ### 1) Brand — `color/brand/*`
 
@@ -833,57 +824,66 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 
 ## Radius
 
-> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Radius Guide (node 481:3296)
+> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Radius 가이드 (node 481:3296) — 2026-10-23 가이드 기준으로 다시 맞춤
 
 일관된 패턴과 가이드는 사용자가 빠르게 정보를 인지할 수 있도록 돕고, 서비스 전반에 예측 가능한 사용성을 제공합니다.
-아래 정의된 컴포넌트 가이드를 준수하여 일관된 사용성을 유지합니다.
+아래 정의된 컴퍼넌트 가이드를 준수하여 일관된 사용성을 유지할 수 있도록 합니다.
 
-코너 라운드는 **2와 4의 배수**를 기반으로 적용하며, **최대 반원(50%)** 까지 허용합니다.
+토큰 열은 가이드 표기 그대로, 괄호 안은 실제 Figma 변수 이름. 설명은 가이드 Exemple 열 그대로.
 
-### Radius Scale
+### Radius
 
-| 토큰 | 값 (px) | 용도 |
-|------|--------:|------|
-| `radius-2xsmall` | 4 | 최소 버튼 |
-| `radius-xsmall` | 6 | 입력폼, 본문 내 적용되는 버튼 |
-| `radius-small` | 8 | 페이지를 컨트롤하는 중요 액션 버튼 |
-| **`radius-medium`** | **12** *(base size)* | 본문 내 박스형 컨텐츠 |
-| `radius-large` | 16 | 팝업 |
-| **`radius-xlarge`** | **24** *(base size)* | 바텀시트 팝업 |
-| ~~`radius-2xlarge`~~ | ~~32~~ | ⚠ **deprecated** — 홈 상/하단 박스 (향후 제거 예정) |
-| `radius-round` | 50% | 라벨, 라운드 버튼 |
+코너 라운드는 2와 4 배수를 기반으로 적용하며 최대 반원을 적용할 수 있습니다.
 
-### Button Aliases — `radius/button/*`
+| 토큰 (Figma 변수) | Value | 사용처 (가이드) |
+|------|------|------|
+| `$radius-2xsmall` (`radius/2xsmall`) | 4px | 최소 버튼에 적용합니다. |
+| `$radius-xsmall` (`radius/xsmall`) | 6px | 입력폼과 본문 내 적용되는 버튼에 적용합니다. |
+| `$radius-small` (`radius/small`) | 8px | 페이지를 컨트롤하는 중요 액션 버튼에 적용합니다. |
+| `$radius-medium` (`radius/medium`) | 12px (base size) | 본문 내 박스형 컨텐츠에 적용합니다. |
+| `$radius-large` (`radius/large`) | 16px | 팝업에 적용합니다. |
+| `$radius-xlarge` (`radius/xlarge`) | 24px (base size) | 버텀시트 팝업에 주로 적용합니다. |
+| ~~`$radius-2xlarge`~~ (`radius/2xlarge`) | 32px | 홈 메인 상단/하단 구분하는 박스에 활용 (향후 제거 예정) |
+| `$radius-round` (`radius/round`) | 50% (변수 값 9999) | 레이블과 라운드 버튼에 적용합니다. |
 
-| 토큰 (Figma 원본) | Reference | 값 (px) | 용도 |
-|------|-----------|--------:|------|
-| `radius/button/large` | = `radius-small` | 8 | 페이지 컨트롤 중요 액션 버튼 |
-| `radius/button/medium` | = `radius-xsmall` | 6 | 본문 내 중요 액션 버튼 |
-| `radius/button/small` | = `radius-2xsmall` | 4 | 설명·가이드에 따른 액션 버튼 |
-| `radius/button/round` | = `radius-round` | 50% | 라운드형 버튼 |
-| `radius-button-large` | = `radius-small` | 8 | ⚠️ Legacy 별칭 (병행 관측 — 신규 코드는 `radius/button/large` 사용) |
+일관된 디자인과 사용성을 유지하기 위하여 아래 제시된 영역은 동일한 가이드를 적용합니다.
 
-### Components & Layout Aliases — `radius/components/*`, `radius-layout-*`
+### Buttons
 
-| 토큰 (Figma 원본) | Reference | 값 (px) | 용도 |
-|------|-----------|--------:|------|
-| `radius/components/form` | = `radius-xsmall` | 6 | 입력폼 (Input·Select·Search·Selectbox) |
-| `radius/components/box-button` | = `radius-small` | 8 | 박스형 버튼 (card-select 등) |
-| `radius/components/box-info` | = `radius-small` | 8 | 정보 박스 (Banner, Bubble tooltip 등) |
-| `radius/components/box-container` | = `radius-xlarge` | 24 | 컨텐츠 컨테이너 (box-contents와 다른 용도) |
-| `radius/components/form-small` | = `radius-2xsmall` | 4 | 입력폼 작은 사이즈 |
-| `radius/components/toast` | = `radius-medium` | 12 | 변수명은 "toast"로 정확히 표기됨 |
-| `radius/components/popup` | = `radius-large` | 16 | |
-| `radius-layout-form` | = `radius-xsmall` | 6 | ⚠️ Legacy 별칭 (form과 병행 관측) |
-| `radius-layout-contents` | = `radius-medium` | 12 | ⚠️ 레거시 별칭 자체는 미등록 — 현역 토큰 `radius/components/box-contents` 사용 |
-| `radius-tost` | = `radius-medium` | 12 | ⚠️ 레거시 kebab-flat 오타 별칭 — 현역 토큰 `radius/components/toast` 사용 |
-| `radius-layout-popup` | = `radius-large` | 16 | ✅ 현역 토큰 `radius/components/popup`과 값 일치 |
-| `radius-layout-bottomsheet` | = `radius-xlarge` | 24 | ✅ 현역 토큰 `radius/components/bottomsheet`과 값 일치 |
-| `radius-layout-label` | = `radius-round` | 50% | ✅ 현역 토큰 `radius/components/label`과 값 일치 |
+| 토큰 (Figma 변수) | Reference token | Value | 사용처 (가이드) |
+|------|------|------|------|
+| `$radius-button-large` (`radius/button/large`) | `$radius-small` | 8px | 페이지를 컨트롤하는 중요 액션 버튼에 적용합니다. |
+| `$radius-button-medium` (`radius/button/medium`) | `$radius-xsmall` | 6px | 본문 내 중요 액션 버튼에 적용합니다. |
+| `$radius-button-small` (`radius/button/small`) | `$radius-2xsmall` | 4px | 설명 및 가이드에 따른 액션 버튼에 적용합니다. |
+| `$radius-button-round` (`radius/button/round`) | `$radius-round` | 50% | 라운드형 버튼에 적용합니다. |
+
+### Layout
+
+| 토큰 (Figma 변수) | Reference token | Value | 사용처 (가이드) |
+|------|------|------|------|
+| `$radius-form` (`radius/components/form`) | `$radius-xsmall` | 6px | 입력폼에 적용합니다. |
+| `$radius-contents` (`radius/components/box-contents`) | `$radius-medium` | 12px | 컨텐츠에 적용합니다. |
+| `$radius-tost` (`radius/components/toast`) | `$radius-medium` | 12px | 토스트 팝업에 사용합니다. |
+| `$radius-popup` (`radius/components/popup`) | `$radius-large` | 16px | 팝업에 적용합니다. |
+| `$radius-bottomsheet` (`radius/components/bottomsheet`) | `$radius-xlarge` | 24px | 버텀시트 팝업에 적용합니다. |
+| `$radius-label` (`radius/components/label`) | `$radius-round` | 50% | 라벨에 적용합니다. |
+
+> Storybook 토큰: `--radius-{2xsmall … round}` · `--radius-button-{large,medium,small,round}` · `--radius-components-{form,box-contents,toast,popup,bottomsheet,label}`
+
+### 가이드에 없는 Figma 변수 (참고)
+
+| 변수 | 값 | 비고 |
+|---|---|---|
+| `radius/none` | 0 | |
+| `radius/components/form-small` | 4 (= 2xsmall) | |
+| `radius/components/box-button` | 8 (= small) | card-select 등 박스형 버튼 |
+| `radius/components/box-info` | 8 (= small) | Banner · Bubble tooltip |
+| `radius/components/box-container` | 24 (= xlarge) | |
+| `radius/banner/{small, medium, large, xlarge}` | 8 · 12 · 16 · 24 | 값이 radius 가 아닌 spacing 변수(spacing/xsmall · small · medium · xlarge)를 가리킴 |
 
 ### 사용 규칙
 
-- Radius 적용 시 항상 **시맨틱 별칭**(`radius-button-*`, `radius-popup` 등)을 우선 사용 — 스케일 토큰 직접 사용은 별칭이 없는 경우에만
+- Radius 적용 시 항상 **Buttons · Layout 토큰**(`radius/button/*`, `radius/components/*`)을 우선 사용 — 스케일 토큰 직접 사용은 해당 토큰이 없는 경우에만
 - Figma에서는 **variable 바인딩** (`setBoundVariable("topLeftRadius", v)` 등)으로 적용 — `node.cornerRadius = N` 직접 지정 금지
 - 바텀시트는 **상단 두 코너만** 24px (좌우 하단은 0)
 - `radius-2xlarge` (32) 는 deprecated — 신규 화면에서 사용 금지
@@ -1131,7 +1131,7 @@ KONACARD **앱(AOS)** 은 그림자(shadow)를 최소화합니다. 배경색·�
 | 용도 | 적용 |
 |------|------|
 | 카드/정보 박스 | 배경색 차이로 구분 (`background/secondary` #F8F9FB vs `white`) |
-| 팝업 | 오버레이(`color/background/dimed` 64%, `bg-dimed`) + `radius/popup (16px)` |
+| 팝업 | 오버레이(`color/background/dimed` 64%, `bg-dimed`) + `radius/components/popup` (16px) |
 | 구분선 | `line/solid` 컴포넌트 (black 6% opacity) |
 | 바텀시트 | 상단 radius 24px, 오버레이 |
 

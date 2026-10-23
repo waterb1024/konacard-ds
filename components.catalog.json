@@ -1016,7 +1016,7 @@
       "heights": {
         "toast": 42
       },
-      "spec": "320×42 · radius 12 (radius/components/tost) · 바탕 color/background/dimed(검정 64%) · 글자 body/2-Regular 14/22 흰색 가운데",
+      "spec": "320×42 · radius 12 (radius/components/toast) · 바탕 color/background/dimed(검정 64%) · 글자 body/2-Regular 14/22 흰색 가운데",
       "placement": "화면 아래에서 40, 좌우 20 — 360 화면에서 폭 320 (예시 화면 #CBP_toast popup_CASE 11099:3574). 화면에 넣을 때 bottom 40 · left/right 20 으로 배치",
       "codeProp": {},
       "notes": [
