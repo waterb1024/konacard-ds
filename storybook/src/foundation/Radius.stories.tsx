@@ -37,7 +37,6 @@ interface Row {
   px: string;
   /** 가이드 Example 열 */
   usage: string;
-  deprecated?: boolean;
 }
 
 const scale: Row[] = [
@@ -47,7 +46,7 @@ const scale: Row[] = [
   { token: "$radius-medium", variable: "radius/medium", value: "12px (base size)", px: "12px", usage: "본문 내 박스형 컨텐츠에 적용합니다." },
   { token: "$radius-large", variable: "radius/large", value: "16px", px: "16px", usage: "팝업에 적용합니다." },
   { token: "$radius-xlarge", variable: "radius/xlarge", value: "24px (base size)", px: "24px", usage: "버텀시트 팝업에 주로 적용합니다." },
-  { token: "$radius-2xlarge", variable: "radius/2xlarge", value: "32px", px: "32px", usage: "홈 메인 상단/하단 구분하는 박스에 활용 (향후 제거 예정)", deprecated: true },
+  { token: "$radius-2xlarge", variable: "radius/2xlarge", value: "32px", px: "32px", usage: "홈 메인 상단/하단 구분하는 박스에 활용" },
   { token: "$radius-round", variable: "radius/round", value: "50%", px: "9999px", usage: "레이블과 라운드 버튼에 적용합니다." },
 ];
 
@@ -87,7 +86,7 @@ function Table({ rows }: { rows: Row[] }) {
   return (
     <div className={styles.gridSingleCol}>
       {rows.map((r) => (
-        <div key={r.token} className={styles.row} style={r.deprecated ? { opacity: 0.5 } : undefined}>
+        <div key={r.token} className={styles.row}>
           <span className={styles.rowLabel}>
             {r.token}
             <br />

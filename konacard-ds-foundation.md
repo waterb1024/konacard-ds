@@ -393,7 +393,7 @@ radius:
     "radius/medium":   12     # ✅ base — 본문 내 박스형 컨텐츠
     "radius/large":    16     # ✅ 팝업
     "radius/xlarge":   24     # ✅ base — 버텀시트
-    "radius/2xlarge":  32     # ✅ 향후 제거 예정 (홈 상/하단 박스)
+    "radius/2xlarge":  32     # ✅ 홈 메인 상/하단 구분 박스
     "radius/round":    9999   # ✅ 가이드 표기 50% — 레이블 · 라운드 버튼
 
   button:                        # collection Component — 가이드 Buttons
@@ -843,7 +843,7 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 | `$radius-medium` (`radius/medium`) | 12px (base size) | 본문 내 박스형 컨텐츠에 적용합니다. |
 | `$radius-large` (`radius/large`) | 16px | 팝업에 적용합니다. |
 | `$radius-xlarge` (`radius/xlarge`) | 24px (base size) | 버텀시트 팝업에 주로 적용합니다. |
-| ~~`$radius-2xlarge`~~ (`radius/2xlarge`) | 32px | 홈 메인 상단/하단 구분하는 박스에 활용 (향후 제거 예정) |
+| `$radius-2xlarge` (`radius/2xlarge`) | 32px | 홈 메인 상단/하단 구분하는 박스에 활용 |
 | `$radius-round` (`radius/round`) | 50% (변수 값 9999) | 레이블과 라운드 버튼에 적용합니다. |
 
 일관된 디자인과 사용성을 유지하기 위하여 아래 제시된 영역은 동일한 가이드를 적용합니다.
@@ -886,7 +886,6 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 - Radius 적용 시 항상 **Buttons · Layout 토큰**(`radius/button/*`, `radius/components/*`)을 우선 사용 — 스케일 토큰 직접 사용은 해당 토큰이 없는 경우에만
 - Figma에서는 **variable 바인딩** (`setBoundVariable("topLeftRadius", v)` 등)으로 적용 — `node.cornerRadius = N` 직접 지정 금지
 - 바텀시트는 **상단 두 코너만** 24px (좌우 하단은 0)
-- `radius-2xlarge` (32) 는 deprecated — 신규 화면에서 사용 금지
 - `radius-round` 은 height의 절반 이상으로 적용되어 항상 반원 형태가 되도록 함 (`9999px` 또는 `50%`)
 
 ---

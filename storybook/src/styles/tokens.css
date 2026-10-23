@@ -154,7 +154,7 @@
   --radius-medium: 12px;   /* base — 본문 내 박스형 컨텐츠 */
   --radius-large: 16px;    /* 팝업 */
   --radius-xlarge: 24px;   /* base — 버텀시트 팝업 */
-  --radius-2xlarge: 32px;  /* 홈 메인 상/하단 구분 박스 (향후 제거 예정) */
+  --radius-2xlarge: 32px;  /* 홈 메인 상/하단 구분 박스 */
   --radius-round: 9999px;  /* 50% — 레이블 · 라운드 버튼 */
 
   /* Buttons — radius/button/* */
