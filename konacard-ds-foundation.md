@@ -18,7 +18,7 @@ figma_naming_notes: |
   3. legacy 별칭:    base/gray-300, color/gray-tertiary, color/brand-secondary
   4. raw:            333, 000, Primary/BG_01, BG_02, UI_Error
   5. 오타 (원본):    color/button/quarternary (quaternary), color/border/primay (primary),
-                    radius 가이드 표기 $radius-tost (변수는 radius/components/toast), opecity/--제거/--black-65 (opacity + "제거" 접두어),
+                    opecity/--제거/--black-65 (opacity + "제거" 접두어),
                     Subcolor/redFF364D (실 값은 FF364B)
 
 colors:
@@ -405,7 +405,7 @@ radius:
   components:                    # collection Component — 가이드 Layout (가이드 표기)
     "radius/components/form":         6    # $radius-form
     "radius/components/box-contents": 12   # $radius-contents
-    "radius/components/toast":        12   # $radius-tost (가이드 표기 오타, 변수는 toast)
+    "radius/components/toast":        12   # $radius-toast
     "radius/components/popup":        16   # $radius-popup
     "radius/components/bottomsheet":  24   # $radius-bottomsheet
     "radius/components/label":        9999 # $radius-label
@@ -487,7 +487,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 > 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Color Guide (node 296:3042)
 > **토큰 이름은 Figma variable 원본 그대로** 표기합니다 (예: `color/font/tertiary`). `get_variable_defs` 반환값과 1:1 매칭.
-> **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary), Radius 가이드 표기 `$radius-tost` (변수는 `radius/components/toast`) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
+> **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
 
 ### 1) Brand — `color/brand/*`
 
@@ -727,7 +727,7 @@ Figma 파일에는 시대별로 병행 사용되는 **legacy 이름**과 **raw �
 ### Font Size (가이드 17종)
 
 일관된 브랜드 경험과 사용성을 유지하기 위해 아래 제시된 가이드 이외의 폰트 사용을 지양합니다.
-스타일 이름은 Figma 텍스트 스타일 원본(대소문자 그대로), 설명은 가이드 Exemple 열 그대로.
+스타일 이름은 Figma 텍스트 스타일 원본(대소문자 그대로), 설명은 가이드 Example 열 그대로.
 
 | 스타일 | Value | size / lh / ls | 굵기 | 사용처 (가이드) |
 |--------|-------|----------------|------|-----------------|
@@ -829,7 +829,7 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 일관된 패턴과 가이드는 사용자가 빠르게 정보를 인지할 수 있도록 돕고, 서비스 전반에 예측 가능한 사용성을 제공합니다.
 아래 정의된 컴퍼넌트 가이드를 준수하여 일관된 사용성을 유지할 수 있도록 합니다.
 
-토큰 열은 가이드 표기 그대로, 괄호 안은 실제 Figma 변수 이름. 설명은 가이드 Exemple 열 그대로.
+토큰 열은 가이드 표기 그대로, 괄호 안은 실제 Figma 변수 이름. 설명은 가이드 Example 열 그대로.
 
 ### Radius
 
@@ -863,7 +863,7 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 |------|------|------|------|
 | `$radius-form` (`radius/components/form`) | `$radius-xsmall` | 6px | 입력폼에 적용합니다. |
 | `$radius-contents` (`radius/components/box-contents`) | `$radius-medium` | 12px | 컨텐츠에 적용합니다. |
-| `$radius-tost` (`radius/components/toast`) | `$radius-medium` | 12px | 토스트 팝업에 사용합니다. |
+| `$radius-toast` (`radius/components/toast`) | `$radius-medium` | 12px | 토스트 팝업에 사용합니다. |
 | `$radius-popup` (`radius/components/popup`) | `$radius-large` | 16px | 팝업에 적용합니다. |
 | `$radius-bottomsheet` (`radius/components/bottomsheet`) | `$radius-xlarge` | 24px | 버텀시트 팝업에 적용합니다. |
 | `$radius-label` (`radius/components/label`) | `$radius-round` | 50% | 라벨에 적용합니다. |

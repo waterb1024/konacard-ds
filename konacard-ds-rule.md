@@ -1912,7 +1912,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | **위치** | 화면 하단에서 **40px 여백** 위 (screen height 800 기준 y=718 → bottom-40) |
 | **좌우 여백** | 20 (`layout/margin`) — 콘텐츠 폭 320 |
 | **너비 × 높이** | 320 × 42 |
-| **radius** | 12 (`radius/components/toast` — 가이드 표기는 `$radius-tost`) |
+| **radius** | 12 (`radius/components/toast`) |
 | **배경** | `color/background/dimed` (`#000000A3`, black 64% — 변수 `opacity/black-64`) |
 | **텍스트** | `body/2-Regular` 14/22 + `font/white` (`#FFFFFF`), 중앙정렬 |
 | **내부 padding** | 없음 — 높이 42 고정, 글자를 가운데 정렬 (22 줄높이 → 위아래 10씩) |

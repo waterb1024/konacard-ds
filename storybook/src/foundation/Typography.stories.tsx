@@ -5,7 +5,7 @@ import styles from "./foundation.module.css";
  * Foundation / Typography — Figma ${FIGMA_DS_FILE_KEY} (-AX-) Typography 가이드 (node 296:3051) 그대로
  *   Typeface  : OS 기본 서체 매핑 + Pretendard (웹 · 디자인 컨텐츠)
  *   Font Size : heading 1~3 · body 1~4 (bold / regular) + button large · medium · small = 17종
- *   값·스타일 이름은 Figma 텍스트 스타일, 설명 문구는 가이드 Exemple 열 그대로 (2026-10-22 대조)
+ *   값·스타일 이름은 Figma 텍스트 스타일, 설명 문구는 가이드 Example 열 그대로 (2026-10-22 대조)
  */
 
 const meta: Meta = {
@@ -33,7 +33,7 @@ const typefaces: { platform: string; font: string }[] = [
   { platform: "웹과 디자인 컨텐츠 전반에 적용", font: "Pretendard" },
 ];
 
-/* ── Font Size — 가이드 표 17종 (Token · Value · Exemple) ── */
+/* ── Font Size — 가이드 표 17종 (Token · Value · Example) ── */
 interface TextStyle {
   /** Figma 텍스트 스타일 이름 (대소문자 원본 그대로) */
   name: string;
@@ -43,7 +43,7 @@ interface TextStyle {
   lh: number;
   ls: number;
   weight: 400 | 700;
-  /** 가이드 Exemple 열 */
+  /** 가이드 Example 열 */
   usage: string;
   cssVar: string;
 }

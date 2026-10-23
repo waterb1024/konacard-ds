@@ -35,7 +35,7 @@ interface Row {
   value: string;
   /** 칩에 그릴 실제 값 */
   px: string;
-  /** 가이드 Exemple 열 */
+  /** 가이드 Example 열 */
   usage: string;
   deprecated?: boolean;
 }
@@ -61,7 +61,7 @@ const buttons: Row[] = [
 const layout: Row[] = [
   { token: "$radius-form", variable: "radius/components/form", ref: "$radius-xsmall", value: "6px", px: "6px", usage: "입력폼에 적용합니다." },
   { token: "$radius-contents", variable: "radius/components/box-contents", ref: "$radius-medium", value: "12px", px: "12px", usage: "컨텐츠에 적용합니다." },
-  { token: "$radius-tost", variable: "radius/components/toast", ref: "$radius-medium", value: "12px", px: "12px", usage: "토스트 팝업에 사용합니다." },
+  { token: "$radius-toast", variable: "radius/components/toast", ref: "$radius-medium", value: "12px", px: "12px", usage: "토스트 팝업에 사용합니다." },
   { token: "$radius-popup", variable: "radius/components/popup", ref: "$radius-large", value: "16px", px: "16px", usage: "팝업에 적용합니다." },
   { token: "$radius-bottomsheet", variable: "radius/components/bottomsheet", ref: "$radius-xlarge", value: "24px", px: "24px", usage: "버텀시트 팝업에 적용합니다." },
   { token: "$radius-label", variable: "radius/components/label", ref: "$radius-round", value: "50%", px: "9999px", usage: "라벨에 적용합니다." },

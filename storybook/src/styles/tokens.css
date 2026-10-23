@@ -163,10 +163,10 @@
   --radius-button-small: 4px;   /* = radius-2xsmall */
   --radius-button-round: 9999px; /* = radius-round */
 
-  /* Layout — radius/components/* (가이드 표기: $radius-form · contents · tost · popup · bottomsheet · label) */
+  /* Layout — radius/components/* (가이드 표기: $radius-form · contents · toast · popup · bottomsheet · label) */
   --radius-components-form: 6px;          /* = radius-xsmall · 입력폼 */
   --radius-components-box-contents: 12px; /* = radius-medium · 컨텐츠 */
-  --radius-components-toast: 12px;        /* = radius-medium · 토스트 팝업 (가이드 표기 $radius-tost) */
+  --radius-components-toast: 12px;        /* = radius-medium · 토스트 팝업 */
   --radius-components-popup: 16px;        /* = radius-large · 팝업 */
   --radius-components-bottomsheet: 24px;  /* = radius-xlarge · 버텀시트 팝업 */
   --radius-components-label: 9999px;      /* = radius-round · 라벨 */
