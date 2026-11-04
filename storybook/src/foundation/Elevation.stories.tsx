@@ -26,7 +26,7 @@ type Story = StoryObj;
 interface Row {
   /** 가이드 토큰 표기 */
   token: string;
-  /** Figma effect 스타일 이름 (가이드 견본에 붙은 것) */
+  /** Figma effect 스타일 이름 */
   style: string;
   /** tokens.css 변수 */
   cssVar: string;
@@ -39,7 +39,7 @@ const shadows: Row[] = [
   { token: "$shadow-button", style: "elevation/shadow-button", cssVar: "--elevation-shadow-button", value: "drop · 0 · 4 · 4 · 0 · #000 4%" },
   { token: "$shadow-navigation", style: "elevation/shadow-navigation", cssVar: "--elevation-shadow-navigation", value: "drop · 0 · 4 · 8 · 0 · #000 8%" },
   { token: "$shadow-card", style: "elevation/shadow-card", cssVar: "--elevation-shadow-card", value: "drop · -2 · 24 · 32 · 4 · #000 8%" },
-  { token: "$shadow-deep", style: "elevation/shadow-dark", cssVar: "--elevation-shadow-dark", value: "drop · -2 · 24 · 32 · 4 · #000 32%" },
+  { token: "$shadow-deep", style: "elevation/shadow-deep", cssVar: "--elevation-shadow-deep", value: "drop · -2 · 24 · 32 · 4 · #000 16%" },
   { token: "$shadow-active", style: "elevation/shadow-active", cssVar: "--elevation-shadow-active", value: "drop · 0 · 16 · 24 · 2 · #000 8%" },
 ];
 
@@ -84,10 +84,6 @@ export const Shadow: Story = {
             </span>
           </div>
         ))}
-      </div>
-      <div className={styles.note} style={{ marginTop: 24 }}>
-        가이드의 <code>$shadow-deep</code> 견본에는 <code>elevation/shadow-dark</code>(32%) 스타일이 붙어 있습니다.
-        이름이 같은 <code>elevation/shadow-deep</code>(16%) 스타일은 가이드에 나오지 않습니다.
       </div>
     </div>
   ),

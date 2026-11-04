@@ -1133,20 +1133,18 @@ list [VERTICAL, itemSpacing=0]
 
 effect 스타일 `elevation/*`. 색은 모두 검정(#000), x · y · blur · spread 는 `elevat/*` 변수에 묶여 있음.
 
-| 가이드 토큰 | Figma 스타일 (가이드 견본) | type | x | y | blur | spread | 색 |
+| 가이드 토큰 | Figma 스타일 | type | x | y | blur | spread | 색 |
 |------|------|------|--:|--:|--:|--:|------|
 | `$shadow-pressed` | `elevation/shadow-pressed` | inner | 0 | 2 | 4 | 0 | #000 8% |
 | `$shadow-button` | `elevation/shadow-button` | drop | 0 | 4 | 4 | 0 | #000 4% |
 | `$shadow-navigation` | `elevation/shadow-navigation` | drop | 0 | 4 | 8 | 0 | #000 8% |
 | `$shadow-card` | `elevation/shadow-card` | drop | -2 | 24 | 32 | 4 | #000 8% |
-| `$shadow-deep` | `elevation/shadow-dark` ⚠ | drop | -2 | 24 | 32 | 4 | #000 32% |
+| `$shadow-deep` | `elevation/shadow-deep` | drop | -2 | 24 | 32 | 4 | #000 16% |
 | `$shadow-active` | `elevation/shadow-active` | drop | 0 | 16 | 24 | 2 | #000 8% |
-
-> ⚠ 가이드의 `$shadow-deep` 견본에는 `elevation/shadow-dark` 스타일이 붙어 있음. 이름이 같은 `elevation/shadow-deep`(drop · -2 · 24 · 32 · 4 · #000 16%) 스타일은 가이드에 나오지 않음.
 
 **`elevat/*` 변수** (Semantic 컬렉션): `none` 0 · `inset` -2 · `thin` 2 · `light` 4 · `regular` 8 · `medium` 16 · `semibold` 24 · `bold` 32 · `extrabold` 40 (extrabold 는 스타일에서 안 씀)
 
-Storybook 토큰: `--elevation-shadow-{pressed, button, navigation, card, deep, dark, active}` (CSS `box-shadow` 값)
+Storybook 토큰: `--elevation-shadow-{pressed, button, navigation, card, deep, active}` (CSS `box-shadow` 값)
 
 ### 앱의 계층 표현 (가이드 밖)
 
