@@ -1125,25 +1125,39 @@ list [VERTICAL, itemSpacing=0]
 
 ## Elevation & Depth
 
-KONACARD **앱(AOS)** 은 그림자(shadow)를 최소화합니다. 배경색·구분선·오버레이로 계층을 표현합니다.
+> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Elevation 가이드 (node 1438:5158) — 2026-11-04 가이드 기준으로 다시 맞춤
+
+가이드 제목은 **Elevation (웹용)** — 그림자는 **웹에만 적용**하고 앱 화면에는 쓰지 않습니다 (가이드 문구: "웹에만 적용 · 가이드 정리 후 적용 예정").
+
+### Shadow (웹)
+
+effect 스타일 `elevation/*`. 색은 모두 검정(#000), x · y · blur · spread 는 `elevat/*` 변수에 묶여 있음.
+
+| 가이드 토큰 | Figma 스타일 (가이드 견본) | type | x | y | blur | spread | 색 |
+|------|------|------|--:|--:|--:|--:|------|
+| `$shadow-pressed` | `elevation/shadow-pressed` | inner | 0 | 2 | 4 | 0 | #000 8% |
+| `$shadow-button` | `elevation/shadow-button` | drop | 0 | 4 | 4 | 0 | #000 4% |
+| `$shadow-navigation` | `elevation/shadow-navigation` | drop | 0 | 4 | 8 | 0 | #000 8% |
+| `$shadow-card` | `elevation/shadow-card` | drop | -2 | 24 | 32 | 4 | #000 8% |
+| `$shadow-deep` | `elevation/shadow-dark` ⚠ | drop | -2 | 24 | 32 | 4 | #000 32% |
+| `$shadow-active` | `elevation/shadow-active` | drop | 0 | 16 | 24 | 2 | #000 8% |
+
+> ⚠ 가이드의 `$shadow-deep` 견본에는 `elevation/shadow-dark` 스타일이 붙어 있음. 이름이 같은 `elevation/shadow-deep`(drop · -2 · 24 · 32 · 4 · #000 16%) 스타일은 가이드에 나오지 않음.
+
+**`elevat/*` 변수** (Semantic 컬렉션): `none` 0 · `inset` -2 · `thin` 2 · `light` 4 · `regular` 8 · `medium` 16 · `semibold` 24 · `bold` 32 · `extrabold` 40 (extrabold 는 스타일에서 안 씀)
+
+Storybook 토큰: `--elevation-shadow-{pressed, button, navigation, card, deep, dark, active}` (CSS `box-shadow` 값)
+
+### 앱의 계층 표현 (가이드 밖)
+
+KONACARD **앱** 은 그림자 대신 배경색·구분선·오버레이로 계층을 표현합니다.
 
 | 용도 | 적용 |
 |------|------|
 | 카드/정보 박스 | 배경색 차이로 구분 (`background/secondary` #F8F9FB vs `white`) |
 | 팝업 | 오버레이(`color/background/dimed` 64%, `bg-dimed`) + `radius/components/popup` (16px) |
-| 구분선 | `line/solid` 컴포넌트 (black 6% opacity) |
+| 구분선 | `divider` 컴포넌트 (black 6% opacity) |
 | 바텀시트 | 상단 radius 24px, 오버레이 |
-
-### 웹 전용 Shadow 토큰 (앱 미적용 · 정리 예정)
-
-Figma DS(COMMON 파일 Elevation 페이지)에는 **웹 전용** shadow 토큰이 정의되어 있습니다. **앱에는 적용하지 않음.** 웹 프로젝트에서만 참조. 실제 등록된 이름은 `$shadow-*`가 아니라 `elevation/shadow-*` 체계.
-
-| 토큰 | 용도 | 상태 |
-|------|------|------|
-| `elevation/shadow-card` | 카드 | ✅ EFFECT 스타일 등록됨 |
-| `elevation/shadow-deep` | 강한 elevation | ✅ EFFECT 스타일 등록됨 |
-| `elevation/shadow-dark` | (문서에 없던 추가 스타일) | ✅ 등록됨 |
-| pressed/button/navigation/active 4종 | — | ⚠️ 미발견 |
 
 ---
 
