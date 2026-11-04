@@ -79,4 +79,21 @@
   .docblock-argstable label input[role="switch"]:focus {
     box-shadow: none !important;
   }
+
+  /* 미정리 메뉴(.storybook/wip.ts, 배포 빌드만) — 흐리게, 눌리지 않게 */
+  .sidebar-item:has(.kona-wip) {
+    pointer-events: none;
+    cursor: default;
+  }
+  .kona-wip {
+    color: #bbbbbb;
+  }
+  .kona-wip-badge {
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 9999px;
+    background: #f2f3f5;
+    color: #999999;
+    font-size: 11px;
+  }
 </style>

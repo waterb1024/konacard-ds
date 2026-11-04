@@ -36,6 +36,13 @@ npm install
 npm run storybook   # http://localhost:6006
 ```
 
+### 미정리 메뉴 잠금
+
+`.storybook/wip.ts` 에 적힌 스토리 파일은 **배포 빌드(`storybook build`)에서 빠집니다.** 사이트 사이드바에는 흐린 "준비 중" 줄만 남고 눌리지 않으며, 원래 주소로 들어가도 열리지 않습니다. 로컬 `npm run storybook` 에서는 전부 보입니다.
+
+- 메뉴 정리가 끝나면 `wip.ts` 에서 그 줄을 지우고 배포
+- 배포 빌드에서도 전부 보려면 `SHOW_WIP=1 npx storybook build`
+
 ## 구조
 
 ```
