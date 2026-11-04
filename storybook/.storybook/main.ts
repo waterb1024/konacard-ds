@@ -24,7 +24,7 @@ function writePlaceholders(): string[] {
 export default { title: ${JSON.stringify(title)}, tags: ["wip", "!autodocs"] };
 
 export const Wip = {
-  name: ${JSON.stringify(title.split("/").pop())}, // 메뉴 이름과 같아야 사이드바에서 한 줄로 합쳐짐
+  name: "준비 중", // 메뉴 이름과 달라야 다른 메뉴처럼 펼침 화살표가 남음 (펼치기는 막혀 있음)
   render: () => (
     <div style={{ padding: 40, font: "var(--text-body-2-regular)", color: "var(--color-font-tertiary)" }}>
       Figma 정리가 끝나면 열리는 메뉴입니다.
