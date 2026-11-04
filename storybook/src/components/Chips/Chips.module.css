@@ -39,15 +39,15 @@
 
 /* ── Fill ──────────────────────────────────────── */
 .fill-Brand {
-  background: var(--color-background-button-brand);
+  background: var(--color-button-primary);
   color: var(--color-font-white);
-  border-color: var(--color-background-button-brand);
+  border-color: var(--color-button-primary);
 }
 
 .fill-Brand_Light {
-  background: var(--color-brand-secondary);
+  background: var(--color-brand-sencondary);
   color: var(--color-font-brand);
-  border-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-sencondary);
 }
 
 .fill-Gray_Light {
@@ -78,7 +78,7 @@
 .line-Brand_Light {
   background: var(--color-background-primary);
   color: var(--color-font-brand);
-  border-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-sencondary);
 }
 
 .line-Gray_Light {

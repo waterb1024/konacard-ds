@@ -23,6 +23,5 @@ export const WIP_STORIES = [
   "src/components/List/CardSelect.stories.tsx", // Select / Card select
   "src/components/Tab/Tab.stories.tsx", // Tabs
   // Foundation
-  "src/foundation/Color.stories.tsx",
   "src/foundation/Iconography.stories.tsx",
 ];

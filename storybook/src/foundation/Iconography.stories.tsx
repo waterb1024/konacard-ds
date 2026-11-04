@@ -171,7 +171,7 @@ export const Overview: Story = {
                 justifyContent: "center",
                 background:
                   c.token === "--color-icon-white"
-                    ? "var(--color-background-button-brand)"
+                    ? "var(--color-button-primary)"
                     : "var(--color-background-primary)",
                 color: `var(${c.token})`,
               }}

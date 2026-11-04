@@ -58,7 +58,7 @@
   color: var(--color-font-white);
 }
 .color-brand-light {
-  background: var(--color-brand-secondary); /* #F4F0FD */
+  background: var(--color-brand-sencondary); /* #F4F0FD */
   color: var(--color-font-brand);
 }
 .color-gray-dark {

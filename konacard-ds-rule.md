@@ -843,7 +843,7 @@ chevron 유무 = 진입 컨텍스트 표시: 그리드·검색 = 카드 전체 �
 
 DS 컴포넌트 `tab/sub-ui` (pill = `tab/Sub`). 예시 화면: KeyScreen `10315:6004` (코나콘 사용하기 — 상품권).
 
-- 활성: `color/background/button-brand` #805AE9 채움 + `body/2-bold` 14/22 흰 텍스트
+- 활성: `color/button/primary` #805AE9 채움 + `body/2-bold` 14/22 흰 텍스트
 - 비활성: `color/button/white` 흰 배경 + 1px `color/border/default` #DDD + `body/2-Regular` 14/22 `color/font/tertiary` #666
 - pill: 높이 38 (padding 상하 8·좌우 16), radius `radius/button/round` (9999)
 - pill 간 gap 4 (`spacing-2xsmall`), 좌측 시작 20
@@ -1014,7 +1014,7 @@ QUICK · SELECT_CARD 공통 3단: Fixed 상단(타이틀) + Scroll 중앙(동적
 | 요소 | 스타일 |
 |---|---|
 | **진행바 (Progress Bar)** | 회색 트랙 + brand 채움 (사용률 시각화), § "진행바 (Progress Bar) 통일 규칙" 매칭 |
-| **사용량 라벨 pill** | 진행바 상단 우측에 얹힌 pill — `background/button-brand` 채움 + 흰 텍스트, 예: "420만원 이용" |
+| **사용량 라벨 pill** | 진행바 상단 우측에 얹힌 pill — `button/primary` 채움 + 흰 텍스트, 예: "420만원 이용" |
 | **라벨·값 라인** | 좌: "현재 결제 가능 금액" (검정) / "일 한도" (회색), 우: 사용가능액 (bold 검정) / 한도 (회색) |
 | 각 유형 사이 | dotted divider — `black 6%`(`#0F000000`), solid line과 동일 색·`dasharray 2 2`만 다름 |
 
@@ -1719,7 +1719,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 - 상단 전체 폭 컬러 배경 (radius 없이 스트라이프)
 - 헤더 안 요소: 브랜드 라벨(작) + **큰 헤딩(혜택 %)** + **컬러 pill 2종** + 우측 원형 브랜드 아이콘
 - Pill 2종:
-  - **"NEW"** = `background/button-brand` (brand fill) + 흰 텍스트 (**새 혜택·이벤트 강조** — accent-red NEW 배지와 별개)
+  - **"NEW"** = `button/primary` (brand fill) + 흰 텍스트 (**새 혜택·이벤트 강조** — accent-red NEW 배지와 별개)
   - **"오프라인" / "온/오프라인" / "타임세일"** = `background/tertiary` (연보라) + `font/brand` 텍스트
 
 **배너 색상 규칙 예외**
@@ -1828,7 +1828,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | 요소 | 값 |
 |---|---|
 | 트랙 배경 | `background/quaternary` (`#F0F1F3`) — 세그먼트 컨트롤 트랙과 동일 토큰 재사용 |
-| 채움 | `background/button-brand` (`#805AE9`) — 카운트다운·목표 달성률 등 상황 무관 통일 |
+| 채움 | `button/primary` (`#805AE9`) — 카운트다운·목표 달성률 등 상황 무관 통일 |
 | 높이 | 18 (`spacing-xlarge` 사용 안 함, 별도 값) |
 | radius | 완만한 pill (트랙 높이의 절반 정도) |
 | **상단 라벨-최대값 (선택)** | 좌 `body/1-Bold` `font/primary` + 우 `body/1-Bold` `font/primary` |
@@ -1860,7 +1860,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 
 | 상태 | 배경 | 텍스트 | 성격 |
 |---|---|---|---|
-| **완료** | `background/button-brand` (`#805AE9`) | 흰색 | Solid brand — 확정된 완료 (예: "등록 완료", "승인완료", "사용 완료") |
+| **완료** | `button/primary` (`#805AE9`) | 흰색 | Solid brand — 확정된 완료 (예: "등록 완료", "승인완료", "사용 완료") |
 | **진행중** | `background/tertiary` (`#F8F6FE`) | `font/brand` (`#805AE9`) | Light brand — 진행 중 부드러운 표시 (예: "결제가능") |
 | **현재 활성/연결 상태** | `background/tertiary` (`#F8F6FE`) | `font/brand` (`#805AE9`) | Light brand — 현재 활성/연결 표기 (예: "연결되어 있어요") |
 | **차단·불가** (능동 종료) | `font/accent-red` (`#FF364B`) | 흰색 | Solid red — 정책·사용자 능동 종료 (예: "만료 예정", "구매 취소", `accent/primary` 6용도 중 ②) |
@@ -2182,7 +2182,7 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 | 색조 | 배경 | 텍스트 | 언제 쓰나 |
 |---|---|---|---|
 | **진한 보라** | `brand/primary` (#805AE9) | 흰색 | **강조·중요·긴급 알림** ("중요!") + **완료된 액션 결과 상태** (답변완료 등) |
-| **옅은 보라** | `brand/secondary` (#F4F0FD, purple-100) | 보라 or 검정 | **지속 상태 태그** — 계속 유지되는 속성 표기 (예: "연장 완료") |
+| **옅은 보라** | `brand/sencondary` (#F4F0FD, purple-100) | 보라 or 검정 | **지속 상태 태그** — 계속 유지되는 속성 표기 (예: "연장 완료") |
 | **회색** | `background/secondary` or 유사 옅은 회색 | 검정 | **대기·미행동 상태** — 사용자 or 시스템의 후속 액션이 필요한 상태 (예: "답변대기") |
 
 **색 매핑 판단 신호:**

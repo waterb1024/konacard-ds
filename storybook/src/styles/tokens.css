@@ -8,73 +8,225 @@
  */
 
 :root {
-  /* ─── color/brand ─────────────────────────────────────── */
-  --color-brand-primary: #805ae9;
-  --color-brand-secondary: #f4f0fd;
-  --color-brand-tertiary: #f8f6fe;
+  /* ─── color ───────────────────────────────────────────────
+   * Figma Color 가이드(296:3042) · 변수 3층 (2026-11-04 대조)
+   *   _Primitive  color/{purple, red, blue, green, yellow, gray, coolgray}/50~900, black, white
+   *   _Theme      color/brand · neutral · accent/*, opacity/*  (가이드 "주조색과 보조색")
+   *   Semantic    color/font · background · border · divider · icon · button · label · banner · progress/*
+   * 이름은 Figma 그대로 — 오타(sencondary · primay · balck · quarternary · disable)도 유지
+   */
 
-  /* ─── color/font ─────────────────────────────────────── */
-  --color-font-primary: #000000;
-  --color-font-secondary: #333333;
-  --color-font-tertiary: #666666;
-  --color-font-quaternary: #999999;
-  --color-font-placeholder: #999999;
-  --color-font-error: #ff364b;
-  --color-font-brand: #805ae9;
+  /* Color Palette — _Primitive */
+  --color-purple-50: #f8f6fe;
+  --color-purple-100: #f4f0fd;
+  --color-purple-200: #ece6fc;
+  --color-purple-300: #bfadf4;
+  --color-purple-400: #997bed;
+  --color-purple-500: #805ae9;
+  --color-purple-600: #6648ba;
+  --color-purple-700: #523a95;
+  --color-purple-800: #33245d;
+  --color-purple-900: #1b1138;
+  --color-red-50: #ffeff1;
+  --color-red-100: #ffe2e5;
+  --color-red-200: #ffccd1;
+  --color-red-300: #ff9ba5;
+  --color-red-400: #ff5e6f;
+  --color-red-500: #ff364b;
+  --color-red-600: #cc2b3c;
+  --color-red-700: #99202d;
+  --color-red-800: #59131a;
+  --color-red-900: #330b0f;
+  --color-blue-50: #f0f6fe;
+  --color-blue-100: #e6f0fe;
+  --color-blue-200: #d5e6fd;
+  --color-blue-300: #b9d6fb;
+  --color-blue-400: #8abaf9;
+  --color-blue-500: #589cf6;
+  --color-blue-600: #4f8cdd;
+  --color-blue-700: #3965a0;
+  --color-blue-800: #233e62;
+  --color-blue-900: #121f31;
+  --color-green-50: #effcf9;
+  --color-green-100: #def8f2;
+  --color-green-200: #c8f3e9;
+  --color-green-300: #a4ebdb;
+  --color-green-400: #77e2c9;
+  --color-green-500: #1ccea5;
+  --color-green-600: #159a7c;
+  --color-green-700: #0d634f;
+  --color-green-800: #083e31;
+  --color-green-900: #041f19;
+  --color-yellow-50: #fffbdf;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-200: #fef08a;
+  --color-yellow-300: #fde047;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-700: #a16207;
+  --color-yellow-800: #764004;
+  --color-yellow-900: #462304;
+  --color-gray-50: #f8f8f8;
+  --color-gray-100: #f4f4f4;
+  --color-gray-200: #eeeeee;
+  --color-gray-300: #dddddd;
+  --color-gray-400: #bdbdbd;
+  --color-gray-500: #999999;
+  --color-gray-600: #757575;
+  --color-gray-700: #666666;
+  --color-gray-800: #333333;
+  --color-gray-900: #1c1c1c;
+  --color-coolgray-50: #f8f9fb;
+  --color-coolgray-100: #f0f1f3;
+  --color-coolgray-200: #dadde0;
+  --color-coolgray-300: #c7cbd0;
+  --color-coolgray-400: #a9aeb5;
+  --color-coolgray-500: #92989d;
+  --color-coolgray-600: #6e7276;
+  --color-coolgray-700: #585b5e;
+  --color-coolgray-800: #333537;
+  --color-coolgray-900: #1d1e1f;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* 주조색과 보조색 — _Theme */
+  --color-brand-primary: #805ae9;     /* purple-500 */
+  --color-brand-sencondary: #f4f0fd;  /* purple-100 */
+  --color-brand-tertiary: #f8f6fe;    /* purple-50 */
+  --color-neutral-primary: #333333;    /* gray-800 */
+  --color-neutral-sencondary: #666666; /* gray-700 */
+  --color-neutral-tertiary: #999999;   /* gray-500 */
+  --color-neutral-quaternary: #dddddd; /* gray-300 */
+  --color-neutral-quinary: #eeeeee;    /* gray-200 */
+  --color-neutral-senary: #f0f1f3;     /* coolgray-100 */
+  --color-neutral-septenary: #f8f9fb;  /* coolgray-50 */
+  --color-accent-primary: #ff364b;    /* red-500 */
+  --color-accent-sencondary: #589cf6; /* blue-500 */
+  --color-accent-tertiary: #1ccea5;   /* green-500 */
+  --opacity-black-0: rgba(0, 0, 0, 0);
+  --opacity-black-4: rgba(0, 0, 0, 0.04);
+  --opacity-black-6: rgba(0, 0, 0, 0.06);
+  --opacity-black-8: rgba(0, 0, 0, 0.08);
+  --opacity-black-12: rgba(0, 0, 0, 0.12);
+  --opacity-black-16: rgba(0, 0, 0, 0.16);
+  --opacity-black-24: rgba(0, 0, 0, 0.24);
+  --opacity-black-32: rgba(0, 0, 0, 0.32);
+  --opacity-black-40: rgba(0, 0, 0, 0.4);
+  --opacity-black-64: rgba(0, 0, 0, 0.64);
+  --opacity-black-100: #000000;
+  --opacity-white-0: rgba(255, 255, 255, 0);
+  --opacity-white-4: rgba(255, 255, 255, 0.04);
+  --opacity-white-6: rgba(255, 255, 255, 0.06);
+  --opacity-white-8: rgba(255, 255, 255, 0.08);
+  --opacity-white-12: rgba(255, 255, 255, 0.12);
+  --opacity-white-16: rgba(255, 255, 255, 0.16);
+  --opacity-white-24: rgba(255, 255, 255, 0.24);
+  --opacity-white-32: rgba(255, 255, 255, 0.32);
+  --opacity-white-40: rgba(255, 255, 255, 0.4);
+  --opacity-white-64: rgba(255, 255, 255, 0.64);
+  --opacity-white-100: #ffffff;
+
+  /* Gradient — paint 스타일 gradient/* (3개 가이드 + quarternary 가이드 밖)
+   * primary · secondary 는 왼→오른쪽. tertiary · quarternary 각도는 정사각형 기준 근사 */
+  --gradient-primary: linear-gradient(90deg, #804ee2 0%, #526ed3 100%);
+  --gradient-secondary: linear-gradient(90deg, #00bb5a 0%, #5978ea 100%);
+  --gradient-tertiary: linear-gradient(136deg, #ff364b 0%, #ff1493 100%);
+  --gradient-quarternary: linear-gradient(154deg, #cf75ff 0%, #805ae9 100%);
+
+  /* Semantic — color/font */
+  --color-font-primary: #000000;      /* → color/black */
+  --color-font-secondary: #333333;    /* → neutral/primary */
+  --color-font-tertiary: #666666;     /* → neutral/sencondary */
+  --color-font-quaternary: #999999;   /* → neutral/tertiary */
+  --color-font-quinary: #dddddd;      /* → neutral/quaternary */
+  --color-font-placeholder: #999999;  /* → neutral/tertiary */
+  --color-font-brand: #805ae9;        /* → brand/primary */
   --color-font-white: #ffffff;
+  --color-font-error: #ff364b;        /* → accent/primary */
+  --color-font-accent-red: #ff364b;   /* → accent/primary */
+  --color-font-accent-blue: #589cf6;  /* → accent/sencondary */
+  --color-font-accent-green: #1ccea5; /* → accent/tertiary */
 
-  /* ─── color/background ──────────────────────────────── */
-  --color-background-primary: #ffffff;
-  --color-background-secondary: #f8f9fb;
-  --color-background-tertiary: #f8f6fe;
-  --color-background-button-brand: #805ae9;
-  --color-background-brand: #805ae9;
-  --color-background-dimed: rgba(0, 0, 0, 0.64);
-  --color-background-disabled: #f8f9fb; /* Figma color/background/disabled — Form 비활성 필드 배경 */
+  /* Semantic — color/background */
+  --color-background-primary: #ffffff;    /* → color/white */
+  --color-background-secondary: #f8f9fb;  /* → neutral/septenary */
+  --color-background-tertiary: #f8f6fe;   /* → brand/tertiary */
+  --color-background-quaternary: #f0f1f3; /* → neutral/senary */
+  --color-background-brand: #805ae9;      /* → brand/primary */
+  --color-background-disabled: #f8f9fb;   /* → neutral/septenary */
+  --color-background-dimed: rgba(0, 0, 0, 0.64); /* → opacity/black-64 */
 
-  /* ─── color/button ──────────────────────────────────── */
-  --color-button-secondary: #f4f0fd;       /* Brand_Light fill */
-  --color-button-tertiary: #dddddd;        /* Gray_Line outline */
-  --color-button-quarternary: #999999;     /* Figma 원본 오타 유지 */
-  --color-button-white: #ffffff;
+  /* Semantic — color/border */
+  --color-border-primay: rgba(0, 0, 0, 0.06);    /* → opacity/black-6 */
+  --color-border-secondary: rgba(0, 0, 0, 0.08); /* → opacity/black-8 */
+  --color-border-tertiary: rgba(0, 0, 0, 0.12);  /* → opacity/black-12 */
+  --color-border-default: #dddddd;  /* → neutral/quaternary */
+  --color-border-disable: #dddddd;  /* → neutral/quaternary */
+  --color-border-focus: #805ae9;    /* → brand/primary */
+  --color-border-brand: #805ae9;    /* → brand/primary */
+  --color-border-error: #ff364b;    /* → accent/primary */
+  --color-border-balck: #000000;    /* → color/black */
+  --color-border-white: #ffffff;
 
-  /* ─── color/border ──────────────────────────────────── */
-  --color-border-default: #dddddd;
-  --color-border-focus: #805ae9;
-  --color-border-brand: #805ae9;
-  --color-border-error: #ff364b;
+  /* Semantic — color/divider */
+  --color-divider-primary: rgba(0, 0, 0, 0.06);   /* → opacity/black-6 */
+  --color-divider-secondary: rgba(0, 0, 0, 0.08); /* → opacity/black-8 */
+  --color-divider-tertiary: rgba(0, 0, 0, 0.12);  /* → opacity/black-12 */
+  --color-divider-brand: #805ae9;
+  --color-divider-white: #ffffff;
 
-  /* ─── color/icon ─────────────────────────────────────── */
-  --color-icon-secondary: #333333;
-  --color-icon-tertiary: #666666;
-  --color-icon-quaternary: #999999;
-  --color-icon-quinary: #dddddd;
+  /* Semantic — color/icon */
+  --color-icon-primary: #000000;      /* → color/black */
+  --color-icon-secondary: #333333;    /* → neutral/primary */
+  --color-icon-tertiary: #666666;     /* → neutral/sencondary */
+  --color-icon-quaternary: #999999;   /* → neutral/tertiary */
+  --color-icon-quinary: #dddddd;      /* → neutral/quaternary */
+  --color-icon-senary: #f0f1f3;       /* → neutral/senary */
   --color-icon-brand: #805ae9;
   --color-icon-white: #ffffff;
   --color-icon-accent-red: #ff364b;
-  --color-icon-accent-green: #1ccea5;
   --color-icon-accent-blue: #589cf6;
+  --color-icon-accent-green: #1ccea5;
+  --color-icon-guide: #ff364b;        /* → accent/primary */
 
-  /* ─── color/divider ─────────────────────────────────── */
-  --color-divider-primary: rgba(0, 0, 0, 0.06);
-  --color-divider-secondary: rgba(0, 0, 0, 0.08);
-  --color-divider-tertiary: rgba(0, 0, 0, 0.12);
+  /* Semantic — color/button */
+  --color-button-primary: #805ae9;     /* → brand/primary */
+  --color-button-secondary: #f4f0fd;   /* → brand/sencondary */
+  --color-button-tertiary: #dddddd;    /* → neutral/quaternary */
+  --color-button-quarternary: #999999; /* → neutral/tertiary */
+  --color-button-quinary: #f8f9fb;     /* → neutral/septenary */
+  --color-button-white: #ffffff;
+  --color-button-pressed: rgba(0, 0, 0, 0.12); /* → opacity/black-12 */
+  --opacity-pressed: rgba(0, 0, 0, 0.06);      /* → opacity/black-6 */
 
-  /* ─── color/banner (pastel) ─────────────────────────── */
-  --color-banner-brand: #f8f6fe;
-  --color-banner-gray: #f8f9fb;
-  --color-banner-blue: #f0f6fe;
-  --color-banner-green: #effcf9;
-  --color-banner-yellow: #fffbdf;
-  --color-banner-pink: #ffeff1;
+  /* Semantic — color/label */
+  --color-label-brand-primarygradient: #805ae9; /* Figma: color/label/brand-primary(gradient) — 단색 값 */
+  --color-label-brand-secondary: #805ae9;   /* → brand/primary */
+  --color-label-brand-tertiary: #f4f0fd;    /* → brand/sencondary */
+  --color-label-brand-quaternary: #f8f6fe;  /* → brand/tertiary */
+  --color-label-neutral-primary: #333333;
+  --color-label-neutral-secondary: #666666;
+  --color-label-neutral-tertiary: #999999;
+  --color-label-neutral-quaternary: #dddddd;
+  --color-label-neutral-quinary: #f8f9fb;   /* → neutral/septenary */
+  --color-label-accent-red: #ff364b;
+  --color-label-accent-blue: #589cf6;
+  --color-label-accent-green: #1ccea5;
+  --color-label-white: #ffffff;
 
-  /* ─── palette (원자) ────────────────────────────────── */
-  --palette-purple-50: #f8f6fe;
-  --palette-purple-100: #f4f0fd;
-  --palette-purple-500: #805ae9;
-  --palette-red-500: #ff364b;
-  --palette-blue-500: #589cf6;
-  --palette-green-500: #1ccea5;
+  /* Semantic — color/banner (background / banner) */
+  --color-banner-brand: #f8f6fe;  /* → purple-50 */
+  --color-banner-gray: #f8f9fb;   /* → coolgray-50 */
+  --color-banner-blue: #f0f6fe;   /* → blue-50 */
+  --color-banner-green: #effcf9;  /* → green-50 */
+  --color-banner-yellow: #fffbdf; /* → yellow-50 */
+  --color-banner-pink: #ffeff1;   /* → red-50 */
+  --color-banner-toast: #333333;  /* → neutral/primary */
+
+  /* Semantic — color/progress */
+  --color-progress-bar: #dddddd;
+  --color-progress-status: #805ae9;
 
   /* ─── typography ─────────────────────────────────────── */
   --font-family-body: "Pretendard", -apple-system, BlinkMacSystemFont,

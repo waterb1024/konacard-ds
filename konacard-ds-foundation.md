@@ -10,242 +10,146 @@ verified_against_figma: "2026-07-27 - 여러 컴포넌트 인스턴스에서 get
 verification_status: |
   ✅ API 확인됨 (get_variable_defs 결과와 일치)
   ⚠️ 미확인 - Foundation 문서 페이지 기재값만 확인. 실 컴포넌트 노출 미관측
-  🎨 Palette - Figma variable로 등록되지 않은 원자 팔레트 (문서용)
 figma_naming_notes: |
-  Figma variable 명명 규칙이 시대별로 혼재. 원본 그대로 유지 (수정 시 매칭 실패):
-  1. slash 계층:    color/font/primary, radius/button/large
-  2. kebab flat:     spacing-medium, radius-small, radius-button-large
-  3. legacy 별칭:    base/gray-300, color/gray-tertiary, color/brand-secondary
-  4. raw:            333, 000, Primary/BG_01, BG_02, UI_Error
-  5. 오타 (원본):    color/button/quarternary (quaternary), color/border/primay (primary),
-                    opecity/--제거/--black-65 (opacity + "제거" 접두어),
-                    Subcolor/redFF364D (실 값은 FF364B)
+  AX 파일 변수 이름을 그대로 유지 (수정 시 매칭 실패):
+  1. slash 계층:    color/font/primary, radius/button/large, spacing/small
+  2. 오타 (원본):    color/{brand,neutral,accent}/sencondary (secondary), color/border/primay (primary),
+                    color/border/balck (black), color/button/quarternary (quaternary), color/border/disable
+  3. 괄호:          color/label/brand-primary(gradient) — CSS 에서는 괄호를 뺌
 
 colors:
   # ═══════════════════════════════════════════════════════════════
-  # Figma variable 원본 이름을 key로 사용. semantic 카테고리로 그루핑.
-  # 값 좌측 상태: ✅ API 확인 · ⚠️ 문서 기재만 · 🎨 팔레트(원자)
+  # Figma Color 가이드(296:3042) · 로컬 변수 3층 그대로 (2026-11-04 대조)
+  #   _Primitive (발행 숨김) → _Theme (발행 숨김) → Semantic (컴포넌트가 묶는 층)
+  # key = Figma 변수 이름 (오타 sencondary · primay · balck · quarternary · disable 유지)
+  # 값 뒤 "→" = 그 변수가 가리키는 변수
   # ═══════════════════════════════════════════════════════════════
 
-  # ─── color/brand/* — 브랜드 ────────────────────────────────
-  brand:
-    "color/brand/primary":   "#805AE9"   # ✅ CTA · 강조 전용 (= purple-500)
-    "color/brand/secondary": "#F4F0FD"   # ⚠️ 브랜드 배지 배경 (= purple-100)
-    "color/brand/tertiary":  "#F8F6FE"   # ⚠️ 브랜드 약 배경 (= purple-50)
-
-  # ─── color/base/* — 기본 흑백 및 관찰된 base 계열 ─────────
-  base:
-    "color/black":     "#000000"   # ⚠️
-    "color/white":     "#FFFFFF"   # ⚠️
-    "black":           "#000000"   # ✅ (raw alias)
-    "white":           "#FFFFFF"   # ✅ (raw alias)
-    "brand":           "#805AE9"   # ✅ (raw alias)
-    "color/base/brand-primary": "#805AE9"   # ✅ (관측)
-    "color/brand-secondary":    "#F4F0FD"   # ✅ (dash 명명 - slash "color/brand/secondary"와 병행)
-    "base/green":      "#1CCEA5"   # ✅ 로고 accent 등
-    "base/bg_brand":   "#F4F0FD"   # ✅ Banner에서 관측 - 브랜드 옅은 배경
-    "base/bg_02":      "#F8F9FB"   # ✅ background/secondary alias
-    "base/gray-300":   "#DDDDDD"   # ✅
-    "base/gray-700":   "#666666"   # ✅
-    "base/gray-800":   "#333333"   # ✅
-    "color/gray-tertiary":   "#999999"   # ✅ (관측 - legacy 명명)
-    "color/gray-quaternary": "#DDDDDD"   # ✅ (관측 - legacy 명명)
-    # ⚠️ 아래는 정리(제거) 예정일 가능성 - Figma에 "제거" 접두어 관측
-    # "opecity/--제거/--black-65": "#000000A6"   # ⚠️ opecity 오타 + 제거 대상
-
-  # ─── color/font/* — 텍스트 색 ─────────────────────────────
-  font:
-    "color/font/primary":     "#000000"   # ✅ 본문 최상위
-    "color/font/secondary":   "#333333"   # ✅ 서브 텍스트
-    "color/font/tertiary":    "#666666"   # ✅ 부가·설명
-    "color/font/quaternary":  "#999999"   # ✅ 힌트·비활성 라벨
-    "color/font/placeholder": "#999999"   # ✅ Input placeholder (quaternary와 값 동일)
-    "color/font/error":       "#FF364B"   # ✅ 오류 문구
-    "color/font/brand":       "#805AE9"   # ✅ 브랜드 강조 텍스트
-    "color/font/white":       "#FFFFFF"   # ✅ 채움 CTA 위 흰 텍스트
-
-  # ─── color/neutral/* — 그레이스케일 위계 ──────────────────
-  neutral:
-    "color/neutral/primary":    "#333333"   # ⚠️ = gray-800
-    "color/neutral/secondary":  "#666666"   # ⚠️ = gray-700
-    "color/neutral/tertiary":   "#999999"   # ⚠️ = gray-500
-    "color/neutral/quaternary": "#DDDDDD"   # ⚠️ = gray-300
-
-  # ─── color/background/* — 배경 ────────────────────────────
-  background:
-    "color/background/primary":      "#FFFFFF"   # ✅ 기본 화면
-    "color/background/secondary":    "#F8F9FB"   # ✅ 회색 카드 배경 (= coolgray-50)
-    "color/background/tertiary":     "#F8F6FE"   # ⚠️ 브랜드 약 배경 (= purple-50)
-    "color/background/button-brand": "#805AE9"   # ✅ 채움 CTA 배경
-    "color/background/brand":        "#805AE9"   # ✅ Bubble tooltip Brand type
-    "color/background/dimed":        "#000000A3"   # ✅ Popup dim overlay (~64%)
-
-  # ─── color/surface/* — 신규 명명 규칙 (관측됨) ────────────
-  surface:
-    "color-surface-background-banner-brand": "#F8F6FE"   # ✅ (신규 명명 - 병행 존재 확인)
-
-  # ─── 관측된 legacy raw 이름 (숫자·화면상 그대로) ──────────
-  legacyRaw:
-    "000":         "#000000"   # ✅ (관측 - deprecated 사용 지양)
-    "333":         "#333333"   # ✅
-    "666":         "#666666"   # ✅
-    "Primary/000": "#000000"   # ✅
-    "Primary/BG_01": "#FFFFFF" # ✅
-    "BG_02":       "#F6F6FA"   # ✅ (⚠️ color/background/secondary #F8F9FB와 다른 값 — legacy alt)
-    "Line_02":     "#EEEEEE"   # ✅
-    "UI_Error":    "#FF364B"   # ✅
-    "Subcolor/redFF364D": "#FF364B"   # ✅ (⚠️ 이름에 hex FF364D 오기재 - 실 값은 FF364B)
-
-  # ─── color/button/* — 버튼 색조 별칭 ─────────────────────
-  button:
-    "color/button/secondary":   "#F4F0FD"   # ✅ Brand_Light 채움
-    "color/button/tertiary":    "#DDDDDD"   # ✅ Gray_Line 아웃라인
-    "color/button/quarternary": "#999999"   # ✅ ⚠️ Figma 원본 오타 "quarternary" 그대로 유지
-    "color/button/white":       "#FFFFFF"   # ✅
-
-  # ─── color/border/* — 테두리 ──────────────────────────────
-  border:
-    "color/border/default": "#DDDDDD"   # ✅ Input·Select 기본 테두리
-    "color/border/focus":   "#805AE9"   # ✅ Focus·Active·Selected 테두리
-    "color/border/brand":   "#805AE9"   # ✅ Bubble tooltip Brand type border
-    "color/border/primay":  "#0000000F" # ✅ ⚠️ Figma 오타 "primay" (primary 아님) — 값은 divider/primary와 동일
-    "color/border/error":   "#FF364B"   # ✅ Error 상태 테두리
-
-  # ─── color/icon/* — 아이콘 색조 ──────────────────────────
-  icon:
-    "color/icon/secondary":    "#333333"   # ✅ 기본 아이콘
-    "color/icon/tertiary":     "#666666"   # ✅ 서브 아이콘
-    "color/icon/quaternary":   "#999999"   # ✅ 비활성·힌트
-    "color/icon/quinary":      "#DDDDDD"   # ✅ 매우 옅은 아이콘 (clear 원형 배경 등)
-    "color/icon/brand":        "#805AE9"   # ✅ 브랜드 아이콘
-    "color/icon/white":        "#FFFFFF"   # ✅ 채움 배경 위 흰 아이콘
-    "color/icon/accent-red":   "#FF364B"   # ✅ 오류 아이콘
-    "color/icon/accent-green": "#1CCEA5"   # ✅ 성공 아이콘
-    "color/icon/accent-blue":  "#589CF6"   # ✅ 정보 아이콘
-    "color/icon/primary":      "#000000"   # ✅ 기본 아이콘 검정
-
-  # ─── color/divider/* — 구분선 ─────────────────────────────
-  divider:
-    "color/divider/primary":   "#0000000F"   # ✅ black 6%
-    "color/divider/secondary": "#00000014"   # ✅ black 8%
-    "color/divider/tertiary":  "#0000001F"   # ⚠️ black 12%
-    "color/divider/white":     "#FFFFFF"     # ⚠️
-
-  # ─── color/accent/* — 상태 색상 ───────────────────────────
-  # ⚠️ 주의: accent 계열은 실 컴포넌트에서 color/icon/accent-red|green|blue로 관측됨.
-  # color/accent/* 이름 자체는 Figma 변수로 등록되어 있지 않음 (Foundation 페이지 기재용 이름).
-  accent:
-    "color/accent/primary":   "#FF364B"   # ⚠️ 오류·취소 (= red-500) — 실사용은 color/icon/accent-red
-    "color/accent/secondary": "#589CF6"   # ⚠️ 정보 (= blue-500) — 실사용은 color/icon/accent-blue
-    "color/accent/tertiary":  "#1CCEA5"   # ⚠️ 성공 (= green-500) — 실사용은 color/icon/accent-green
-
-  # ─── color/label/* — 라벨 색상 (관측됨) ─────────────────
-  label:
-    "color/label/white":            "#FFFFFF"   # ✅
-    "color/label/neutral-tertiary": "#999999"   # ✅
-    "color/label/neutral-secondary": "#666666"  # ✅
-
-  # ─── color/gradient/* — 그라디언트 ────────────────────
-  gradient:
-    "color/gradient/primary":   ["#804EE2", "#526ED3"]   # ⚠️ 보라 → 청보라
-    "color/gradient/secondary": ["#00BB5A", "#5978EA"]   # ⚠️ 초록 → 파랑
-    "color/gradient/tertiary":  ["#FF364B", "#FF1493"]   # ⚠️ 레드 → 핑크
-    # "gradient/primary":       ""   # ✅ (Button에서 관측 - 값 empty로 노출)
-
-  # ─── color/banner/* — 배너 파스텔 배경 ──────────────────
-  # 아래 hex는 Figma 변수 기본값. 실제 배너는 브랜드 색조(H)에 맞춰 명도(L) 85~95% 범위 안에서 조정해 사용 (채도 S는 고정값 없음).
-  banner:
-    "color/banner/brand":  "#F8F6FE"   # ⚠️ (= purple-50)
-    "color/banner/gray":   "#F8F9FB"   # ⚠️ (= coolgray-50)
-    "color/banner/blue":   "#F0F6FE"   # ⚠️ (= blue-50)
-    "color/banner/green":  "#EFFCF9"   # ⚠️ (= green-50)
-    "color/banner/yellow": "#FFFBDF"   # ✅
-    "color/banner/pink":   "#FFEFF1"   # ⚠️ (= red-50)
-
-  # ═══════════════════════════════════════════════════════════════
-  # 🎨 Palette (원자 토큰 — 50 → 900, 9단계)
-  # ⚠️ Figma variable로 등록 확인 안 됨 (Foundation 문서 페이지에만 기재).
-  # semantic 토큰이 없을 때만 직접 참조하며, 코드에서 palette 이름으로
-  # variable 조회 시 실패할 가능성 있음.
-  # ═══════════════════════════════════════════════════════════════
+  # ─── _Primitive — Color Palette (가이드 7계열 × 10단계) ─────────
   palette:
-    purple:
-      "50":  "#F8F6FE"
-      "100": "#F4F0FD"
-      "200": "#ECE6FC"
-      "300": "#BFADF4"
-      "400": "#997BED"
-      "500": "#805AE9"   # ★ = color/brand/primary
-      "600": "#6648BA"
-      "700": "#523A95"
-      "800": "#33245D"
-      "900": "#1B1138"
-    red:
-      "50":  "#FFEFF1"
-      "100": "#FFE2E5"
-      "200": "#FFCCD1"
-      "300": "#FF9BA5"
-      "400": "#FF5E6F"
-      "500": "#FF364B"   # ★ = color/accent/primary, color/font/error
-      "600": "#CC2B3C"
-      "700": "#99202D"
-      "800": "#59131A"
-      "900": "#330B0F"
-    blue:
-      "50":  "#F0F6FE"
-      "100": "#E6F0FE"
-      "200": "#D5E6FD"
-      "300": "#B9D6FB"
-      "400": "#8ABAF9"
-      "500": "#589CF6"   # ★ = color/accent/secondary
-      "600": "#4F8CDD"
-      "700": "#3965A0"
-      "800": "#233E62"
-      "900": "#121F31"
-    green:
-      "50":  "#EFFCF9"
-      "100": "#DEF8F2"
-      "200": "#C8F3E9"
-      "300": "#A4EBDB"
-      "400": "#77E2C9"
-      "500": "#1CCEA5"   # ★ = color/accent/tertiary, base/green
-      "600": "#159A7C"
-      "700": "#0D634F"
-      "800": "#083E31"
-      "900": "#041F19"
-    yellow:
-      "50":  "#FFFBDF"   # ★ = color/banner/yellow
-      "100": "#FEF9C3"
-      "200": "#FEF08A"
-      "300": "#FDE047"
-      "400": "#FACC15"
-      "500": "#EAB308"
-      "600": "#CA8A04"
-      "700": "#A16207"
-      "800": "#764004"
-      "900": "#462304"
-    gray:
-      "50":  "#F8F8F8"
-      "100": "#F4F4F4"
-      "200": "#EEEEEE"
-      "300": "#DDDDDD"   # ★ = color/neutral/quaternary, color/border/default
-      "400": "#BDBDBD"
-      "500": "#999999"   # ★ = color/neutral/tertiary, color/font/placeholder
-      "600": "#757575"
-      "700": "#666666"   # ★ = color/neutral/secondary, color/font/tertiary
-      "800": "#333333"   # ★ = color/neutral/primary, color/font/secondary
-      "900": "#1C1C1C"
-    coolgray:
-      "50":  "#F8F9FB"   # ★ = color/background/secondary, color/banner/gray
-      "100": "#F0F1F3"
-      "200": "#DADDE0"
-      "300": "#C7CBD0"
-      "400": "#A9AEB5"
-      "500": "#92989D"
-      "600": "#6E7276"
-      "700": "#585B5E"
-      "800": "#333537"
-      "900": "#1D1E1F"
+    purple:   { "50": "#F8F6FE", "100": "#F4F0FD", "200": "#ECE6FC", "300": "#BFADF4", "400": "#997BED", "500": "#805AE9", "600": "#6648BA", "700": "#523A95", "800": "#33245D", "900": "#1B1138" }
+    red:      { "50": "#FFEFF1", "100": "#FFE2E5", "200": "#FFCCD1", "300": "#FF9BA5", "400": "#FF5E6F", "500": "#FF364B", "600": "#CC2B3C", "700": "#99202D", "800": "#59131A", "900": "#330B0F" }
+    blue:     { "50": "#F0F6FE", "100": "#E6F0FE", "200": "#D5E6FD", "300": "#B9D6FB", "400": "#8ABAF9", "500": "#589CF6", "600": "#4F8CDD", "700": "#3965A0", "800": "#233E62", "900": "#121F31" }
+    green:    { "50": "#EFFCF9", "100": "#DEF8F2", "200": "#C8F3E9", "300": "#A4EBDB", "400": "#77E2C9", "500": "#1CCEA5", "600": "#159A7C", "700": "#0D634F", "800": "#083E31", "900": "#041F19" }
+    yellow:   { "50": "#FFFBDF", "100": "#FEF9C3", "200": "#FEF08A", "300": "#FDE047", "400": "#FACC15", "500": "#EAB308", "600": "#CA8A04", "700": "#A16207", "800": "#764004", "900": "#462304" }
+    gray:     { "50": "#F8F8F8", "100": "#F4F4F4", "200": "#EEEEEE", "300": "#DDDDDD", "400": "#BDBDBD", "500": "#999999", "600": "#757575", "700": "#666666", "800": "#333333", "900": "#1C1C1C" }
+    coolgray: { "50": "#F8F9FB", "100": "#F0F1F3", "200": "#DADDE0", "300": "#C7CBD0", "400": "#A9AEB5", "500": "#92989D", "600": "#6E7276", "700": "#585B5E", "800": "#333537", "900": "#1D1E1F" }
+    "color/black": "#000000"
+    "color/white": "#FFFFFF"
+
+  # ─── _Theme — 주조색과 보조색 ───────────────────────────────
+  theme:
+    "color/brand/primary":      "#805AE9"   # → color/purple/500
+    "color/brand/sencondary":   "#F4F0FD"   # → color/purple/100
+    "color/brand/tertiary":     "#F8F6FE"   # → color/purple/50
+    "color/neutral/primary":    "#333333"   # → color/gray/800
+    "color/neutral/sencondary": "#666666"   # → color/gray/700
+    "color/neutral/tertiary":   "#999999"   # → color/gray/500
+    "color/neutral/quaternary": "#DDDDDD"   # → color/gray/300
+    "color/neutral/quinary":    "#EEEEEE"   # → color/gray/200   (가이드 밖)
+    "color/neutral/senary":     "#F0F1F3"   # → color/coolgray/100 (가이드 밖)
+    "color/neutral/septenary":  "#F8F9FB"   # → color/coolgray/50  (가이드 밖)
+    "color/accent/primary":     "#FF364B"   # → color/red/500
+    "color/accent/sencondary":  "#589CF6"   # → color/blue/500
+    "color/accent/tertiary":    "#1CCEA5"   # → color/green/500
+    "color/black":              "#000000"   # → color/black
+    "color/white":              "#FFFFFF"   # → color/white
+    # opacity/black-{0,4,6,8,12,16,24,32,40,64,100} · opacity/white-{0,4,6,8,12,16,24,32,40,64,100}
+    #   = 검정 · 흰색에 그 % 알파 (예: opacity/black-64 = #000000A3)
+
+  # ─── gradient — paint 스타일 (변수 아님) ────────────────────
+  gradient:
+    "gradient/primary":     ["#804EE2", "#526ED3"]   # 왼 → 오른쪽
+    "gradient/secondary":   ["#00BB5A", "#5978EA"]   # 왼 → 오른쪽
+    "gradient/tertiary":    ["#FF364B", "#FF1493"]   # 대각선
+    "gradient/quarternary": ["#CF75FF", "#805AE9"]   # 가이드 밖
+
+  # ─── Semantic — 컴포넌트가 묶는 변수 ─────────────────────────
+  font:
+    "color/font/primary":      "#000000"   # → color/black
+    "color/font/secondary":    "#333333"   # → color/neutral/primary
+    "color/font/tertiary":     "#666666"   # → color/neutral/sencondary
+    "color/font/quaternary":   "#999999"   # → color/neutral/tertiary
+    "color/font/quinary":      "#DDDDDD"   # → color/neutral/quaternary
+    "color/font/placeholder":  "#999999"   # → color/neutral/tertiary
+    "color/font/brand":        "#805AE9"   # → color/brand/primary
+    "color/font/white":        "#FFFFFF"   # → color/white
+    "color/font/error":        "#FF364B"   # → color/accent/primary
+    "color/font/accent-red":   "#FF364B"   # → color/accent/primary
+    "color/font/accent-blue":  "#589CF6"   # → color/accent/sencondary
+    "color/font/accent-green": "#1CCEA5"   # → color/accent/tertiary
+  background:
+    "color/background/primary":    "#FFFFFF"     # → color/white
+    "color/background/secondary":  "#F8F9FB"     # → color/neutral/septenary
+    "color/background/tertiary":   "#F8F6FE"     # → color/brand/tertiary
+    "color/background/quaternary": "#F0F1F3"     # → color/neutral/senary
+    "color/background/brand":      "#805AE9"     # → color/brand/primary
+    "color/background/disabled":   "#F8F9FB"     # → color/neutral/septenary
+    "color/background/dimed":      "#000000A3"   # → opacity/black-64
+  border:
+    "color/border/primay":    "#0000000F"   # → opacity/black-6   (Figma 오타 primay)
+    "color/border/secondary": "#00000014"   # → opacity/black-8
+    "color/border/tertiary":  "#0000001F"   # → opacity/black-12
+    "color/border/default":   "#DDDDDD"     # → color/neutral/quaternary
+    "color/border/disable":   "#DDDDDD"     # → color/neutral/quaternary
+    "color/border/focus":     "#805AE9"     # → color/brand/primary
+    "color/border/brand":     "#805AE9"     # → color/brand/primary
+    "color/border/error":     "#FF364B"     # → color/accent/primary
+    "color/border/balck":     "#000000"     # → color/black   (Figma 오타 balck)
+    "color/border/white":     "#FFFFFF"     # → color/white
+  divider:
+    "color/divider/primary":   "#0000000F"   # → opacity/black-6
+    "color/divider/secondary": "#00000014"   # → opacity/black-8
+    "color/divider/tertiary":  "#0000001F"   # → opacity/black-12
+    "color/divider/brand":     "#805AE9"     # → color/brand/primary
+    "color/divider/white":     "#FFFFFF"     # → color/white
+  icon:
+    "color/icon/primary":      "#000000"   # → color/black
+    "color/icon/secondary":    "#333333"   # → color/neutral/primary
+    "color/icon/tertiary":     "#666666"   # → color/neutral/sencondary
+    "color/icon/quaternary":   "#999999"   # → color/neutral/tertiary
+    "color/icon/quinary":      "#DDDDDD"   # → color/neutral/quaternary
+    "color/icon/senary":       "#F0F1F3"   # → color/neutral/senary
+    "color/icon/brand":        "#805AE9"   # → color/brand/primary
+    "color/icon/white":        "#FFFFFF"   # → color/white
+    "color/icon/accent-red":   "#FF364B"   # → color/accent/primary
+    "color/icon/accent-blue":  "#589CF6"   # → color/accent/sencondary
+    "color/icon/accent-green": "#1CCEA5"   # → color/accent/tertiary
+    "color/icon/guide":        "#FF364B"   # → color/accent/primary
+  button:
+    "color/button/primary":     "#805AE9"     # → color/brand/primary
+    "color/button/secondary":   "#F4F0FD"     # → color/brand/sencondary
+    "color/button/tertiary":    "#DDDDDD"     # → color/neutral/quaternary
+    "color/button/quarternary": "#999999"     # → color/neutral/tertiary   (Figma 오타 quarternary)
+    "color/button/quinary":     "#F8F9FB"     # → color/neutral/septenary
+    "color/button/white":       "#FFFFFF"     # → color/white
+    "color/button/pressed":     "#0000001F"   # → opacity/black-12
+  label:
+    "color/label/brand-primary(gradient)": "#805AE9"   # 단색 값 (이름만 gradient)
+    "color/label/brand-secondary":    "#805AE9"   # → color/brand/primary
+    "color/label/brand-tertiary":     "#F4F0FD"   # → color/brand/sencondary
+    "color/label/brand-quaternary":   "#F8F6FE"   # → color/brand/tertiary
+    "color/label/neutral-primary":    "#333333"   # → color/neutral/primary
+    "color/label/neutral-secondary":  "#666666"   # → color/neutral/sencondary
+    "color/label/neutral-tertiary":   "#999999"   # → color/neutral/tertiary
+    "color/label/neutral-quaternary": "#DDDDDD"   # → color/neutral/quaternary
+    "color/label/neutral-quinary":    "#F8F9FB"   # → color/neutral/septenary
+    "color/label/accent-red":         "#FF364B"   # → color/accent/primary
+    "color/label/accent-blue":        "#589CF6"   # → color/accent/sencondary
+    "color/label/accent-green":       "#1CCEA5"   # → color/accent/tertiary
+    "color/label/white":              "#FFFFFF"   # → color/white
+  banner:
+    "color/banner/brand":  "#F8F6FE"   # → color/purple/50
+    "color/banner/gray":   "#F8F9FB"   # → color/coolgray/50
+    "color/banner/blue":   "#F0F6FE"   # → color/blue/50
+    "color/banner/green":  "#EFFCF9"   # → color/green/50
+    "color/banner/yellow": "#FFFBDF"   # → color/yellow/50
+    "color/banner/pink":   "#FFEFF1"   # → color/red/50
+    "color/banner/toast":  "#333333"   # → color/neutral/primary
+  progress:
+    "color/progress/bar":    "#DDDDDD"   # → color/neutral/quaternary
+    "color/progress/status": "#805AE9"   # → color/brand/primary
+  "opacity/pressed": "#0000000F"         # → opacity/black-6
 
 typography:
   # ═══════════════════════════════════════════════════════════════
@@ -481,226 +385,104 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 ## Colors
 
-컬러는 **의미 기반(semantic) 토큰**과 **원자(palette) 토큰** 두 층으로 구성됩니다.
-화면 제작 시에는 반드시 **의미 기반 토큰을 우선**하고, 원자 토큰은 의미 토큰이 없는 경우에만 직접 참조합니다.
+> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Color 가이드 (node 296:3042) — 2026-11-04 가이드 · 변수 기준으로 다시 맞춤
 
-> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Color Guide (node 296:3042)
-> **토큰 이름은 Figma variable 원본 그대로** 표기합니다 (예: `color/font/tertiary`). `get_variable_defs` 반환값과 1:1 매칭.
-> **⚠️ Figma 원본 오타** — `color/button/quarternary` (실제 quaternary) 등은 원본명 그대로 유지 (수정 시 매칭 실패).
+색상은 서비스 정체성을 표현하는 매우 강력한 요소이므로 아래 가이드라인을 명확히 인지하고 사용하도록 합니다. 특히 브랜드 컬러는 코나카드와 연계된 모든 서비스에 공통으로 적용되는 요소이므로 임의로 추가하거나 변경할 수 없습니다.
 
-### 1) Brand — `color/brand/*`
+색 변수는 **세 층**입니다. 화면·컴포넌트는 맨 아래 **Semantic** 층을 묶어 씁니다.
 
-| 토큰 | Hex | Palette | 용도 |
-|------|-----|---------|------|
-| `color/brand/primary` | `#805AE9` | purple-500 | 유일한 액션 컬러 — CTA, 강조, 링크 |
-| `color/brand/secondary` | `#F4F0FD` | purple-100 | 브랜드 배지/태그 배경 |
-| `color/brand/tertiary` | `#F8F6FE` | purple-50 | 브랜드 약 배경, 카드 배경 |
+| 층 | Figma 컬렉션 | 발행 | 내용 |
+|---|---|---|---|
+| Palette | `_Primitive` | 숨김 | `color/{purple · red · blue · green · yellow · gray · coolgray}/50~900`, `color/black` · `color/white` |
+| 주조색과 보조색 | `_Theme` | 숨김 | `color/brand · neutral · accent/*`, `opacity/black-* · white-*` |
+| Semantic | `Semantic` | 발행 | `color/font · background · border · divider · icon · button · label · banner · progress/*`, `opacity/pressed` |
 
-### 2) Base & Font — `color/black`, `color/white`, `color/font/*`
+> **이름은 Figma 그대로** — `sencondary`(brand · neutral · accent), `primay`(border), `balck`(border), `quarternary`(button), `disable`(border) 오타도 유지 (수정하면 매칭 실패). CSS 는 `/` → `-` (`color/brand/sencondary` → `--color-brand-sencondary`).
 
-| 토큰 | Hex | 용도 |
-|------|-----|------|
-| `color/black` | `#000000` | 최상위 컨트라스트 |
-| `color/white` | `#FFFFFF` | 기본 화면/카드 배경 |
-| `color/font/primary` | `#000000` | 본문/타이틀 기본 텍스트 |
-| `color/font/secondary` | `#333333` | 서브 텍스트, 캡션 |
-| `color/font/tertiary` | `#666666` | 부가·설명 텍스트 |
-| `color/font/quaternary` | `#999999` | 힌트·비활성 라벨 |
-| `color/font/placeholder` | `#999999` | Input placeholder (quaternary와 값 동일) |
-| `color/font/brand` | `#805AE9` | 브랜드 강조 텍스트 |
-| `color/font/error` | `#FF364B` | 오류 문구 |
-| `color/font/white` | `#FFFFFF` | 채움 CTA 위 흰 텍스트 |
-| `base/green` | `#1CCEA5` | (관측) 로고 accent 등 |
-| `base/bg_brand` | `#F4F0FD` | (관측) 배너 브랜드 옅은 배경 |
+### Color Palette
 
-### 3) Neutral (텍스트·아이콘 위계) — `color/neutral/*`
+| 계열 | 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| purple | `#F8F6FE` | `#F4F0FD` | `#ECE6FC` | `#BFADF4` | `#997BED` | **`#805AE9`** | `#6648BA` | `#523A95` | `#33245D` | `#1B1138` |
+| red | `#FFEFF1` | `#FFE2E5` | `#FFCCD1` | `#FF9BA5` | `#FF5E6F` | **`#FF364B`** | `#CC2B3C` | `#99202D` | `#59131A` | `#330B0F` |
+| blue | `#F0F6FE` | `#E6F0FE` | `#D5E6FD` | `#B9D6FB` | `#8ABAF9` | **`#589CF6`** | `#4F8CDD` | `#3965A0` | `#233E62` | `#121F31` |
+| green | `#EFFCF9` | `#DEF8F2` | `#C8F3E9` | `#A4EBDB` | `#77E2C9` | **`#1CCEA5`** | `#159A7C` | `#0D634F` | `#083E31` | `#041F19` |
+| yellow | `#FFFBDF` | `#FEF9C3` | `#FEF08A` | `#FDE047` | `#FACC15` | `#EAB308` | `#CA8A04` | `#A16207` | `#764004` | `#462304` |
+| gray | `#F8F8F8` | `#F4F4F4` | `#EEEEEE` | **`#DDDDDD`** | `#BDBDBD` | **`#999999`** | `#757575` | **`#666666`** | **`#333333`** | `#1C1C1C` |
+| coolgray | **`#F8F9FB`** | `#F0F1F3` | `#DADDE0` | `#C7CBD0` | `#A9AEB5` | `#92989D` | `#6E7276` | `#585B5E` | `#333537` | `#1D1E1F` |
 
-| 토큰 | Hex | Palette | 위계 |
-|------|-----|---------|------|
-| `color/neutral/primary` | `#333333` | gray-800 | 1차 — 본문 텍스트 |
-| `color/neutral/secondary` | `#666666` | gray-700 | 2차 — 보조 텍스트 |
-| `color/neutral/tertiary` | `#999999` | gray-500 | 3차 — 플레이스홀더, 비활성 |
-| `color/neutral/quaternary` | `#DDDDDD` | gray-300 | 4차 — 비활성 배경, 약구분 |
+굵게 = 주조색·보조색이 가리키는 단계. 값은 변수 기준 (가이드 글자와 다른 곳은 아래 ⚠ 참고).
 
-### 4) Background / Surfaces — `color/background/*`
+### 주조색과 보조색
 
-| 토큰 | Hex | Palette | 용도 |
-|------|-----|---------|------|
-| `color/background/primary` | `#FFFFFF` | white | 기본 화면 |
-| `color/background/secondary` | `#F8F9FB` | coolgray-50 | 섹션 분리, 카드 그룹 배경 |
-| `color/background/tertiary` | `#F8F6FE` | purple-50 | 브랜드 영역 약배경 |
-| `color/background/button-brand` | `#805AE9` | purple-500 | 채움 CTA 배경 |
-| `color/background/brand` | `#805AE9` | purple-500 | Bubble tooltip Brand type |
-| `color/background/dimed` | `#000000A3` | — | Popup 배경 dim overlay (~64%) |
-| `color-surface-background-banner-brand` | `#F8F6FE` | purple-50 | (신규 명명 - 병행 존재) |
+색상은 그 자체로 브랜드 정체성을 만들며, 정보의 질서와 위계를 수립하여 사용자가 더욱 쉽고 빠르게 정보를 습득할 수 있도록 돕습니다.
 
-### 5) Button 색조 별칭 — `color/button/*`
+| 가이드 묶음 | 이름 | 팔레트 · 값 | Figma 변수 |
+|---|---|---|---|
+| brand | primary | purple-500 · `#805AE9` | `color/brand/primary` |
+| | secondary | purple-100 · `#F4F0FD` | `color/brand/sencondary` |
+| | tertiary | purple-50 · `#F8F6FE` | `color/brand/tertiary` |
+| black & white | black | `#000000` | `color/black` |
+| | white | `#FFFFFF` | `color/white` |
+| neutral | primary | gray-800 · `#333333` | `color/neutral/primary` |
+| | secondary | gray-700 · `#666666` | `color/neutral/sencondary` |
+| | tertiary | gray-500 · `#999999` | `color/neutral/tertiary` |
+| | quaternary | gray-300 · `#DDDDDD` | `color/neutral/quaternary` |
+| background / surfaces | primary | white · `#FFFFFF` | `color/background/primary` |
+| | secondary | coolgray-50 · `#F8F9FB` | `color/background/secondary` |
+| | tertiary | purple-50 · `#F8F6FE` | `color/background/tertiary` |
+| line & divider | primary | black 6% | `color/divider/primary` |
+| | secondary | black 8% | `color/divider/secondary` |
+| | tertiary | black 12% | `color/divider/tertiary` |
+| | white | `#FFFFFF` | `color/divider/white` |
+| accent | primary | red-500 · `#FF364B` | `color/accent/primary` |
+| | secondary | blue-500 · `#589CF6` | `color/accent/sencondary` |
+| | tertiary | green-500 · `#1CCEA5` | `color/accent/tertiary` |
+| gradient | primary | `#804EE2` → `#526ED3` | paint 스타일 `gradient/primary` |
+| | secondary | `#00BB5A` → `#5978EA` | `gradient/secondary` |
+| | tertiary | `#FF364B` → `#FF1493` | `gradient/tertiary` |
+| background / banner | brand | purple-50 · `#F8F6FE` | `color/banner/brand` |
+| | gray | coolgray-50 · `#F8F9FB` | `color/banner/gray` |
+| | blue | blue-50 · `#F0F6FE` | `color/banner/blue` |
+| | green | green-50 · `#EFFCF9` | `color/banner/green` |
+| | yellow | yellow-50 · `#FFFBDF` | `color/banner/yellow` |
+| | pink | red-50 · `#FFEFF1` | `color/banner/pink` |
 
-| 토큰 | Hex | 용도 |
-|------|-----|------|
-| `color/button/secondary` | `#F4F0FD` | Brand_Light 채움 |
-| `color/button/tertiary` | `#DDDDDD` | Gray_Line 아웃라인 |
-| `color/button/quarternary` | `#999999` | ⚠️ 오타 그대로 (quaternary 아님) — 비활성 텍스트 |
-| `color/button/white` | `#FFFFFF` | 흰 채움 |
+가이드 밖 `_Theme` 변수: `color/neutral/quinary` gray-200 `#EEEEEE` · `color/neutral/senary` coolgray-100 `#F0F1F3` · `color/neutral/septenary` coolgray-50 `#F8F9FB`, `opacity/black-*` · `opacity/white-*` (0 · 4 · 6 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 100%). 가이드 밖 paint 스타일: `gradient/quarternary` `#CF75FF` → `#805AE9`.
 
-### 6) Border — `color/border/*`
+> ⚠ **가이드 글자가 변수 값과 다른 곳** (견본 색은 변수라 맞음, 적힌 글자만 다름 — 2026-11-04 기준)
+> - coolgray-100 `#DADDE0` / coolgray-200 `#E9ECEF` 로 적힘 → 변수는 `#F0F1F3` / `#DADDE0`
+> - red-200 `#FFC3C9` → 변수 `#FFCCD1`
+> - yellow-900 `#532903` → 변수 `#462304`
+> - line & divider secondary `#1400000` (자릿수 빠짐) → `#14000000`
+> - background / banner pink `rgb 254 234 241` → `#FFEFF1` = rgb 255 239 241
 
-| 토큰 | Hex | 용도 |
-|------|-----|------|
-| `color/border/default` | `#DDDDDD` | Input·Select 기본 테두리 |
-| `color/border/focus` | `#805AE9` | Focus·Active·Selected 테두리 |
-| `color/border/brand` | `#805AE9` | Bubble tooltip Brand type border |
-| `color/border/primay` | `#0000000F` | ⚠️ **Figma 오타 "primay"** (primary 아님, 값은 divider/primary와 동일) |
+### Semantic 변수 (가이드 밖 — 컴포넌트가 묶는 층)
 
-### 7) Icon — `color/icon/*`
+| 묶음 | 변수 → 가리키는 곳 |
+|---|---|
+| `color/font` | primary → black · secondary → neutral/primary · tertiary → neutral/sencondary · quaternary → neutral/tertiary · quinary → neutral/quaternary · placeholder → neutral/tertiary · brand → brand/primary · white · error → accent/primary · accent-red / accent-blue / accent-green → accent/primary · sencondary · tertiary |
+| `color/background` | primary → white · secondary → neutral/septenary · tertiary → brand/tertiary · quaternary → neutral/senary · brand → brand/primary · disabled → neutral/septenary · dimed → opacity/black-64 |
+| `color/border` | primay → black 6% · secondary → black 8% · tertiary → black 12% · default · disable → neutral/quaternary · focus · brand → brand/primary · error → accent/primary · balck → black · white |
+| `color/divider` | primary → black 6% · secondary → black 8% · tertiary → black 12% · brand → brand/primary · white |
+| `color/icon` | primary → black · secondary → neutral/primary · tertiary → neutral/sencondary · quaternary → neutral/tertiary · quinary → neutral/quaternary · senary → neutral/senary · brand · white · accent-red / accent-blue / accent-green · guide → accent/primary |
+| `color/button` | primary → brand/primary · secondary → brand/sencondary · tertiary → neutral/quaternary · quarternary → neutral/tertiary · quinary → neutral/septenary · white · pressed → black 12% |
+| `color/label` | brand-primary(gradient) `#805AE9`(단색) · brand-secondary → brand/primary · brand-tertiary → brand/sencondary · brand-quaternary → brand/tertiary · neutral-primary ~ neutral-quaternary → neutral/primary ~ quaternary · neutral-quinary → neutral/septenary · accent-red / blue / green · white |
+| `color/banner` | brand · gray · blue · green · yellow · pink (위 표) · toast → neutral/primary `#333333` |
+| `color/progress` | bar → neutral/quaternary · status → brand/primary |
+| `opacity/pressed` | → black 6% |
 
-| 토큰 | Hex | 용도 |
-|------|-----|------|
-| `color/icon/secondary` | `#333333` | 기본 아이콘 |
-| `color/icon/tertiary` | `#666666` | 서브 아이콘 |
-| `color/icon/quaternary` | `#999999` | 비활성·힌트 |
-| `color/icon/quinary` | `#DDDDDD` | 매우 옅은 아이콘 (clear 원형 배경 등) |
-| `color/icon/brand` | `#805AE9` | 브랜드 아이콘 |
-| `color/icon/white` | `#FFFFFF` | 채움 배경 위 흰 아이콘 |
-| `color/icon/accent-red` | `#FF364B` | 오류 아이콘 |
-| `color/icon/accent-green` | `#1CCEA5` | 성공 아이콘 |
-| `color/icon/accent-blue` | `#589CF6` | 정보 아이콘 |
-
-### 8) Line & Divider — `color/divider/*`
-
-| 토큰 | Value | 비고 |
-|------|-------|------|
-| `color/divider/primary` | `#000000` 6% (`#0000000F`) | 기본 구분선 — 리스트, 카드 |
-| `color/divider/secondary` | `#000000` 8% (`#00000014`) | 약간 진한 구분선 |
-| `color/divider/tertiary` | `#000000` 12% (`#0000001F`) | 강조 구분선, 입력 필드 |
-| `color/divider/white` | `#FFFFFF` | 다크/컬러 배경 위 구분선 |
-
-### 9) Accent (상태) — `color/accent/*`
-
-⚠️ **주의**: `color/accent/*` 이름 그대로는 Figma 변수로 등록되어 있지 않음 (문서 페이지 기재용 이름). 실 컴포넌트에서는 아래 표의 대체 토큰 사용.
-
-| 문서 토큰 | Hex | Palette | 의미 | 실사용 대체 (API 확인) |
-|------|-----|---------|------|------------------------|
-| `color/accent/primary` | `#FF364B` | red-500 | 오류, 취소, 경고 | `color/icon/accent-red`, `color/font/error`, `UI_Error` |
-| `color/accent/secondary` | `#589CF6` | blue-500 | 정보 | `color/icon/accent-blue` |
-| `color/accent/tertiary` | `#1CCEA5` | green-500 | 성공, 완료 | `color/icon/accent-green`, `base/green` |
-
-### 9-1) Label — `color/label/*`
-
-| 토큰 | Hex | 용도 |
-|------|-----|------|
-| `color/label/white` | `#FFFFFF` | Fill Label 위 흰 텍스트 |
-| `color/label/neutral-secondary` | `#666666` | Neutral 라벨 텍스트 |
-| `color/label/neutral-tertiary` | `#999999` | 옅은 라벨 텍스트 |
-
-### 10) Gradient — `color/gradient/*`
-
-| 토큰 | Start → End | 용도 |
-|------|-------------|------|
-| `color/gradient/primary` | `#804EE2` → `#526ED3` | 브랜드 강조 배너, 프리미엄 카드 |
-| `color/gradient/secondary` | `#00BB5A` → `#5978EA` | 보조 강조 |
-| `color/gradient/tertiary` | `#FF364B` → `#FF1493` | 이벤트, 프로모션 |
-
-### 11) Banner (정보 배너 약배경) — `color/banner/*`
-
-| 토큰 | Hex | Palette |
-|------|-----|---------|
-| `color/banner/brand` | `#F8F6FE` | purple-50 |
-| `color/banner/gray` | `#F8F9FB` | coolgray-50 |
-| `color/banner/blue` | `#F0F6FE` | blue-50 |
-| `color/banner/green` | `#EFFCF9` | green-50 |
-| `color/banner/yellow` | `#FFFBDF` | yellow-50 |
-| `color/banner/pink` | `#FFEFF1` | red-50 |
-
-### 12) Legacy / Alternate 이름 (관측됨)
-
-Figma 파일에는 시대별로 병행 사용되는 **legacy 이름**과 **raw 이름**이 남아있습니다. 신규 코드는 상단 `color/font/*`, `color/background/*`, `color/border/*` 등 정식 이름을 우선 사용하되, 컴포넌트 API 조회 시 아래 이름이 반환될 수 있음을 인지합니다.
-
-| Legacy 이름 | Hex | 정식 대체 (권장) |
-|---|---|---|
-| `black` | `#000000` | `color/black`, `color/font/primary` |
-| `white` | `#FFFFFF` | `color/white`, `color/background/primary` |
-| `brand` | `#805AE9` | `color/brand/primary` |
-| `color/base/brand-primary` | `#805AE9` | `color/brand/primary` |
-| `color/brand-secondary` | `#F4F0FD` | `color/brand/secondary` (dash 사용은 legacy) |
-| `base/bg_brand` | `#F4F0FD` | `color/brand/secondary` |
-| `base/bg_02` | `#F8F9FB` | `color/background/secondary` |
-| `base/gray-300` | `#DDDDDD` | `color/neutral/quaternary` |
-| `base/gray-700` | `#666666` | `color/neutral/secondary` |
-| `base/gray-800` | `#333333` | `color/neutral/primary` |
-| `color/gray-tertiary` | `#999999` | `color/neutral/tertiary` |
-| `color/gray-quaternary` | `#DDDDDD` | `color/neutral/quaternary` |
-| `000`, `Primary/000` | `#000000` | `color/font/primary` |
-| `333` | `#333333` | `color/font/secondary` |
-| `666` | `#666666` | `color/font/tertiary` |
-| `Primary/BG_01` | `#FFFFFF` | `color/background/primary` |
-| `BG_02` | `#F6F6FA` | ⚠️ `color/background/secondary`(#F8F9FB)와 다른 값 — 별개 legacy 자산 |
-| `Line_02` | `#EEEEEE` | (아이콘 페이지 구분선 등 legacy) |
-| `UI_Error` | `#FF364B` | `color/font/error` |
-| `Subcolor/redFF364D` | `#FF364B` | ⚠️ 이름에 `FF364D` 오기재 — 실 값은 `FF364B` |
-| `opecity/--제거/--black-65` | `#000000A6` | ⚠️ `opecity` 오타 + "제거" 접두어 → 사용 지양 (제거 예정) |
-
----
-
-### Color Palette (원자 토큰 — 9단계: 50 → 900)
-
-각 컬러 패밀리는 50(가장 옅음) ~ 900(가장 진함) 9단계로 구성됩니다.
-★ 표시는 의미 기반 토큰이 직접 참조하는 단계입니다.
-
-**purple** (브랜드 컬러)
-
-| 50 | 100 | 200 | 300 | 400 | 500 ★ | 600 | 700 | 800 | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#F8F6FE` | `#F4F0FD` | `#ECE6FC` | `#BFADF4` | `#997BED` | `#805AE9` | `#6648BA` | `#523A95` | `#33245D` | `#1B1138` |
-
-**red**
-
-| 50 | 100 | 200 | 300 | 400 | 500 ★ | 600 | 700 | 800 | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#FFEFF1` | `#FFE2E5` | `#FFCCD1` | `#FF9BA5` | `#FF5E6F` | `#FF364B` | `#CC2B3C` | `#99202D` | `#59131A` | `#330B0F` |
-
-**blue**
-
-| 50 | 100 | 200 | 300 | 400 | 500 ★ | 600 | 700 | 800 | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#F0F6FE` | `#E6F0FE` | `#D5E6FD` | `#B9D6FB` | `#8ABAF9` | `#589CF6` | `#4F8CDD` | `#3965A0` | `#233E62` | `#121F31` |
-
-**green**
-
-| 50 | 100 | 200 | 300 | 400 | 500 ★ | 600 | 700 | 800 | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#EFFCF9` | `#DEF8F2` | `#C8F3E9` | `#A4EBDB` | `#77E2C9` | `#1CCEA5` | `#159A7C` | `#0D634F` | `#083E31` | `#041F19` |
-
-**yellow**
-
-| 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#FFFBDF` | `#FEF9C3` | `#FEF08A` | `#FDE047` | `#FACC15` | `#EAB308` | `#CA8A04` | `#A16207` | `#764004` | `#462304` |
-
-**gray** (중성 — 의미 토큰의 백본)
-
-| 50 | 100 | 200 | 300 ★ | 400 | 500 ★ | 600 | 700 ★ | 800 ★ | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#F8F8F8` | `#F4F4F4` | `#EEEEEE` | `#DDDDDD` | `#BDBDBD` | `#999999` | `#757575` | `#666666` | `#333333` | `#1C1C1C` |
-
-**coolgray** (배경 전용 — 푸른빛이 도는 회색)
-
-| 50 ★ | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 |
-|---|---|---|---|---|---|---|---|---|---|
-| `#F8F9FB` | `#F0F1F3` | `#DADDE0` | `#C7CBD0` | `#A9AEB5` | `#92989D` | `#6E7276` | `#585B5E` | `#333537` | `#1D1E1F` |
-
----
+값은 위 YAML `colors:` 블록과 Storybook `tokens.css` 에 전부 있음.
 
 ### 사용 규칙
 
-- **`color/brand/primary` (`#805AE9`)** 는 CTA 버튼과 핵심 강조에만 사용 — 배경 전체에 깔거나 본문 텍스트에 사용 금지
-- **`color/accent/primary` (red-500)** 는 "구매 취소", 오류 메시지 등 상태 표시 전용 — 장식 목적 사용 금지
-- 텍스트/아이콘 위계는 **반드시 `color/neutral/*` 또는 `color/font/*` semantic 토큰**으로 — 직접 palette gray-\* 참조 지양
-- 배경은 `color/background/primary` (white)가 기본, 섹션 분리 시 `color/background/secondary` (coolgray-50)
-- 정보 배너 배경은 `color/banner/*` 토큰 사용 — 패밀리 50 단계를 직접 참조하지 말 것
-- 구분선은 모두 **black + alpha** (`color/divider/*`) 사용 — solid gray 직접 사용 금지
+- **`color/brand/primary` (`#805AE9`)** 는 CTA 버튼과 핵심 강조에만 — 배경 전체에 깔거나 본문 텍스트에 사용 금지
+- **`color/accent/primary` (red-500)** 는 오류·취소 같은 상태 표시 전용 — 장식 목적 사용 금지
+- 화면·컴포넌트는 **Semantic 변수** (`color/font/*`, `color/background/*` …) 를 묶음 — 팔레트(`color/gray/500` 등)를 직접 묶지 않음
+- 배경은 `color/background/primary` (white) 기본, 섹션 분리는 `color/background/secondary` (coolgray-50)
+- 정보 배너 배경은 `color/banner/*` — 팔레트 50 단계를 직접 쓰지 말 것
+- 구분선은 모두 **black + alpha** (`color/divider/*`) — solid gray 직접 사용 금지
 - 컬러 변수는 **임의로 추가·변경할 수 없습니다** (DS 공통 자산)
-- **Plugin API에서 variable 참조 시 반드시 원본 이름** (예: `figma.variables.getVariableByIdAsync` 또는 `getBoundVariablesAsync` 반환값의 slash 형태 이름)을 그대로 사용
 
 ---
 

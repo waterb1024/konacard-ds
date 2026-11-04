@@ -409,7 +409,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 | 상태 | 색 토큰 |
 |---|---|
-| Selected(True) 채움 | `color/background/button-brand` = **#805AE9** |
+| Selected(True) 채움 | `color/button/primary` = **#805AE9** |
 | Selected 아이콘/핸들 | `color/icon/white` = #FFFFFF |
 | Default(False) 채움 | `color/button/quarternary` = **#999999** (Switch) / 흰 배경 + `color/border/default` #DDDDDD (Checkbox·Radio 아이콘형) |
 | Default 아이콘 | `color/icon/quaternary` = #999999 |
@@ -464,7 +464,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 | 사이즈 | 서브타입 | 스펙 | 주 사용처 |
 |---|---|---|---|
-| **24 Size (아이콘형)** | 체크 아이콘 only, 배경/외곽선 없음 | 체크 색: `color/background/button-brand` #805AE9 / Default: `color/icon/quaternary` #999999 | **팝업 내 약관 세부 항목** (일반 페이지 지양) |
+| **24 Size (아이콘형)** | 체크 아이콘 only, 배경/외곽선 없음 | 체크 색: `color/button/primary` #805AE9 / Default: `color/icon/quaternary` #999999 | **팝업 내 약관 세부 항목** (일반 페이지 지양) |
 | **24 Size (박스형)** | 8×8 라운드 사각형 외곽선 + 체크 | Selected: 외곽선·체크 모두 브랜드 보라 / Default: 회색 외곽선 + 회색 체크 | 폼 내 개별 옵션(다중 선택) |
 | **28 Size** | 원형 배경 + 흰 체크 | Selected: 보라 채움 + 흰 체크 / Default: 회색 원형 + 흰 체크 | **약관 세부 - 2depth (일반 페이지)** |
 | **32 Size** | 원형 배경 + 흰 체크 (28과 동일 스타일, 크기만 확대) | 동일 | **약관 전체 선택** |
@@ -691,7 +691,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
   - 좌우 화면 padding: **20px** (`layout/margin`)
   - 텍스트 위·아래 padding으로 세로 중앙(Align: Middle)
   - **Select bar 폭 = 텍스트 폭 + 16 + 16** (텍스트 좌우 각각 16 여백 후 시작·종료)
-  - Select bar 두께 2px, 색: `color/background/button-brand` #805AE9
+  - Select bar 두께 2px, 색: `color/button/primary` #805AE9
   - 하단 divider: `color/divider/secondary` #00000014 (1dp)
 - **Variant — Type**:
   - `Selected` — 텍스트 `color/font/brand` #805AE9 + **`body/1-Bold`** (Pretendard Bold 15px) + 하단 Select bar 노출
@@ -744,7 +744,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
   - 텍스트 세로 중앙, 가로 중앙 정렬
   - 폰트: `body/2-bold` (Pretendard Bold 14px / lineHeight 22 / letterSpacing -0.28)
 - **Variant — Type**:
-  - `Selected` — 배경 `color/background/button-brand` #805AE9 + 텍스트 `color/font/white` #FFFFFF
+  - `Selected` — 배경 `color/button/primary` #805AE9 + 텍스트 `color/font/white` #FFFFFF
   - `Default` — 배경 흰색 + `color/border/default` #DDDDDD 테두리 1px + 텍스트 검정
 - **Variant — State**: Default(True) / Disable(False, opacity 40%)
 - **레이아웃** (여러 pill 나열 = `tab/sub-ui`):
@@ -1023,7 +1023,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - **사이즈**: dot **4×4**, dot 사이 **gap 4**
 - **State — 단일 (`Active` 강조형)**:
   - `Default(True)`: 회색 점 (`color/icon/quinary` #DDDDDD)
-  - `Active(False)`: 브랜드 보라 점 (`color/background/button-brand` #805AE9)
+  - `Active(False)`: 브랜드 보라 점 (`color/button/primary` #805AE9)
 - **Multi progress**: N개 점 나열 시 활성 위치만 브랜드 보라, 나머지 옅은 회색
 - **표시 위치**: 고정 규칙 없음 — 인디케이터를 담는 컨테이너(배너·온보딩·팝업 등)의 레이아웃에 맞춰 상/하, 좌/중/우가 그때그때 다르게 배치됨. 화면 조립 시 "하단 중앙"을 기본값으로 가정하지 말고 해당 화면의 다른 요소 배치에 맞출 것
 

@@ -58,12 +58,12 @@
 
 /* ── On (state=true) ─────────────────────────────────── */
 .on .track {
-  background: var(--color-background-button-brand);
+  background: var(--color-button-primary);
 }
 .on .thumb {
   left: auto;
   right: 0;
-  --thumb-color: var(--color-background-button-brand);
+  --thumb-color: var(--color-button-primary);
 }
 
 /* ── Sizes ───────────────────────────────────────────── */

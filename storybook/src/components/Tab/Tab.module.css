@@ -66,7 +66,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--color-background-button-brand);
+  background: var(--color-button-primary);
 }
 
 /* Basic 모드 (Fill) 에서는 텍스트 폭 + 좌우 16 대신 padding 영역 그대로 사용 */
@@ -105,8 +105,8 @@
 }
 
 .subTab.selected {
-  background: var(--color-background-button-brand);
-  border-color: var(--color-background-button-brand);
+  background: var(--color-button-primary);
+  border-color: var(--color-button-primary);
   color: var(--color-font-white);
 }
 
