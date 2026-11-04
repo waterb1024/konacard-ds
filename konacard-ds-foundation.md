@@ -411,7 +411,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | gray | `#F8F8F8` | `#F4F4F4` | `#EEEEEE` | **`#DDDDDD`** | `#BDBDBD` | **`#999999`** | `#757575` | **`#666666`** | **`#333333`** | `#1C1C1C` |
 | coolgray | **`#F8F9FB`** | `#F0F1F3` | `#DADDE0` | `#C7CBD0` | `#A9AEB5` | `#92989D` | `#6E7276` | `#585B5E` | `#333537` | `#1D1E1F` |
 
-굵게 = 주조색·보조색이 가리키는 단계. 값은 변수 기준 (가이드 글자와 다른 곳은 아래 ⚠ 참고).
+굵게 = 주조색·보조색이 가리키는 단계.
 
 ### 주조색과 보조색
 
@@ -449,13 +449,6 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | | pink | red-50 · `#FFEFF1` | `color/banner/pink` |
 
 가이드 밖 `_Theme` 변수: `color/neutral/quinary` gray-200 `#EEEEEE` · `color/neutral/senary` coolgray-100 `#F0F1F3` · `color/neutral/septenary` coolgray-50 `#F8F9FB`, `opacity/black-*` · `opacity/white-*` (0 · 4 · 6 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 100%). 가이드 밖 paint 스타일: `gradient/quarternary` `#CF75FF` → `#805AE9`.
-
-> ⚠ **가이드 글자가 변수 값과 다른 곳** (견본 색은 변수라 맞음, 적힌 글자만 다름 — 2026-11-04 기준)
-> - coolgray-100 `#DADDE0` / coolgray-200 `#E9ECEF` 로 적힘 → 변수는 `#F0F1F3` / `#DADDE0`
-> - red-200 `#FFC3C9` → 변수 `#FFCCD1`
-> - yellow-900 `#532903` → 변수 `#462304`
-> - line & divider secondary `#1400000` (자릿수 빠짐) → `#14000000`
-> - background / banner pink `rgb 254 234 241` → `#FFEFF1` = rgb 255 239 241
 
 ### Semantic 변수 (가이드 밖 — 컴포넌트가 묶는 층)
 
