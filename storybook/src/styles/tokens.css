@@ -11,8 +11,8 @@
   /* ─── color ───────────────────────────────────────────────
    * Figma Color 가이드(296:3042) · 변수 3층 (2026-11-04 대조)
    *   _Primitive  color/{purple, red, blue, green, yellow, gray, coolgray}/50~900, black, white
-   *   _Theme      color/brand · neutral · accent/*, opacity/*  (가이드 "주조색과 보조색")
-   *   Semantic    color/font · background · border · divider · icon · button · label · banner · progress/*
+   *   _Semantic      color/brand · neutral · accent/*, opacity/*  (가이드 "주조색과 보조색")
+   *   Theme    color/font · background · border · divider · icon · button · label · banner · progress/*
    * 이름은 Figma 그대로
    */
 
@@ -90,7 +90,7 @@
   --color-black: #000000;
   --color-white: #ffffff;
 
-  /* 주조색과 보조색 — _Theme */
+  /* 주조색과 보조색 — _Semantic */
   --color-brand-primary: #805ae9;     /* purple-500 */
   --color-brand-secondary: #f4f0fd;  /* purple-100 */
   --color-brand-tertiary: #f8f6fe;    /* purple-50 */
@@ -134,7 +134,7 @@
   --gradient-tertiary: linear-gradient(136deg, #ff364b 0%, #ff1493 100%);
   --gradient-quaternary: linear-gradient(154deg, #cf75ff 0%, #805ae9 100%);
 
-  /* Semantic — color/font */
+  /* Theme — color/font */
   --color-font-primary: #000000;      /* → color/black */
   --color-font-secondary: #333333;    /* → neutral/primary */
   --color-font-tertiary: #666666;     /* → neutral/secondary */
@@ -148,7 +148,7 @@
   --color-font-accent-blue: #589cf6;  /* → accent/secondary */
   --color-font-accent-green: #1ccea5; /* → accent/tertiary */
 
-  /* Semantic — color/background */
+  /* Theme — color/background */
   --color-background-primary: #ffffff;    /* → color/white */
   --color-background-secondary: #f8f9fb;  /* → neutral/septenary */
   --color-background-tertiary: #f8f6fe;   /* → brand/tertiary */
@@ -157,7 +157,7 @@
   --color-background-disabled: #f8f9fb;   /* → neutral/septenary */
   --color-background-dimmed: rgba(0, 0, 0, 0.64); /* → opacity/black-64 */
 
-  /* Semantic — color/border */
+  /* Theme — color/border */
   --color-border-primary: rgba(0, 0, 0, 0.06);    /* → opacity/black-6 */
   --color-border-secondary: rgba(0, 0, 0, 0.08); /* → opacity/black-8 */
   --color-border-tertiary: rgba(0, 0, 0, 0.12);  /* → opacity/black-12 */
@@ -169,14 +169,14 @@
   --color-border-black: #000000;    /* → color/black */
   --color-border-white: #ffffff;
 
-  /* Semantic — color/divider */
+  /* Theme — color/divider */
   --color-divider-primary: rgba(0, 0, 0, 0.06);   /* → opacity/black-6 */
   --color-divider-secondary: rgba(0, 0, 0, 0.08); /* → opacity/black-8 */
   --color-divider-tertiary: rgba(0, 0, 0, 0.12);  /* → opacity/black-12 */
   --color-divider-brand: #805ae9;
   --color-divider-white: #ffffff;
 
-  /* Semantic — color/icon */
+  /* Theme — color/icon */
   --color-icon-primary: #000000;      /* → color/black */
   --color-icon-secondary: #333333;    /* → neutral/primary */
   --color-icon-tertiary: #666666;     /* → neutral/secondary */
@@ -190,7 +190,7 @@
   --color-icon-accent-green: #1ccea5;
   --color-icon-guide: #ff364b;        /* → accent/primary */
 
-  /* Semantic — color/button */
+  /* Theme — color/button */
   --color-button-primary: #805ae9;     /* → brand/primary */
   --color-button-secondary: #f4f0fd;   /* → brand/secondary */
   --color-button-tertiary: #dddddd;    /* → neutral/quaternary */
@@ -200,7 +200,7 @@
   --color-button-pressed: rgba(0, 0, 0, 0.12); /* → opacity/black-12 */
   --opacity-pressed: rgba(0, 0, 0, 0.06);      /* → opacity/black-6 */
 
-  /* Semantic — color/label */
+  /* Theme — color/label */
   --color-label-brand-primarygradient: #805ae9; /* Figma: color/label/brand-primary(gradient) — 단색 값 */
   --color-label-brand-secondary: #805ae9;   /* → brand/primary */
   --color-label-brand-tertiary: #f4f0fd;    /* → brand/secondary */
@@ -215,7 +215,7 @@
   --color-label-accent-green: #1ccea5;
   --color-label-white: #ffffff;
 
-  /* Semantic — color/banner (background / banner) */
+  /* Theme — color/banner (background / banner) */
   --color-banner-brand: #f8f6fe;  /* → purple-50 */
   --color-banner-gray: #f8f9fb;   /* → coolgray-50 */
   --color-banner-blue: #f0f6fe;   /* → blue-50 */
@@ -224,7 +224,7 @@
   --color-banner-pink: #ffeff1;   /* → red-50 */
   --color-banner-toast: #333333;  /* → neutral/primary */
 
-  /* Semantic — color/progress */
+  /* Theme — color/progress */
   --color-progress-bar: #dddddd;
   --color-progress-status: #805ae9;
 

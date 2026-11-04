@@ -19,7 +19,7 @@ figma_naming_notes: |
 colors:
   # ═══════════════════════════════════════════════════════════════
   # Figma Color 가이드(296:3042) · 로컬 변수 3층 그대로 (2026-11-04 대조)
-  #   _Primitive (발행 숨김) → _Theme (발행 숨김) → Semantic (컴포넌트가 묶는 층)
+  #   _Primitive (발행 숨김) → _Semantic (발행 숨김) → Theme (컴포넌트가 묶는 층)
   # key = Figma 변수 이름
   # 값 뒤 "→" = 그 변수가 가리키는 변수
   # ═══════════════════════════════════════════════════════════════
@@ -36,7 +36,7 @@ colors:
     "color/black": "#000000"
     "color/white": "#FFFFFF"
 
-  # ─── _Theme — 주조색과 보조색 ───────────────────────────────
+  # ─── _Semantic — 주조색과 보조색 ───────────────────────────────
   theme:
     "color/brand/primary":      "#805AE9"   # → color/purple/500
     "color/brand/secondary":   "#F4F0FD"   # → color/purple/100
@@ -63,7 +63,7 @@ colors:
     "gradient/tertiary":    ["#FF364B", "#FF1493"]   # 대각선
     "gradient/quaternary": ["#CF75FF", "#805AE9"]   # 가이드 밖
 
-  # ─── Semantic — 컴포넌트가 묶는 변수 ─────────────────────────
+  # ─── Theme — 컴포넌트가 묶는 변수 ─────────────────────────
   font:
     "color/font/primary":      "#000000"   # → color/black
     "color/font/secondary":    "#333333"   # → color/neutral/primary
@@ -287,7 +287,7 @@ radius:
   # Figma 변수 이름 그대로 (2026-10-23 Radius 가이드 481:3296 · 로컬 변수 대조)
   # 가이드 표기($radius-form 등)와 변수 이름(radius/components/form 등)이 다름 → 아래는 변수 이름
   # ═══════════════════════════════════════════════════════════════
-  scale:                         # collection _Theme (unit/* 참조)
+  scale:                         # collection _Semantic (unit/* 참조)
     "radius/none":     0
     "radius/2xsmall":  4      # ✅ 최소 버튼
     "radius/xsmall":   6      # ✅ 입력폼 · 본문 내 버튼
@@ -388,13 +388,13 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 색상은 서비스 정체성을 표현하는 매우 강력한 요소이므로 아래 가이드라인을 명확히 인지하고 사용하도록 합니다. 특히 브랜드 컬러는 코나카드와 연계된 모든 서비스에 공통으로 적용되는 요소이므로 임의로 추가하거나 변경할 수 없습니다.
 
-색 변수는 **세 층**입니다. 화면·컴포넌트는 맨 아래 **Semantic** 층을 묶어 씁니다.
+색 변수는 **Primitive → Semantic → Theme** 세 층입니다 (2026-11-04 컬렉션 이름 정리: `_Theme` → `_Semantic`, `Semantic` → `Theme`). 화면·컴포넌트는 맨 위 **Theme** 층을 묶어 씁니다. 컴포넌트 전용 radius · layout 변수는 따로 `Component` 컬렉션(→ `_Semantic`)에 있습니다.
 
 | 층 | Figma 컬렉션 | 발행 | 내용 |
 |---|---|---|---|
-| Palette | `_Primitive` | 숨김 | `color/{purple · red · blue · green · yellow · gray · coolgray}/50~900`, `color/black` · `color/white` |
-| 주조색과 보조색 | `_Theme` | 숨김 | `color/brand · neutral · accent/*`, `opacity/black-* · white-*` |
-| Semantic | `Semantic` | 발행 | `color/font · background · border · divider · icon · button · label · banner · progress/*`, `opacity/pressed` |
+| Primitive (Color Palette) | `_Primitive` | 숨김 | `color/{purple · red · blue · green · yellow · gray · coolgray}/50~900`, `color/black` · `color/white` |
+| Semantic (주조색과 보조색) | `_Semantic` | 숨김 | `color/brand · neutral · accent/*`, `opacity/black-* · white-*` |
+| Theme (용도) | `Theme` | 발행 | `color/font · background · border · divider · icon · button · label · banner · progress/*`, `opacity/pressed` |
 
 > **이름은 Figma 그대로**. CSS 는 `/` → `-` (`color/brand/secondary` → `--color-brand-secondary`). 2026-11-04 변수 이름 오타(sencondary · primay · balck · quarternary · dimed)를 Figma 에서 고침.
 
@@ -447,9 +447,9 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | | yellow | yellow-50 · `#FFFBDF` | `color/banner/yellow` |
 | | pink | red-50 · `#FFEFF1` | `color/banner/pink` |
 
-가이드 밖 `_Theme` 변수: `color/neutral/quinary` gray-200 `#EEEEEE` · `color/neutral/senary` coolgray-100 `#F0F1F3` · `color/neutral/septenary` coolgray-50 `#F8F9FB`, `opacity/black-*` · `opacity/white-*` (0 · 4 · 6 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 100%). 가이드 밖 paint 스타일: `gradient/quaternary` `#CF75FF` → `#805AE9`.
+가이드 밖 `_Semantic` 변수: `color/neutral/quinary` gray-200 `#EEEEEE` · `color/neutral/senary` coolgray-100 `#F0F1F3` · `color/neutral/septenary` coolgray-50 `#F8F9FB`, `opacity/black-*` · `opacity/white-*` (0 · 4 · 6 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 100%). 가이드 밖 paint 스타일: `gradient/quaternary` `#CF75FF` → `#805AE9`.
 
-### Semantic 변수 (가이드 밖 — 컴포넌트가 묶는 층)
+### Theme 변수 (가이드 밖 — 컴포넌트가 묶는 층)
 
 | 묶음 | 변수 → 가리키는 곳 |
 |---|---|
@@ -470,7 +470,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 
 - **`color/brand/primary` (`#805AE9`)** 는 CTA 버튼과 핵심 강조에만 — 배경 전체에 깔거나 본문 텍스트에 사용 금지
 - **`color/accent/primary` (red-500)** 는 오류·취소 같은 상태 표시 전용 — 장식 목적 사용 금지
-- 화면·컴포넌트는 **Semantic 변수** (`color/font/*`, `color/background/*` …) 를 묶음 — 팔레트(`color/gray/500` 등)를 직접 묶지 않음
+- 화면·컴포넌트는 **Theme 변수** (`color/font/*`, `color/background/*` …) 를 묶음 — 팔레트(`color/gray/500` 등)를 직접 묶지 않음
 - 배경은 `color/background/primary` (white) 기본, 섹션 분리는 `color/background/secondary` (coolgray-50)
 - 정보 배너 배경은 `color/banner/*` — 팔레트 50 단계를 직접 쓰지 말 것
 - 구분선은 모두 **black + alpha** (`color/divider/*`) — solid gray 직접 사용 금지
@@ -916,7 +916,7 @@ effect 스타일 `elevation/*`. 색은 모두 검정(#000), x · y · blur · sp
 | `$shadow-deep` | `elevation/shadow-deep` | drop | -2 | 24 | 32 | 4 | #000 16% |
 | `$shadow-active` | `elevation/shadow-active` | drop | 0 | 16 | 24 | 2 | #000 8% |
 
-**`elevat/*` 변수** (Semantic 컬렉션): `none` 0 · `inset` -2 · `thin` 2 · `light` 4 · `regular` 8 · `medium` 16 · `semibold` 24 · `bold` 32 · `extrabold` 40 (extrabold 는 스타일에서 안 씀)
+**`elevat/*` 변수** (Theme 컬렉션): `none` 0 · `inset` -2 · `thin` 2 · `light` 4 · `regular` 8 · `medium` 16 · `semibold` 24 · `bold` 32 · `extrabold` 40 (extrabold 는 스타일에서 안 씀)
 
 Storybook 토큰: `--elevation-shadow-{pressed, button, navigation, card, deep, active}` (CSS `box-shadow` 값)
 

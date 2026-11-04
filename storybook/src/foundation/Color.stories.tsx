@@ -4,8 +4,8 @@ import styles from "./foundation.module.css";
 /**
  * Foundation / Color — Figma ${FIGMA_DS_FILE_KEY} (-AX-) Color 가이드 (node 296:3042) 그대로
  *   Primitive : 가이드 Color Palette — _Primitive 7계열 × 10단계
- *   Theme     : 가이드 주조색과 보조색 — brand · black & white · neutral · background · line & divider · accent · gradient · banner
- *   Semantic  : 가이드 밖 — 컴포넌트가 실제로 묶는 color/* 전체 (Figma 이름 그대로)
+ *   Semantic     : 가이드 주조색과 보조색 — brand · black & white · neutral · background · line & divider · accent · gradient · banner
+ *   Theme  : 가이드 밖 — 컴포넌트가 실제로 묶는 color/* 전체 (Figma 이름 그대로)
  *   값은 모두 Figma 변수 기준 (2026-11-04 대조)
  */
 
@@ -118,7 +118,7 @@ const brandGroups: { title: string; chips: Chip[] }[] = [
   },
 ];
 
-/** Semantic 컬렉션 — Figma 이름: 값 (→ 참조) */
+/** Theme 컬렉션 — Figma 이름: 값 (→ 참조) */
 const semantic: { title: string; vars: [string, string][] }[] = [
   {
     title: "color/font",
@@ -216,7 +216,7 @@ export const Primitive: Story = {
       <h1 className={styles.h1}>Primitive</h1>
       {INTRO}
       <p className={styles.intro}>
-        Figma <code>_Primitive</code> 컬렉션 · <code>color/{"{계열}"}/{"{단계}"}</code>. 화면에는 직접 묶지 않고 Theme · Semantic 변수가 가리킵니다.
+        Figma <code>_Primitive</code> 컬렉션 · <code>color/{"{계열}"}/{"{단계}"}</code>. 화면에는 직접 묶지 않고 Semantic · Theme 변수가 가리킵니다.
       </p>
       {palette.map((row) => (
         <div key={row.family} style={{ marginBottom: 20 }}>
@@ -236,9 +236,9 @@ export const Primitive: Story = {
   ),
 };
 
-/** 가이드 주조색과 보조색 — _Theme 컬렉션 (+ 가이드가 함께 보여 주는 background · divider · banner · gradient) */
-export const Theme: Story = {
-  name: "Theme (주조색과 보조색)",
+/** 가이드 주조색과 보조색 — _Semantic 컬렉션 (+ 가이드가 함께 보여 주는 background · divider · banner · gradient) */
+export const Semantic: Story = {
+  name: "Semantic (주조색과 보조색)",
   render: () => (
     <div className={styles.wrap}>
       <h1 className={styles.h1}>주조색과 보조색</h1>
@@ -264,14 +264,14 @@ export const Theme: Story = {
   ),
 };
 
-/** 가이드 밖 — 컴포넌트가 실제로 묶는 Semantic 변수 전체 */
-export const Semantic: Story = {
-  name: "Semantic (가이드 밖)",
+/** 가이드 밖 — 컴포넌트가 실제로 묶는 Theme 변수 전체 */
+export const Theme: Story = {
+  name: "Theme (가이드 밖)",
   render: () => (
     <div className={styles.wrap}>
-      <h1 className={styles.h1}>Semantic 변수</h1>
+      <h1 className={styles.h1}>Theme 변수</h1>
       <p className={styles.intro}>
-        컴포넌트는 아래 Semantic 변수를 묶어 씁니다. 이름은 Figma 그대로이고, CSS 는 <code>/</code> 를 <code>-</code> 로 바꾼{" "}
+        컴포넌트는 아래 Theme 변수를 묶어 씁니다. 이름은 Figma 그대로이고, CSS 는 <code>/</code> 를 <code>-</code> 로 바꾼{" "}
         <code>--color-…</code> 입니다.
       </p>
       {semantic.map((g) => (
