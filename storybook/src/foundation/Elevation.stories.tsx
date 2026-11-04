@@ -144,7 +144,7 @@ export const AppDepth: Story = {
           style={{
             position: "absolute",
             inset: 0,
-            background: "var(--color-background-dimed)",
+            background: "var(--color-background-dimmed)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

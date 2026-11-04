@@ -45,9 +45,9 @@
 }
 
 .fill-Brand_Light {
-  background: var(--color-brand-sencondary);
+  background: var(--color-brand-secondary);
   color: var(--color-font-brand);
-  border-color: var(--color-brand-sencondary);
+  border-color: var(--color-brand-secondary);
 }
 
 .fill-Gray_Light {
@@ -78,7 +78,7 @@
 .line-Brand_Light {
   background: var(--color-background-primary);
   color: var(--color-font-brand);
-  border-color: var(--color-brand-sencondary);
+  border-color: var(--color-brand-secondary);
 }
 
 .line-Gray_Light {

@@ -11,17 +11,16 @@ verification_status: |
   ✅ API 확인됨 (get_variable_defs 결과와 일치)
   ⚠️ 미확인 - Foundation 문서 페이지 기재값만 확인. 실 컴포넌트 노출 미관측
 figma_naming_notes: |
-  AX 파일 변수 이름을 그대로 유지 (수정 시 매칭 실패):
-  1. slash 계층:    color/font/primary, radius/button/large, spacing/small
-  2. 오타 (원본):    color/{brand,neutral,accent}/sencondary (secondary), color/border/primay (primary),
-                    color/border/balck (black), color/button/quarternary (quaternary), color/border/disable
-  3. 괄호:          color/label/brand-primary(gradient) — CSS 에서는 괄호를 뺌
+  AX 파일 변수 · 스타일 이름을 그대로 키로 쓴다 (slash 계층: color/font/primary, radius/button/large, spacing/small).
+  2026-11-04 변수 이름 오타를 Figma 에서 고침: sencondary → secondary (brand · neutral · accent), border/primay → primary,
+  border/balck → black, button/quarternary → quaternary, background/dimed → dimmed, 스타일 gradient/quarternary → quaternary.
+  괄호 이름 color/label/brand-primary(gradient) 는 CSS 에서 괄호를 뺌.
 
 colors:
   # ═══════════════════════════════════════════════════════════════
   # Figma Color 가이드(296:3042) · 로컬 변수 3층 그대로 (2026-11-04 대조)
   #   _Primitive (발행 숨김) → _Theme (발행 숨김) → Semantic (컴포넌트가 묶는 층)
-  # key = Figma 변수 이름 (오타 sencondary · primay · balck · quarternary · disable 유지)
+  # key = Figma 변수 이름
   # 값 뒤 "→" = 그 변수가 가리키는 변수
   # ═══════════════════════════════════════════════════════════════
 
@@ -40,17 +39,17 @@ colors:
   # ─── _Theme — 주조색과 보조색 ───────────────────────────────
   theme:
     "color/brand/primary":      "#805AE9"   # → color/purple/500
-    "color/brand/sencondary":   "#F4F0FD"   # → color/purple/100
+    "color/brand/secondary":   "#F4F0FD"   # → color/purple/100
     "color/brand/tertiary":     "#F8F6FE"   # → color/purple/50
     "color/neutral/primary":    "#333333"   # → color/gray/800
-    "color/neutral/sencondary": "#666666"   # → color/gray/700
+    "color/neutral/secondary": "#666666"   # → color/gray/700
     "color/neutral/tertiary":   "#999999"   # → color/gray/500
     "color/neutral/quaternary": "#DDDDDD"   # → color/gray/300
     "color/neutral/quinary":    "#EEEEEE"   # → color/gray/200   (가이드 밖)
     "color/neutral/senary":     "#F0F1F3"   # → color/coolgray/100 (가이드 밖)
     "color/neutral/septenary":  "#F8F9FB"   # → color/coolgray/50  (가이드 밖)
     "color/accent/primary":     "#FF364B"   # → color/red/500
-    "color/accent/sencondary":  "#589CF6"   # → color/blue/500
+    "color/accent/secondary":  "#589CF6"   # → color/blue/500
     "color/accent/tertiary":    "#1CCEA5"   # → color/green/500
     "color/black":              "#000000"   # → color/black
     "color/white":              "#FFFFFF"   # → color/white
@@ -62,13 +61,13 @@ colors:
     "gradient/primary":     ["#804EE2", "#526ED3"]   # 왼 → 오른쪽
     "gradient/secondary":   ["#00BB5A", "#5978EA"]   # 왼 → 오른쪽
     "gradient/tertiary":    ["#FF364B", "#FF1493"]   # 대각선
-    "gradient/quarternary": ["#CF75FF", "#805AE9"]   # 가이드 밖
+    "gradient/quaternary": ["#CF75FF", "#805AE9"]   # 가이드 밖
 
   # ─── Semantic — 컴포넌트가 묶는 변수 ─────────────────────────
   font:
     "color/font/primary":      "#000000"   # → color/black
     "color/font/secondary":    "#333333"   # → color/neutral/primary
-    "color/font/tertiary":     "#666666"   # → color/neutral/sencondary
+    "color/font/tertiary":     "#666666"   # → color/neutral/secondary
     "color/font/quaternary":   "#999999"   # → color/neutral/tertiary
     "color/font/quinary":      "#DDDDDD"   # → color/neutral/quaternary
     "color/font/placeholder":  "#999999"   # → color/neutral/tertiary
@@ -76,7 +75,7 @@ colors:
     "color/font/white":        "#FFFFFF"   # → color/white
     "color/font/error":        "#FF364B"   # → color/accent/primary
     "color/font/accent-red":   "#FF364B"   # → color/accent/primary
-    "color/font/accent-blue":  "#589CF6"   # → color/accent/sencondary
+    "color/font/accent-blue":  "#589CF6"   # → color/accent/secondary
     "color/font/accent-green": "#1CCEA5"   # → color/accent/tertiary
   background:
     "color/background/primary":    "#FFFFFF"     # → color/white
@@ -85,9 +84,9 @@ colors:
     "color/background/quaternary": "#F0F1F3"     # → color/neutral/senary
     "color/background/brand":      "#805AE9"     # → color/brand/primary
     "color/background/disabled":   "#F8F9FB"     # → color/neutral/septenary
-    "color/background/dimed":      "#000000A3"   # → opacity/black-64
+    "color/background/dimmed":      "#000000A3"   # → opacity/black-64
   border:
-    "color/border/primay":    "#0000000F"   # → opacity/black-6   (Figma 오타 primay)
+    "color/border/primary":    "#0000000F"   # → opacity/black-6
     "color/border/secondary": "#00000014"   # → opacity/black-8
     "color/border/tertiary":  "#0000001F"   # → opacity/black-12
     "color/border/default":   "#DDDDDD"     # → color/neutral/quaternary
@@ -95,7 +94,7 @@ colors:
     "color/border/focus":     "#805AE9"     # → color/brand/primary
     "color/border/brand":     "#805AE9"     # → color/brand/primary
     "color/border/error":     "#FF364B"     # → color/accent/primary
-    "color/border/balck":     "#000000"     # → color/black   (Figma 오타 balck)
+    "color/border/black":     "#000000"     # → color/black
     "color/border/white":     "#FFFFFF"     # → color/white
   divider:
     "color/divider/primary":   "#0000000F"   # → opacity/black-6
@@ -106,36 +105,36 @@ colors:
   icon:
     "color/icon/primary":      "#000000"   # → color/black
     "color/icon/secondary":    "#333333"   # → color/neutral/primary
-    "color/icon/tertiary":     "#666666"   # → color/neutral/sencondary
+    "color/icon/tertiary":     "#666666"   # → color/neutral/secondary
     "color/icon/quaternary":   "#999999"   # → color/neutral/tertiary
     "color/icon/quinary":      "#DDDDDD"   # → color/neutral/quaternary
     "color/icon/senary":       "#F0F1F3"   # → color/neutral/senary
     "color/icon/brand":        "#805AE9"   # → color/brand/primary
     "color/icon/white":        "#FFFFFF"   # → color/white
     "color/icon/accent-red":   "#FF364B"   # → color/accent/primary
-    "color/icon/accent-blue":  "#589CF6"   # → color/accent/sencondary
+    "color/icon/accent-blue":  "#589CF6"   # → color/accent/secondary
     "color/icon/accent-green": "#1CCEA5"   # → color/accent/tertiary
     "color/icon/guide":        "#FF364B"   # → color/accent/primary
   button:
     "color/button/primary":     "#805AE9"     # → color/brand/primary
-    "color/button/secondary":   "#F4F0FD"     # → color/brand/sencondary
+    "color/button/secondary":   "#F4F0FD"     # → color/brand/secondary
     "color/button/tertiary":    "#DDDDDD"     # → color/neutral/quaternary
-    "color/button/quarternary": "#999999"     # → color/neutral/tertiary   (Figma 오타 quarternary)
+    "color/button/quaternary": "#999999"     # → color/neutral/tertiary
     "color/button/quinary":     "#F8F9FB"     # → color/neutral/septenary
     "color/button/white":       "#FFFFFF"     # → color/white
     "color/button/pressed":     "#0000001F"   # → opacity/black-12
   label:
     "color/label/brand-primary(gradient)": "#805AE9"   # 단색 값 (이름만 gradient)
     "color/label/brand-secondary":    "#805AE9"   # → color/brand/primary
-    "color/label/brand-tertiary":     "#F4F0FD"   # → color/brand/sencondary
+    "color/label/brand-tertiary":     "#F4F0FD"   # → color/brand/secondary
     "color/label/brand-quaternary":   "#F8F6FE"   # → color/brand/tertiary
     "color/label/neutral-primary":    "#333333"   # → color/neutral/primary
-    "color/label/neutral-secondary":  "#666666"   # → color/neutral/sencondary
+    "color/label/neutral-secondary":  "#666666"   # → color/neutral/secondary
     "color/label/neutral-tertiary":   "#999999"   # → color/neutral/tertiary
     "color/label/neutral-quaternary": "#DDDDDD"   # → color/neutral/quaternary
     "color/label/neutral-quinary":    "#F8F9FB"   # → color/neutral/septenary
     "color/label/accent-red":         "#FF364B"   # → color/accent/primary
-    "color/label/accent-blue":        "#589CF6"   # → color/accent/sencondary
+    "color/label/accent-blue":        "#589CF6"   # → color/accent/secondary
     "color/label/accent-green":       "#1CCEA5"   # → color/accent/tertiary
     "color/label/white":              "#FFFFFF"   # → color/white
   banner:
@@ -397,7 +396,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | 주조색과 보조색 | `_Theme` | 숨김 | `color/brand · neutral · accent/*`, `opacity/black-* · white-*` |
 | Semantic | `Semantic` | 발행 | `color/font · background · border · divider · icon · button · label · banner · progress/*`, `opacity/pressed` |
 
-> **이름은 Figma 그대로** — `sencondary`(brand · neutral · accent), `primay`(border), `balck`(border), `quarternary`(button), `disable`(border) 오타도 유지 (수정하면 매칭 실패). CSS 는 `/` → `-` (`color/brand/sencondary` → `--color-brand-sencondary`).
+> **이름은 Figma 그대로**. CSS 는 `/` → `-` (`color/brand/secondary` → `--color-brand-secondary`). 2026-11-04 변수 이름 오타(sencondary · primay · balck · quarternary · dimed)를 Figma 에서 고침.
 
 ### Color Palette
 
@@ -420,12 +419,12 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | 가이드 묶음 | 이름 | 팔레트 · 값 | Figma 변수 |
 |---|---|---|---|
 | brand | primary | purple-500 · `#805AE9` | `color/brand/primary` |
-| | secondary | purple-100 · `#F4F0FD` | `color/brand/sencondary` |
+| | secondary | purple-100 · `#F4F0FD` | `color/brand/secondary` |
 | | tertiary | purple-50 · `#F8F6FE` | `color/brand/tertiary` |
 | black & white | black | `#000000` | `color/black` |
 | | white | `#FFFFFF` | `color/white` |
 | neutral | primary | gray-800 · `#333333` | `color/neutral/primary` |
-| | secondary | gray-700 · `#666666` | `color/neutral/sencondary` |
+| | secondary | gray-700 · `#666666` | `color/neutral/secondary` |
 | | tertiary | gray-500 · `#999999` | `color/neutral/tertiary` |
 | | quaternary | gray-300 · `#DDDDDD` | `color/neutral/quaternary` |
 | background / surfaces | primary | white · `#FFFFFF` | `color/background/primary` |
@@ -436,7 +435,7 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | | tertiary | black 12% | `color/divider/tertiary` |
 | | white | `#FFFFFF` | `color/divider/white` |
 | accent | primary | red-500 · `#FF364B` | `color/accent/primary` |
-| | secondary | blue-500 · `#589CF6` | `color/accent/sencondary` |
+| | secondary | blue-500 · `#589CF6` | `color/accent/secondary` |
 | | tertiary | green-500 · `#1CCEA5` | `color/accent/tertiary` |
 | gradient | primary | `#804EE2` → `#526ED3` | paint 스타일 `gradient/primary` |
 | | secondary | `#00BB5A` → `#5978EA` | `gradient/secondary` |
@@ -448,19 +447,19 @@ KONACARD는 한국의 선불카드·포인트 결제 플랫폼입니다. 디자�
 | | yellow | yellow-50 · `#FFFBDF` | `color/banner/yellow` |
 | | pink | red-50 · `#FFEFF1` | `color/banner/pink` |
 
-가이드 밖 `_Theme` 변수: `color/neutral/quinary` gray-200 `#EEEEEE` · `color/neutral/senary` coolgray-100 `#F0F1F3` · `color/neutral/septenary` coolgray-50 `#F8F9FB`, `opacity/black-*` · `opacity/white-*` (0 · 4 · 6 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 100%). 가이드 밖 paint 스타일: `gradient/quarternary` `#CF75FF` → `#805AE9`.
+가이드 밖 `_Theme` 변수: `color/neutral/quinary` gray-200 `#EEEEEE` · `color/neutral/senary` coolgray-100 `#F0F1F3` · `color/neutral/septenary` coolgray-50 `#F8F9FB`, `opacity/black-*` · `opacity/white-*` (0 · 4 · 6 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 100%). 가이드 밖 paint 스타일: `gradient/quaternary` `#CF75FF` → `#805AE9`.
 
 ### Semantic 변수 (가이드 밖 — 컴포넌트가 묶는 층)
 
 | 묶음 | 변수 → 가리키는 곳 |
 |---|---|
-| `color/font` | primary → black · secondary → neutral/primary · tertiary → neutral/sencondary · quaternary → neutral/tertiary · quinary → neutral/quaternary · placeholder → neutral/tertiary · brand → brand/primary · white · error → accent/primary · accent-red / accent-blue / accent-green → accent/primary · sencondary · tertiary |
-| `color/background` | primary → white · secondary → neutral/septenary · tertiary → brand/tertiary · quaternary → neutral/senary · brand → brand/primary · disabled → neutral/septenary · dimed → opacity/black-64 |
-| `color/border` | primay → black 6% · secondary → black 8% · tertiary → black 12% · default · disable → neutral/quaternary · focus · brand → brand/primary · error → accent/primary · balck → black · white |
+| `color/font` | primary → black · secondary → neutral/primary · tertiary → neutral/secondary · quaternary → neutral/tertiary · quinary → neutral/quaternary · placeholder → neutral/tertiary · brand → brand/primary · white · error → accent/primary · accent-red / accent-blue / accent-green → accent/primary · secondary · tertiary |
+| `color/background` | primary → white · secondary → neutral/septenary · tertiary → brand/tertiary · quaternary → neutral/senary · brand → brand/primary · disabled → neutral/septenary · dimmed → opacity/black-64 |
+| `color/border` | primary → black 6% · secondary → black 8% · tertiary → black 12% · default · disable → neutral/quaternary · focus · brand → brand/primary · error → accent/primary · black → black · white |
 | `color/divider` | primary → black 6% · secondary → black 8% · tertiary → black 12% · brand → brand/primary · white |
-| `color/icon` | primary → black · secondary → neutral/primary · tertiary → neutral/sencondary · quaternary → neutral/tertiary · quinary → neutral/quaternary · senary → neutral/senary · brand · white · accent-red / accent-blue / accent-green · guide → accent/primary |
-| `color/button` | primary → brand/primary · secondary → brand/sencondary · tertiary → neutral/quaternary · quarternary → neutral/tertiary · quinary → neutral/septenary · white · pressed → black 12% |
-| `color/label` | brand-primary(gradient) `#805AE9`(단색) · brand-secondary → brand/primary · brand-tertiary → brand/sencondary · brand-quaternary → brand/tertiary · neutral-primary ~ neutral-quaternary → neutral/primary ~ quaternary · neutral-quinary → neutral/septenary · accent-red / blue / green · white |
+| `color/icon` | primary → black · secondary → neutral/primary · tertiary → neutral/secondary · quaternary → neutral/tertiary · quinary → neutral/quaternary · senary → neutral/senary · brand · white · accent-red / accent-blue / accent-green · guide → accent/primary |
+| `color/button` | primary → brand/primary · secondary → brand/secondary · tertiary → neutral/quaternary · quaternary → neutral/tertiary · quinary → neutral/septenary · white · pressed → black 12% |
+| `color/label` | brand-primary(gradient) `#805AE9`(단색) · brand-secondary → brand/primary · brand-tertiary → brand/secondary · brand-quaternary → brand/tertiary · neutral-primary ~ neutral-quaternary → neutral/primary ~ quaternary · neutral-quinary → neutral/septenary · accent-red / blue / green · white |
 | `color/banner` | brand · gray · blue · green · yellow · pink (위 표) · toast → neutral/primary `#333333` |
 | `color/progress` | bar → neutral/quaternary · status → brand/primary |
 | `opacity/pressed` | → black 6% |
@@ -928,7 +927,7 @@ KONACARD **앱** 은 그림자 대신 배경색·구분선·오버레이로 계�
 | 용도 | 적용 |
 |------|------|
 | 카드/정보 박스 | 배경색 차이로 구분 (`background/secondary` #F8F9FB vs `white`) |
-| 팝업 | 오버레이(`color/background/dimed` 64%, `bg-dimed`) + `radius/components/popup` (16px) |
+| 팝업 | 오버레이(`color/background/dimmed` 64%, `bg-dimmed`) + `radius/components/popup` (16px) |
 | 구분선 | `divider` 컴포넌트 (black 6% opacity) |
 | 바텀시트 | 상단 radius 24px, 오버레이 |
 

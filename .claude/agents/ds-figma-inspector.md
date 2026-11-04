@@ -72,5 +72,5 @@ Foundation 값 검증 시엔 `get_variable_defs` 추가로 사용.
 ## 원칙
 - **Figma 우선**: 문서 (`konacard-ds-foundation.md`, `konacard-ds-components.md`) 와 Figma 가 다르면 Figma 값이 사실. 문서 값을 리포트에 채우지 않는다.
 - **추측 금지**: 유사 컴포넌트에서 유추 금지. 확인 안 된 값은 "미확인" 섹션에 이유와 함께 명시.
-- **원본 이름 보존**: Figma variable 오타 (`radius-tost`, `sencondary` 등) 는 그대로 옮긴다.
+- **원본 이름 보존**: Figma variable 이름을 그대로 옮긴다. 오타를 발견하면 코드에서 고치지 말고 리포트에 "Figma 이름 오타"로 적어 Figma 에서 고치도록 한다.
 - **SVG 는 반드시 다운로드**: 벡터 path 코드로 다시 그리지 않는다.

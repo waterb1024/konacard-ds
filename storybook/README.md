@@ -82,5 +82,5 @@ storybook/
 Figma variable → CSS custom property 변환:
 
 - `/` → `-` (예: `color/brand/primary` → `--color-brand-primary`)
-- Figma 원본 오타 유지 (`quarternary`, `primay`)
+- 이름은 Figma 원본 그대로 (오타는 Figma 에서 고친 뒤 같이 바꿈)
 - 대소문자 그대로 (`body/1-Bold` 등 조합 스타일은 `--text-body-1-bold` 로 lowercase 통일)

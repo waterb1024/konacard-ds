@@ -37,7 +37,7 @@
 - **컴포넌트 카탈로그 페이지**: `17:827` (02_Components)
 - **Foundation 페이지**: `295:3042` (01_Foundations)
 - **작업 대상 파일**: 세션마다 사용자가 공유하는 Figma URL에서 추출
-- Figma variables 이름 오타 주의: `radius-tost` (실제로는 toast), `sencondary` 등은 원본명 그대로 참조.
+- Figma 변수·스타일 이름은 원본 그대로 참조. 이름에 오타가 있으면 코드에서 우회하지 말고 Figma 에서 고친 뒤 코드·문서를 같이 바꾼다 (2026-11-04 sencondary·primay·balck·quarternary·dimed 정리).
 
 ## 파일 수정 원칙
 

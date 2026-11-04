@@ -10,7 +10,7 @@
   justify-content: center;
   height: 42px;
   box-sizing: border-box;
-  background: var(--color-background-dimed); /* rgba(0,0,0,.64) */
+  background: var(--color-background-dimmed); /* rgba(0,0,0,.64) */
   border-radius: var(--radius-components-toast); /* 12 */
   font: var(--text-body-2-regular); /* 14/22 */
   letter-spacing: var(--font-letterspacing-small); /* -0.28 */

@@ -73,7 +73,7 @@ function Chip({ radius }: { radius: string }) {
         flexShrink: 0,
         width: 96,
         height: 48,
-        background: "var(--color-brand-sencondary)",
+        background: "var(--color-brand-secondary)",
         border: "1px solid var(--color-brand-primary)",
         borderRadius: radius,
       }}

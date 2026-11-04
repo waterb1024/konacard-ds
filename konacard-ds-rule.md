@@ -369,7 +369,7 @@ description: >
 대분류 탭(아이콘 밑줄 탭)을 선택했을 때, 그 안의 세부 카테고리(브랜드·시리즈)를 pill로 나열.
 
 - 위치: 아이콘 밑줄 탭 아래
-- 스타일: 기본 상태는 **흰 배경**(`background/primary`) + 옅은 테두리(`border/primay`) + `font/tertiary` 회색 텍스트
+- 스타일: 기본 상태는 **흰 배경**(`background/primary`) + 옅은 테두리(`border/primary`) + `font/tertiary` 회색 텍스트
 - 선택 시: **연보라 채움**(`color/button/secondary` #F4F0FD, 아웃라인 없음) + `font/brand` 보라 텍스트
 - 가로 스크롤, 좌우 끝 fade-out
 - **§ "Pill 배지 (3색 통합 규칙)" 과 구분** — 배지 = 정보 표시(비클릭). 서브 카테고리 pill = **필터 선택형(클릭 가능)**.
@@ -915,7 +915,7 @@ DS 컴포넌트 `tab/sub-ui` (pill = `tab/Sub`). 예시 화면: KeyScreen `10315
 |---|---|
 | 컨테이너 | `color/background/quaternary` #F0F1F3 회색 상자, radius 6(`radius-xsmall`), padding 4(`spacing-2xsmall`) → 152×48 |
 | `−` 버튼 | `ic_stepper_minus_40` 40×40 (테두리·배경 없음, #333 2px 라인) |
-| 숫자 표시 | 흰 칸 64×40, radius 6, 1px `color/border/primay` + `heading/2-bold` 20/28 검정 중앙정렬 |
+| 숫자 표시 | 흰 칸 64×40, radius 6, 1px `color/border/primary` + `heading/2-bold` 20/28 검정 중앙정렬 |
 | `+` 버튼 | `ic_stepper_plus_40` 40×40 (동일 스타일) |
 | 비활성 | 해당 아이콘 opacity 40% |
 | 최소값 | 1 (또는 상황별) — 최소 이하일 때 `−` 비활성 |
@@ -1493,7 +1493,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | `background/secondary` (완료·정보 요약 카드, 팝업 안 안내 카드, 보조 CTA 배경, 이탈 방지 리마인더) | `#F8F9FB` |
 | `divider/primary` (얇은 아이템 구분선, 카드 테두리, 탭 하단선) | `#0000000F` (black 6%) |
 | `divider/dotted` (팝업 카드 내부 계층 분리 점선) | `black 6%`(`#0F000000`) — solid line과 동일 색, `dasharray 2 2`만 다름 |
-| `color/background/dimed` (팝업·바텀시트 뒤 딤 — `bg-dimed` 컴포넌트) | `#000000A3` (black 64%) |
+| `color/background/dimmed` (팝업·바텀시트 뒤 딤 — `bg-dimmed` 컴포넌트) | `#000000A3` (black 64%) |
 | `decoration/soft` (로그인 배경 장식) (추측) | 아주 옅은 회색 반투명 |
 
 **색 사용 규칙**
@@ -1913,7 +1913,7 @@ CVC 인증오류 해제, ATM 출금 잠금 해제처럼 **카드에 걸린 특�
 | **좌우 여백** | 20 (`layout/margin`) — 콘텐츠 폭 320 |
 | **너비 × 높이** | 320 × 42 |
 | **radius** | 12 (`radius/components/toast`) |
-| **배경** | `color/background/dimed` (`#000000A3`, black 64% — 변수 `opacity/black-64`) |
+| **배경** | `color/background/dimmed` (`#000000A3`, black 64% — 변수 `opacity/black-64`) |
 | **텍스트** | `body/2-Regular` 14/22 + `font/white` (`#FFFFFF`), 중앙정렬 |
 | **내부 padding** | 없음 — 높이 42 고정, 글자를 가운데 정렬 (22 줄높이 → 위아래 10씩) |
 
@@ -2182,7 +2182,7 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 | 색조 | 배경 | 텍스트 | 언제 쓰나 |
 |---|---|---|---|
 | **진한 보라** | `brand/primary` (#805AE9) | 흰색 | **강조·중요·긴급 알림** ("중요!") + **완료된 액션 결과 상태** (답변완료 등) |
-| **옅은 보라** | `brand/sencondary` (#F4F0FD, purple-100) | 보라 or 검정 | **지속 상태 태그** — 계속 유지되는 속성 표기 (예: "연장 완료") |
+| **옅은 보라** | `brand/secondary` (#F4F0FD, purple-100) | 보라 or 검정 | **지속 상태 태그** — 계속 유지되는 속성 표기 (예: "연장 완료") |
 | **회색** | `background/secondary` or 유사 옅은 회색 | 검정 | **대기·미행동 상태** — 사용자 or 시스템의 후속 액션이 필요한 상태 (예: "답변대기") |
 
 **색 매핑 판단 신호:**

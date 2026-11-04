@@ -411,7 +411,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 |---|---|
 | Selected(True) 채움 | `color/button/primary` = **#805AE9** |
 | Selected 아이콘/핸들 | `color/icon/white` = #FFFFFF |
-| Default(False) 채움 | `color/button/quarternary` = **#999999** (Switch) / 흰 배경 + `color/border/default` #DDDDDD (Checkbox·Radio 아이콘형) |
+| Default(False) 채움 | `color/button/quaternary` = **#999999** (Switch) / 흰 배경 + `color/border/default` #DDDDDD (Checkbox·Radio 아이콘형) |
 | Default 아이콘 | `color/icon/quaternary` = #999999 |
 | Radio Selected 내부 도트 | `color/icon/brand` = #805AE9 |
 | Disable | Default 상태 시각 그대로 + **opacity 40%** |
@@ -1259,7 +1259,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 | 구조 | 속성(variant) 없는 단일 컴포넌트 |
 | 크기 | 320 × 42 (높이 고정, 글자는 세로·가로 가운데) |
 | radius | 12 (`radius/components/toast`) |
-| 배경 | `color/background/dimed` (검정 64%) |
+| 배경 | `color/background/dimmed` (검정 64%) |
 | 글자 | `body/2-Regular` 14/22 · `font/white` |
 | 배치 | 화면 아래에서 **40**, 좌우 **20** (`layout/margin`) — 360 화면에서 폭 320 |
 
