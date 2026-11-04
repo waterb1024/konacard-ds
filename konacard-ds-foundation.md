@@ -361,16 +361,15 @@ spacing:
     "spacing-2xlarge":  32   # ✅ 넓은 여백
     "spacing-3xlarge":  40   # ✅ 그룹 명확 구분
 
-    # 디스플레이용 큰 마진 (배너·인트로 등) — 실제 경로는 spacing/display/{medium|large|xlarge|2xlarge}
+    # 디스플레이용 큰 여백 — 가이드 밖, Figma 변수 spacing/display/* 에만 있음
     "spacing-display-medium":    48   # ✅ = spacing/display/medium
-    "spacing-display-margin-l":  60   # ✅ = spacing/display/large
-    "spacing-display-margin-xl": 80   # ✅ = spacing/display/xlarge
+    "spacing-display-large":     60   # ✅ = spacing/display/large
+    "spacing-display-xlarge":    80   # ✅ = spacing/display/xlarge
     "spacing-display-2xlarge":   120  # ✅ = spacing/display/2xlarge
 
   # ─── layout/* — 시맨틱 별칭 ──────────────────────────────
   layout:
-    "layout/margin":     20   # ✅ = spacing-large (화면 좌우 padding)
-    "layout/margin-top": 24   # ✅ = spacing-xlarge (Headline 등 상단)
+    "layout/margin":     20   # ✅ = spacing/large (화면 좌우 padding)
 
   # ─── 파생 값 (Figma variable 아님, 계산·관례) ────────────
   derived:
@@ -776,49 +775,50 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 
 ## Spacing
 
-> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Spacing Guide (node 296:3057)
+> 출처: Figma DS `${FIGMA_DS_FILE_KEY}` / Spacing 가이드 (node 296:3057) — 2026-11-04 가이드 기준으로 다시 맞춤
 
 여백(Spacing)은 정보를 체계적으로 구조화하는 중요한 역할을 합니다. 잘 계획된 여백을 통해 정보를 체계적으로 그룹화하여 사용자가 쉽고 빠르게 정보를 인지할 수 있도록 지원합니다.
 
-스페이싱의 **기본 단위는 4와 8의 배수**를 사용하며, 금융 앱의 특성상 **최소 2dp(pt) 여백**을 허용합니다.
+스페이싱의 기본 단위는 **4와 8배수**를 기반으로 사용하며, 금융 앱의 특성으로 **최소 2dp(pt) 여백**을 허용합니다.
+
+> 가이드 표기(`$spacing-small` 등)와 Figma 변수 이름(`spacing/small` 등)이 다름. 아래 표는 둘 다 적음.
 
 ### Layout Margin
 
 - 코나카드 앱은 컨텐츠 몰입도를 위해 **디바이스 양쪽 여백을 20dp(pt)로 동일하게** 적용합니다.
-- `spacing-large` (20px) — **변경 불가** 토큰
+- 변수 `layout/margin` → `spacing/large` (20px) — **변경 불가**
 - 콘텐츠 가용 영역(Device Flexible Area): `360 - 20 × 2 = 320px`
 
 ### Spacing Scale
 
-| 토큰 | 값 (px) | 용도 |
-|------|--------:|------|
-| `spacing-none` | 0 | 컨텐츠 간격이 없을 때 |
-| `spacing-3xsmall` | 2 | 컨텐츠 사이 간격이 매우 좁은 경우 |
-| `spacing-2xsmall` | 4 | 컨텐츠 사이 좁은 간격 |
-| `spacing-xsmall` | 8 | 일반적인 컨텐츠 간격 |
-| **`spacing-small`** | **12** *(base size)* | 컨텐츠와 컨텐츠 사이 구분이 필요한 경우 |
-| `spacing-medium` | 16 | 컨텐츠와 그룹을 구분할 경우 |
-| **`spacing-large`** | **20** *(layout margin)* | 레이아웃 마진 공통 — **변경 불가** |
-| **`spacing-xlarge`** | **24** *(base size)* | 컨텐츠와 본문 사이 여백 |
-| `spacing-2xlarge` | 32 | 컨텐츠와 본문 사이 넓은 여백 |
-| `spacing-3xlarge` | 40 | 그룹의 명확한 구분이 필요한 넓은 여백 |
+| 가이드 토큰 | Figma 변수 | 값 (px) | 용도 (가이드 문구) |
+|------|------|--------:|------|
+| `$spacing-none` | `spacing/none` | 0 | 컨텐츠 간격이 없을 때 사용합니다. |
+| `$spacing-3xsmall` | `spacing/3xsmall` | 2 | 컨텐츠 사이 간격이 매우 좁은 경우에 적용합니다. |
+| `$spacing-2xsmall` | `spacing/2xsmall` | 4 | 컨텐츠 사이 좁은 간격에 적용합니다. |
+| `$spacing-xsmall` | `spacing/xsmall` | 8 | 일반적인 컨텐츠 간격에 적용합니다. |
+| **`$spacing-small`** | `spacing/small` | **12** *(base size)* | 컨텐츠와 컨텐츠 사이 구분이 필요한 경우 적용합니다. |
+| `$spacing-medium` | `spacing/medium` | 16 | 컨텐츠와 그룹을 구분할 경우에 적용합니다. |
+| **`$spacing-large`** | `spacing/large` | **20** *(layout margin)* | 레이아웃 마진에 공통으로 적용합니다. (변경불가) |
+| **`$spacing-xlarge`** | `spacing/xlarge` | **24** *(base size)* | 컨텐츠와 본문 사이 여백으로 활용합니다. |
+| `$spacing-2xlarge` | `spacing/2xlarge` | 32 | 컨텐츠와 본문 사이 넓은 여백으로 활용합니다. |
+| `$spacing-3xlarge` | `spacing/3xlarge` | 40 | 그룹의 명확한 구분이 필요한 경우 넓은 여백으로 활용합니다. |
 
-**Display margin** (배너·인트로 등 큰 영역):
+**Display** — 가이드 밖, Figma 변수에만 있는 큰 여백:
 
-| 토큰 | 값 (px) | 실제 Figma 경로 |
-|------|--------:|------|
-| `spacing-display-margin-l` | 60 | `spacing/display/large` |
-| `spacing-display-margin-xl` | 80 | `spacing/display/xlarge` |
-| *(문서에 없던 값)* | 48 | `spacing/display/medium` |
-| *(문서에 없던 값)* | 120 | `spacing/display/2xlarge` |
+| Figma 변수 | 값 (px) |
+|------|--------:|
+| `spacing/display/medium` | 48 |
+| `spacing/display/large` | 60 |
+| `spacing/display/xlarge` | 80 |
+| `spacing/display/2xlarge` | 120 |
 
 ### 사용 규칙
 
-- `spacing-large` (20) — **레이아웃 마진 변경 불가 토큰**. 화면 좌우 패딩은 항상 20px.
-- **Base size**는 `spacing-small` (12) 와 `spacing-xlarge` (24) — 디자인 시 우선 후보로 사용
-- 4·8의 배수 토큰(`4, 8, 16, 24, 32, 40`)을 우선 사용, `2px·12px·20px`는 특정 의미가 있을 때만 사용
-- Figma 변수 (`spacing-*`) 와 1:1 매핑 — 코드에서도 토큰명으로 참조
-- 임의의 픽셀 값(예: `7px`, `13px`) 직접 입력 금지
+- `spacing/large` (20) — **레이아웃 마진 변경 불가**. 화면 좌우 패딩은 항상 20px.
+- **Base size**는 `spacing/small` (12) 와 `spacing/xlarge` (24) — 디자인 시 우선 후보로 사용
+- 헤드라인 상·하 padding 24px 은 `spacing/xlarge` (예전 `layout/margin-top` 변수는 삭제됨)
+- 임의의 픽셀 값(예: `7px`, `13px`) 직접 입력 금지 — 반드시 토큰 참조
 
 ---
 
@@ -909,7 +909,7 @@ Figma 에 텍스트 스타일로는 있지만 Typography 가이드 표에는 없
 | 필드 묶음(라벨+입력창) 간 세로 간격 | `32px` | `spacing-2xlarge` |
 | 필드 묶음 내부 간격 (라벨↔입력창·입력창↔입력창·입력창↔안내문구) | `8px` | `spacing-xsmall` |
 | 입력 영역 padding (상 / 하) | `24px` / `40px` | `spacing-xlarge` / `spacing-3xlarge` |
-| 섹션 내부 콘텐츠 padding | `24px` | `spacing-xlarge` (= `layout/margin-top`) |
+| 섹션 내부 콘텐츠 padding | `24px` | `spacing-xlarge` |
 | 리스트 아이템 높이 (`list/list` 한 줄) | large `65px` / medium `55px`(link) | — (상·하 padding large 12 / medium 16 + 내용 + divider 1) |
 
 ### 화면 레이어 구조 (항상 이 순서)

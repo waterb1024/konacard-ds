@@ -138,9 +138,12 @@
   --spacing-xlarge: 24px;
   --spacing-2xlarge: 32px;
   --spacing-3xlarge: 40px;
+  --spacing-display-medium: 48px;   /* spacing/display/* — 가이드 밖, Figma 변수에만 있음 */
+  --spacing-display-large: 60px;
+  --spacing-display-xlarge: 80px;
+  --spacing-display-2xlarge: 120px;
 
-  --layout-margin: 20px;
-  --layout-margin-top: 24px;
+  --layout-margin: 20px;            /* layout/margin → spacing/large */
   --screen-h-padding: 20px;
 
   /* ─── radius ─────────────────────────────────────────────

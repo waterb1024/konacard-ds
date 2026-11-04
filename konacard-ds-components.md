@@ -632,7 +632,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - **사이즈·기하**:
   - 폭: 360px 기준(가변, 컴포넌트 원본 320) / 높이: 콘텐츠 따라 가변
   - 좌우 padding: **20px** (`layout/margin`)
-  - 상·하 padding: **24px** (`layout/margin-top`)
+  - 상·하 padding: **24px** (`spacing/xlarge`)
   - 블록 간 gap: **8px**
 - **하위 슬롯** (스크롤 전 렌더):
   - **Main text** (큰 제목): `heading/1-bold` = Pretendard **Bold 24px** / lineHeight 32 / letterSpacing -0.48 / 색 #000000
