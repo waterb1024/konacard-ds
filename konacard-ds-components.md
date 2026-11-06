@@ -19,15 +19,15 @@ related_docs:
 > 각 컴포넌트의 Figma 노드 ID·variant·state·용도를 정리합니다.
 > 토큰 상세는 `konacard-ds-foundation.md`, 사용 상황·조합 원칙은 `konacard-ds-rule.md` 참조.
 
-## 컴포넌트 카탈로그 개요 (13 대분류)
+## 컴포넌트 카탈로그 개요 (14 대분류)
 
 | 대분류 | 상태 | 포함 컴포넌트 |
 |---|---|---|
 | **00_Basic** | ✅ 완료 | OS/status-bar (AOS·iOS·notch·Chrome), OS/keyboard (AOS·iOS), spacing 8-based 원칙 |
-| **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/headline, action-bar/button |
+| **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/button (헤드라인은 14_Heading 으로 옮김) |
 | **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), select/select button · group (버튼형 선택지), Form UI(Title·Guide Text) |
+| **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), select/select button · group (버튼형 선택지), input/label (입력칸 라벨, 구 title/title Type=Input), Form UI(Title·Guide Text) |
 | **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
 | **06_List** | ✅ 완료 | list/list(4형), accordion(header + body, 구 list/expand), list/card-select, list/bottomsheet + Select List 응용 |
 | **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
@@ -37,6 +37,7 @@ related_docs:
 | **11_Tooltip** | ✅ 완료 | Popup Type(?, dialog), Bubble Type(!, inline Line/Brand) + 제작 가이드 |
 | **12_Banner** | ✅ 완료 | Benefit Banner(1line), Action Banner(1+2depth) + 6 파스텔 color |
 | **13_Toast** | ✅ 완료 | toast (속성 없는 단일 컴포넌트, 화면 아래 40 · 좌우 20) |
+| **14_Heading** | ✅ 완료 | heading/headline (화면 큰 제목, 구 action-bar/headline), heading/section (섹션 제목 size 3단계, 구 title/title) |
 
 ---
 
@@ -275,7 +276,7 @@ related_docs:
 - **Figma 컴포넌트 세트**: `41:505` — AX 이름 **`input`** (2026-10-15 사용자 정리. 옛 `input/text field` 세트에 search bar · text area · button · card-number · id 를 합침, 키 유지)
 - **속성**: `style/case` 6 × `state` 6 = 36 variant + boolean `title` · `info` · `timer`
   - `state`: `default` / `focus` / `active` / `complete` / `disabled` / `error` — 위 공통 표
-  - `title` (기본 켜짐): 위에 `title/title` Type=Input · Medium · Black (`body/3-Bold` 12/18 #333)
+  - `title` (기본 켜짐): 위에 `input/label` (`body/3-Bold` 12/18 #333, 구 `title/title` Type=Input)
   - `info` (기본 켜짐): 아래에 `info` 컴포넌트. Error state 면 `type=icon-error`, 나머지는 `type=info`
   - `timer` (기본 꺼짐, **text field 전용**): 인증 남은 시간 `3:00` (`body/2-Regular` 14/22 `color/font/error`) + 12 + `input/icon` `type=icon_refresh`
 - **틀**: title → 입력칸 → info, 세로 gap **8px** (`spacing-xsmall`). 전체 높이 100 (text area 176). 폭은 부모에 맞춰 늘어남
@@ -311,7 +312,7 @@ related_docs:
 - **Figma 노드**: 컴포넌트 세트 `41:550` — AX 이름 **`select/select box`** (❖ Select 페이지. NEW 파일 이름 `input/select`, 카탈로그 페이지 인스턴스 이름 `Input/Select`)
 - **속성** (2026-10-15 사용자 정리 — 값 1개뿐인 `style/case` 삭제, `State` → `state`, 원본을 고쳐 키 유지)
   - `state` = `default` / `active` / `select` / `disabled` / `error`
-  - `title` · `info` (boolean, 기본 켜짐) — `input` 과 같은 틀: 위에 `title/title`, 아래에 `info` (Error 면 `type=icon-error`)
+  - `title` · `info` (boolean, 기본 켜짐) — `input` 과 같은 틀: 위에 `input/label`, 아래에 `info` (Error 면 `type=icon-error`)
 - **용도**: 정해진 옵션 목록을 **열어서** 하나 고르는 필드 (드롭다운 트리거). 옵션이 많거나(5개 이상) 길 때
 - **사이즈·기하**: `input` 과 동일 (전체 100 · 칸 48h / R6 `radius/components/form` / padding 좌우 16·상하 12 / left 정렬) — AX 실측
 - **하위 슬롯**:
@@ -365,8 +366,8 @@ related_docs:
 Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통 규칙. `input` · `select/select box` 모두 `title` · `info` boolean 으로 내장.
 
 - **요소 간 상·하 gap**: `spacing-xsmall` = **8px** (Title↔Field↔Guide Text 모두)
-- **Title** (필드 상단 라벨)
-  - 사용 시점: "Input/Select 상단에 제목이 있는 경우" (`title` 켜기)
+- **Title** (필드 상단 라벨) = **`input/label` 컴포넌트** (`41:1176`, ❖ Input 페이지 — 2026-11-06 `title/title` Type=Input · Medium · Black 을 세트 밖으로 빼서 옮김, 키 유지)
+  - 사용 시점: "Input/Select 상단에 제목이 있는 경우" (`title` 켜기). 필드 밖에 따로 놓을 때는 `input/label` 단독 인스턴스 (글자 속성 `label`, 폭 320)
   - 타이포: `body/3-Bold` = Pretendard Bold **12px** / lineHeight 18 / letterSpacing -0.24
   - 색: `color/font/secondary` #333333
 - **Guide Text** (필드 하단 안내/에러 문구) = **`info` 컴포넌트** (`Info / Info text`)
@@ -534,7 +535,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 # 01_Actionbar
 
 > Figma 카테고리 노드: `17:829` (01_Actionbar)
-> 3개 컴포넌트: **action-bar/button** (터치 유닛) / **action-bar/header** (Main·Sub·Scroll Title 헤더 3형) / **action-bar/headline** (스크롤 대응 큰 제목)
+> 2개 컴포넌트: **action-bar/button** (터치 유닛) / **action-bar/header** (Main·Sub·Scroll Title 헤더 3형). 스크롤 대응 큰 제목은 § 14_Heading 의 `heading/headline` (구 action-bar/headline)
 
 **공통 원칙**
 
@@ -602,7 +603,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 - **용도**: 헤드라인 크게 노출 + 스크롤 시 헤더로 축소되는 이중 패턴
 - **동작**:
-  - **스크롤 전**: action-bar/header에는 우측 액션(햄버거 등)만 노출, 타이틀 영역 비어있음. 본문 상단에 `action-bar/headline` 큰 제목 노출
+  - **스크롤 전**: action-bar/header에는 우측 액션(햄버거 등)만 노출, 타이틀 영역 비어있음. 본문 상단에 `heading/headline` 큰 제목 노출
   - **스크롤 시**: 헤드라인이 헤더로 밀려 들어가면서 헤더에 **Page title 자동 노출 + 하단 divider(밑줄) 표시**
 - **트랜지션 트리거**: 헤드라인 하단 라인이 헤더 하단과 만나는 시점
 
@@ -614,41 +615,6 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - ❌ **우측 액션 4개 이상** (56×56 × 3 이하 권장, 그 이상은 햄버거 메뉴로 통합)
 - ❌ 헤더 배경에 별도 색 지정 (Contents 배경 상속 원칙 위배)
 - ❌ Scroll Title 유형에서 스크롤 전에도 헤더에 Page title 노출 (헤드라인과 중복)
-
----
-
-## action-bar/headline (컴포넌트 세트 `896:4387`)
-
-- **Figma 노드**: 세트 `896:4387` / 샘플 인스턴스 `1098:4444`, `1098:4449` (둘 다 `type=3line`)
-- **용도**: Scroll Title 유형과 페어링되는 **큰 제목 영역** (본문 최상단 배치)
-- **Variant `type`** — 표시되는 **텍스트 블록 개수** (Main text 줄 수 아님, AX 실측):
-
-| type | 구성 | 높이 (Main 3줄 기준) |
-|---|---|---|
-| `1line` | Main text | 144 |
-| `2line` | Main text + Sub text | 196 |
-| `3line` | Main text + Sub text + Description | 248 |
-
-- **사이즈·기하**:
-  - 폭: 360px 기준(가변, 컴포넌트 원본 320) / 높이: 콘텐츠 따라 가변
-  - 좌우 padding: **20px** (`layout/margin`)
-  - 상·하 padding: **24px** (`spacing/xlarge`)
-  - 블록 간 gap: **8px**
-- **하위 슬롯** (스크롤 전 렌더):
-  - **Main text** (큰 제목): `heading/1-bold` = Pretendard **Bold 24px** / lineHeight 32 / letterSpacing -0.48 / 색 #000000
-    - 강조 부분은 `color/font/brand` #805AE9 사용 가능 (한 구절만)
-  - **Sub text** (부제): `body/2-Regular` 14px / `color/font/tertiary` #666666, 상단 gap 8px
-  - **Main text description** (설명): `body/2-Regular` 14px / `color/font/quaternary` #999999
-- **강조 규칙** (Main text 안):
-  - "Main text Main text **Main text 강조** Main text Main text" 형태
-  - **한 구절만 브랜드 보라 강조** — `konacard-ds-rule.md` § "한 화면 = 한 과업" 원칙 준수
-- **여러 줄 처리**: Main text는 2~3줄 권장, Sub text는 2줄 이하
-
-## action-bar/headline 안티패턴
-
-- ❌ 강조 보라를 **여러 구절에 반복 사용** (한 구절 원칙 위배)
-- ❌ Headline 없이 Scroll Title 헤더만 사용 (헤더에 처음부터 Page title 노출) — 이 경우 그냥 Sub 유형 사용
-- ❌ Headline과 첫 콘텐츠 카드 사이 여백을 24px 미만으로 축소
 
 ---
 
@@ -1273,6 +1239,64 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 ---
 
+# 14_Heading
+
+> ❖ Heading 페이지 (2026-11-06 사용자 정리 완료). 화면의 제목 두 가지 — 화면 맨 위 큰 제목 `heading/headline`, 화면 안 묶음 제목 `heading/section`.
+> 입력칸 위 라벨은 Heading 이 아니라 § 04_Forms 의 `input/label`.
+
+---
+
+## heading/headline (`1098:4409`)
+
+- **Figma 노드**: 단일 컴포넌트 `1098:4409` (구 `action-bar/headline` 세트 `896:4387` 의 `type=1line` 노드를 그대로 써서 키 유지. 2line · 3line variant 와 세트는 삭제)
+- **용도**: 화면 맨 위(header 아래)에 **한 번만** 쓰는 큰 제목. Scroll Title 유형 헤더와 짝으로도 씀
+- **속성**:
+  - `sub text` (boolean, **기본 꺼짐**) — 보조 문구 보이기
+  - `sub` (text) — 보조 문구 내용
+  - 주 문구에는 글자 속성 없음 — 강조 구절을 직접 칠해야 해서 레이어 글자를 바로 고침
+- **사이즈·기하** (AX 실측):
+  - 폭 **360** (화면 폭, 인스턴스는 FILL) / 높이 HUG — 주 문구 3줄 기준 144, 보조 문구 2줄 켜면 196
+  - padding 상·하 **24** (`spacing/xlarge`) · 좌우 **20** (`layout/margin`), 주 문구 ↔ 보조 문구 gap **8** (`spacing/xsmall`)
+- **글자**:
+  - **주 문구** (`headline`): `heading/1-bold` = Pretendard **Bold 24px** / lineHeight 32 / letterSpacing -0.48 / `color/font/primary` #000000
+    - 강조 구절은 **fill 만** `color/font/brand` #805AE9 (굵기·크기 그대로, 한 구절만)
+  - **보조 문구** (`sub text`): `body/2-Regular` 14px / lineHeight 22 / letterSpacing -0.28 / `color/font/tertiary` #666666 — 주 문구 **아래**
+- **KeyScreen AOS 근거** (2026-11-06, 보이는 인스턴스 576곳): 주 문구만 443 · 주 문구 + 보조 문구 133 · 세 번째 줄(설명) 0 → 설명 줄 삭제. 강조 287곳
+- **여러 줄 처리**: 주 문구 2~3줄 권장, 보조 문구 2줄 이하
+
+## heading/headline 안티패턴
+
+- ❌ 강조 보라를 **여러 구절에 반복 사용** (한 구절 원칙 위배)
+- ❌ 강조할 때 폰트·굵기까지 바꾸기 — fill 만 바꿈
+- ❌ 한 화면에 headline 2개 이상 (화면 안 묶음 제목은 `heading/section`)
+- ❌ Headline 없이 Scroll Title 헤더만 사용 (헤더에 처음부터 Page title 노출) — 이 경우 그냥 Sub 유형 사용
+- ❌ Headline과 첫 콘텐츠 카드 사이 여백을 24px 미만으로 축소
+
+---
+
+## heading/section (`576:6131`)
+
+- **Figma 노드**: 컴포넌트 세트 `576:6131` (구 `title/title`. 쓰이던 세 variant 는 이름만 바꿔 키 유지, 0곳인 4개 삭제, Type=Input 은 `input/label` 로 분리)
+- **용도**: 화면 안에서 묶음(섹션)을 나누는 제목 — 예: 수취인 정보 · 마케팅 알림 설정 · 보내는 금액
+- **속성**: `size` = `large` / `medium` / `small` + `title` (text)
+- **사이즈·기하**: 폭 **320** (인스턴스는 FILL) / 글자 위아래 padding **8** (`spacing/xsmall`)
+
+| size | 글자 | 색 | 높이 | 구 이름 | KeyScreen |
+|---|---|---|---|---|---|
+| `large` | `body/2-bold` 14/22 · -0.28 | `color/font/primary` #000000 | 38 | Type=Black · Large · Black | 29 |
+| `medium` | `body/3-Bold` 12/18 · -0.24 | `color/font/quaternary` #999999 | 34 | Type=Con_list · Medium · Gray | 85 |
+| `small` | `body/4-Bold` 11/16 · -0.22 | `color/font/quaternary` #999999 | 32 | Type=Con_list · Small · Gray | 14 |
+
+- 크기마다 색이 하나씩만 쓰여서 옛 Color 속성은 size 에 묶음
+
+## heading/section 안티패턴
+
+- ❌ 섹션 제목을 텍스트로 직접 입력 (h2 직접 입력 금지 — 인스턴스 사용)
+- ❌ 입력칸 라벨로 `heading/section` 사용 — 라벨은 `input/label`
+- ❌ 한 묶음 안에서 size 섞어 쓰기
+
+---
+
 # 00_Basic (디자인 업무용)
 
 > Figma 카테고리 노드: `2408:6113`
@@ -1346,7 +1370,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 | # | 카테고리 | 대표 컴포넌트 |
 |---|---|---|
 | 00 | Basic | OS/status-bar, keyboard, spacing 원칙 |
-| 01 | Actionbar | header (Main·Sub AOS/iOS·Scroll Title), headline, button |
+| 01 | Actionbar | header (Main·Sub AOS/iOS·Scroll Title), button |
 | 02 | Button | primary, secondary, text, icon, fixed-bottom |
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |
 | 04 | Forms | input (text field · search bar · text area · button · card-number · 주민등록번호), select (select box · select button) + Form UI |
@@ -1358,6 +1382,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 | 10 | Info | Text info (bullet 2depth), Info-box |
 | 11 | Tooltip | Popup(?), Bubble(!, Line/Brand) |
 | 12 | Banner | Benefit(1line), Action(1+2depth), 6 파스텔 |
+| 14 | Heading | headline (화면 큰 제목), section (섹션 제목 size 3단계) |
 
 **다음 단계 후보**:
 - `konacard-ds-rule.md` 상 각 화면 성격별 규칙과 컴포넌트 매핑 상세 연결 (§ "화면 성격 분류")

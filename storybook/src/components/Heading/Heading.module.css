@@ -1,0 +1,57 @@
+/*
+ * KONACARD DS Heading — Figma ❖ Heading 페이지, AX 실측 2026-11-06
+ * heading/headline (1098:4409) · heading/section (576:6131)
+ */
+
+/* ── heading/headline ─────────────────────────── */
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall); /* 8 */
+  padding: var(--spacing-xlarge) var(--layout-margin); /* 24 20 */
+  box-sizing: border-box;
+}
+
+.headline-main {
+  margin: 0;
+  font: var(--text-heading-1-bold); /* 24/32 */
+  letter-spacing: var(--font-letterspacing-2xlarge); /* -0.48 */
+  color: var(--color-font-primary);
+  white-space: pre-line;
+}
+
+.headline-emphasis {
+  color: var(--color-font-brand);
+}
+
+.headline-sub {
+  margin: 0;
+  font: var(--text-body-2-regular); /* 14/22 */
+  letter-spacing: var(--font-letterspacing-small); /* -0.28 */
+  color: var(--color-font-tertiary);
+  white-space: pre-line;
+}
+
+/* ── heading/section ──────────────────────────── */
+.section {
+  margin: 0;
+  padding: var(--spacing-xsmall) 0; /* 8 0 */
+}
+
+.section-large {
+  font: var(--text-body-2-bold); /* 14/22 → 높이 38 */
+  letter-spacing: var(--font-letterspacing-small); /* -0.28 */
+  color: var(--color-font-primary);
+}
+
+.section-medium {
+  font: var(--text-body-3-bold); /* 12/18 → 높이 34 */
+  letter-spacing: var(--font-letterspacing-xsmall); /* -0.24 */
+  color: var(--color-font-quaternary);
+}
+
+.section-small {
+  font: var(--text-body-4-bold); /* 11/16 → 높이 32 */
+  letter-spacing: var(--font-letterspacing-2xsmall); /* -0.22 */
+  color: var(--color-font-quaternary);
+}

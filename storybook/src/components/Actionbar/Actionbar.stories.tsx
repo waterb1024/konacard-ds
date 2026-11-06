@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   BellIcon,
   Header,
-  Headline,
-  HeadlineEmphasis,
   IconButton,
   MenuIcon,
   SettingsIcon,
 } from "./Actionbar";
+import { Headline, HeadlineEmphasis } from "../Heading/Heading";
 
 const meta = {
   title: "Component/Header",
@@ -115,9 +114,11 @@ export const ScrollTitleScrolled: Story = {
   },
 };
 
-/* ── action-bar/headline ─────────────────────────── */
+/* ── header + heading/headline 조합 ───────────────
+ * headline 자체는 Component/Heading 메뉴 (heading/headline)
+ */
 export const HeadlineSample: Story = {
-  name: "Headline (Main + 강조 + Sub + Desc)",
+  name: "Header + Headline",
   render: () => (
     <div>
       <Header
@@ -129,17 +130,11 @@ export const HeadlineSample: Story = {
           </IconButton>
         }
       />
-      <Headline
-        sub="이번 달 리포트"
-        main={
-          <>
-            홍길동님,
-            <br />
-            이번 달 <HeadlineEmphasis>32,400원</HeadlineEmphasis> 아꼈어요
-          </>
-        }
-        description="지난 달 대비 12% 더 아꼈어요."
-      />
+      <Headline sub="지난 달 대비 12% 더 아꼈어요.">
+        홍길동님,
+        <br />
+        이번 달 <HeadlineEmphasis>32,400원</HeadlineEmphasis> 아꼈어요
+      </Headline>
     </div>
   ),
 };

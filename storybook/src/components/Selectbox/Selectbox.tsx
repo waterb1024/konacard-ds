@@ -9,7 +9,7 @@ import styles from "./Selectbox.module.css";
  *
  * 2026-10-15 정리 (AX 실측):
  *   - 세트 이름 select → select/select box, style/case 삭제, State → state, boolean title · info 추가
- *   - 틀은 input 과 같음: title/title(12/18 Bold #333) → 칸 → info, 세로 8
+ *   - 틀은 input 과 같음: input/label(12/18 Bold #333) → 칸 → info, 세로 8
  *   - 칸 48 · padding 12 16 · gap 16 · radius 6 · 안쪽 1px · 글자 body/1 15/24
  *   - state: default   #DDD · 안내 글자 #999 Regular · 아래 화살표
  *            active    #805AE9 · #805AE9 Bold · 위 화살표 (목록 열림)

@@ -108,7 +108,7 @@
         "input 36 variant 의 title 슬롯 · select/select box 의 라벨이 이 컴포넌트",
         "KeyScreen AOS: 307곳 (모두 input 밖에 따로 놓음)"
       ],
-      "docRef": "konacard-ds-components.md § Inputbox"
+      "docRef": "konacard-ds-components.md § Form UI 조합 규칙 (Title)"
     },
     "button/button": {
       "type": "COMPONENT_SET",
@@ -416,7 +416,7 @@
         "세 번째 줄(설명) 삭제 — KeyScreen AOS 576곳 중 0곳. 주 문구만 443 · 주 문구+보조 133 · 강조 287",
         "KeyScreen 의 옛 2line(약 147) · 3line(10) 인스턴스는 라이브러리 갱신 후 링크가 끊김(모양은 유지) — KeyScreen 은 손대지 않음"
       ],
-      "docRef": "konacard-ds-components.md § action-bar/headline (문서 이름 갱신 전)"
+      "docRef": "konacard-ds-components.md § heading/headline (14_Heading)"
     },
     "heading/section": {
       "type": "COMPONENT_SET",
@@ -457,7 +457,7 @@
         "KeyScreen AOS: medium 85 · large 29 · small 14",
         "인스턴스는 항상 layoutSizingHorizontal='FILL' (메모리 규칙)"
       ],
-      "docRef": "konacard-ds-components.md (Form UI Title, 문서 이름 갱신 전)"
+      "docRef": "konacard-ds-components.md § heading/section (14_Heading)"
     },
     "controls/swtich": {
       "type": "COMPONENT_SET",

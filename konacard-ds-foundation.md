@@ -342,8 +342,16 @@ components:
   action-bar-header:
     height: 56px
     variants: "type=main | page_icon | page_button | old"
-  action-bar-headline:
-    variants: "type=1line | 2line"
+  heading-headline:
+    note: "단일 컴포넌트 (구 action-bar/headline) — importComponentByKeyAsync 사용"
+    props: "sub text(boolean, 기본 꺼짐) · sub(text)"
+  heading-section:
+    variants: "size=large | medium | small"
+    props: "title(text)"
+  input-label:
+    height: 18px
+    note: "단일 컴포넌트 (구 title/title Type=Input) — 입력칸 위 라벨"
+    props: "label(text)"
   button-primary:
     variants: "size=large/medium, type=brand/gray-light"
   button-fixed-bottom:
@@ -738,7 +746,7 @@ wrapper (360×800, white)
 |------------|-------------|------|
 | 상태바 | `OS/status-bar` (Color=Black, Type=AOS) | 모든 화면 최상단 — 24px 고정 |
 | 페이지 헤더 (back/title/right action) | `action-bar/header` (type=main/page_icon/page_button) | 56px 고정, FILL width |
-| 본문 헤드라인 (타이틀+서브) | `action-bar/headline` (type=1line/2line/3line) | 직접 만든 heading + sub 텍스트 조합 금지 |
+| 본문 헤드라인 (타이틀+서브) | `heading/headline` (구 action-bar/headline — 단일, 보조 문구는 `sub text` 켜고 끄기 + `sub`) | 직접 만든 heading + sub 텍스트 조합 금지 |
 | 검색 입력 | `input` style/case=search bar (state 6종) | 검색 아이콘·clear 아이콘 내장 |
 | 일반 입력 | `input` style/case=text field · text area · button · card-number · registration number (title · info · timer boolean) | 용도별로 style/case 만 바꿔 씀 |
 | 카테고리/서브 탭 | `tab/sub-ui` (device=AOS/iOS, type=first/last), `tab/Sub` | 7개 sub-tab 슬롯 내장 |
@@ -746,7 +754,8 @@ wrapper (360×800, white)
 | 리스트 행 | `list/list` (size, type=link/button/control), `list/menu`, `list/card-select`, `list/benefit-store` 등 | 구분선 내장 |
 | 확장 가능 행(아코디언) | `accordion` (header + body 묶음 · size × type=list/inquiry × state) · `accordion/header` · `accordion/body` | 구 list/expand · expand-open. 본문만 쓸 땐 accordion/body |
 | 결제·혜택 행 | `list/payment`, `list/benefit`, `list/benefit-store` | |
-| 본문 타이틀(섹션 제목) | `title/title` (Type=Con_list/Input, Size, Color=Black/Gray) | h2 텍스트 직접 입력 금지 |
+| 본문 타이틀(섹션 제목) | `heading/section` (구 title/title — size=large/medium/small, title) | h2 텍스트 직접 입력 금지 |
+| 입력칸 위 라벨 | `input/label` (구 title/title Type=Input — label) | `input` · `select/select box` 는 `title` 켜기로 내장. 따로 놓을 때만 단독 사용 |
 | 가격·정보 텍스트 그룹 | `info/text-title` | |
 | 태그·라벨 칩 | `label` (구 label/basic-label — size, type=color/line, color=brand-gradient/brand/brand-light/gray-dark/warning/gray-light, line 은 3색·tiny 없음) | 직접 cornerRadius+fill로 칩 만들지 말 것 |
 | 배지 (점/숫자/new) | `badges/badge` (type=dot/new/num-min/num-max) | |
@@ -855,18 +864,27 @@ hdr.layoutSizingVertical = 'FIXED';
 hdr.resize(hdr.width, 56);  // 반드시 56px 강제 지정
 ```
 
-### action-bar/headline
+### heading/headline
 
-텍스트 내용에 따라 높이가 달라지므로 **HUG**로 설정합니다.
+단일 컴포넌트(variant 없음). 텍스트 내용에 따라 높이가 달라지므로 **HUG**, 폭은 화면에 맞춰 **FILL**로 설정합니다.
 
 ```js
+headline.layoutSizingHorizontal = 'FILL';
 headline.layoutSizingVertical = 'HUG';
 ```
 
-2line 변형에서 혼합 색상 적용:
+보조 문구 켜기 (속성 이름 뒤 `#id` 는 파일마다 다르므로 앞부분으로 찾음):
 ```js
-// 앞부분 brand, 뒷부분 black
-headline.findOne(n => n.type === 'TEXT').setRangeFills(0, N, [{ type: 'SOLID', color: C.brand }]);
+const keys = Object.keys(headline.componentProperties);
+headline.setProperties({
+  [keys.find(k => k.startsWith('sub text'))]: true,
+  [keys.find(k => k.startsWith('sub#'))]: '보조 문구',
+});
+```
+
+주 문구 강조 구절 — fill 만 `color/font/brand` 로 (폰트는 건드리지 않음):
+```js
+headline.findOne(n => n.name === 'headline').setRangeFills(start, end, [{ type: 'SOLID', color: C.brand }]);
 ```
 
 ### button/fixed-bottom
@@ -1064,11 +1082,12 @@ for (const item of items) {
 | `OS/status-bar` | Single |
 | `action-bar/header` | ComponentSet |
 | `action-bar/button` | ComponentSet |
-| `action-bar/headline` | ComponentSet |
+| `heading/headline` | Single |
+| `heading/section` | ComponentSet |
 | `button/primary` | ComponentSet |
 | `button/fixed-bottom` | ComponentSet |
 | `button/text` | ComponentSet |
-| `title/title` | ComponentSet |
+| `input/label` | Single |
 | `control/agree` | ComponentSet |
 | `control/swtich` | ComponentSet |
 | `line/dotted` | Single |

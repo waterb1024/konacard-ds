@@ -12,7 +12,7 @@ import styles from "./Input.module.css";
  * 한 세트로 합침 → style/case 6종 × state 6종 = 36 variant + boolean title · info.
  *
  * AX 실측 (공통)
- *   - 틀: 위에서부터 title/title(Input · Medium · Black, 12/18 Bold #333) → 입력칸 → info, 사이 8
+ *   - 틀: 위에서부터 input/label(12/18 Bold #333, 구 title/title Type=Input) → 입력칸 → info, 사이 8
  *   - 입력칸: 높이 48 · padding 12 16 · gap 16 · radius 6 · 안쪽 1px 테두리
  *   - 글자 body/1 15/24
  *   - state: default   테두리 #DDD · 안내 글자 #999 Regular

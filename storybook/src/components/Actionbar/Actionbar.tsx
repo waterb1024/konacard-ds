@@ -174,27 +174,4 @@ export function Header({
   );
 }
 
-/* ── action-bar/headline ─────────────────────────── */
-export interface HeadlineProps {
-  sub?: string;
-  /** Main text — 강조 구절은 `<strong>` 로 감싸면 브랜드 보라 적용 */
-  main: ReactNode;
-  description?: string;
-}
-
-export function Headline({ sub, main, description }: HeadlineProps) {
-  return (
-    <div className={styles.headline}>
-      {sub && <span className={styles["headline-sub"]}>{sub}</span>}
-      <h1 className={styles["headline-main"]}>{main}</h1>
-      {description && (
-        <span className={styles["headline-desc"]}>{description}</span>
-      )}
-    </div>
-  );
-}
-
-/** 헤드라인 Main text 안의 강조 구절 — 브랜드 보라 렌더 */
-export function HeadlineEmphasis({ children }: { children: ReactNode }) {
-  return <strong className={styles["headline-emphasis"]}>{children}</strong>;
-}
+/* heading/headline(구 action-bar/headline)은 Component/Heading 으로 옮김 — ../Heading/Heading.tsx */

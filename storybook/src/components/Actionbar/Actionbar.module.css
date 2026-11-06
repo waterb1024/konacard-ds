@@ -3,7 +3,6 @@
  * 공통: 높이 Fixed 56px · 좌우 padding 20px · 배경 상속(투명)
  * action-bar/button: 56×56 정사각, icon 24px + padding 16
  * header 3형: Main / Sub / Scroll Title
- * headline: 큰 제목 (heading/1-Bold 24px), 상단 padding 24 · 좌우 20
  */
 
 /* ── action-bar/button (icon button 56×56) ─────────── */
@@ -134,34 +133,4 @@
 
 .header-textAction-brand {
   color: var(--color-font-brand);
-}
-
-/* ── action-bar/headline ─────────────────────────── */
-.headline {
-  padding: var(--spacing-xlarge) var(--screen-h-padding) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xsmall);
-}
-
-.headline-sub {
-  font: var(--text-body-2-regular);
-  letter-spacing: var(--font-letterspacing-small);
-  color: var(--color-font-tertiary);
-}
-
-.headline-main {
-  font: var(--text-heading-1-bold);
-  letter-spacing: var(--font-letterspacing-2xlarge);
-  color: var(--color-font-primary);
-}
-
-.headline-emphasis {
-  color: var(--color-font-brand);
-}
-
-.headline-desc {
-  font: var(--text-body-2-regular);
-  letter-spacing: var(--font-letterspacing-small);
-  color: var(--color-font-quaternary);
 }
