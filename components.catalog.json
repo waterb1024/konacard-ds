@@ -78,11 +78,35 @@
         "text area: 입력칸 padding 16 · gap 12 · 글자 영역 64 · 글자 수 11/16 #999 오른쪽 · complete · error 글자가 Regular (다른 style 은 Bold) — Figma 그대로",
         "button: 입력칸 FILL + 8 + button/button primary · medium · brand",
         "card-number: 0000 4칸 FILL · ic_input_dash 24 · 가운데 정렬. registration number: 앞 6자리 FILL – 뒤 첫자리 40×48 + 점 6개(8×8 검정 10%, 사이 8)",
-        "title 은 title/title Type=Input · Medium · Black (12/18 Bold #333), info 는 info 컴포넌트 (error state 면 type=icon-error)",
+        "title 은 input/label (옛 title/title Type=Input · Medium · Black, 12/18 Bold color/font/secondary), info 는 info 컴포넌트 (error state 면 type=icon-error)",
         "Storybook: Component/Input 하나 (variant × state). 옛 TextField · SearchBar 메뉴는 합침",
         "2026-10-15 사용자 수정: boolean timer 추가 (기본 꺼짐, text field 6 state 에만 연결) — 3:00 body/2-Regular 14/22 #FF364B + 12 + icon_refresh. button · 주민번호 안의 타이머 자리와 card-number 의 icon-pass 는 숨김으로만 남아 있음(속성 연결 없음) → Storybook 미구현",
         "text area 의 complete · error Regular 글자는 의도 (사용자 확인 2026-10-15)",
         "card-number Storybook: 4칸 입력이지만 4자리 차면 다음 칸, 빈 칸 백스페이스면 이전 칸으로 이동"
+      ],
+      "docRef": "konacard-ds-components.md § Inputbox"
+    },
+    "input/label": {
+      "type": "COMPONENT",
+      "key": "bf9aabf95cda46c83b1f95c2b394d474f46a1a66",
+      "nodeId": "41:1176",
+      "props": {
+        "label": "TEXT"
+      },
+      "defaults": {
+        "label": "Title"
+      },
+      "heights": {
+        "*": 18
+      },
+      "aliases": {
+        "title/title Type=Input, Size=Medium, Color=Black": "input/label (2026-11-06 분리, 키 유지)"
+      },
+      "notes": [
+        "2026-11-06 사용자 정리 완료: title/title Type=Input · Medium · Black 노드를 세트 밖으로 빼서 ❖ Input 페이지로 옮김 (키 유지)",
+        "입력칸 위 라벨 (국적 · 문의 유형 등). body/3-Bold 12/18 · color/font/secondary. 폭 320",
+        "input 36 variant 의 title 슬롯 · select/select box 의 라벨이 이 컴포넌트",
+        "KeyScreen AOS: 307곳 (모두 input 밖에 따로 놓음)"
       ],
       "docRef": "konacard-ds-components.md § Inputbox"
     },
@@ -362,107 +386,78 @@
         ]
       }
     },
-    "action-bar/headline": {
-      "type": "COMPONENT_SET",
-      "key": "155c014cd305b08c84015e657b93b48a0941f99d",
-      "nodeId": "896:4387",
+    "heading/headline": {
+      "type": "COMPONENT",
+      "key": "cf729f8069c5ca0f1174a24556d6f8d2e61b8731",
+      "nodeId": "1098:4409",
       "props": {
-        "type": [
-          "1line",
-          "2line",
-          "3line"
-        ]
+        "sub text": "BOOLEAN",
+        "sub": "TEXT"
       },
       "defaults": {
-        "type": "1line"
+        "sub text": false,
+        "sub": "Sub text, Sub text, Sub text\nSub text, Sub text"
       },
       "heights": {
-        "1line": 144,
-        "2line": 196,
-        "3line": 248
+        "sub text=false": 144,
+        "sub text=true": 196
+      },
+      "aliases": {
+        "action-bar/headline": "heading/headline (2026-11-06 이름 변경 · 단일 컴포넌트로 합침)",
+        "action-bar/headline type=1line": "heading/headline sub text=false (이 노드 그대로, 키 유지)",
+        "action-bar/headline type=2line": "heading/headline sub text=true (옛 variant 삭제 — 옛 인스턴스는 링크 끊김)",
+        "action-bar/headline type=3line": "heading/headline sub text=true (세 번째 줄 삭제)"
       },
       "notes": [
-        "type 의 line = 텍스트 블록 개수 (1: Main / 2: +Sub / 3: +Description)",
-        "padding 상하 24 · 좌우 20, 블록 gap 8",
-        "variant 폭 320 (원본). 화면에서는 360 폭으로 사용"
+        "2026-11-06 사용자 정리 완료: action-bar/headline(1line·2line·3line) → 단일 컴포넌트 heading/headline. 옛 type=1line 노드를 그대로 써서 키 유지. ❖ Heading 페이지",
+        "화면 맨 위(header 아래) 한 번만 쓰는 큰 제목. 폭 360 · padding 상하 24(spacing/xlarge) 좌우 20(layout/margin) · gap 8(spacing/xsmall)",
+        "headline: heading/1-bold · color/font/primary. 강조 구절은 fill 만 color/brand/primary 로 직접 칠함 — 그래서 주 문구에는 TEXT 속성 없음",
+        "sub text(BOOLEAN, 기본 꺼짐) + sub(TEXT): body/2-Regular · color/font/tertiary",
+        "세 번째 줄(설명) 삭제 — KeyScreen AOS 576곳 중 0곳. 주 문구만 443 · 주 문구+보조 133 · 강조 287",
+        "KeyScreen 의 옛 2line(약 147) · 3line(10) 인스턴스는 라이브러리 갱신 후 링크가 끊김(모양은 유지) — KeyScreen 은 손대지 않음"
       ],
-      "docRef": "konacard-ds-components.md § action-bar/headline"
+      "docRef": "konacard-ds-components.md § action-bar/headline (문서 이름 갱신 전)"
     },
-    "title/title": {
+    "heading/section": {
       "type": "COMPONENT_SET",
       "key": "8f7a85fd66a5c094c0827cf0162ccc4f7a0fa6ee",
       "nodeId": "576:6131",
       "props": {
-        "Type": [
-          "Input",
-          "Con_list",
-          "Black",
-          "Gray"
+        "size": [
+          "large",
+          "medium",
+          "small"
         ],
-        "Size": [
-          "Large",
-          "Medium",
-          "Small"
-        ],
-        "Color": [
-          "Gray",
-          "Black"
-        ]
+        "title": "TEXT"
       },
       "defaults": {
-        "Type": "Input",
-        "Size": "Medium",
-        "Color": "Black"
+        "size": "large",
+        "title": "Title"
       },
-      "validCombos": {
-        "Type=Input": {
-          "Size": [
-            "Medium"
-          ],
-          "Color": [
-            "Black",
-            "Gray"
-          ],
-          "height": 18
-        },
-        "Type=Con_list": {
-          "Size": [
-            "Medium",
-            "Small"
-          ],
-          "Color": [
-            "Gray",
-            "Black"
-          ],
-          "height": {
-            "Medium": 34,
-            "Small": 32
-          }
-        },
-        "Type=Black": {
-          "Size": [
-            "Large"
-          ],
-          "Color": [
-            "Black"
-          ],
-          "height": 38
-        },
-        "Type=Gray": {
-          "Size": [
-            "Large"
-          ],
-          "Color": [
-            "Gray"
-          ],
-          "height": 38
-        }
+      "heights": {
+        "large": 38,
+        "medium": 34,
+        "small": 32
+      },
+      "styles": {
+        "large": "body/2-bold · color/font/primary",
+        "medium": "body/3-Bold · color/font/quaternary",
+        "small": "body/4-Bold · color/font/quaternary"
+      },
+      "aliases": {
+        "title/title": "heading/section (2026-11-06 이름 변경, 세트 키 유지)",
+        "title/title Type=Black, Size=Large, Color=Black": "heading/section size=large",
+        "title/title Type=Con_list, Size=Medium, Color=Gray": "heading/section size=medium",
+        "title/title Type=Con_list, Size=Small, Color=Gray": "heading/section size=small",
+        "title/title Type=Input, Size=Medium, Color=Black": "input/label (세트 밖으로 분리)"
       },
       "notes": [
-        "인스턴스는 항상 layoutSizingHorizontal='FILL' (메모리 규칙)",
-        "속성명·값 PascalCase 원본 그대로"
+        "2026-11-06 사용자 정리 완료: title/title(Type × Size × Color 8) → heading/section size 3. 쓰이던 세 노드는 이름만 바꿔 키 유지, 0곳인 4개(Con_list Medium·Small Black, Gray Large Gray, Input Gray) 삭제. ❖ Heading 페이지",
+        "화면 안에서 묶음(섹션)을 나누는 제목. 폭 320, 글자 위아래 padding 8(spacing/xsmall)",
+        "KeyScreen AOS: medium 85 · large 29 · small 14",
+        "인스턴스는 항상 layoutSizingHorizontal='FILL' (메모리 규칙)"
       ],
-      "docRef": "konacard-ds-rule.md · konacard-ds-components.md (Form UI Title)"
+      "docRef": "konacard-ds-components.md (Form UI Title, 문서 이름 갱신 전)"
     },
     "controls/swtich": {
       "type": "COMPONENT_SET",
