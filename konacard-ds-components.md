@@ -2,239 +2,142 @@
 version: "1.0"
 name: KONACARD Design Components
 description: >
-  KONACARD 모바일 앱(AOS) 공통 디자인 시스템 — Component 명세 문서.
-  Figma DS 파일(${FIGMA_DS_FILE_KEY})의 컴포넌트 카탈로그 페이지(node 17:827)를 원본 소스로 함.
-  각 컴포넌트의 variant/state/props/사용 조건을 정리.
-scope: >
-  Figma 카탈로그의 12개 대분류(00_Basic ~ 12_Banner) 전체 완료.
-  각 대분류별 컴포넌트·variant·state·용도·안티패턴 정리 완료.
-related_docs:
-  - "konacard-ds-foundation.md — 토큰(color/typography/spacing/radius/elevation)"
-  - "konacard-ds-rule.md — 사용 원칙·화면 성격별 규칙·안티패턴"
+  KONACARD 디자인 시스템 컴포넌트 문서 — 컴포넌트를 언제 · 어떻게 쓰는지와 하지 말 것.
+  이름 · 키 · variant · 크기 같은 값의 기준은 components.catalog.json (Figma -AX- 에서 추출).
 ---
 
 # KONACARD Design Components
 
-> Figma DS 원본: `${FIGMA_DS_FILE_KEY}` / 카탈로그 페이지 `17:827` (`02_Components`)
-> 각 컴포넌트의 Figma 노드 ID·variant·state·용도를 정리합니다.
-> 토큰 상세는 `konacard-ds-foundation.md`, 사용 상황·조합 원칙은 `konacard-ds-rule.md` 참조.
+> - **값(이름 · 키 · variant · 크기)** → `components.catalog.json` 이 기준 (Figma `${FIGMA_DS_FILE_KEY}` 에서 추출). 이 문서와 다르면 카탈로그 · Figma 우선
+> - **이 문서** → 컴포넌트별 용도 · 사용 규칙 · 안티패턴
+> - 토큰 값 → `konacard-ds-foundation.md`, 화면 조립 규칙 → `konacard-ds-rule.md`, Figma 제작 코드 → `rules/figma-guide.md`
 
-## 컴포넌트 카탈로그 개요 (14 대분류)
+## 컴포넌트 개요 (14 대분류)
 
-| 대분류 | 상태 | 포함 컴포넌트 |
+✅ = Figma 정리 완료 · 카탈로그 있음 / ⏳ = Figma 정리 전 (장 머리에 표시, 옛 기준일 수 있음)
+
+| 대분류 | Figma 정리 | 포함 컴포넌트 |
 |---|---|---|
-| **00_Basic** | ✅ 완료 | OS/status-bar (Color × AOS·iOS·iOS_notch·Address-Bar), OS/keyboard (OS × Keypad·Number), spacing 8-based 원칙 |
-| **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/button (헤드라인은 14_Heading 으로 옮김) |
-| **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom |
-| **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
-| **04_Forms** | ✅ 완료 | input (text field · search bar · text area · button · card-number · 주민등록번호, 구 input/text field 외), select/select box (구 Input/Select), select/select button · group (버튼형 선택지), input/label (입력칸 라벨, 구 title/title Type=Input), Form UI(Title·Guide Text) |
-| **05_Control** | ✅ 완료 | control/swtich(large·medium·small·tiny), control/checkbox(24·28·32), control/radio(24·28), control/agree(3 variants), control/swtich_setting, control/radio-text(Basic·Small) |
-| **06_List** | ✅ 완료 | list/list(4형), accordion(header + body, 구 list/expand), list/card-select, list/bottomsheet + Select List 응용 |
-| **07_Line** | ✅ 완료 | Solid line, Dotted line, Divider(BG+Line 겹침) |
-| **08_Indicator** | ✅ 완료 | Page dot, Navigator(chevron button), N/NN count pill, YYYY.MM period navigator |
-| **09_Label** | ✅ 완료 | label (type color 6색 × 4사이즈 · line 3색 × 3사이즈) |
-| **10_Info** | ✅ 완료 | Text info(1·2Depth bullet), Info-box(Item List + Box Case) |
-| **11_Tooltip** | ✅ 완료 | Popup Type(?, dialog), Bubble Type(!, inline Line/Brand) + 제작 가이드 |
-| **12_Banner** | ✅ 완료 | Benefit Banner(1line), Action Banner(1+2depth) + 6 파스텔 color |
-| **13_Toast** | ✅ 완료 | toast (속성 없는 단일 컴포넌트, 화면 아래 40 · 좌우 20) |
-| **14_Heading** | ✅ 완료 | heading/headline (화면 큰 제목, 구 action-bar/headline), heading/section (섹션 제목 size 3단계, 구 title/title) |
-
----
-
-## 카탈로그 항목 템플릿
-
-각 컴포넌트를 아래 형식으로 정리:
-
-```
-### {component/name}
-
-- **Figma 노드**: `123:456`
-- **컴포넌트 키**: (있으면)
-- **용도**: 한 줄 요약
-- **사이즈·기하**: height / padding / radius / min-max width
-- **Variant**: (예: Color=Brand/Gray, State=Default/Disable)
-- **Props (Figma variants)**: 이름=옵션들
-- **하위 슬롯**: 텍스트 / 아이콘 등
-- **관련 rule.md**: 링크
-- **주의**: 오타·deprecated 등
-```
+| **00_Basic** | ✅ | OS/status-bar (Color × AOS·iOS·iOS_notch·Address-Bar), OS/keyboard (OS × Keypad·Number), spacing 8-based 원칙 |
+| **01_Actionbar** | ⏳ (Header 정리안 v2 검토 중) | action-bar/header, action-bar/button (헤드라인은 14_Heading 으로 옮김) |
+| **02_Button** | ✅ | button/button (style=primary·secondary), button/text button, button/icon button, button/fixed-bottom |
+| **03_Tab** | ⏳ (Tabs 정리안 v2 검토 중) | tab/main-full · tab/main, tab/sub-ui · tab/Sub, tab/sub2-ui |
+| **04_Forms** | ✅ | input (style/case 6종), input/label, select/select box, select/select button · group, Form UI(Title · Guide Text) |
+| **05_Control** | ✅ | controls/swtich · check box · radio button + 각 label 조합 |
+| **06_List** | ✅ list/list · accordion / ⏳ card-select · bottomsheet | list/list, accordion(header + body), list/card-select, list/bottomsheet |
+| **07_Line** | ✅ | divider (solid · dotted · section · vertical) |
+| **08_Indicator** | ⏳ | indicator, badges/badge |
+| **09_Label** | ✅ | label (type color · line) |
+| **10_Info** | ✅ info / ⏳ Text info · Info-box | info, info/text-info 외 |
+| **11_Tooltip** | ✅ | tooltip/tooltip |
+| **12_Banner** | ⏳ | banner/banner |
+| **13_Toast** | ✅ | toast |
+| **14_Heading** | ✅ | heading/headline, heading/section |
 
 ---
 
 # 02_Button
 
+> 버튼 4종 — 채움·테두리 버튼 `button/button`, 글자 링크 `button/text button`, 글자 + 화살표 `button/icon button`, 하단 고정 CTA 묶음 `button/fixed-bottom`.
+> 값 전체는 `components.catalog.json`. 여기는 고르는 기준과 규칙만.
+
 **공통 원칙**
-- **Disable 상태 = Default 버튼의 opacity 40%** (모든 버튼 사이즈·색조 공통)
-- **폰트** (AX 실측): Large = `button/large-bold` 15/24 Bold / Medium = `button/medium-bold` 14/22 Bold / Small = `button/small-regular` 12/18 **Regular** (Small 만 Regular) — `konacard-ds-foundation.md` 참조
-- **Corner radius**: `$radius-button-*` 시맨틱 토큰 사용 (`konacard-ds-foundation.md` 참조)
+- **비활성 = 같은 모양 + opacity 40%**. 예외: `button/button` `style=primary, type=brand` 비활성은 바탕 #DDD + 흰 글자이고, `large` 는 흐리지 않음 (medium·small 은 40%)
+- `button/text button` · `button/icon button` 에는 비활성 variant 가 없음 — 필요하면 버튼 전체에 opacity 40%
+- **Corner radius**: `radius/button/*` 토큰 사용 (`konacard-ds-foundation.md`)
 - **터치 영역**: 최소 32px 세로 확보 (Text·Icon 버튼도 동일)
 
-## button/button 컴포넌트 세트 (style × size × type × state)
+## button/button (`10973:356`)
 
-- **Figma 노드**: `17:703` (`button/button`) — AX 파일에서 primary·secondary 가 **단일 component set** 으로 통합됨 (2026-10-02 get_metadata 확인)
-- **Variant 속성 4개** (속성명·값 모두 소문자):
-  - `style`: `primary` / `secondary`
-  - `size`: style 별로 다름 (아래 표)
-  - `type` (8종, 두 style 공통): `brand` / `brand-light` / `brand-gradient` / `brand-line` / `gray` / `gray-light` / `gray-line` / `gray-line-light`
-  - `state`: `true` (활성) / `false` (비활성, opacity 40%)
+- **용도**: 화면 CTA · 본문 액션 · 필드 우측 어드먼트 등 바탕이나 테두리가 있는 버튼
+- **속성**: `style` (`primary` / `secondary`) × `size` × `type` × `state` (`true` 활성 / `false` 비활성)
+- **size** — style 마다 다름. `primary` 에는 `tiny` 없음
 
-| style | size | 높이 | 문서 섹션 |
+| style | size | 높이 | 부르는 이름 · 쓰는 곳 |
 |---|---|---|---|
-| `primary` | `large` | 56 | Large 버튼 |
-| `primary` | `medium` | 48 | Medium 버튼 |
-| `primary` | `small` | 40 | — (용도 미정의. 실측: padding 16/12, radius 6 `radius/button/medium`, 텍스트 `body/2-bold` 14/22 — `2216:5518`) |
-| `secondary` | `large` | 40 | — (용도 미정의) |
-| `secondary` | `medium` | 32 | Small 버튼 |
-| `secondary` | `small` | 24 | — (용도 미정의) |
-| `secondary` | `tiny` | 24 | — (용도 미정의) |
+| `primary` | `large` | 56 | **Large 버튼** — 하단 고정 CTA · 화면 주 CTA. radius 8, `button/large-bold` 15/24 |
+| `primary` | `medium` | 48 | **Medium 버튼** — 본문 안 중요한 액션. radius 6, `button/medium-bold` 14/22 |
+| `primary` | `small` | 40 | 용도 미정의 |
+| `secondary` | `large` | 40 | 용도 미정의 |
+| `secondary` | `medium` | 32 | **Small 버튼** — 필드 우측 어드먼트, 카드 안 액션, 설명에 붙는 액션. radius 4, `button/small-regular` 12/18 |
+| `secondary` | `small` | 24 | 용도 미정의 |
+| `secondary` | `tiny` | 24 | 용도 미정의 (글자 11/16) |
 
-- **type 시각 정의** (두 style 공통):
+- **type** (7종, 두 style 공통)
 
-| type | 배경 / 테두리 | 텍스트 | 코드 `color` (Code Connect) |
-|---|---|---|---|
-| `brand` | 보라 채움 (`brand/primary` #805AE9) | 흰색 | `Brand` |
-| `brand-light` | 연보라 채움 (#F4F0FD) | 보라 | `Brand_Light` |
-| `brand-line` | 흰 배경 + 보라 테두리 | 보라 | `Brand_Line` |
-| `brand-gradient` | 보라→파랑 그라데이션 | 흰색 | `Brand_Gradient` |
-| `gray-light` | 연회색 채움 | 검정 | `Gray_Light` |
-| `gray` | 진회색 채움 (#999) | 흰색 | `Gray` |
-| `gray-line` | 흰 배경 + 회색 테두리 | 검정 | `Gray_Line` |
-| `gray-line-light` | 흰 배경 (테두리 없음) | 검정 | `Gray_Line_Light` |
+| type | 모양 | 코드 `color` |
+|---|---|---|
+| `brand` | 보라 채움 #805AE9 + 흰 글자 — **기본 Primary CTA** | `Brand` |
+| `brand-light` | 연보라 채움 #F4F0FD + 보라 글자 | `Brand_Light` |
+| `brand-line` | 흰 바탕 + 보라 테두리 + 보라 글자 — Secondary | `Brand_Line` |
+| `gray` | 회색 채움 #999 + 흰 글자 | `Gray` |
+| `gray-light` | 연회색 채움 + 검정 글자 (secondary 는 #333) — 병렬 CTA 좌측 보조 | `Gray_Light` |
+| `gray-line` | 흰 바탕 + 회색 테두리 — 반복 편집 진입점 | `Gray_Line` |
+| `gray-line-light` | 흰 바탕 + 연한 테두리, 글자 #333 (secondary 는 #666) — 용도 미정의 | `Gray_Line_Light` |
 
-- **용도 미정의**: `brand-gradient`, `gray-line-light` — Figma 에 존재하나 `konacard-ds-rule.md` 규칙 없음
-- 예전 문서의 PascalCase 표기(`Brand_Line`, `Gray_Line` 등)는 Figma variant 가 아니라 **코드 `color` prop 값**. Figma 작업 시에는 `type` 값(소문자·하이픈) 사용.
+- Figma 작업은 `type` 값(소문자·하이픈), PascalCase 는 코드 `color` prop 값
+- 관련 rule.md: § "버튼", § "5) 말투 / CTA 라벨", § "5) 말투 / CTA 개수 규칙"
 
-## Large 버튼 (`style=primary, size=large`)
+## button/text button (`10973:796`)
 
-- **Figma 노드**: `17:703` 의 `style=primary, size=large`
-- **용도**: 페이지를 컨트롤하는 중요 액션 버튼 (하단 고정 CTA·주요 화면 CTA)
-- **사이즈·기하**:
-  - Fixed height: **56px**
-  - Padding: 상하좌우 **16px** (`spacing-medium`) / 내부 gap 8px (`spacing-xsmall`)
-  - Corner radius: **8px** (`radius/button/large`)
-  - 텍스트: `button/large-bold` 15/24
-  - Width: Flexible (부모 너비)
-  - (AX `17:718` 실측, 2026-10-02)
-- **type 용도**:
-  - `brand` — **기본 Primary CTA**
-  - `brand-light` — 연보라 보조
-  - `brand-line` — **Secondary(보라 아웃라인)**
-  - `gray-light` — **Neutral(병렬 CTA 좌측 보조, 회색 채움 + 어두운 텍스트)**
-  - `gray-line` — **Secondary(회색 아웃라인, 반복 편집 진입점)**
-- **관련 rule.md**:
-  - § "버튼" — Primary/Secondary/Neutral/비활성 원칙
-  - § "5) 말투 / CTA 라벨" — 라벨 규칙
-  - § "5) 말투 / CTA 개수 규칙" — 화면당 개수
+- **용도**: 바탕 없는 글자 링크 버튼 — 하단 유틸리티 링크, CTA 위 반대 액션, 필드·카드 우측 "복사" 같은 가벼운 어드먼트
+- **속성**: `size` × `color`. 글자 아래 **밑줄 내장**. 폭은 글자에 맞춤
 
-## Medium 버튼 (`style=primary, size=medium`)
-
-- **Figma 노드**: `17:703` 의 `style=primary, size=medium` (카탈로그 `17:916` 내부 인스턴스 — 노드ID는 variant instance)
-- **용도**: 본문 내 중요 액션 버튼
-- **사이즈·기하**:
-  - Fixed height: **48px**
-  - Padding: 좌우 **16px** (`spacing-medium`) / 상하 **12px** (`spacing-small`) / 내부 gap 8px
-  - Corner radius: **6px** (`radius/button/medium`)
-  - 텍스트: `button/medium-bold` 14/22
-  - Width: Flexible
-  - (AX `134:1085` 실측, 2026-10-02)
-- **type 용도**: Large 와 동일
-
-## Small 버튼 (`style=secondary, size=medium`)
-
-- **Figma 노드**: `17:703` 의 `style=secondary, size=medium` (예: `1254:4558` = gray-line / true)
-- **용도**: 설명·가이드에 붙는 액션 버튼, 필드 우측 어드먼트, 카드 안 액션 등
-- **사이즈·기하** (2026-10-02 get_design_context 실측, `1254:4558`):
-  - Fixed height: **32px**
-  - Padding: 좌우 12px (`spacing-small`) / 상하 4px (`spacing-2xsmall`)
-  - Corner radius: **4px** (`radius/button/small`)
-  - 텍스트: `button/small-regular` (12px Regular)
-  - Width: Flexible
-- **type 용도** (예전 표기 → 실제 `type`):
-  - Gray → `gray-light` — 회색 배경 + 검정 텍스트 (기본)
-  - Dark → `gray` — 진회색 배경 + 흰 텍스트
-  - Brand → `brand` — 보라 배경 + 흰 텍스트
-  - Brand_Line → `brand-line` — 흰 배경 + 보라 아웃라인 + 보라 텍스트
-  - Gray_Line → `gray-line` — 흰 배경 + 회색 아웃라인 + 검정 텍스트
-
-## Text 버튼 (`button/text button`)
-
-- **Figma 노드**: `17:793` — AX 이름 **`button/text button`** (2026-10-02 AX 확인)
-- **용도**: 배경 없는 텍스트 링크성 버튼 (하단 유틸리티 링크, CTA 위 반대 액션 등)
-- **Variant 속성 3개** (소문자): `size` × `color` × `state`
-
-| size | 높이 (fixed) | 텍스트 스타일 |
+| size | 높이 | 글자 |
 |---|---|---|
 | `large` | 36 | `button/medium-regular` 14/22 |
 | `medium` | 32 | `button/small-regular` 12/18 |
-| `small` | 28 | `button/small-regular` 12/18 |
-| `tiny` | 24 | `button/tiny-regular` 11/16 |
+| `small` | 24 | `button/tiny-regular` 11/16 |
 
-- **사이즈·기하** (AX 실측): Padding 상하 **4px** / 좌우 0 (폭 = 텍스트 hug). 높이는 size 별 고정
-- **Variant — `color`** (4개):
-  - `gray-light` — #999999 (비활성 링크 or 부가 정보)
-  - `gray` — #666666 (기본 유틸리티 링크)
-  - `black` — #000000
-  - `brand` — #805AE9 (강조 링크)
-- **Variant — `state`**: `true` / `false` (opacity 40%)
-- **스타일 참고**: 컴포넌트 자체에는 밑줄 없음 (`textDecoration: NONE`). 하단 유틸리티 링크의 밑줄 병기는 rule.md 규칙에 따름.
+- **color**: `gray` (기본 유틸리티 링크) / `gray-light` (부가 정보) / `black` / `brand` (강조 링크)
 
-## Icon 버튼 (`button/icon`)
+## button/icon button (`10973:651`)
 
-- **Figma 노드**: `202:2574`
-- **용도**: 진입형 리스트 아이템 우측 텍스트 + `>` 아이콘, 설정 아이템 등
-- **사이즈·기하**:
-  - Fixed height: **34px** (터치 영역 = 버튼명 + 아이콘 가로 × 32 세로)
-  - Padding: 상하 8px, 좌우 4px
-- **Variant — Color** (3개):
-  - `Gray` — 회색 텍스트·아이콘
-  - `Black` — 검정 텍스트·아이콘
-  - `Brand` — 보라 텍스트·아이콘
-- **Variant — State**: Default / Disable
-- **주의**: 회색(#666) 사용 시 이미지에 opacity 60% 적용.
+- **용도**: 글자 + 오른쪽 화살표(`ic_arrow_right`, gap 4) — 진입형 리스트 아이템 우측, 설정 값 표시 + 진입
+- **속성**: `size` × `weight` (`regular` / `bold`) × `type` (`gray` / `black` / `brand` = 글자 색)
 
-## Fixed-Bottom 버튼 (`button/fixed-bottom`)
-
-- **Figma 노드**: `17:1049`
-- **용도**: 화면 하단 고정 CTA 컨테이너 (Large 버튼을 감싸는 래퍼)
-- **사이즈·기하** (AX `17:1048` 실측, 2026-10-02):
-  - Height: 72px (버튼 56 + 상단 **0** + 하단 **16** `spacing-medium`)
-  - Padding: 좌우 20px (`layout/margin`)
-  - 버튼 간 gap: 8px (`spacing-xsmall`)
-  - 배경: `color/background/primary` #FFFFFF (콘텐츠 영역과 동일)
-  - 내장 버튼 (2개 병렬 기본형): 좌 `button/button` `style=primary, size=large, type=gray-light` **폭 115 고정** + 우 `type=brand` **fill**
-- **하단 고정 버튼 병렬 비율**:
-  - **좌 115px 고정 + 우 fill** (성격이 다른 CTA 2개 병렬 시, gap 8) — AX 컴포넌트 구현값. AOS 기준 우측 = 320 − 115 − 8 = **197px**, iOS(375) 기준 **212px**
-  - 좌측 = 보조(회색 채움 or 아웃라인), 우측 = 주(Primary 보라)
-  - **파괴적 액션/미루기 = 좌측** (rule.md § "CTA 병렬 위계" 참조)
-- **Variant `Device`**: `AOS` (360×72) / `iOS` (375×72) — 폭만 다르고 구조·padding·버튼 radius(8) 동일 (AX 실측)
-
-## Margin (버튼 병렬 배치 규칙)
-
-- 성격이 다른 버튼이 2개 이상 위치할 경우, **좌우/상하 = 8px 간격**을 두고 배열.
-- 병렬 CTA 2개 예: [보조(회색)] [주(보라)] 사이 8px gap.
-
-## Button 사용 매핑 (사이즈·용도)
-
-| 위치 | 사이즈 | 색조 |
+| size | 높이 | 글자 |
 |---|---|---|
-| 하단 고정 CTA (Primary) | Large | `brand` (진한 보라) |
-| 하단 고정 CTA (병렬 보조) | Large | `gray-light` (회색 채움) |
-| 하단 고정 CTA (병렬 반대 액션·아웃라인) | Large | `brand-line` or `gray-line` |
-| 본문 내 강조 액션 | Medium | `brand` or `brand-line` |
-| 필드 우측 어드먼트 (편집) | Small | `gray-line` (회색 아웃라인) |
-| 필드 우측 어드먼트 (강조 부가 액션) | Small | `brand-line` (보라 아웃라인) |
-| 정보 조회 화면의 반복 편집 진입점 | Small | `gray-line` |
-| 하단 유틸리티 링크 | Text | `gray` |
-| CTA 위 반대 액션 링크 | Text | `gray` (밑줄 병기) |
-| 진입형 리스트 아이템 우측 액션 | Icon | Gray / Brand (설정값이면 Brand) |
+| `large` | 40 | `body/1` 15/24 |
+| `medium` | 32 | `body/2` 14/22 |
+| `small` | 24 | `body/3` 12/18 |
 
-## Button 관련 안티패턴
+- 가장 많이 쓰는 조합: `medium` · `regular` · `gray`
+- 화살표 색은 Figma variant 그대로 (gray #666 · black #333 · brand, `small`·`gray` 만 #333 투명도 60%) — 따로 칠하지 않음
 
-- ❌ 하단 고정 CTA 2개 병렬을 **동등 무게**로 (반드시 좌 115 고정 + 우 fill 위계)
+## button/fixed-bottom (`17:1049`)
+
+- **용도**: 화면 하단에 고정되는 CTA 묶음 (Large 버튼을 감싸는 틀)
+- **속성**: `Device` = `AOS` (360×72) / `iOS` (375×72) — 폭만 다름
+- **구성**: padding 상 0 · 좌우 20 · 하 16, 버튼 사이 gap 8, 흰 바탕
+  - 좌: `style=primary, size=large, type=gray-light` **폭 115 고정** (보조)
+  - 우: `style=primary, size=large, type=brand` **남은 폭 채움** (주)
+- **파괴적 액션·미루기 = 좌측** (rule.md § "CTA 병렬 위계")
+- 성격이 다른 버튼을 나란히 둘 때는 가로·세로 모두 **8px** 간격
+
+## Button 사용 매핑
+
+| 위치 | 컴포넌트 · 사이즈 | type / color |
+|---|---|---|
+| 하단 고정 CTA (주) | `button/button` Large | `brand` |
+| 하단 고정 CTA (병렬 보조) | `button/button` Large | `gray-light` |
+| 하단 고정 CTA (병렬 반대 액션·아웃라인) | `button/button` Large | `brand-line` or `gray-line` |
+| 본문 안 강조 액션 | `button/button` Medium | `brand` or `brand-line` |
+| 필드 우측 어드먼트 (편집) | `button/button` Small | `gray-line` |
+| 필드 우측 어드먼트 (강조 부가 액션) | `button/button` Small | `brand-line` |
+| 정보 조회 화면의 반복 편집 진입점 | `button/button` Small | `gray-line` |
+| 하단 유틸리티 링크 | `button/text button` | `gray` |
+| CTA 위 반대 액션 링크 | `button/text button` | `gray` |
+| 진입형 리스트 아이템 우측 액션 | `button/icon button` medium | `gray` (설정값이면 `brand`) |
+
+## Button 안티패턴
+
+- ❌ 하단 고정 CTA 2개를 **같은 무게**로 (반드시 좌 115 고정 + 우 채움)
 - ❌ **파괴 확정 액션을 우측 주 위치에** (반드시 좌측 회색 보조 위치)
-- ❌ 로딩·처리중 표시(스피너)를 버튼에 (**opacity 40% Disable만으로 처리**)
-- ❌ Text 버튼에 배경색 채우기 (그럴 거면 Small Brand 버튼 사용)
-- ❌ Small 버튼에 Large 사이즈 padding·radius 적용
+- ❌ 버튼에 로딩 스피너 (비활성 variant 만으로 처리)
+- ❌ `button/text button` 에 바탕색 채우기 (그럴 거면 `button/button` Small `brand`)
+- ❌ Small 버튼에 Large 의 padding·radius 적용
+- ❌ `style=primary` 에 `size=tiny` (없는 조합)
 
 ---
 
@@ -374,7 +277,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
     |---|---|---|
     | 입력칸 · select 하나 (`input` 모든 style/case · `select/select box`) | 그 컴포넌트의 **`title` 켜기** — 라벨을 따로 놓지 않음 | 영문 이름, 국적, 주민등록번호, 자택 주소, 내용 |
     | 여러 칸 묶음 (select + input 등) | **`input/label` 단독** 1개를 묶음 위에, 안쪽 칸들은 `title` 끔 | 휴대폰 번호(통신사 + 번호) |
-    | `title` 칸이 없는 선택 요소 (`select/select button group` · radio 선택지 · `control/agree` · 버튼 하나) | **`input/label` 단독** | 거래 내역 기간, 신청하는 거래내역, 약관동의, 신분증 인증 |
+    | `title` 칸이 없는 선택 요소 (`select/select button group` · radio 선택지 · `controls/checkbox label`(약관) · 버튼 하나) | **`input/label` 단독** | 거래 내역 기간, 신청하는 거래내역, 약관동의, 신분증 인증 |
 
     - `input/label` 단독 = 글자 속성 `label`, 폭 FILL(360 화면에서 320), 아래 요소와 gap 8
     - 근거 (KeyScreen AOS, 2026-11-09): 따로 놓인 라벨 307곳 중 277곳(90%)이 입력칸 · select 하나 위 — AX `input` 에 `title` 이 생기기 전에 그린 화면이라 화면을 AX 로 옮길 때 `title` 켜기로 바꿈. 나머지 30곳(여러 칸 묶음 14 · select button 4 · radio 4 · 버튼 하나 4 · 약관 2 · 아이콘 + 상태 글자 2)만 단독 라벨이 필요
@@ -415,137 +318,100 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 # 05_Control
 
-> Figma 카테고리 노드: `27:396` (05_Control)
-> 3개 기본 컨트롤(Switch / Checkbox / Radio) + 조합 컴포넌트(agree, swtich_setting, radio-text)
-> **공통 원칙**: **Disable = Default 상태의 opacity 40%** (모든 컨트롤·모든 사이즈 공통, 라디오만 별도 asset 예외)
+> ❖ Controls 페이지 (2026-10-07 정리 완료). 기본 컨트롤 3종 `controls/swtich` · `controls/check box` · `controls/radio button` + 글자를 붙인 조합 3종 `controls/swtich label` · `controls/checkbox label` · `controls/radio label`.
+> 이름의 `swtich` 오타와 `check box` 띄어쓰기는 Figma 이름 그대로.
 
-**공통 색 매핑 (모든 컨트롤)**
-
-| 상태 | 색 토큰 |
-|---|---|
-| Selected(True) 채움 | `color/button/primary` = **#805AE9** |
-| Selected 아이콘/핸들 | `color/icon/white` = #FFFFFF |
-| Default(False) 채움 | `color/button/quaternary` = **#999999** (Switch) / 흰 배경 + `color/border/default` #DDDDDD (Checkbox·Radio 아이콘형) |
-| Default 아이콘 | `color/icon/quaternary` = #999999 |
-| Radio Selected 내부 도트 | `color/icon/brand` = #805AE9 |
-| Disable | Default 상태 시각 그대로 + **opacity 40%** |
+**공통 속성**
+- `state` = 켜짐·체크·선택 여부 (`true` = 보라 #805AE9)
+- `status` = 활성 여부 (`false` = 비활성). 스위치·체크박스는 전체 opacity 40%, 라디오는 아래 § controls/radio button 참고
+- 조합 컴포넌트는 안에 든 기본 컨트롤 인스턴스의 `state` 를 바꿔서 켜고 끔
 
 ---
 
-## Switch (`control/swtich`)
+## controls/swtich (`28:409`)
 
-> **Figma 파일명 오타**: `swtich` — 원본 그대로 참조.
+- **용도**: 바로 반영되는 On/Off 토글 — 설정 항목, 알림 On/Off, 필터 켜고 끄기
+- **size**: `large` 50×28 / `medium` 42×24
+- **모양**: 얇은 트랙 + 전체 높이 원형 썸. 꺼짐 = 회색 #999 트랙, 썸 왼쪽 / 켜짐 = 보라 #805AE9 트랙, 썸 오른쪽
+- `list/list` `type=control` 안에는 `medium` 이 들어 있음
 
-- **Figma 노드 (샘플 인스턴스)**: `386:2936` (40 Default), `386:2937` (40 Selected), `2408:7338` (50 Default), `2408:7339` (50 Selected)
-- **개별 사이즈 컴포넌트**: `control/swtich/large`(50×28) `5743:5593`, `medium`(42×24) `5743:5594`, `small`(34×20) `5743:5595`, `tiny`(28×16) `5743:5596`
-- **용도**: 즉시 반영 On/Off 토글. 설정 항목·알림 On/Off·필터 활성/비활성.
-- **사이즈** (Figma 카탈로그 명명):
-  | 카탈로그 표기 | Track W×H | Thumb | 개발 네이밍 |
-  |---|---|---|---|
-  | 40 Size | 42×24 | 20 | `medium` |
-  | 50 Size | 50×28 | 24 | `large` |
-  | (small) | 34×20 | 16 | `small` |
-  | (tiny) | 28×16 | 12 | `tiny` |
-  > 카탈로그의 "40/50 Size"는 track 세로 40/50 아닌 **가로 참고 명칭** — 실제 개발 시 `large / medium / small / tiny` 네이밍 사용.
-- **Variant — Type** (2개):
-  - `Selected (True)` — 트랙 보라(#805AE9) + 핸들 우측 + 흰 핸들
-  - `Default (False)` — 트랙 회색(#999999) + 핸들 좌측 + 흰 핸들
-- **Variant — State** (2개):
-  - `Default (True)` — 활성
-  - `Disable (False)` — Default 상태 + **opacity 40%**
-- **Radius**: 트랙은 완전 pill (height/2), 핸들은 원형
-- **애니메이션**: 핸들 좌↔우 이동 시 슬라이드 트랜지션 (구현측 관례)
+## controls/swtich label (`2143:5491`)
 
-### control/swtich_setting (`2408:7412`, `2409:6212`)
+- **용도**: 설정 화면 리스트 항목 — 제목 + 안내 문구 + 오른쪽 스위치
+- **속성**: `size` (`large` / `small`) · `guide` (boolean, 기본 켜짐 = 아래 회색 안내 문구) · `type` (`1depth` 하나뿐)
 
-- **용도**: **Title + Description + Switch** 조합 카드 (설정 화면 리스트 항목 전용)
-- **레이아웃**:
-  - 크기 360×95 (기본), 배경 흰색 또는 `background/secondary` 회색 카드 (강조 필요 시)
-  - 좌측: Title(`body/1-Bold` 15px) + 아래 Description(`body/3-Regular` 12px, `color/font/quaternary` #999999)
-  - 우측: Switch 50 Size(large) 세로 중앙 정렬
-- **사용 예시**: 설정 화면의 "알림 받기" On/Off 카드
-
----
-
-## Checkbox (`control/checkbox`)
-
-- **Figma 노드 (샘플 인스턴스)**:
-  - 24 Size: `386:2946` (Selected 아이콘형), `386:2947` (Default 아이콘형), `2408:7361` (Selected 박스형), `2408:7363` (Default 박스형)
-  - 28 Size: `386:2944` (Selected), `386:2945` (Default)
-  - 32 Size: `386:2942` (Selected), `386:2943` (Default)
-- **용도**: 복수 선택 가능한 옵션·약관 개별 동의 체크
-- **사이즈 & 서브타입**:
-
-| 사이즈 | 서브타입 | 스펙 | 주 사용처 |
+| size | 높이 (guide 끔) | 안의 스위치 | 제목 / 안내 |
 |---|---|---|---|
-| **24 Size (아이콘형)** | 체크 아이콘 only, 배경/외곽선 없음 | 체크 색: `color/button/primary` #805AE9 / Default: `color/icon/quaternary` #999999 | **팝업 내 약관 세부 항목** (일반 페이지 지양) |
-| **24 Size (박스형)** | 8×8 라운드 사각형 외곽선 + 체크 | Selected: 외곽선·체크 모두 브랜드 보라 / Default: 회색 외곽선 + 회색 체크 | 폼 내 개별 옵션(다중 선택) |
-| **28 Size** | 원형 배경 + 흰 체크 | Selected: 보라 채움 + 흰 체크 / Default: 회색 원형 + 흰 체크 | **약관 세부 - 2depth (일반 페이지)** |
-| **32 Size** | 원형 배경 + 흰 체크 (28과 동일 스타일, 크기만 확대) | 동일 | **약관 전체 선택** |
+| `large` | 95 (57) | `large` 50×28 | `body/1-regular` #000 / `body/2-Regular` #999 |
+| `small` | 75 (45) | `medium` 42×24 | `body/3-Regular` / `body/3-Regular` |
 
-- **Variant — State**: Default(True) / Disable(False, opacity 40%)
-- **Variant — Type**: Selected(True) / Default(False)
-- **터치 영역**: 카탈로그상 최소 24px — 리스트 아이템 안에서는 부모 행 전체(≥48px)가 터치 영역
+- 폭 360, 좌우 padding 20, 아래 구분선(`divider` solid light) 포함
 
 ---
 
-## Radio (`control/radio`)
+## controls/check box (`28:431`)
 
-- **Figma 노드 (샘플 인스턴스)**:
-  - 24 Size: `386:2966` (Selected), `386:2967` (Selected Disable), `386:2968` (Default), `386:2969` (Default Disable)
-  - 28 Size: `386:2962` (Selected), `386:2963` (Selected Disable), `386:2964` (Default), `386:2965` (Default Disable)
-- **용도**: 단일 선택 (여러 옵션 중 하나만). 결제수단 선택·설정값 라디오 그룹.
-- **사이즈**: 24 / 28 (2개)
-- **모양**:
-  - Selected(True): 흰 원 + 회색 테두리(`color/border/default` #DDDDDD) + **내부 도트 보라(#805AE9)** (`color/icon/brand`)
-  - Default(False): 흰 원 + 회색 테두리(내부 비어있음)
-- **Variant — State** (Disable 예외):
-  - Default(True): 활성 (Selected 또는 Default 렌더)
-  - Disable(False): **라디오 버튼에서만 예외로 Disable 상태용 별도 image asset 사용**
-    - (opacity 40% 계산이 아닌 사전 정의된 회색조 렌더 이미지) — Figma 카탈로그의 아래 행 참조
-- **터치 영역**: 24/28 미만이므로 부모 행(≥44px 권장)이 실제 터치 영역
+- **용도**: 여러 개를 고를 수 있는 옵션, 약관 개별 동의
+- **style** — style 마다 크기 고정 (size 속성 없음)
 
-### control/radio-text (`2409:6267`, `2410:6280`)
-
-- **용도**: 라디오 + 우측 텍스트 라벨 조합 (인라인 옵션)
-- **variant**:
-  - `Basic` — 28 Size 라디오 + 텍스트 `body/1-regular` 15px, 컨테이너 h40 (176×40)
-  - `Small` — 24 Size 라디오 + 텍스트 `body/2-regular` 14px, 컨테이너 h32 (180×32)
-- **가로 배치**: 라디오 ↔ 텍스트 gap = `spacing-xsmall` 8px, 라벨끼리 gap = `spacing-medium` 16px 이상 권장
-
----
-
-## 조합 컴포넌트 — control/agree (약관 동의)
-
-`control/agree`는 **Checkbox + 텍스트(+ chevron)** 조합의 약관 동의 리스트 아이템 컴포넌트. 3가지 variant.
-
-| Variant | 사용처 | 스펙 | Figma 노드 |
+| style | 크기 | 모양 (체크 / 미체크) | 쓰는 곳 |
 |---|---|---|---|
-| **약관 전체동의** | 리스트 최상단 "모두 동의합니다" 행 | Checkbox 32 Size + Title(`body/1-Bold` 15px 검정) / 컨테이너 346×44, 배경 흰색 또는 회색 카드 | `2004:5187` |
-| **세부 약관 - 일반** | 일반 페이지의 세부 항목 각 행 | Checkbox 28 Size + 텍스트(`body/1-regular` 15px) + 우측 chevron `>` (상세 보기 진입) / 346×44 | `2004:5193` |
-| **세부 약관 - 팝업** | **팝업/바텀시트에 노출될 경우만** (일반 페이지 지양) | Checkbox 24 Size + 텍스트 + 우측 chevron `>` / 346×40 | `2409:6241` |
+| `circle` | 28 | 보라 원 + 흰 체크 / #DDD 원 + 흰 체크 | 약관 전체동의 · 그룹 헤더 · 소수(1~3개) 강조 항목, `list/card-select` 선택 표시 |
+| `line` | 24 | 보라 체크 / #999 체크 (바탕·테두리 없음) | 반복되는 약관 하위 항목 (4개 이상) |
+| `square-line` | 24 | 흰 바탕 + 보라 테두리·체크 | 폼 안 다중 선택 |
+| `square-fill` | 20 | 보라 채움 + 흰 체크 / 흰 바탕 + #DDD 테두리·체크 | 용도 미정의 |
 
-- **레이아웃 공통**:
-  - Checkbox 좌측, 텍스트 8px gap 뒤 → 우측 확장(가변)
-  - chevron 필요한 variant는 우측 끝 24×24 아이콘 영역
-- **사용 원칙**:
-  - "약관 전체동의"는 세부 항목 위에 항상 별도 행으로 배치 (전체동의 = 모든 세부 항목 chk on 동기화)
-  - **팝업 variant는 일반 페이지에서 사용 금지** — 일반 페이지는 28(2depth) 사용
+- 원형·라인 선택 기준은 rule.md § "약관 동의 체크박스"
+
+## controls/checkbox label (`2004:5148`)
+
+- **용도**: 약관 동의 리스트 한 줄 — 체크박스 + 글자 (+ 오른쪽 `>` 상세 보기)
+- **속성**: `type` × `state` (체크 여부)
+
+| type | 높이 | 체크박스 | 글자 | 오른쪽 `>` |
+|---|---|---|---|---|
+| `title` | 44 | `circle` 28 | `body/1-Bold` | 없음 |
+| `1depth` | 44 | `circle` 28 | `body/2-Regular` | 있음 |
+| `2depth` | 40 | `line` 24 | `body/2-Regular` | 있음 |
+
+- `title` = "모두 동의합니다" 같은 전체동의 행. 세부 항목 위에 항상 별도 행으로 두고, 전체동의를 켜면 세부 항목도 모두 체크
 
 ---
 
-## 05_Control 카테고리 종합 안티패턴
+## controls/radio button (`30:409`)
 
-- ❌ **Switch로 즉시 반영 안 되는 액션 트리거** — Switch는 값 변경이 즉시 저장/반영되는 컨트롤. 저장 버튼이 필요한 폼에는 Checkbox 사용
-- ❌ **Radio를 다중 선택에 사용** — 다중 선택은 반드시 Checkbox
-- ❌ **Radio Disable 상태에 opacity 40% 직접 적용** — 예외적으로 미리 준비된 image asset 사용 (라디오만)
-- ❌ 약관 전체동의를 세부 약관 사이에 배치 (반드시 최상단 별도 행)
-- ❌ 팝업 variant의 checkbox 24 아이콘형을 일반 페이지에 사용 (일반 페이지 = 28 원형)
-- ❌ Switch·Radio·Checkbox 사이즈를 카탈로그 외 값으로 변경 (스케일 breakage)
+- **용도**: 여러 옵션 중 하나만 고름 — 결제수단, 설정값 라디오 그룹
+- **size**: `medium` 28 / `small` 24
+- **모양**: 흰 원 + #DDD 테두리. 선택되면 가운데 보라 점
+- **비활성** (`status=false`) — 선택 여부에 따라 다름
+  - 선택 + 비활성: 바깥 원 #F8F9FB + 점 #DDD, 흐림 없음
+  - 미선택 + 비활성: 바깥 원 #F8F9FB + 전체 opacity 40%
+- 옵션 배치(세로 / 가로 2개)는 rule.md § "라디오 버튼"
+
+## controls/radio label (`2408:5563`)
+
+- **용도**: 라디오 + 오른쪽 글자 한 쌍을 가로로 나란히 놓는 인라인 선택지 (예: PDF / EXCEL)
+- **속성**: `size` = `small` 하나. variant 안에 쌍 2개(선택 1 + 미선택 1)가 들어 있고, 선택은 안의 라디오 `state` 로 바꿈
+- **구성**: 라디오 `small` 24 + `body/1-regular`, 라디오 ↔ 글자 gap 8, 쌍 사이 gap 16, 높이 40
+
+---
+
+- 예전 문서의 `control/swtich/large·medium·small·tiny` 개별 컴포넌트는 AX 카탈로그에 없음 (미확인)
+
+## 05_Control 안티패턴
+
+- ❌ **바로 반영되지 않는 값에 스위치** — 저장 버튼이 필요한 폼에는 체크박스
+- ❌ **라디오로 다중 선택** — 다중 선택은 체크박스
+- ❌ 비활성을 opacity 로 직접 흐리게 — `status=false` variant 사용 (라디오 선택+비활성은 흐리지 않음)
+- ❌ 약관 전체동의를 세부 약관 사이에 배치 (반드시 맨 위 별도 행)
+- ❌ 컨트롤 크기를 Figma 에 없는 값으로 바꾸기
+- ❌ 체크·라디오 아이콘을 새로 그리기 — 컴포넌트 인스턴스 사용
 
 ---
 
 # 01_Actionbar
+
+> ⏳ **Figma 정리 전** — 아래 이름 · 값은 옛 기준일 수 있음 (Header 정리안 v2 검토 중). 화면에 쓸 때는 Figma(AX) · `components.catalog.json` 을 먼저 확인
 
 > Figma 카테고리 노드: `17:829` (01_Actionbar)
 > 2개 컴포넌트: **action-bar/button** (터치 유닛) / **action-bar/header** (Main·Sub·Scroll Title 헤더 3형). 스크롤 대응 큰 제목은 § 14_Heading 의 `heading/headline` (구 action-bar/headline)
@@ -642,6 +508,8 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 ---
 
 # 03_Tab
+
+> ⏳ **Figma 정리 전** — 아래 이름 · 값은 옛 기준일 수 있음 (Tabs 정리안 v2 검토 중 — `tab/line` · `tab/chip` · `tab/segment`). 화면에 쓸 때는 Figma(AX) · `components.catalog.json` 을 먼저 확인
 
 > Figma 카테고리 노드: `99:587` (03_Tab)
 > **Main tab**(화면 전체 분리용, 밑줄 선택 스타일) + **Sub tab**(콘텐츠 영역 내 분류용, 필 스타일)
@@ -796,7 +664,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
   - 좌우 padding **20px** (`layout/margin`)
   - Main text ↔ 우측 요소 gap: **16px** (`spacing-medium`)
   - Main text ↔ Description gap: **0** — Description 줄이 Main text 행 바로 아래에 붙음
-  - 하단 divider: `line/solid` 1px #0000000F (컴포넌트 내장)
+  - 하단 구분선: `divider` type=solid 1px (컴포넌트 내장)
 
 | size | 상·하 padding | Main text | Description | 우측 요소 높이 | 한 줄 높이 (Description 숨김) |
 |---|---|---|---|---|---|
@@ -888,6 +756,8 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 ## Select List (선택 상태 응용)
 
+> ⏳ **Figma 정리 전** — `list/card-select` · `list/bottomsheet` 등 아래 이름 · 값은 옛 기준일 수 있음. 화면에 쓸 때는 Figma(AX) · `components.catalog.json` 을 먼저 확인
+
 ### 리스트 선택 예시 — `list/list` 선택 상태
 
 - **원리**: `list/list` 기본형에서 **선택된 항목만** Bold + Brand 색으로 변환
@@ -958,40 +828,38 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 # 07_Line
 
-> Figma 카테고리 노드: `99:1134`
-> 컨텐츠와 영역을 구분하기 위해 사용되는 **1px 이상의 라인**에 사용.
+> 구분선은 세트 하나 `divider` (`10997:164`) — 구 `line/solid` · `line/dotted` · `line/divider` · `line/divider-line` 을 합친 것.
+> 내용과 영역을 나눌 때 씀. 선을 사각형으로 직접 그리지 말고 인스턴스 사용.
 
-## Solid line
+## divider
 
-- **두께**: 1px
-- **색 (Light)**: **#0F000000** (R0 G0 B0 A0.6 = alpha 약 6%) — 흰 배경 위 기본
-- **색 (Dark)**: **#14000000** (alpha 약 8%) — 회색 배경(`background/secondary`) 위 사용
-- **사용처**: 리스트 항목 사이 구분(`06_List` divider와 동일 값), 카드 내부 세로 구분 등
+- **속성**: `type` × `color` (`light` / `dark`)
 
-## Dotted line
+| type | 크기 | 쓰는 곳 |
+|---|---|---|
+| `solid` | 가로 1px (폭은 늘려 씀) | 리스트 항목 사이 — 기본 구분선 |
+| `dotted` | 가로 1px 점선 (2/2) | 제목 없는 안내 문구(§ 10_Info) 위, Info-box 항목 묶음 사이 |
+| `section` | 높이 10 회색 띠 (`light` 만) | 한 화면 안 큰 영역 사이 (예: "결제 정보" ↔ "혜택 정보") |
+| `vertical-12` / `vertical-8` | 세로 1×12 / 1×8 (필요하면 높이를 늘림) | 카드 안 세로 구분 |
 
-- **두께**: 1px
-- **패턴**: **Dash 2 : Gap 2** (점선 반복 단위)
-- **색**: Solid line과 동일 (Light #0F000000 / Dark #14000000)
-- **사용처**: `10_Info` 안내문구 상단(제목 없는 경우) 구분, Info-box 항목 그룹 간 구분
-
-## Divider (BG + Line 겹침)
-
-- **용도**: **한 화면 내에서 큰 영역 단위로 구분**이 필요한 경우 (예: "결제 정보" ↔ "혜택 정보" 큰 섹션 분리)
-- **구조**: 컨텐츠의 명확한 구분을 위해 **배경 위에 선을 겹쳐** 사용
-  - **BG**: `#0F000000` — 두꺼운 배경 밴드 (여백 8~12px 정도 세로)
-  - **Line**: `#0F000000` — 그 안의 1px 선
-- **주의**: 일반 아이템 divider는 solid line 1px만 사용 — Divider(BG+Line 겹침)는 화면 스크롤 시 심리적 단절이 필요할 때만
+- **color** — type 마다 실제 색이 다름
+  - `solid` · `dotted` · `section`: `light` = `divider/primary` (검정 6%) · `dark` = `divider/secondary` (8%)
+  - `vertical`: `light` = `divider/secondary` (8%) · `dark` = `divider/tertiary` (12%) — 짧은 세로선이라 한 단계 진함
+- `solid` · `dotted` · `vertical` 은 선 밑에 흰 바탕이 깔려 있음 — 회색 바탕 위에 놓으면 흰 줄 + 선으로 보임
+- 옛 문서 기준 `dark` 는 회색 바탕(`background/secondary`) 위에 씀
 
 ## 07_Line 안티패턴
 
-- ❌ 리스트 divider에 dashed/dotted (반드시 solid)
-- ❌ Divider(BG+Line 겹침) 대신 그림자·그라데이션 사용
-- ❌ 라인 두께 2px 이상 (기본 1px, 예외 없이)
+- ❌ 리스트 구분선에 `dotted` (반드시 `solid`)
+- ❌ 큰 영역 구분을 `section` 대신 그림자·그라데이션으로
+- ❌ 가로선을 2px 이상으로 두껍게 — 굵은 구분이 필요하면 `section`
+- ❌ 사각형·선을 직접 그려서 구분선 만들기
 
 ---
 
 # 08_Indicator
+
+> ⏳ **Figma 정리 전** — 아래 이름 · 값은 옛 기준일 수 있음. 화면에 쓸 때는 Figma(AX) · `components.catalog.json` 을 먼저 확인
 
 > Figma 카테고리 노드: `30:420`
 > 사용자가 선택할 수 없고 **정보 전달 기능만 가진** 시각 요소. (선택 가능한 것은 `03_Tab` 또는 `05_Control` 사용)
@@ -1051,52 +919,69 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 # 09_Label
 
-> Figma 카테고리 노드: `149:1240`
-> 사용자가 선택할 수 없고 **정보 전달 기능만** 가진 pill 형 태그.
+> 사용자가 누를 수 없고 **정보 전달만** 하는 pill 형 태그.
 
-## Label (`label`, 구 `label/basic-label`)
+## label (`2121:5513`)
 
-- **Figma 노드**: `2121:5513` (❖ Label 페이지) — 2026-10-07 KeyScreen AOS 실사용 기준 정리, 2026-10-22 gray-light 추가 → 33 variant
-- **Variant 속성 3개** (소문자): `size` × `type` × `color`. 타입마다 쓸 수 있는 색·사이즈가 다름
+- **속성**: `size` × `type` × `color` — type 마다 쓸 수 있는 색·사이즈가 다름
 
-| type | color | size | variant |
-|---|---|---|---|
-| `color` (배경 채움) | `brand-gradient` · `brand` · `brand-light` · `gray-dark` · `warning` · `gray-light` | `large` · `medium` · `small` · `tiny` | 6 × 4 = 24 |
-| `line` (안쪽 1px 테두리, 바탕 없음) | `brand-gradient` · `brand` · `warning` | `large` · `medium` · `small` (tiny 없음) | 3 × 3 = 9 |
+| type | color | size |
+|---|---|---|
+| `color` (바탕 채움) | `brand-gradient` · `brand` · `brand-light` · `gray-dark` · `warning` · `gray-light` | `large` · `medium` · `small` · `tiny` |
+| `line` (테두리, 바탕 없음) | `brand-gradient` · `brand` · `warning` | `large` · `medium` · `small` (tiny 없음) |
 
-- **사이즈·기하** (AX 실측) — 모서리 `radius/components/label` (9999, 완전 pill), 폭 = 텍스트 hug
+| size | 높이 | 글자 |
+|---|---|---|
+| `large` | 30 | `body/2-bold` 14/22 |
+| `medium` | 26 | `body/3-Bold` 12/18 |
+| `small` | 24 | `body/4-Bold` 11/16 |
+| `tiny` | 20 | Bold 9/12 (텍스트 스타일 없음) |
 
-| size | 높이 | padding | 텍스트 |
-|---|---|---|---|
-| `large` | 30 | 4 / 12 | `body/2-bold` 14/22 |
-| `medium` | 26 | 4 / 12 | `body/3-Bold` 12/18 |
-| `small` | 24 고정 | 좌우 8 | `body/4-Bold` 11/16 |
-| `tiny` | 20 | 4 / 8 | Bold 9/12, 자간 -2% (텍스트 스타일 없음) |
-
-- **color 시각**:
-  - `brand-gradient` — #804EE2 → #526ED3 가로 그라데이션 + 흰 텍스트 (line 은 테두리·텍스트 모두 그라데이션). KeyScreen 에서 가장 많이 씀
-  - `brand` — #805AE9 채움 + 흰 텍스트 (line: 보라 테두리 + 보라 텍스트)
-  - `brand-light` — #F4F0FD 채움 + #805AE9 텍스트 (color 전용)
-  - `gray-dark` — #999 (`color/label/neutral-tertiary`) 채움 + 흰 텍스트 (color 전용)
-  - `warning` — #FF364B (`color/label/accent-red`) 채움 + 흰 텍스트 (line: 빨강 테두리 + 빨강 텍스트)
-  - `gray-light` — #F8F9FB (`color/label/neutral-quinary`) 채움 + #666 (`font/tertiary`) 텍스트 (color 전용). 대기·미처리 상태 (예: accordion inquiry "답변대기")
-- **정리 이력 요약**: (옛) line 전용 gray-light · white 색, line tiny, `label/color-label` · `label/link-label` 세트는 KeyScreen 실사용 0곳(white 는 숨김 6곳)이라 삭제. 오타 `gray-drak` → `gray-dark`. 2026-10-22 채움형 `gray-light` 새로 추가 (구 `list/expand-label` 답변대기를 label 로 통합)
+- 모서리 `radius/components/label` (완전 pill), 폭은 글자에 맞춤
+- **color**
+  - `brand-gradient` — #804EE2 → #526ED3 가로 그라데이션 + 흰 글자 (line 은 테두리·글자 모두 그라데이션). 가장 많이 씀
+  - `brand` — 보라 #805AE9 채움 + 흰 글자 (line: 보라 테두리·글자)
+  - `brand-light` — 연보라 #F4F0FD 채움 + 보라 글자
+  - `gray-dark` — #999 채움 + 흰 글자
+  - `warning` — 빨강 #FF364B 채움 + 흰 글자 (line: 빨강 테두리·글자)
+  - `gray-light` — #F8F9FB 채움 + #666 글자. 대기·미처리 상태 (예: 문의 "답변대기")
 
 ## 09_Label 안티패턴
 
-- ❌ **Label을 클릭 가능한 요소로 사용** (반드시 정보 표시 전용 — 클릭이 필요하면 `02_Button § Small` 사용)
-- ❌ Label에 그림자 (플랫 스타일 유지). 그라데이션은 `brand-gradient` 색으로만
-- ❌ Label 안 텍스트 6자 이상 (짧은 태그 원칙)
-- ❌ line 타입에 `brand-light` · `gray-dark` · `gray-light` 또는 `tiny` 사용 (Figma 에 없는 조합)
+- ❌ **label 을 누를 수 있는 요소로 사용** — 누르는 게 필요하면 `button/button` Small (`style=secondary, size=medium`)
+- ❌ label 에 그림자. 그라데이션은 `brand-gradient` 색으로만
+- ❌ label 글자 6자 이상 (짧은 태그 원칙)
+- ❌ `type=line` 에 `brand-light` · `gray-dark` · `gray-light` 또는 `tiny` (없는 조합)
 
 ---
 
 # 10_Info
 
-> Figma 카테고리 노드: `190:1665`
-> 2가지 유형: **Text info**(bullet 안내문구) / **Info-box**(박스형 항목-내용 나열)
+> ❖ Info 페이지 (`10950:8835`) — 2026-10-07 정리된 것은 `info` 뿐. Text info · Info-box 는 아직 옛 기준
+> 3가지 유형: **info**(입력칸 아래 한 줄 안내·오류 문구) / **Text info**(bullet 안내문구) / **Info-box**(박스형 항목-내용 나열)
+
+## info (`41:1241`, 구 `input/info-text`)
+
+- **용도**: 입력칸·선택칸 아래 Guide Text, 짧은 안내·오류 문구. `input` · `select/select box` 에는 `info` boolean 으로 들어 있음 (§ 04_Forms "Form UI 조합 규칙")
+- **속성**: `type` 5종
+
+| type | 글자 색 | 아이콘 | 쓰는 곳 |
+|---|---|---|---|
+| `info` | #666 | 없음 | 부가 힌트 (예: "숫자만 입력 가능") |
+| `error` | 빨강 #FF364B | 없음 | 아이콘 없는 오류 문구 |
+| `icon-error` | 빨강 #FF364B | 빨간 ! (`icon_danger`) | 검증 실패 — `input` 오류 상태 기본 |
+| `icon-info` | 검정 | 검정 ! (`icon_alert_black`) | 강조 안내 |
+| `icon-guide` | #666 | 회색 ! (`icon_alert_gray`) | 가이드성 안내 |
+
+- 글자 `body/3-Regular` 12/18, 한 줄 높이 18. 컴포넌트 폭 230 고정, 길면 줄바꿈 — 아이콘은 첫 줄에 붙음
+
+### info 안티패턴
+
+- ❌ 검증 결과·필수값 안내를 회색 `info` 로 — `icon-error` 사용
 
 ## Text info
+
+> ⏳ Figma 정리 전 — 아래는 옛 기준. 값·이름은 Figma 에서 확인
 
 - **원칙**:
   - 안내 문구는 **최대 2Depth까지만** 사용
@@ -1111,6 +996,8 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
   - 문단 조합: "1Depth 한 개 사용" / "1Depth 여러 개 사용" / "1Depth 여러 개와 2Depth 문단 사용" 3형
 
 ## Info-box (Item List / Box Case)
+
+> ⏳ Figma 정리 전 — 아래는 옛 기준. 값·이름은 Figma 에서 확인
 
 - **박스 여백 규칙**:
   - 박스형 컨텐츠는 **상/하/좌/우 각각 마진 24씩** 적용
@@ -1134,54 +1021,40 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 # 11_Tooltip
 
-> Figma 카테고리 노드: `191:1851`
-> **정보에 접근하기 용이하도록 터치 영역은 텍스트와 아이콘 포함한 전체 영역**
-> 2가지 유형: **Popup Type**([?] 아이콘) / **Bubble Type**([!] 아이콘)
+> ❖ Tooltip 페이지 (2026-10-07 대조). 글자 옆 회색 원형 아이콘을 누르면 그 자리에 뜨는 말풍선 `tooltip/tooltip`.
+> **터치 영역은 글자 + 아이콘 전체** — 정보에 쉽게 닿도록.
 
-## Popup Type
+## tooltip/tooltip (`200:1909`)
 
-- **트리거 아이콘**: **[ ? ]** (question mark) — `body/2-Regular` 옆에 붙어서 노출
-- **용도**:
-  - 안내 및 가이드 (사용자의 충분한 인지가 필요한 내용 노출)
-  - 구체적인 내용 확인 및 사용자의 **행동을 유도하는 내용**
-- **동작**: `?` 아이콘 탭 시 **다이얼로그 팝업**이 노출
-- **팝업 스펙**:
-  - 배경: **#000000 / 투명도 64% 적용** (dim overlay)
-  - 팝업 카드: 흰 배경 + 상단 큰 corner radius (`konacard-ds-rule.md` § "팝업" 참조)
-  - 상단 padding 32 / 제목(대기금 등) `body/1-Bold` / 제목-본문 gap 16
-  - 본문 좌우 padding **20**, `body/2-Regular` 14px
-  - 하단 padding 24 → 하단 고정 CTA(`button/fixed-bottom` Large Brand 채움)
-  - CTA 하단 좌우 padding 20, 상하 padding 16
+- **용도**: 용어 정의·단순 정보를 화면 이동 없이 바로 확인 (인라인, 모달 아님)
+- **속성**: `style` × `placement`
+  - `style`: `line` (흰 바탕 + 보라 #805AE9 1px 테두리 + 검정 글자) / `brand` (보라 #805AE9 바탕 + 흰 글자)
+  - `placement`: `top-left` · `top` · `top-right` · `bottom-left` · `bottom` · `bottom-right` · `left` · `right`
+    - `top-*` · `bottom-*` = 말풍선 위치 (핀은 반대쪽). `-left` / `-right` 는 핀 중심이 말풍선 끝에서 20
+    - `left` · `right` = 핀이 붙는 쪽
+- **말풍선**: padding 상하 12 · 좌우 16, radius 8, 글자 `body/2-Regular` 14/22, 폭은 글자에 맞춤
+- 핀은 말풍선과 1px 겹침. 높이 53 (`top-*` · `bottom-*`) / 46 (`left` · `right`)
 
-## Bubble Type
-
-- **트리거 아이콘**: **[ ! ]** (exclamation) — `Infomation Text` 옆에 붙어서 노출
-- **용도**:
-  - 용어 정의 또는 단순 정보 확인
-  - 해당 정보에 대한 내용 **바로 확인**하는 경우 (인라인)
-- **동작**: `!` 아이콘 탭 시 인라인 bubble tooltip이 이웃 위치에 노출 (모달 아님)
-- **Type variant**:
-  - `Type - Line`: **흰 배경 + `color/border/default` #DDDDDD 1dp border + 검정 텍스트 `body/3-Regular`**
-  - `Type - Brand`: **보라 채움(#805AE9) + 흰 텍스트 `body/3-Regular`**
-- **박스 내부 padding**: 좌우 **16 / 상하 12** (내부 편안 여백)
-- **삼각형 pointer**:
-  - 하나의 이미지를 위/아래 상황에 맞춰 **회전(rotate) 사용** (별도 이미지 생성 X)
-  - 4 위치 지원: top-left / top-right / bottom-left / bottom-right (기준 요소 위치 따라 자동 선택)
-- **박스와 삼각형 관계** (제작 가이드):
-  - 툴팁 상/하단 삼각형 이미지와 박스 영역: **상/하는 -1px 오버랩** (틈 없게), **좌/우는 상황에 따라 24dp(pt) 마진**
-  - 박스 영역은 **상하좌우 16dp(pt) 마진** 확보
+**여는 아이콘 · 배치** (❖ Tooltip 예시 화면 기준)
+- 입력칸 제목 옆: 16 `?` (`ic_info/ic_noti_16_g`)
+- 정보 값 옆: 20 `?` (`ic_20/ic_question_20_g`) = 설명 / 20 `!` (`ic_20/ic_guide_20_g`) = 주의·조건
+- 말풍선은 아이콘 바로 아래·위 (간격 0). 왼쪽 아이콘이면 `-left`, 오른쪽 아이콘이면 `-right`
+- 화면 좌우 여백 20 안에 두고, 긴 문구는 의미 단위로 줄바꿈
+- 길고 행동을 유도하는 안내는 말풍선 대신 팝업 — `rules/patterns/popups.md` § "사용법 안내 팝업"
 
 ## 11_Tooltip 안티패턴
 
-- ❌ **? / ! 아이콘 혼용** (반드시 용도별 구분 — 팝업은 ?, 인라인은 !)
-- ❌ Bubble tooltip을 모달로 (반드시 인라인)
-- ❌ Popup tooltip 배경 dim opacity를 64% 외 값으로
-- ❌ 삼각형 pointer를 별도 이미지로 4개 관리 (반드시 1개 회전)
-- ❌ 터치 영역을 아이콘만으로 한정 (반드시 텍스트 + 아이콘 통합)
+- ❌ 말풍선을 모달로 (반드시 인라인)
+- ❌ 터치 영역을 아이콘만으로 한정 (글자 + 아이콘 전체)
+- ❌ 안쪽 부품 `tooltip/body` · `tooltip/pin` 을 떼어 조립 — `tooltip/tooltip` 인스턴스 사용
+- ❌ 말풍선 글자 크기·여백·모서리를 바꿔 쓰기 (14 · 12/16 · 8)
+- ❌ 말풍선이 화면 좌우 여백 20 밖으로 나감
 
 ---
 
 # 12_Banner
+
+> ⏳ **Figma 정리 전** — 아래 이름 · 값은 옛 기준일 수 있음. 화면에 쓸 때는 Figma(AX) · `components.catalog.json` 을 먼저 확인
 
 > Figma 카테고리 노드: `253:1908`
 > 카드 위·화면 안에 붙이는 강조 밴드. **Corner radius = 8px** 공통.

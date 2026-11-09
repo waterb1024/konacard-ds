@@ -334,6 +334,8 @@ description: >
 
 ### 계층 구분 (Divider)
 
+> ⚠ 확인 필요: 섹션 구분 `line/divider`(옛 이름 → 카탈로그 `divider type=section`)·Dotted '팝업 전용'·탭 하단선 6% 가 components § 07_Line / § 03_Tab 과 다름
+
 | 종류 | 두께 / 색 | 사용처 |
 |---|---|---|
 | **아이템 구분 (얇은)** | 1px, `divider/primary` (black 6%) | 리스트 아이템 사이, 카드 헤더 밑, 탭 하단선 |
@@ -414,6 +416,8 @@ description: >
 
 ### 탭 (Tab)
 
+> ⚠ 확인 필요: 필터·뷰 전환 = 세그먼트 컨트롤(회색 트랙) 규칙이 components § 03_Tab '필터·정렬 = Sub tab(보라 채움 pill)' 과 다름
+
 **두 스타일 — 화면 성격 기준으로 구분 (탭 개수·플랫폼 무관):**
 
 | 스타일 | 언제 쓰나 | 시각 |
@@ -435,6 +439,8 @@ description: >
 
 ### 세그먼트 컨트롤 탭 상세
 
+> ⚠ 확인 필요: `tab/sub2-ui` 가 components.md·카탈로그에 없음 + 활성 텍스트 '검정'(여기) vs 'brand'(§ 탭) 자체 불일치
+
 - 컴포넌트: `tab/sub2-ui`
 - 트랙 배경: `background/quaternary` (`#F0F1F3`), radius **8**(`radius/button/large`), 트랙 자체에 **4px 패딩**(`spacing-2xsmall`, 트랙 테두리↔활성 카드 사이 간격)
 - 활성 카드 배경: 흰색(`bg-white`), 트랙 안에 얹힘, radius **6**(`radius/button/medium`)
@@ -452,8 +458,7 @@ description: >
 
 ### 필드 대시 구분자
 
-- 카드번호처럼 규격이 정해진 숫자 입력엔 **4-4-4-4 형식, 사이에 `-` 구분자** 사용.
-- placeholder는 `0000 - 0000 - 0000 - 0000` 처럼 자릿수 시각화.
+- 카드번호처럼 규격이 정해진 숫자 입력엔 **4-4-4-4 형식, 사이에 `-` 구분자** 사용 — `input` `style/case=card-number` (스펙: konacard-ds-components.md § 04_Forms — Input).
 - 유효기간은 `MM / YY`, CVC는 안내 텍스트("유효기간 옆 숫자 3자리").
 
 ### 아이콘 원칙
@@ -472,6 +477,8 @@ description: >
 - 색 전체 규칙은 모든 플로우 수집 후 종합 정리 예정.
 
 ### 진행바 (Progress Bar) 통일 규칙
+
+> ⚠ 확인 필요: `line/dotted` 는 옛 이름 — 카탈로그 `divider type=dotted`
 
 한도·사용률·카운트다운·프로세스 진행률 등을 시각화. **모든 진행바에 통일 적용.**
 
@@ -507,6 +514,8 @@ description: >
 - **회색 원 3종 구분** (아이콘으로 판별): `!` = 소멸·만료 / `⋯` = 진행중 / `⟲` = 재처리 / `₩` = 미지정
 
 ### 상태 pill 5종 색상 규칙 (리스트 아이템 상태 표시)
+
+> ⚠ 확인 필요: 연보라 배경 `background/tertiary` #F8F6FE 가 `label` brand-light(#F4F0FD)·§ Pill 배지와 다름, `label` 컴포넌트 매핑 없음
 
 | 상태 | 배경 | 텍스트 | 성격 |
 |---|---|---|---|
@@ -555,17 +564,7 @@ description: >
 
 ### Toast 컴포넌트
 
-**모든 사용자 액션 결과 알림** — 화면 이동 없이 즉시 피드백이 필요한 모든 경우.
-
-| 속성 | 값 |
-|---|---|
-| **위치** | 화면 하단에서 **40px 여백** 위 (screen height 800 기준 y=718 → bottom-40) |
-| **좌우 여백** | 20 (`layout/margin`) — 콘텐츠 폭 320 |
-| **너비 × 높이** | 320 × 42 |
-| **radius** | 12 (`radius/components/toast`) |
-| **배경** | `color/background/dimmed` (`#000000A3`, black 64% — 변수 `opacity/black-64`) |
-| **텍스트** | `body/2-Regular` 14/22 + `font/white` (`#FFFFFF`), 중앙정렬 |
-| **내부 padding** | 없음 — 높이 42 고정, 글자를 가운데 정렬 (22 줄높이 → 위아래 10씩) |
+**모든 사용자 액션 결과 알림** — 화면 이동 없이 즉시 피드백이 필요한 모든 경우. 크기·색·위치는 컴포넌트 그대로 (스펙: konacard-ds-components.md § 13_Toast — Toast).
 
 **핵심 규칙**
 - **모든 Toast 통일 스타일** — 성공/실패 색 구분 없음, **문구로만 성격 전달**
@@ -646,6 +645,8 @@ description: >
 
 ### 1/N 나누기 토글 (그룹 결제·분할 기능 표준)
 
+> ⚠ 확인 필요: `control/switch` 는 옛 이름 — 카탈로그 `controls/swtich`
+
 - "총 {N}명" 라벨 옆 우측에 배치
 - 스위치 형태 (기존 `control/switch` 재사용)
 - 활성 시 총 금액을 N등분 자동 계산 → 각 참여자 균등 배분
@@ -690,6 +691,8 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 선택형 리스트 카드 (가로 카드 아이템)
 
+> ⚠ 확인 필요: `control/checkbox` 28×28(카탈로그 `controls/check box` style=circle) 이 § 리스트 선택 표시의 '보라 √ 라인 체크' 와 다름
+
 - 화면 안에서 값 하나 이상을 고를 때 사용.
 - **가로 배치**: 좌 카드 썸네일(~64x64) + 우 텍스트 정보(상품명 Bold / 부가 정보 회색 / 금액·값 Bold, 세로 정렬).
 - 카드 아이템 사이 얇은 `divider/primary`.
@@ -705,6 +708,8 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 리스트 선택 표시 두 스타일
 
+> ⚠ 확인 필요: 화면 안 리스트 '보라 √ 라인 체크' vs § 선택형 리스트 카드 'checkbox 28(circle)' — 어느 쪽인지 확정 필요
+
 | 위치 | 표시 방식 |
 |---|---|
 | **팝업 안 선택형 카드 리스트** | 카드 아웃라인 테두리 색이 보라로 (전체 카드 강조) |
@@ -712,9 +717,7 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 아코디언 리스트 (`accordion`)
 
-- 각 아이템에 확장 콘텐츠를 인라인으로 노출하는 리스트.
-- **접힌 상태**: 라벨(+ 카테고리 태그 접두어 + 부가 정보 회색 텍스트) + 우측 `∨` chevron
-- **열린 상태**: `∨` → `∧` 전환, 제목 Bold, 아이템 아래에 확장 콘텐츠(`accordion/body`) 노출 — list 는 **회색 배경(`background/secondary`)**, 1:1 문의(inquiry)는 흰 배경
+- 각 아이템에 확장 콘텐츠를 인라인으로 노출하는 리스트. 1:1 문의는 `type=inquiry`, 그 외는 `type=list` — 접힘·펼침 시각(화살표 방향·제목 Bold·본문 바탕)은 컴포넌트 `state` 그대로 (스펙: konacard-ds-components.md § 06_List — Accordion).
 - **라디오형 확장 동작** — 새 아이템을 열면 이전에 열린 아이템은 자동으로 접힘 (한 번에 하나만 열림, 화면 깔끔하게 유지).
 - 확장 콘텐츠 구조: 일반 텍스트 + 필요 시 **Bold 서브 라벨 + Regular 본문 pair** (예: "작업일시" / "작업내용" / "서비스 영향")
 - 확장 콘텐츠 안에 **경고성 빨간 강조** 텍스트 사용 가능 (예: 서비스 중단 안내).
@@ -736,6 +739,8 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 버튼
 
+> ⚠ 확인 필요: 비활성 '`neutral/quaternary` 배경 + 흰 텍스트' vs components § 02_Button 'Disable = Default 의 opacity 40%'
+
 - **Primary (채움)** — 보라 배경 + 흰 텍스트. 활성 CTA.
 - **Secondary (아웃라인)** — 흰 배경 + 두 변형:
   - **보라 아웃라인 + 보라 텍스트** — 진행 화면의 강조 부가 액션
@@ -743,11 +748,9 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 - **Neutral (보조 채움)** — 회색 배경(`background/secondary`) + 검정 텍스트. 병렬 CTA 좌측(보조).
 - **비활성** — `neutral/quaternary` 배경 + 흰 텍스트.
 
-### Toggle 스위치
-
-- 활성 = 보라 트랙 + 흰 knob / 비활성 = 회색 트랙 + 흰 knob.
-
 ### 약관 동의 체크박스 (두 스타일 통합 규칙)
+
+> ⚠ 확인 필요: 라인 √ 를 일반 페이지 다수 항목에 쓰는 규칙 vs components § control/agree '24 아이콘형 = 팝업 전용' / 이름 `control/agree` → 카탈로그 `controls/checkbox label`
 
 체크 아이콘은 **위계 + 개수** 두 축이 함께 결정한다.
 
@@ -762,12 +765,16 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 라디오 버튼 (`control/radio`)
 
+> ⚠ 확인 필요: 선택 '보라 채움 원 + 흰 dot' vs components·카탈로그 '흰 원 + #DDD 테두리 + 보라 점' / 이름 → `controls/radio button`
+
 - 원형. **비선택 = 회색 빈 원 / 선택 = 보라 채움 원 + 흰 내부 dot.**
 - 옵션 텍스트: 라벨 Bold 검정 + 아래 부가 설명(회색, 괄호로 감싼 상세) 세로 배치.
 - **세로 나열** — 옵션 3개↑ or 옵션에 부가 설명이 있을 때
 - **가로 나열 (2개 병렬)** — 짧은 옵션 2개 (예: PDF / EXCEL)
 
 ### 기간·시간 프리셋 버튼 그룹
+
+> ⚠ 확인 필요: 프리셋 3~5개 vs components § Select button '한 줄 4개까지' / 비선택 글자 검정 vs #333 / `select/select button group` 미지정
 
 - 짧은 시간 프리셋 3~5개를 가로 병렬 버튼으로 (예: 1개월/3개월/6개월/12개월).
 - **선택 = 보라 아웃라인 + 보라 텍스트 / 비선택 = 회색 아웃라인 + 검정 텍스트.**
@@ -780,6 +787,8 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 - 프리셋 버튼과 함께 배치 가능 (프리셋 눌러 즉시 반영, 셀렉트로 세부 조정).
 
 ### 필드 라벨 두 스타일
+
+> ⚠ 확인 필요: '안 placeholder만' 스타일 vs components § Form UI 안티패턴 'Placeholder만으로 라벨링 금지'
 
 | 스타일 | 언제 |
 |---|---|
@@ -799,11 +808,6 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 - CTA 바로 위에 **회색 + 밑줄 텍스트 링크** (중앙 정렬)를 배치해 **주 액션과 반대되는 액션**을 병기할 수 있음.
 - 예: 위 "자동충전 해지하기" (반대 액션) / 아래 CTA "자동 충전 설정하기" (주 액션).
 - 하단 유틸리티 링크(CTA 없을 때)와 구분 — 이건 **CTA와 공존하는 위치**.
-
-### 텍스트 카운터 (multi-line 입력)
-
-- textarea 우측 하단에 **글자 수 카운터** ("0/500") — 회색 작게.
-- multi-line 입력의 표준 부가 UI.
 
 ### 답변/안내 카드 안 액션 버튼
 
@@ -827,6 +831,8 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### Pill 배지 (3색 통합 규칙)
 
+> ⚠ 확인 필요: 옅은 보라 텍스트 '보라 or 검정'·회색 텍스트 '검정' vs `label` brand-light(보라)·gray-light(#666)
+
 **pill 라운드 형태, 색은 상태/성격에 따라 3색으로 매핑.**
 
 | 색조 | 배경 | 텍스트 | 언제 쓰나 |
@@ -847,10 +853,14 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### Bullet 스타일
 
+> ⚠ 확인 필요: `■` 사각 bullet vs components § 10_Info 'Dot(•)/Aster(*) 외 도형 지양'
+
 - **`■` 사각** — 강조·요점 리스트
 - **`●` 원형** — 일반 안내·유의사항 리스트
 
 ### 유의사항 리스트 두 스타일
+
+> ⚠ 확인 필요: `●`/`■` bullet — § Bullet 스타일과 같은 이유로 components § 10_Info 와 충돌
 
 | 스타일 | 언제 쓰나 | 특징 |
 |---|---|---|
@@ -869,7 +879,11 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 필드 우측 어드먼트
 
+> ⚠ 확인 필요: 'Secondary 작은 크기' vs 카탈로그 `input` style/case=button 의 `button/button` primary·medium·brand(48h)
+
 - 짧은 액션 버튼(Secondary 작은 크기) 또는 `×` 클리어 아이콘.
+
+---
 
 ---
 
