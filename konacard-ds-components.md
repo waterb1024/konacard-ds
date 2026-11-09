@@ -72,8 +72,8 @@ description: >
 | `brand-line` | 흰 바탕 + 보라 테두리 + 보라 글자 — Secondary | `Brand_Line` |
 | `gray` | 회색 채움 #999 + 흰 글자 | `Gray` |
 | `gray-light` | 연회색 채움 + 검정 글자 (secondary 는 #333) — 병렬 CTA 좌측 보조 | `Gray_Light` |
-| `gray-line` | 흰 바탕 + 회색 테두리 — 반복 편집 진입점 | `Gray_Line` |
-| `gray-line-light` | 흰 바탕 + 연한 테두리, 글자 #333 (secondary 는 #666) — 용도 미정의 | `Gray_Line_Light` |
+| `gray-line` | 흰 바탕 + 진한 회색 테두리 1px (`button/quaternary` #999) — 반복 편집 진입점 | `Gray_Line` |
+| `gray-line-light` | 흰 바탕 + 연한 회색 테두리 1px (`button/tertiary` #DDD), 글자 #333 (secondary 는 #666) — `gray-line` 과 테두리 진하기만 다름 (Figma 확인 2026-11-09). 용도 미정의 | `Gray_Line_Light` |
 
 - Figma 작업은 `type` 값(소문자·하이픈), PascalCase 는 코드 `color` prop 값
 - 관련 rule.md: § "버튼", § "5) 말투 / CTA 라벨", § "5) 말투 / CTA 개수 규칙"
@@ -838,7 +838,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 | type | 크기 | 쓰는 곳 |
 |---|---|---|
 | `solid` | 가로 1px (폭은 늘려 씀) | 리스트 항목 사이 — 기본 구분선 |
-| `dotted` | 가로 1px 점선 (2/2) | 제목 없는 안내 문구(§ 10_Info) 위, Info-box 항목 묶음 사이 |
+| `dotted` | 가로 1px 점선 (2/2) | 제목 없는 안내 문구(§ 10_Info) 위, 정보 묶음 · Info-box 항목 사이, 팝업 · 안내 카드 안 계층 분리 (예: 완료 통지 ↔ 후속 안내, 진행바 사이) |
 | `section` | 높이 10 회색 띠 (`light` 만) | 한 화면 안 큰 영역 사이 (예: "결제 정보" ↔ "혜택 정보") |
 | `vertical-12` / `vertical-8` | 세로 1×12 / 1×8 (필요하면 높이를 늘림) | 카드 안 세로 구분 |
 

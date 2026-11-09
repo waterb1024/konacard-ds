@@ -142,7 +142,7 @@ description: >
 | `background/primary` (모든 화면 기본 배경) | `#FFFFFF` |
 | `background/secondary` (완료·정보 요약 카드, 팝업 안 안내 카드, 보조 CTA 배경, 이탈 방지 리마인더) | `#F8F9FB` |
 | `divider/primary` (얇은 아이템 구분선, 카드 테두리, 탭 하단선) | `#0000000F` (black 6%) |
-| `divider/dotted` (팝업 카드 내부 계층 분리 점선) | `black 6%`(`#0F000000`) — solid line과 동일 색, `dasharray 2 2`만 다름 |
+| `divider/dotted` (점선 — 안내 문구 · 정보 묶음 위, 팝업 카드 내부 계층 분리) | `black 6%`(`#0F000000`) — solid line과 동일 색, `dasharray 2 2`만 다름 |
 | `color/background/dimmed` (팝업·바텀시트 뒤 딤 — `bg-dimmed` 컴포넌트) | `#000000A3` (black 64%) |
 | `decoration/soft` (로그인 배경 장식) (추측) | 아주 옅은 회색 반투명 |
 
@@ -334,14 +334,14 @@ description: >
 
 ### 계층 구분 (Divider)
 
-> ⚠ 확인 필요: 섹션 구분 `line/divider`(옛 이름 → 카탈로그 `divider type=section`)·Dotted '팝업 전용'·탭 하단선 6% 가 components § 07_Line / § 03_Tab 과 다름
+> ⚠ 확인 필요: 섹션 구분 `line/divider`(옛 이름 → 카탈로그 `divider type=section`)·탭 하단선 6% 가 components § 07_Line / § 03_Tab 과 다름
 
 | 종류 | 두께 / 색 | 사용처 |
 |---|---|---|
 | **아이템 구분 (얇은)** | 1px, `divider/primary` (black 6%) | 리스트 아이템 사이, 카드 헤더 밑, 탭 하단선 |
 | **섹션 구분 (두꺼운 bar)** | `line/divider` 10px, `color/divider/primary` | 화면 안 큰 섹션 그룹 사이 |
 | **총합 구분 (요약 카드 내)** | 1px, `divider/primary` | 라벨-값 리스트와 총합 Bold 라인 사이 |
-| **Dotted divider** | 점선, ✅ 실측 `black 6%`(solid line과 동일 색, dasharray만 다름) | 팝업 안 정보 카드 내부 계층 분리 전용 |
+| **Dotted divider** | `divider` type=dotted, `black 6%`(solid line과 동일 색, dasharray만 다름) | 안내 문구 · 정보 묶음 위, 팝업 안 정보 카드 내부 계층 분리 (2026-11-09 결정 — 팝업 전용 아님, KeyScreen 점선 636곳) |
 
 ### 배경 장식
 
