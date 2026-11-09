@@ -23,7 +23,7 @@ related_docs:
 
 | 대분류 | 상태 | 포함 컴포넌트 |
 |---|---|---|
-| **00_Basic** | ✅ 완료 | OS/status-bar (AOS·iOS·notch·Chrome), OS/keyboard (AOS·iOS), spacing 8-based 원칙 |
+| **00_Basic** | ✅ 완료 | OS/status-bar (Color × AOS·iOS·iOS_notch·Address-Bar), OS/keyboard (OS × Keypad·Number), spacing 8-based 원칙 |
 | **01_Actionbar** | ✅ 완료 | action-bar/header(Main·Sub AOS/iOS·Scroll Title), action-bar/button (헤드라인은 14_Heading 으로 옮김) |
 | **02_Button** | ✅ 완료 | button/button (style=primary·secondary), text button, icon, fixed-bottom |
 | **03_Tab** | ✅ 완료 | Tab/UI(main·Full·Multi), tab/main-multi, tab/Sub, tab/sub-ui |
@@ -1338,40 +1338,46 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 ---
 
-## OS/status-bar
+## OS/status-bar (`1236:6993`)
 
-- **Figma 노드 (샘플 인스턴스)**: `2408:6119`~`2408:6122`
+- **Figma 노드**: 컴포넌트 세트 `1236:6993` (❖ OS system UI 페이지 `11217:3864`, 2026-11-09 사용자 정리)
 - **용도**: 화면 상단 OS 정보 영역의 시각 placeholder — **실 프로덕션에서는 OS가 자동 렌더**
-- **4 variant**:
+- **속성**: `Color` = Black / White × `Type` = AOS / iOS / iOS_notch / Address-Bar → **8 variant** (기본 Black · AOS)
+  - `Color` 는 글자 · 아이콘 색 (바탕 없음) — **Black = 밝은 화면 위, White = 어두운 화면 위**
 
-| Variant | 크기 | 특징 | 사용 상황 |
+| Type | 크기 | 특징 | 사용 상황 |
 |---|---|---|---|
-| AOS status bar | 360×24 | 좌 시간(10:00) / 우 signal·WiFi·battery | Android 목업 상단 |
-| iOS status bar (표준) | 375×20 | 좌 시간(4:20) / 우 신호·WiFi·battery | iOS notch 없는 목업 |
-| iOS status bar (notch/DI) | 375×48 | notch 또는 Dynamic Island 포함 | iPhone X 이후 목업 |
-| Chrome URL bar | 360×56 | home 아이콘 + `example.com` + tab 카운트 + menu(⋮) | 웹뷰·인앱 브라우저 목업 |
+| `AOS` | 360×24 | 좌 시간(10:00) / 우 signal·WiFi·battery | Android 목업 상단 (기본) |
+| `iOS` | 375×20 | 좌 시간(4:20) / 우 신호·WiFi·battery | iOS notch 없는 목업 |
+| `iOS_notch` | 375×48 | notch 또는 Dynamic Island 높이 포함 | iPhone X 이후 목업 |
+| `Address-Bar` | 360×56 | home 아이콘 + `example.com` + 탭 수 + 메뉴(⋮) | 웹뷰 · 인앱 브라우저 목업 |
 
 - **사용 원칙**: 목업 상단에 **하나만** 배치. Konacard 앱 자체 헤더(`01_Actionbar`)는 status bar 아래에 위치.
 
-## OS/keyboard
+## OS/keyboard (`1709:5279`)
 
-- **Figma 노드 (샘플 인스턴스)**: `2408:6379` (AOS), `2408:6606` (iOS)
+- **Figma 노드**: 컴포넌트 세트 `1709:5279` (❖ OS system UI 페이지)
 - **용도**: 인풋 필드 활성 상태 목업에서 **키보드 노출 상황을 시각화**
-- **2 variant**:
+- **속성**: `OS` = AOS / iOS × `Type` = Keypad / Number → **4 variant** (기본 AOS · Keypad)
 
-| Variant | 크기 | 특징 |
+| OS · Type | 크기 | 특징 |
 |---|---|---|
-| AOS keyboard | 360×244 | 어두운 회색 배경 + 각 키 진회색 사각형 + 흰 텍스트 + 우하단 파란 체크 (enter) |
-| iOS keyboard | 375×244 | 밝은 회색 배경 + 흰색 각 키 + 검정 텍스트 + 우하단 파란 체크 |
+| AOS · `Keypad` | 360×244 | 문자 자판 — 어두운 회색 바탕 + 진회색 키 + 흰 글자 + 우하단 파란 체크 |
+| AOS · `Number` | 360×206 | 숫자 자판 (금액 · 번호 입력) — 같은 어두운 톤 |
+| iOS · `Keypad` | 375×244 | 문자 자판 — 밝은 회색 바탕 + 흰 키 + 검정 글자 + 우하단 파란 체크 |
+| iOS · `Number` | 375×216 | 숫자 자판 (숫자 아래 영문 보조 글자) |
 
 - **레이아웃 규칙**:
-  - 인풋 필드 활성화 시 화면 하단에서 244px 만큼 침범 — 하단 CTA(`button/fixed-bottom`)는 키보드 위로 밀어 올림 (구현측 관례)
+  - 인풋 필드 활성화 시 화면 하단을 키보드 높이만큼 침범 — 하단 CTA(`button/fixed-bottom`)는 키보드 위로 밀어 올림 (구현측 관례)
+  - 숫자만 받는 입력칸(금액 · 카드번호 · 주민번호 등)은 `Type=Number`
   - 목업에서는 키보드 활성 상태와 비활성 상태 2 화면을 각각 제시하면 개발 커뮤니케이션에 유리
 
 ## 00_Basic 안티패턴
 
 - ❌ **status bar / keyboard를 실제 프로덕션 구현물처럼 코드로 구현** — 반드시 OS 자동 렌더 사용
 - ❌ 목업에 status bar를 여러 개 겹쳐 배치
+- ❌ 어두운 화면 위에 `Color=Black` status bar (글자가 안 보임 — `Color=White`)
+- ❌ 숫자만 받는 입력칸 목업에 문자 자판(`Type=Keypad`)
 - ❌ 스페이싱을 8·4 배수 외 값으로 정의 (특히 5·7·11 등 홀수)
 - ❌ 아이콘에 Auto layout 강제 적용 (grid 파괴 위험)
 - ❌ 소수점 사이즈(예: 47.5) 사용
@@ -1382,7 +1388,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 | # | 카테고리 | 대표 컴포넌트 |
 |---|---|---|
-| 00 | Basic | OS/status-bar, keyboard, spacing 원칙 |
+| 00 | Basic | OS/status-bar (8), OS/keyboard (4), spacing 원칙 |
 | 01 | Actionbar | header (Main·Sub AOS/iOS·Scroll Title), button |
 | 02 | Button | primary, secondary, text, icon, fixed-bottom |
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |

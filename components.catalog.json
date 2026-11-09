@@ -1164,6 +1164,80 @@
         "caption": "false — 1depth 아래 2depth 보조 문구 (12/18 #999)",
         "box": "false — 아래 상자(reply: 1depth + 2depth)"
       }
+    },
+    "OS/status-bar": {
+      "type": "COMPONENT_SET",
+      "key": "66a0f3e9209f96b65a0991f8d3035f2830c7e14d",
+      "nodeId": "1236:6993",
+      "props": {
+        "Color": [
+          "White",
+          "Black"
+        ],
+        "Type": [
+          "AOS",
+          "iOS",
+          "iOS_notch",
+          "Address-Bar"
+        ]
+      },
+      "defaults": {
+        "Color": "Black",
+        "Type": "AOS"
+      },
+      "heights": {
+        "AOS": 24,
+        "iOS": 20,
+        "iOS_notch": 48,
+        "Address-Bar": 56
+      },
+      "widths": {
+        "AOS": 360,
+        "iOS": 375,
+        "iOS_notch": 375,
+        "Address-Bar": 360
+      },
+      "notes": [
+        "2026-11-09 사용자 정리 완료 — ❖ OS system UI 페이지(11217:3864)",
+        "화면 목업용 시스템 바. 실제 앱에서는 OS 가 그림 (코드로 구현하지 않음)",
+        "Color = 글자 · 아이콘 색 (바탕 없음): Black 은 밝은 화면, White 는 어두운 화면 위",
+        "Address-Bar = 브라우저 주소창 (home · example.com · 탭 수 · 메뉴), 웹뷰 목업용",
+        "속성 이름 · 값은 Figma 원본 대소문자 그대로 (Color · Type)"
+      ],
+      "docRef": "konacard-ds-components.md § OS/status-bar"
+    },
+    "OS/keyboard": {
+      "type": "COMPONENT_SET",
+      "key": "dc2a4e1979fe44a586ffbb355b82f7ad8b2fa358",
+      "nodeId": "1709:5279",
+      "props": {
+        "OS": [
+          "iOS",
+          "AOS"
+        ],
+        "Type": [
+          "Keypad",
+          "Number"
+        ]
+      },
+      "defaults": {
+        "OS": "AOS",
+        "Type": "Keypad"
+      },
+      "sizes": {
+        "AOS Keypad": "360x244",
+        "AOS Number": "360x206",
+        "iOS Keypad": "375x244",
+        "iOS Number": "375x216"
+      },
+      "notes": [
+        "2026-11-09 사용자 정리 완료 — ❖ OS system UI 페이지(11217:3864)",
+        "입력칸이 켜진 화면 목업용 키보드. 실제 앱에서는 OS 가 그림",
+        "Type: Keypad = 문자 자판, Number = 숫자 자판 (금액 · 번호 입력)",
+        "AOS 는 어두운 바탕, iOS 는 밝은 바탕",
+        "2026-11-09 variant 값 \"AOS\" 앞에 붙어 있던 보이지 않는 제어 문자(\\b) 제거 — 이름으로 찾을 때 AOS 가 맞지 않던 원인 (키 유지)"
+      ],
+      "docRef": "konacard-ds-components.md § OS/keyboard"
     }
   }
 }

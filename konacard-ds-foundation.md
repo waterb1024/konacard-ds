@@ -338,7 +338,9 @@ figma:
 components:
   status-bar:
     height: 24px
-    variants: "Color=Black, Type=AOS"
+    variants: "Color=Black | White × Type=AOS | iOS | iOS_notch | Address-Bar (기본 Black · AOS)"
+  keyboard:
+    variants: "OS=AOS | iOS × Type=Keypad | Number"
   action-bar-header:
     height: 56px
     variants: "type=main | page_icon | page_button | old"
@@ -1079,7 +1081,8 @@ for (const item of items) {
 
 | 컴포넌트 | 타입 |
 |----------|------|
-| `OS/status-bar` | Single |
+| `OS/status-bar` | ComponentSet |
+| `OS/keyboard` | ComponentSet |
 | `action-bar/header` | ComponentSet |
 | `action-bar/button` | ComponentSet |
 | `heading/headline` | Single |
