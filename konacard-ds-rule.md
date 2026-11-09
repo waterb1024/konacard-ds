@@ -739,14 +739,12 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 버튼
 
-> ⚠ 확인 필요: 비활성 '`neutral/quaternary` 배경 + 흰 텍스트' vs components § 02_Button 'Disable = Default 의 opacity 40%'
-
 - **Primary (채움)** — 보라 배경 + 흰 텍스트. 활성 CTA.
 - **Secondary (아웃라인)** — 흰 배경 + 두 변형:
   - **보라 아웃라인 + 보라 텍스트** — 진행 화면의 강조 부가 액션
   - **회색 아웃라인 + 검정 텍스트** — 반복 노출되는 편집 진입점, 중립 액션
 - **Neutral (보조 채움)** — 회색 배경(`background/secondary`) + 검정 텍스트. 병렬 CTA 좌측(보조).
-- **비활성** — `neutral/quaternary` 배경 + 흰 텍스트.
+- **비활성** — Figma 그대로 (2026-11-09 결정): 주 CTA(Primary 보라 채움)만 `neutral/quaternary` #DDD 배경 + 흰 텍스트 — 하단 큰 버튼(large)은 흐리지 않음. 그 밖의 모든 버튼은 원래 모양 그대로 opacity 40% (스펙: konacard-ds-components.md § 02_Button).
 
 ### 약관 동의 체크박스 (두 스타일 통합 규칙)
 

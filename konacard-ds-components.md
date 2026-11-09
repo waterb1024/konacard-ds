@@ -42,7 +42,7 @@ description: >
 > 값 전체는 `components.catalog.json`. 여기는 고르는 기준과 규칙만.
 
 **공통 원칙**
-- **비활성 = 같은 모양 + opacity 40%**. 예외: `button/button` `style=primary, type=brand` 비활성은 바탕 #DDD + 흰 글자이고, `large` 는 흐리지 않음 (medium·small 은 40%)
+- **비활성 = 같은 모양 + opacity 40%** (Figma `state=false`, 2026-11-09 확인). **예외 하나** — `style=primary, type=brand` 만 바탕이 #DDD(`button/tertiary`) + 흰 글자로 바뀜: `large` 는 흐리지 않고(op 1), `medium` · `small` 은 그 위에 40%. `secondary` 의 `brand` 는 다른 type 처럼 보라 그대로 40%
 - `button/text button` · `button/icon button` 에는 비활성 variant 가 없음 — 필요하면 버튼 전체에 opacity 40%
 - **Corner radius**: `radius/button/*` 토큰 사용 (`konacard-ds-foundation.md`)
 - **터치 영역**: 최소 32px 세로 확보 (Text·Icon 버튼도 동일)
