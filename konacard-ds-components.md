@@ -367,7 +367,17 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 - **요소 간 상·하 gap**: `spacing-xsmall` = **8px** (Title↔Field↔Guide Text 모두)
 - **Title** (필드 상단 라벨) = **`input/label` 컴포넌트** (`41:1176`, ❖ Input 페이지 — 2026-11-06 `title/title` Type=Input · Medium · Black 을 세트 밖으로 빼서 옮김, 키 유지)
-  - 사용 시점: "Input/Select 상단에 제목이 있는 경우" (`title` 켜기). 필드 밖에 따로 놓을 때는 `input/label` 단독 인스턴스 (글자 속성 `label`, 폭 320)
+  - 사용 시점: "Input/Select 상단에 제목이 있는 경우"
+  - **어디에 붙이나** — 아래 요소가 무엇이냐로 정함:
+
+    | 라벨 아래 요소 | 라벨 붙이는 법 | 예 |
+    |---|---|---|
+    | 입력칸 · select 하나 (`input` 모든 style/case · `select/select box`) | 그 컴포넌트의 **`title` 켜기** — 라벨을 따로 놓지 않음 | 영문 이름, 국적, 주민등록번호, 자택 주소, 내용 |
+    | 여러 칸 묶음 (select + input 등) | **`input/label` 단독** 1개를 묶음 위에, 안쪽 칸들은 `title` 끔 | 휴대폰 번호(통신사 + 번호) |
+    | `title` 칸이 없는 선택 요소 (`select/select button group` · radio 선택지 · `control/agree` · 버튼 하나) | **`input/label` 단독** | 거래 내역 기간, 신청하는 거래내역, 약관동의, 신분증 인증 |
+
+    - `input/label` 단독 = 글자 속성 `label`, 폭 FILL(360 화면에서 320), 아래 요소와 gap 8
+    - 근거 (KeyScreen AOS, 2026-11-09): 따로 놓인 라벨 307곳 중 277곳(90%)이 입력칸 · select 하나 위 — AX `input` 에 `title` 이 생기기 전에 그린 화면이라 화면을 AX 로 옮길 때 `title` 켜기로 바꿈. 나머지 30곳(여러 칸 묶음 14 · select button 4 · radio 4 · 버튼 하나 4 · 약관 2 · 아이콘 + 상태 글자 2)만 단독 라벨이 필요
   - 타이포: `body/3-Bold` = Pretendard Bold **12px** / lineHeight 18 / letterSpacing -0.24
   - 색: `color/font/secondary` #333333
 - **Guide Text** (필드 하단 안내/에러 문구) = **`info` 컴포넌트** (`Info / Info text`)
@@ -387,6 +397,9 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 - ❌ Title을 필드 안 Placeholder로 대체 (접근성·재입력 편의 하락)
 - ❌ 검증 결과·필수값을 회색 `info` 로 안내 — 반드시 `icon-error`(#FF364B) 사용
 - ❌ Title/Guide Text 간격을 8px 외의 값으로 변경 (`spacing-xsmall` 고정)
+- ❌ 입력칸 · select **하나** 위에 `input/label` 을 따로 놓기 — 그 컴포넌트의 `title` 을 켬
+- ❌ 여러 칸 묶음에서 칸마다 `title` 을 켜 라벨 반복 — 묶음 위 `input/label` 1개
+- ❌ 입력칸 라벨로 `heading/section` 사용 (섹션 제목은 회색 · 위아래 padding 8 이 붙어 모양이 다름)
 
 ---
 

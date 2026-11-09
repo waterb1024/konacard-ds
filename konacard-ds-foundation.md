@@ -755,7 +755,7 @@ wrapper (360×800, white)
 | 확장 가능 행(아코디언) | `accordion` (header + body 묶음 · size × type=list/inquiry × state) · `accordion/header` · `accordion/body` | 구 list/expand · expand-open. 본문만 쓸 땐 accordion/body |
 | 결제·혜택 행 | `list/payment`, `list/benefit`, `list/benefit-store` | |
 | 본문 타이틀(섹션 제목) | `heading/section` (구 title/title — size=large/medium/small, title) | h2 텍스트 직접 입력 금지 |
-| 입력칸 위 라벨 | `input/label` (구 title/title Type=Input — label) | `input` · `select/select box` 는 `title` 켜기로 내장. 따로 놓을 때만 단독 사용 |
+| 입력칸 위 라벨 | `input/label` (구 title/title Type=Input — label) | 입력칸 · select 하나 위는 그 컴포넌트의 `title` 켜기. 여러 칸 묶음 · select button group · radio · 약관 위에만 단독 사용 |
 | 가격·정보 텍스트 그룹 | `info/text-title` | |
 | 태그·라벨 칩 | `label` (구 label/basic-label — size, type=color/line, color=brand-gradient/brand/brand-light/gray-dark/warning/gray-light, line 은 3색·tiny 없음) | 직접 cornerRadius+fill로 칩 만들지 말 것 |
 | 배지 (점/숫자/new) | `badges/badge` (type=dot/new/num-min/num-max) | |

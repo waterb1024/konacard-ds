@@ -106,7 +106,8 @@
         "2026-11-06 사용자 정리 완료: title/title Type=Input · Medium · Black 노드를 세트 밖으로 빼서 ❖ Input 페이지로 옮김 (키 유지)",
         "입력칸 위 라벨 (국적 · 문의 유형 등). body/3-Bold 12/18 · color/font/secondary. 폭 320",
         "input 36 variant 의 title 슬롯 · select/select box 의 라벨이 이 컴포넌트",
-        "KeyScreen AOS: 307곳 (모두 input 밖에 따로 놓음)"
+        "KeyScreen AOS: 307곳 (모두 input 밖에 따로 놓음)",
+        "쓰는 규칙 (2026-11-09): 입력칸 · select 하나 위는 그 컴포넌트의 title 켜기, 단독 input/label 은 여러 칸 묶음 · select button group · radio · control/agree · 버튼 하나 위에만. KeyScreen 따로 놓인 307곳 중 277곳은 title 로 바꿀 대상, 30곳만 단독 필요"
       ],
       "docRef": "konacard-ds-components.md § Form UI 조합 규칙 (Title)"
     },
