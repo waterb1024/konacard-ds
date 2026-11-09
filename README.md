@@ -16,10 +16,11 @@ Figma DS 원본(`${FIGMA_DS_FILE_KEY}` — -AX- KONACARD COMMON)을 코드-컨�
 ```
 konacard-ds/
 ├── CLAUDE.md                        # 진입 지침 · 3파일 라우팅 (Claude Code 자동 로드)
-├── konacard-ds-foundation.md        # 토큰: color / typography / spacing / radius / elevation
+├── konacard-ds-foundation.md        # 토큰: color / typography / spacing / radius / elevation / opacity
 ├── konacard-ds-components.md        # 12개 대분류 컴포넌트 명세 (00_Basic ~ 12_Banner)
 ├── konacard-ds-rule.md              # Figma 작업 규칙 · 화면 성격 분류 · 조립 원칙 · 안티패턴 · 패턴 목차
 ├── rules/patterns/                  # 화면별 표준 패턴 (약관·공지 / 팝업 / 코나콘 / 카드·홈)
+├── rules/figma-guide.md             # Figma 제작 실무 — 레이어 구조 · UI→컴포넌트 표 · 코드 예시
 ├── .claude/
 │   └── agents/                      # 8개 subagent (트랙 A 화면 생산 / 트랙 B DS 유지관리)
 └── storybook/                       # React Storybook — 매핑된 컴포넌트 라이브러리

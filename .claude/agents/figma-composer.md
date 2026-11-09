@@ -31,6 +31,8 @@ KONACARD DS 컴포넌트로 Figma 화면을 조립하는 에이전트.
 
 ## Figma 작업 규칙 (rule.md § "Figma 작업 규칙" embed)
 
+> 레이어 구조 · 만들려는 UI → 컴포넌트 표 · 컴포넌트별 메모 · Plugin API 코드 예시는 `rules/figma-guide.md` 를 읽고 따름.
+
 - **프레임**: 360×800 wrapper
 - **auto-layout**: hug (자식 크기에 맞춰 접힘). 고정 크기 금지.
 - **좌우 padding**: 20px

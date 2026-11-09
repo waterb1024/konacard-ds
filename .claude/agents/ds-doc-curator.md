@@ -14,6 +14,7 @@ KONACARD DS 문서 3종 큐레이션 에이전트.
 | 토큰 값 (color / typography / spacing / radius / shadow) | `konacard-ds-foundation.md` |
 | 컴포넌트 명세 (variant / state / props) | `konacard-ds-components.md` |
 | 화면 조립 원칙 · 안티패턴 · 화면 성격 분류 · Figma 작업 규칙 | `konacard-ds-rule.md` |
+| Figma 제작 실무 (레이어 구조 · UI→컴포넌트 표 · 코드 예시) | `rules/figma-guide.md` |
 | 특정 화면 · 팝업 하나의 상세 구조 (표준 패턴) | `rules/patterns/*.md` + `konacard-ds-rule.md` § "화면별 표준 패턴" 목차에 한 줄 |
 
 라우팅이 애매하면 사용자에게 확인.

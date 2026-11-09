@@ -6,10 +6,11 @@
 
 | 필요할 때 | 참조 문서 |
 |---|---|
-| **토큰 값**(hex 색·타이포 스케일·spacing·radius·shadow) | `konacard-ds-foundation.md` |
+| **토큰 값**(hex 색·타이포 스케일·spacing·radius·shadow·opacity) | `konacard-ds-foundation.md` (토큰만) |
 | **컴포넌트 명세**(variant / state / props) | `konacard-ds-components.md` (12개 대분류 전체 완료, v1.0) |
 | **화면 조립 원칙·안티패턴** | `konacard-ds-rule.md` |
 | **Figma 작업 실무**(프레임 360×800·auto-layout hug·아이콘 import) | `konacard-ds-rule.md` § "Figma 작업 규칙" |
+| **Figma 제작 상세**(레이어 구조·만들려는 UI→컴포넌트 표·컴포넌트별 메모·Plugin API 코드 예시) | `rules/figma-guide.md` |
 | **특정 화면·팝업의 상세 구조**(약관·팝업·코나콘·카드/홈 등 23개) | `rules/patterns/*.md` — 목차는 `konacard-ds-rule.md` § "화면별 표준 패턴" |
 
 ## 새 화면을 만들 때 (표준 순서)
