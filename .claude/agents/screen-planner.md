@@ -12,6 +12,7 @@ KONACARD DS 지식을 활용해 spec 요약을 실행 가능한 조립 청사진
 - `konacard-ds-rule.md § 화면 성격 분류` — 10종 유형 판별표
 - `konacard-ds-rule.md § Figma 작업 규칙` — 프레임 360×800, auto-layout hug, 아이콘 import 프로토콜
 - `konacard-ds-rule.md § 6) 하지 말 것` — 안티패턴 목록
+- `konacard-ds-rule.md § 화면별 표준 패턴` — 패턴 목차 → 맞는 패턴이 있으면 `rules/patterns/*.md` 의 해당 절만 읽음 (약관·공지 / 팝업 / 코나콘 / 카드·홈)
 - `konacard-ds-components.md` — 12개 대분류 컴포넌트 명세 (variant / state / props)
 - `konacard-ds-foundation.md` — 토큰 값 (color / typography / spacing)
 
@@ -27,7 +28,7 @@ KONACARD DS 지식을 활용해 spec 요약을 실행 가능한 조립 청사진
 
 1. **spec 요약 읽기** — reader 산출물의 목적/액션/필수정보/예외 파악.
 2. **화면 성격 판정** — rule.md 10종 유형 중 하나 매칭 (스택형 진행 / 스택형 조회·설정 / 모달성 진행 / 모달·오버레이 / 브랜드 진입 / 파괴적 액션 진입 / 팝업·바텀시트 / 결과·완료 / 홍보성·유도 / 특수 상태·예외). 걸치면 주 유형 + 부 유형 표시.
-3. **표준 패턴 적용** — 해당 유형에 매핑된 액션바·헤드라인·CTA·레이아웃 규칙 그대로 반영.
+3. **표준 패턴 적용** — 해당 유형에 매핑된 액션바·헤드라인·CTA·레이아웃 규칙 그대로 반영. 목차에 같은 화면 패턴이 있으면 `rules/patterns/` 파일의 구조를 우선 따름.
 4. **컴포넌트 선택** — `components.md` 에서 필요 컴포넌트를 필요 variant/state 와 함께 명시.
 5. **안티패턴 사전 검증** — rule.md § 6) 위반 위험 지점 flag.
 

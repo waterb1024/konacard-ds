@@ -10,13 +10,14 @@
 | **컴포넌트 명세**(variant / state / props) | `konacard-ds-components.md` (12개 대분류 전체 완료, v1.0) |
 | **화면 조립 원칙·안티패턴** | `konacard-ds-rule.md` |
 | **Figma 작업 실무**(프레임 360×800·auto-layout hug·아이콘 import) | `konacard-ds-rule.md` § "Figma 작업 규칙" |
+| **특정 화면·팝업의 상세 구조**(약관·팝업·코나콘·카드/홈 등 23개) | `rules/patterns/*.md` — 목차는 `konacard-ds-rule.md` § "화면별 표준 패턴" |
 
 ## 새 화면을 만들 때 (표준 순서)
 
 0. **Figma 작업 규칙 사전 확인** — `konacard-ds-rule.md` § "Figma 작업 규칙"에서 wrapper 360×800·auto-layout hug·아이콘 import 프로토콜 재확인 (직접 그리기 금지)
 1. **화면 성격 판별** — `konacard-ds-rule.md`의 § "화면 성격 분류" 표에서 만들려는 화면이 어느 유형인지 먼저 확인
    - 스택형 진행 / 스택형 조회·설정 / 모달성 진행 / 모달·오버레이 / 브랜드 진입 / 파괴적 액션 진입 / 팝업·바텀시트 / 결과·완료 / 홍보성·유도 / 특수 상태·예외
-2. **표준 패턴 확인** — 해당 성격에 매핑된 규칙(액션바·헤드라인·CTA·레이아웃)을 그대로 따를 것
+2. **표준 패턴 확인** — 해당 성격에 매핑된 규칙(액션바·헤드라인·CTA·레이아웃)을 그대로 따를 것. `konacard-ds-rule.md` § "화면별 표준 패턴" 목차에 맞는 패턴이 있으면 그 `rules/patterns/` 파일만 열어 따름
 3. **컴포넌트 선택** — `konacard-ds-rule.md` § 톤앤매너/버튼·팝업·카드 종류·리스트 등의 규칙에서 필요 컴포넌트 확인
 4. **토큰 값 조회** — `konacard-ds-foundation.md`에서 컬러·타이포·spacing·radius 실값 참조
 5. **안티패턴 검증** — `konacard-ds-rule.md` § "6) 하지 말 것" 목록과 대조 후 확정
@@ -42,7 +43,7 @@
 ## 파일 수정 원칙
 
 - **`konacard-ds-foundation.md`** = Figma DS 원본과 대조 필요. 임의 수정 금지. 값 변경 시 반드시 Figma 원본과 일치하는지 확인.
-- **`konacard-ds-rule.md`** = 새 화면 분석하면서 규칙 축적. 기존 규칙과 충돌 시 사용자에게 확인 후 정정.
+- **`konacard-ds-rule.md`** = 새 화면 분석하면서 규칙 축적. 기존 규칙과 충돌 시 사용자에게 확인 후 정정. 특정 화면 하나에만 해당하는 상세 구조는 `rules/patterns/` 의 맞는 파일에 넣고 rule.md 목차 표에 한 줄 추가 (rule.md 본문에는 여러 화면에 공통인 규칙만).
 - **버전 1 작성 진행 중** — changelog 별도 기록 안 함. 완성 후 v1 배포 시 정리 예정.
 
 ## Storybook 컴포넌트 작업 시 (필독)

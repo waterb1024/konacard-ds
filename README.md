@@ -18,7 +18,8 @@ konacard-ds/
 ├── CLAUDE.md                        # 진입 지침 · 3파일 라우팅 (Claude Code 자동 로드)
 ├── konacard-ds-foundation.md        # 토큰: color / typography / spacing / radius / elevation
 ├── konacard-ds-components.md        # 12개 대분류 컴포넌트 명세 (00_Basic ~ 12_Banner)
-├── konacard-ds-rule.md              # Figma 작업 규칙 · 화면 성격 분류 · 조립 원칙 · 안티패턴
+├── konacard-ds-rule.md              # Figma 작업 규칙 · 화면 성격 분류 · 조립 원칙 · 안티패턴 · 패턴 목차
+├── rules/patterns/                  # 화면별 표준 패턴 (약관·공지 / 팝업 / 코나콘 / 카드·홈)
 ├── .claude/
 │   └── agents/                      # 8개 subagent (트랙 A 화면 생산 / 트랙 B DS 유지관리)
 └── storybook/                       # React Storybook — 매핑된 컴포넌트 라이브러리
@@ -32,7 +33,7 @@ Claude Code 세션에서 이 폴더 진입 시 `CLAUDE.md`가 자동 로드되�
 
 0. **Figma 작업 규칙 확인** — `konacard-ds-rule.md § "Figma 작업 규칙"` (프레임 360×800 · auto-layout hug · 아이콘 import 프로토콜)
 1. **화면 성격 판별** — `konacard-ds-rule.md § "화면 성격 분류"` (스택형/모달성/브랜드 진입/팝업 등 10종)
-2. **표준 패턴 확인** — 성격에 매핑된 액션바·헤드라인·CTA·레이아웃 규칙
+2. **표준 패턴 확인** — 성격에 매핑된 액션바·헤드라인·CTA·레이아웃 규칙. 특정 화면 패턴은 `konacard-ds-rule.md § "화면별 표준 패턴"` 목차 → `rules/patterns/` 파일
 3. **컴포넌트 선택** — `konacard-ds-components.md`에서 variant · state · props 확인
 4. **토큰 값 조회** — `konacard-ds-foundation.md`에서 hex 색·타이포·spacing 실값 참조
 5. **안티패턴 검증** — `konacard-ds-rule.md § "6) 하지 말 것"`과 대조
