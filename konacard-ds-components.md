@@ -946,6 +946,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
   - `gray-dark` — #999 채움 + 흰 글자
   - `warning` — 빨강 #FF364B 채움 + 흰 글자 (line: 빨강 테두리·글자)
   - `gray-light` — #F8F9FB 채움 + #666 글자. 대기·미처리 상태 (예: 문의 "답변대기")
+- **상태 표시에 쓸 때** (rule.md § 상태 pill 5종 · § Pill 배지): 완료 · 강조 = `brand` / 진행 중 · 활성 · 지속 상태 = `brand-light` / 차단 · 불가 = `warning` / 자연 종료 = `gray-dark` / 대기 = `gray-light` — pill 색을 직접 지정하지 않음
 
 ## 09_Label 안티패턴
 
