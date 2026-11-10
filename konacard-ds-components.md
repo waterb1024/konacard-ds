@@ -985,7 +985,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 - **원칙**:
   - 안내 문구는 **최대 2Depth까지만** 사용
-  - 여러 개 문단 사용 시, 문단 앞에 **Dot(•) / Aster(\*) 표기**하여 구분 (Dot/Aster를 제외한 도형 사용 지양)
+  - 여러 개 문단 사용 시, 문단 앞에 글머리 기호로 구분 — **`•` 점 · `-` 대시 · `*` 별표 · `※`** 4가지만 (`■` 등 다른 도형 쓰지 않음, 2026-11-09 KeyScreen 기준 결정 — 쓰는 곳은 rule.md § Bullet 스타일)
   - **제목이 없는 안내문구의 상단에는 항상 Dotted line 사용**
   - 안내문구의 아이콘과 텍스트는 **마진 없이 적용**
 - **1 Depth**: `•` (Dot) + Text = `body/2-Regular` 14px `color/font/primary` 검정
@@ -1266,9 +1266,9 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 | 02 | Button | primary, secondary, text, icon, fixed-bottom |
 | 03 | Tab | Main (Basic·Multi), Sub (pill) |
 | 04 | Forms | input (text field · search bar · text area · button · card-number · 주민등록번호), select (select box · select button) + Form UI |
-| 05 | Control | swtich, checkbox, radio + agree/setting/radio-text |
+| 05 | Control | controls/swtich · check box · radio button + 각 label 조합 |
 | 06 | List | list (4형), accordion, card-select, bottomsheet |
-| 07 | Line | Solid, Dotted, Divider |
+| 07 | Line | divider (solid · dotted · section · vertical) |
 | 08 | Indicator | Page dot, Navigator, N/NN badge, Alert badge (dot/new/count) |
 | 09 | Label | label (color 6색 · line 3색) |
 | 10 | Info | Text info (bullet 2depth), Info-box |
