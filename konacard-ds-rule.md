@@ -765,10 +765,10 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 기간·시간 프리셋 버튼 그룹
 
-> ⚠ 확인 필요: 프리셋 3~5개 vs components § Select button '한 줄 4개까지' / 비선택 글자 검정 vs #333 / `select/select button group` 미지정
+> 2026-11-10 결정 — **`select/select button group` (columns 2 · 3 · 4) 사용, 한 줄 4개까지** (스펙: konacard-ds-components.md § 04_Forms — Select button). KeyScreen 기간 줄은 모두 4개: 자동충전 기준 일자(1일 · 10일 · 15일 · 25일) · 거래내역 신청 기간(1 · 3 · 6 · 12개월). 지금은 `button/primary` medium `brand-line` 을 나란히 놓은 것 → AX 로 옮길 때 select button group 으로 교체.
 
-- 짧은 시간 프리셋 3~5개를 가로 병렬 버튼으로 (예: 1개월/3개월/6개월/12개월).
-- **선택 = 보라 아웃라인 + 보라 텍스트 / 비선택 = 회색 아웃라인 + 검정 텍스트.**
+- 짧은 시간 프리셋 2~4개를 가로 병렬로, 같은 폭으로 나눔 (예: 1개월/3개월/6개월/12개월). 5개 이상이면 `select/select box`(드롭다운).
+- **선택 = 보라 테두리 + 보라 글자 / 비선택 = #DDD 테두리 + #333 글자** (`select/select button` state=selected / default).
 - 단일 선택형 (라디오의 시각적 변형). 옵션이 짧고 서로 대응 관계일 때 사용.
 
 ### 날짜 셀렉트 필드 (기간 범위)
