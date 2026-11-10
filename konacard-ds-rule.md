@@ -871,9 +871,22 @@ COMMON DS 파일(`${FIGMA_DS_FILE_KEY}`, node `1217:11725`)에 정의된 팝업 
 
 ### 필드 우측 어드먼트
 
-> ⚠ 확인 필요: 'Secondary 작은 크기' vs 카탈로그 `input` style/case=button 의 `button/button` primary·medium·brand(48h)
+> 2026-11-10 결정 (KeyScreen AOS 실사용 기준). 입력칸 옆과 정보 행 옆은 다른 규칙.
 
-- 짧은 액션 버튼(Secondary 작은 크기) 또는 `×` 클리어 아이콘.
+**입력칸 오른쪽** — 작은 버튼은 쓰지 않음 (KeyScreen 0곳)
+
+| 경우 | 쓰는 것 | KeyScreen |
+|---|---|---|
+| 입력을 돕는 버튼 (주소입력 · 은행선택 · 은행변경) | `input` style/case=button 내장 버튼 | 49곳 |
+| 다시 보내기 (인증번호 재요청) | 입력칸 밖 따로 놓은 `button/button` primary · medium · `brand-line` (48) — 입력칸 Fill + 버튼 Hug, 사이 8 | 18곳 (회원가입 · 비번찾기 · 한도 인증) |
+| 그 밖 | `×` 지우기 아이콘 (입력 중 · 완료 · 에러) | — |
+
+**정보 행 오른쪽** (입력칸이 아니라 값 글자 옆, 정보 조회 화면)
+
+| 경우 | 쓰는 것 | KeyScreen |
+|---|---|---|
+| 값을 바꾸는 진입 ("변경") | `button/button` secondary · medium(32) · `gray-light` (회색 채움) | 116곳 |
+| 연결 · 등록처럼 강조 | `button/button` secondary · medium · `brand-line` | 45곳 |
 
 ---
 

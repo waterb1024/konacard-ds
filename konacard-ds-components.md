@@ -49,7 +49,7 @@ description: >
 
 ## button/button (`10973:356`)
 
-- **용도**: 화면 CTA · 본문 액션 · 필드 우측 어드먼트 등 바탕이나 테두리가 있는 버튼
+- **용도**: 화면 CTA · 본문 액션 · 정보 행 오른쪽 액션 등 바탕이나 테두리가 있는 버튼
 - **속성**: `style` (`primary` / `secondary`) × `size` × `type` × `state` (`true` 활성 / `false` 비활성)
 - **size** — style 마다 다름. `primary` 에는 `tiny` 없음
 
@@ -59,7 +59,7 @@ description: >
 | `primary` | `medium` | 48 | **Medium 버튼** — 본문 안 중요한 액션. radius 6, `button/medium-bold` 14/22 |
 | `primary` | `small` | 40 | 용도 미정의 |
 | `secondary` | `large` | 40 | 용도 미정의 |
-| `secondary` | `medium` | 32 | **Small 버튼** — 필드 우측 어드먼트, 카드 안 액션, 설명에 붙는 액션. radius 4, `button/small-regular` 12/18 |
+| `secondary` | `medium` | 32 | **Small 버튼** — 정보 행 오른쪽 "변경" · "연결", 카드 안 액션, 설명에 붙는 액션 (입력칸 옆에는 쓰지 않음). radius 4, `button/small-regular` 12/18 |
 | `secondary` | `small` | 24 | 용도 미정의 |
 | `secondary` | `tiny` | 24 | 용도 미정의 (글자 11/16) |
 
@@ -123,9 +123,10 @@ description: >
 | 하단 고정 CTA (병렬 보조) | `button/button` Large | `gray-light` |
 | 하단 고정 CTA (병렬 반대 액션·아웃라인) | `button/button` Large | `brand-line` or `gray-line` |
 | 본문 안 강조 액션 | `button/button` Medium | `brand` or `brand-line` |
-| 필드 우측 어드먼트 (편집) | `button/button` Small | `gray-line` |
-| 필드 우측 어드먼트 (강조 부가 액션) | `button/button` Small | `brand-line` |
-| 정보 조회 화면의 반복 편집 진입점 | `button/button` Small | `gray-line` |
+| 입력칸 오른쪽 — 입력 돕기 (주소입력 · 은행선택) | `input` style/case=button 내장 | — |
+| 입력칸 오른쪽 — 인증번호 재요청 | `button/button` Medium (입력칸 밖) | `brand-line` |
+| 정보 행 오른쪽 — 값 변경 진입 ("변경") | `button/button` Small | `gray-light` |
+| 정보 행 오른쪽 — 연결 · 등록 강조 | `button/button` Small | `brand-line` |
 | 하단 유틸리티 링크 | `button/text button` | `gray` |
 | CTA 위 반대 액션 링크 | `button/text button` | `gray` |
 | 진입형 리스트 아이템 우측 액션 | `button/icon button` medium | `gray` (설정값이면 `brand`) |
