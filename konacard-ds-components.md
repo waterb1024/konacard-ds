@@ -203,7 +203,7 @@ description: >
 
 ## Input 관련 안티패턴
 
-- ❌ **Placeholder를 Label 대신 사용** — 반드시 `title` 켜서 필드 상단 라벨 사용 (Placeholder는 예시값 힌트 전용)
+- ❌ **Placeholder를 Label 대신 사용** — 기본은 `title` 켜서 필드 상단 라벨. 생략은 rule.md § 필드 라벨 두 스타일의 세 경우만 (묶음 아래 칸 · 헤드라인이 대신 말할 때 · 가로 묶음 오른쪽 칸)
 - ❌ **Complete와 Active 색상 혼동** — Active(보라)는 편집 중, Complete(검정)는 확정. 화면 목적에 따라 구분
 - ❌ Error 상태에서 clear(×) 버튼 생략 (text field · search bar · button — 잘못된 값을 지우고 재입력할 수 있어야 함)
 - ❌ 세로 높이를 48px보다 낮게 축소 (터치 영역 확보 실패)
@@ -298,7 +298,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 ## Form UI 안티패턴
 
-- ❌ Title을 필드 안 Placeholder로 대체 (접근성·재입력 편의 하락)
+- ❌ Title을 필드 안 Placeholder로 대체 (접근성·재입력 편의 하락) — 예외 세 경우는 rule.md § 필드 라벨 두 스타일
 - ❌ 검증 결과·필수값을 회색 `info` 로 안내 — 반드시 `icon-error`(#FF364B) 사용
 - ❌ Title/Guide Text 간격을 8px 외의 값으로 변경 (`spacing-xsmall` 고정)
 - ❌ 입력칸 · select **하나** 위에 `input/label` 을 따로 놓기 — 그 컴포넌트의 `title` 을 켬
@@ -311,7 +311,7 @@ Input·Select(필드형) 위·아래에 붙는 라벨/안내 텍스트의 공통
 
 - ❌ **필드 높이를 32/40/56 등 다양하게 섞기** — 반드시 48px 고정
 - ❌ **Corner radius를 4/8/16 등 임의로 변경** — 6px 고정 (`radius/components/form`)
-- ❌ 필드 위 Title 라벨 없이 Placeholder만으로 라벨링 (접근성 저하)
+- ❌ 필드 위 Title 라벨 없이 Placeholder만으로 라벨링 (접근성 저하) — 예외: 묶음 아래 칸 · 헤드라인이 대신 말할 때 · 가로 묶음 오른쪽 칸
 - ❌ 에러 메시지를 툴팁·모달로 띄우기 (반드시 `info` 슬롯 `icon-error` 로 인라인)
 - ❌ 같은 질문을 화면마다 드롭다운(`select box`)과 버튼형(`select button`)으로 다르게 받기 — 선택지 2~4개는 select button, 5개 이상·긴 목록은 select box
 
