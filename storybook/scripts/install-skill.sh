@@ -19,6 +19,9 @@ trap 'rm -rf "$TMP"' EXIT
 
 curl -fsSL "$BASE/manifest.txt" -o "$TMP/manifest.txt" || {
   echo "목록을 받지 못했습니다 — 사내망(VPN)에 연결돼 있는지 확인하세요"; exit 1; }
+if grep -qi "<html" "$TMP/manifest.txt"; then
+  echo "목록 대신 웹 페이지가 왔습니다 — 사이트에 스킬 파일이 아직 없습니다 (배포 중이면 잠시 뒤 다시 실행)"; exit 1
+fi
 
 n=0
 while IFS= read -r f; do
