@@ -42,17 +42,33 @@ konacard-ds 스킬은 AI 에이전트가 KONACARD 화면과 디자인 시스템 
 
 ## Installation
 
-사내망(VPN)에 연결된 상태에서 터미널에 붙여 넣으세요. 이 사이트에서 스킬 파일을 받아 설치해요.
+사내망(VPN)에 연결된 상태에서 터미널에 붙여 넣으세요. 이 사이트에서 스킬 파일을 받아 설치해요. 두 명령은 **설치 위치**, 곧 스킬을 어디서 쓸 수 있는지만 달라요.
+
+**1. 내 모든 프로젝트에서 쓰기** — 개인적으로 쓸 때 추천
 
 ```bash
-# 내 모든 프로젝트에서 쓰기 (~/.claude 에 설치)
 curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash
 ```
 
+**2. 지금 폴더(프로젝트)에서만 쓰기** — 팀 저장소에 넣어 같이 쓸 때
+
 ```bash
-# 지금 폴더(프로젝트)에서만 쓰기 (./.claude 에 설치)
 curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash -s -- --project
 ```
+
+<table className={styles.table}>
+  <thead>
+    <tr><th></th><th>1. 모든 프로젝트</th><th>2. 지금 폴더만</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>설치 위치</td><td>내 홈 폴더 <code>~/.claude/</code></td><td>명령을 실행한 폴더의 <code>.claude/</code></td></tr>
+    <tr><td>쓸 수 있는 곳</td><td>내 컴퓨터에서 여는 모든 프로젝트</td><td>그 폴더(프로젝트)에서만</td></tr>
+    <tr><td>다른 사람과 같이 쓰기</td><td>안 돼요 (내 컴퓨터에만 있어요)</td><td>그 폴더를 git 에 올리면 팀원도 같은 버전을 써요</td></tr>
+    <tr><td>이럴 때</td><td>디자이너가 어느 폴더에서든 Claude Code 로 화면 작업할 때</td><td>특정 앱 저장소에서 팀 전체가 같은 스킬을 쓰게 할 때</td></tr>
+  </tbody>
+</table>
+
+두 곳에 모두 설치하면 같은 이름의 스킬이 둘이 돼서 헷갈릴 수 있으니 하나만 쓰세요.
 
 - 설치하면 스킬은 `.claude/skills/konacard-ds`, 에이전트 8개는 `.claude/agents` 에 들어가요. Claude Code 를 새로 열면 바로 쓸 수 있어요.
 - **업데이트**도 같은 명령을 다시 실행하면 돼요. 바뀌는 기존 파일은 `.claude/konacard-backup/` 에 남겨요.
