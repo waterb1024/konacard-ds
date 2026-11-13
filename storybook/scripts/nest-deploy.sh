@@ -27,6 +27,12 @@ if git ls-remote --exit-code --tags "$REMOTE" "refs/tags/$TAG" >/dev/null 2>&1; 
   echo "$TAG 는 이미 있습니다 — 새 버전 번호를 쓰세요"; exit 2
 fi
 
+# 스킬 묶음이 루트 문서와 같은지 확인 — 다르면 사이트에서 옛 스킬을 받게 된다
+bash storybook/scripts/build-skill-bundle.sh >/dev/null
+if ! git diff --quiet HEAD -- storybook/.storybook/public/skill || [ -n "$(git ls-files --others --exclude-standard storybook/.storybook/public/skill)" ]; then
+  echo "스킬 묶음이 루트 문서와 다릅니다 — 방금 다시 만든 storybook/.storybook/public/skill 을 커밋한 뒤 배포하세요"; exit 2
+fi
+
 TREE="$(git rev-parse HEAD:storybook)"
 PARENT="$(git ls-remote "$REMOTE" refs/heads/main | cut -f1)"
 PARENT_ARGS=()

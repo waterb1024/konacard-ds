@@ -26,6 +26,9 @@ const TYPES = {
   ".woff": "font/woff",
   ".woff2": "font/woff2",
   ".map": "application/json; charset=utf-8",
+  ".md": "text/markdown; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8",
+  ".sh": "text/plain; charset=utf-8",
 };
 
 const ASSETS = path.join(ROOT, "assets") + path.sep;

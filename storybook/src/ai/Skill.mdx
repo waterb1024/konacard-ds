@@ -9,7 +9,7 @@ import styles from "./ai.module.css";
 KONACARD 통합 스킬. 기획서로 화면을 만드는 일과 디자인 시스템을 관리하는 일을 나눠 담당 에이전트에게 맡겨요.
 
 <div className={styles.draft}>
-  <strong>초안</strong> — 스킬을 고치면서 이 페이지도 같이 바꿔요. 설치 방법은 확정되면 채워요.
+  <strong>초안</strong> — 스킬을 고치면서 이 페이지와 설치 파일도 같이 바꿔요.
 </div>
 
 konacard-ds 스킬은 AI 에이전트가 KONACARD 화면과 디자인 시스템 작업을 도울 때 불러오는 안내서예요.
@@ -42,17 +42,22 @@ konacard-ds 스킬은 AI 에이전트가 KONACARD 화면과 디자인 시스템 
 
 ## Installation
 
-<div className={styles.todo}>
-  설치 경로를 정하는 중이에요. 후보는 두 가지예요.
-  <ul>
-    <li><strong>사내 GitLab 에서 설치</strong> — 회사 계정 로그인 필요</li>
-    <li><strong>이 사이트에서 스킬 파일 받기</strong> — 사내망이면 누구나</li>
-  </ul>
-</div>
+사내망(VPN)에 연결된 상태에서 터미널에 붙여 넣으세요. 이 사이트에서 스킬 파일을 받아 설치해요.
 
 ```bash
-# 확정 후 채움
+# 내 모든 프로젝트에서 쓰기 (~/.claude 에 설치)
+curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash
 ```
+
+```bash
+# 지금 폴더(프로젝트)에서만 쓰기 (./.claude 에 설치)
+curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash -s -- --project
+```
+
+- 설치하면 스킬은 `.claude/skills/konacard-ds`, 에이전트 8개는 `.claude/agents` 에 들어가요. Claude Code 를 새로 열면 바로 쓸 수 있어요.
+- **업데이트**도 같은 명령을 다시 실행하면 돼요. 바뀌는 기존 파일은 `.claude/konacard-backup/` 에 남겨요.
+- 받기 전에 내용을 보고 싶으면 <a href="/skill/install.sh" target="_blank">install.sh</a> · <a href="/skill/manifest.txt" target="_blank">파일 목록</a> 을 열어 보세요.
+- Figma 파일 키는 스킬 파일에 넣지 않았어요 (`${FIGMA_DS_FILE_KEY}` 로 표시). 팀 관리자에게 받아 쓰세요.
 
 ## File Structure
 

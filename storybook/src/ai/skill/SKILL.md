@@ -9,6 +9,8 @@ description: KONACARD 앱 화면을 만들거나 고칠 때, KONACARD 디자인 
 
 ## 1. 무엇을 열까
 
+파일 위치: 사이트에서 설치했으면 이 스킬 폴더의 `references/` 안, konacard-ds 저장소에서 작업 중이면 저장소 루트에 같은 이름으로 있다. 에이전트는 `.claude/agents/` 에 있다.
+
 | 필요할 때 | 열 파일 |
 |---|---|
 | 토큰 값 (색 · 글꼴 · 간격 · 모서리 · 그림자 · 투명도) | `konacard-ds-foundation.md` |
