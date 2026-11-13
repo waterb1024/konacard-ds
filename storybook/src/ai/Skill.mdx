@@ -132,7 +132,8 @@ konacard-ds 스킬은 AI 에이전트가 KONACARD 화면과 디자인 시스템 
     <tr><th>파일</th><th>언제 읽는가</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>SKILL.md</code></td><td>진입점. 요청을 새 화면 · 기존 화면 바꾸기 · 디자인 시스템 관리로 나누고, 다음에 열 파일과 맡길 에이전트를 정합니다</td></tr>
+    <tr><td><code>SKILL.md</code></td><td>진입점. 요청을 새 화면 · 기존 화면 바꾸기 · 디자인 시스템 관리로 나누고, 다음에 열 파일과 맡길 에이전트를 정합니다. 문서는 사이트의 <a href="?path=/docs/ai-tools-llms-txt--docs" target="_top">llms.txt</a> 로 최신본을 먼저 읽습니다</td></tr>
+    <tr><td><code>{"references/*"}</code></td><td>사이트에 닿지 않을 때(VPN 끊김 등) 쓰는 문서 사본 — 아래 줄은 각 문서를 언제 여는지</td></tr>
     <tr><td><code>references/konacard-ds-foundation.md</code></td><td>색 · 글꼴 · 간격 · 모서리 · 그림자 토큰 값이 필요할 때</td></tr>
     <tr><td><code>references/konacard-ds-components.md</code></td><td>컴포넌트를 고르고 쓰는 법 · 하지 말 것을 볼 때 (⏳ 표시는 Figma 정리 전)</td></tr>
     <tr><td><code>references/components.catalog.json</code></td><td>Figma 에 컴포넌트를 넣을 때 — 정리가 끝난 컴포넌트의 키와 variant 값</td></tr>

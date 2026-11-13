@@ -1,0 +1,31 @@
+# KONACARD Design System
+
+> 코나카드 앱 디자인 시스템 문서 목록. 토큰 · 컴포넌트 · 화면 규칙 · 화면별 패턴. Figma AX 원본이 기준이고, 문서와 Figma 가 다르면 Figma 를 따른다.
+
+AI 에이전트는 이 목록을 먼저 읽고, 요청에 필요한 문서만 아래 주소로 연다. 주소를 기억해서 조합하지 말고 이 목록의 링크를 그대로 쓴다. 이 사이트는 사내망(VPN)에서만 열린다.
+
+## Foundation
+
+- [토큰](https://konacard-ds.konanest.com/skill/konacard-ds/references/konacard-ds-foundation.md): 색 · 글꼴 · 간격 · 모서리 · 그림자 · 투명도 값
+
+## Components
+
+- [컴포넌트 명세](https://konacard-ds.konanest.com/skill/konacard-ds/references/konacard-ds-components.md): 컴포넌트별 쓰는 법 · 하지 말 것. 장 머리 ⏳ = Figma 정리 전이라 바뀔 수 있음
+- [컴포넌트 카탈로그](https://konacard-ds.konanest.com/skill/konacard-ds/references/components.catalog.json): 정리가 끝난 Figma 컴포넌트의 키 · variant 값 (Figma 에 넣을 때)
+
+## Rules
+
+- [화면 규칙](https://konacard-ds.konanest.com/skill/konacard-ds/references/konacard-ds-rule.md): 화면 성격 10종 · 조립 원칙 · 톤앤매너 · 하지 말 것 · Figma 작업 규칙 · 화면별 패턴 목차
+- [Figma 제작 가이드](https://konacard-ds.konanest.com/skill/konacard-ds/references/rules/figma-guide.md): 레이어 구조 · 만들려는 UI → 컴포넌트 표 · Plugin API 예시
+
+## Patterns
+
+- [약관 · 공지](https://konacard-ds.konanest.com/skill/konacard-ds/references/rules/patterns/terms-notice.md): 다층 약관 동의 · 시스템 공지 · 약관 상세
+- [팝업 · 바텀시트](https://konacard-ds.konanest.com/skill/konacard-ds/references/rules/patterns/popups.md): 권한 동의 · 사용법 안내 · 파괴적 확인 · 온보딩 가이드 · 중앙 얼럿 · 결과 리포트
+- [카드 · 홈 · 이용내역](https://konacard-ds.konanest.com/skill/konacard-ds/references/rules/patterns/mycard.md): 한도 조회 · 충전잔액 안내 · 코나카드 홈 · 이용내역 상세 · 위드페이 요약
+- [코나콘](https://konacard-ds.konanest.com/skill/konacard-ds/references/rules/patterns/konacon.md): 커머스 진입 · 보관 목록 · 아이템 상세 · 검색 · 브랜드 목록 · 프로모션 · 즉시 사용 · 구매 플로우
+
+## Optional
+
+- [Storybook](https://konacard-ds.konanest.com): 코드로 된 컴포넌트와 예시 화면
+- [Skill 설치](https://konacard-ds.konanest.com/?path=/docs/ai-tools-skill--docs): konacard-ds 스킬과 에이전트 8개 설치 안내

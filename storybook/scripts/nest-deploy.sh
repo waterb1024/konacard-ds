@@ -29,7 +29,7 @@ fi
 
 # 스킬 묶음이 루트 문서와 같은지 확인 — 다르면 사이트에서 옛 스킬을 받게 된다
 bash storybook/scripts/build-skill-bundle.sh >/dev/null
-if ! git diff --quiet HEAD -- storybook/.storybook/public/skill || [ -n "$(git ls-files --others --exclude-standard storybook/.storybook/public/skill)" ]; then
+if ! git diff --quiet HEAD -- storybook/.storybook/public/skill storybook/.storybook/public/llms.txt || [ -n "$(git ls-files --others --exclude-standard storybook/.storybook/public/skill storybook/.storybook/public/llms.txt)" ]; then
   echo "스킬 묶음이 루트 문서와 다릅니다 — 방금 다시 만든 storybook/.storybook/public/skill 을 커밋한 뒤 배포하세요"; exit 2
 fi
 

@@ -44,4 +44,11 @@ fi
 ( cd "$OUT" && find konacard-ds agents -type f | LC_ALL=C sort ) > "$OUT/manifest.txt"
 cp "$ROOT/storybook/scripts/install-skill.sh" "$OUT/install.sh"
 
+# 문서 목록(llms.txt) — 사이트 루트에 둔다 (https://konacard-ds.konanest.com/llms.txt). 원본은 storybook/src/ai/llms.txt
+cp "$ROOT/storybook/src/ai/llms.txt" "$ROOT/storybook/.storybook/public/llms.txt"
+grep -oE 'https://konacard-ds\.konanest\.com/skill/[^)]+' "$ROOT/storybook/src/ai/llms.txt" | while read -r u; do
+  f="$OUT/${u#https://konacard-ds.konanest.com/skill/}"
+  [ -f "$f" ] || { echo "llms.txt 의 링크가 묶음에 없습니다: $u"; exit 1; }
+done
+
 echo "스킬 묶음 $(wc -l < "$OUT/manifest.txt" | tr -d ' ')개 파일 → storybook/.storybook/public/skill/"
