@@ -11,7 +11,7 @@ description: KONACARD 앱 화면을 만들거나 고칠 때, KONACARD 디자인 
 
 **문서 읽는 순서** — 최신 문서를 먼저, 닿지 않으면 사본을 쓴다.
 
-1. **사이트의 최신 문서** — `https://konacard-ds.konanest.com/llms.txt` 를 먼저 읽고, 목록이 가리키는 주소를 그대로 연다 (사내망 필요). 주소를 기억해서 조합하지 않는다.
+1. **사이트의 최신 문서** — `https://konacard-ds.konanest.com/llms.txt` 를 먼저 읽고, 목록이 가리키는 주소를 그대로 연다 (사내망 필요). 주소를 기억해서 조합하지 않는다. 목록이 다른 llms.txt (예: 컴포넌트 장별 목록) 를 가리키면 그것도 읽고 필요한 장만 연다.
 2. **설치된 사본** — 사이트에 닿지 않으면(VPN 끊김 등) 이 스킬 폴더의 `references/` 안 같은 이름 파일을 쓰고, 사본이라 최신이 아닐 수 있다고 사용자에게 알린다.
 3. konacard-ds 저장소 안에서 작업 중이면 저장소 루트의 원본 파일이 가장 최신이다.
 
@@ -20,7 +20,7 @@ description: KONACARD 앱 화면을 만들거나 고칠 때, KONACARD 디자인 
 | 필요할 때 | 열 파일 |
 |---|---|
 | 토큰 값 (색 · 글꼴 · 간격 · 모서리 · 그림자 · 투명도) | `konacard-ds-foundation.md` |
-| 컴포넌트 명세 (variant · 상태 · 속성 · 용도 · 하지 말 것) | `konacard-ds-components.md` |
+| 컴포넌트 명세 (variant · 상태 · 속성 · 용도 · 하지 말 것) | `konacard-ds-components.md` — 장별 파일은 `references/components/NN-이름.md` (버튼 = `02-button.md`) |
 | 컴포넌트 키 · variant 값 (Figma 에 넣을 때) | `components.catalog.json` |
 | 화면 성격 분류 · 조립 원칙 · 하지 말 것 · Figma 작업 규칙 | `konacard-ds-rule.md` |
 | 특정 화면 · 팝업의 상세 구조 (약관 · 팝업 · 코나콘 · 카드/홈) | `rules/patterns/*.md` — 목차는 `konacard-ds-rule.md` § 화면별 표준 패턴 |

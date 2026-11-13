@@ -10,7 +10,8 @@ AI 에이전트는 이 목록을 먼저 읽고, 요청에 필요한 문서만 �
 
 ## Components
 
-- [컴포넌트 명세](https://konacard-ds.konanest.com/skill/konacard-ds/references/konacard-ds-components.md): 컴포넌트별 쓰는 법 · 하지 말 것. 장 머리 ⏳ = Figma 정리 전이라 바뀔 수 있음
+- [컴포넌트 장별 목록](https://konacard-ds.konanest.com/components/llms.txt): 버튼 · 폼 · 탭 · 리스트 등 대분류 장마다 나눈 명세 목록 — 필요한 장만 열 때 먼저 읽는다
+- [컴포넌트 명세 전체](https://konacard-ds.konanest.com/skill/konacard-ds/references/konacard-ds-components.md): 모든 장을 한 파일로. 컴포넌트별 쓰는 법 · 하지 말 것, 장 머리 ⏳ = Figma 정리 전이라 바뀔 수 있음
 - [컴포넌트 카탈로그](https://konacard-ds.konanest.com/skill/konacard-ds/references/components.catalog.json): 정리가 끝난 Figma 컴포넌트의 키 · variant 값 (Figma 에 넣을 때)
 
 ## Rules

@@ -76,7 +76,7 @@ location.replace("/iframe.html?" + q + "r=1");
     fs.stat(file, (err, st) => {
       if (!err && st.isFile()) return send(res, file);
       // 스킬 파일은 없으면 404 — 홈 화면을 200 으로 주면 설치 스크립트가 HTML 을 스킬 파일로 받는다
-      if (urlPath.startsWith("/skill/")) {
+      if (urlPath.startsWith("/skill/") || urlPath.startsWith("/components/")) {
         res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
         return res.end("not found");
       }

@@ -1,0 +1,28 @@
+# KONACARD Components
+
+> 컴포넌트 명세를 대분류 장마다 나눈 목록. ✅ = Figma 정리 완료 · ⏳ = 정리 전(옛 기준일 수 있음). 이름 · 키 · variant 값은 카탈로그가 기준이다.
+
+필요한 장만 연다. 여러 장을 한꺼번에 봐야 하면 아래 Optional 의 전체 명세를 쓴다.
+
+## Components
+
+- [Basic (디자인 업무용)](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/00-basic.md): ✅ — OS/status-bar (Color × AOS·iOS·iOS_notch·Address-Bar), OS/keyboard (OS × Keypad·Number), spacing 8-based 원칙
+- [Actionbar](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/01-actionbar.md): ⏳ (Header 정리안 v2 검토 중) — action-bar/header, action-bar/button (헤드라인은 14_Heading 으로 옮김)
+- [Button](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/02-button.md): ✅ — button/button (style=primary·secondary), button/text button, button/icon button, button/fixed-bottom
+- [Tab](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/03-tab.md): ⏳ (Tabs 정리안 v2 검토 중) — tab/main-full · tab/main, tab/sub-ui · tab/Sub, tab/sub2-ui
+- [Forms](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/04-forms.md): ✅ — input (style/case 6종), input/label, select/select box, select/select button · group, Form UI(Title · Guide Text)
+- [Control](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/05-control.md): ✅ — controls/swtich · check box · radio button + 각 label 조합
+- [List](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/06-list.md): ✅ list/list · accordion / ⏳ card-select · bottomsheet — list/list, accordion(header + body), list/card-select, list/bottomsheet
+- [Line](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/07-line.md): ✅ — divider (solid · dotted · section · vertical)
+- [Indicator](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/08-indicator.md): ⏳ — indicator, badges/badge
+- [Label](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/09-label.md): ✅ — label (type color · line)
+- [Info](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/10-info.md): ✅ info / ⏳ Text info · Info-box — info, info/text-info 외
+- [Tooltip](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/11-tooltip.md): ✅ — tooltip/tooltip
+- [Banner](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/12-banner.md): ⏳ — banner/banner
+- [Toast](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/13-toast.md): ✅ — toast
+- [Heading](https://konacard-ds.konanest.com/skill/konacard-ds/references/components/14-heading.md): ✅ — heading/headline, heading/section
+
+## Optional
+
+- [컴포넌트 명세 전체](https://konacard-ds.konanest.com/skill/konacard-ds/references/konacard-ds-components.md): 모든 장을 한 파일로
+- [컴포넌트 카탈로그](https://konacard-ds.konanest.com/skill/konacard-ds/references/components.catalog.json): 정리가 끝난 Figma 컴포넌트의 키 · variant 값
