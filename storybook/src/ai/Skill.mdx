@@ -1,5 +1,6 @@
 import { Meta, Source } from "@storybook/blocks";
 import skillMd from "./skill/SKILL.md?raw";
+import { InstallTabs, FileTree } from "./SkillParts";
 import styles from "./ai.module.css";
 
 <Meta title="AI & Tools/Skill" />
@@ -42,23 +43,20 @@ konacard-ds 스킬은 AI 에이전트가 KONACARD 화면과 디자인 시스템 
 
 ## Installation
 
-사내망(VPN)에 연결된 상태에서 터미널에 붙여 넣으세요. 이 사이트에서 스킬 파일을 받아 설치해요. 두 명령은 **설치 위치**, 곧 스킬을 어디서 쓸 수 있는지만 달라요.
+사내망(VPN)에 연결된 상태에서 아래 명령을 터미널에 붙여 넣으세요. 이 사이트에서 `konacard-ds` 스킬과 에이전트를 받아 설치해요.
 
-**1. 내 모든 프로젝트에서 쓰기** — 개인적으로 쓸 때 추천
+<InstallTabs
+  options={[
+    { label: "모든 프로젝트", command: "curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash" },
+    { label: "지금 폴더만", command: "curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash -s -- --project" },
+  ]}
+/>
 
-```bash
-curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash
-```
-
-**2. 지금 폴더(프로젝트)에서만 쓰기** — 팀 저장소에 넣어 같이 쓸 때
-
-```bash
-curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash -s -- --project
-```
+두 명령은 설치 위치, 곧 스킬을 어디서 쓸 수 있는지만 달라요. 둘 중 하나만 쓰세요 (두 곳에 모두 설치하면 같은 이름의 스킬이 둘이 돼요).
 
 <table className={styles.table}>
   <thead>
-    <tr><th></th><th>1. 모든 프로젝트</th><th>2. 지금 폴더만</th></tr>
+    <tr><th></th><th>모든 프로젝트</th><th>지금 폴더만</th></tr>
   </thead>
   <tbody>
     <tr><td>설치 위치</td><td>내 홈 폴더 <code>~/.claude/</code></td><td>명령을 실행한 폴더의 <code>.claude/</code></td></tr>
@@ -68,45 +66,81 @@ curl -fsSL https://konacard-ds.konanest.com/skill/install.sh | bash -s -- --proj
   </tbody>
 </table>
 
-두 곳에 모두 설치하면 같은 이름의 스킬이 둘이 돼서 헷갈릴 수 있으니 하나만 쓰세요.
-
-- 설치하면 스킬은 `.claude/skills/konacard-ds`, 에이전트 8개는 `.claude/agents` 에 들어가요. Claude Code 를 새로 열면 바로 쓸 수 있어요.
-- **업데이트**도 같은 명령을 다시 실행하면 돼요. 바뀌는 기존 파일은 `.claude/konacard-backup/` 에 남겨요.
+- Claude Code 를 새로 열면 바로 쓸 수 있어요. **업데이트**는 같은 명령을 다시 실행하면 되고, 바뀌는 기존 파일은 `.claude/konacard-backup/` 에 남겨요.
 - 받기 전에 내용을 보고 싶으면 <a href="/skill/install.sh" target="_blank">install.sh</a> · <a href="/skill/manifest.txt" target="_blank">파일 목록</a> 을 열어 보세요.
 - Figma 파일 키는 스킬 파일에 넣지 않았어요 (`${FIGMA_DS_FILE_KEY}` 로 표시). 팀 관리자에게 받아 쓰세요.
 
 ## File Structure
 
-스킬은 디자인 시스템 저장소 전체를 함께 씁니다. `SKILL.md` 는 길잡이만 하고, 값과 규칙은 아래 원본 파일을 그때그때 엽니다.
+설치하면 `.claude/` 안에 아래처럼 들어가요.
 
-```text
-konacard-ds/
-├── CLAUDE.md                        # 진입 지침 · 3파일 라우팅 (Claude Code 자동 로드)
-├── konacard-ds-foundation.md        # 토큰: color / typography / spacing / radius / elevation / opacity
-├── konacard-ds-components.md        # 12개 대분류 컴포넌트 명세 (00_Basic ~ 12_Banner)
-├── konacard-ds-rule.md              # Figma 작업 규칙 · 화면 성격 분류 · 조립 원칙 · 안티패턴 · 패턴 목차
-├── components.catalog.json          # Figma 컴포넌트 키 · variant 목록
-├── rules/patterns/                  # 화면별 표준 패턴 (약관·공지 / 팝업 / 코나콘 / 카드·홈)
-├── rules/figma-guide.md             # Figma 제작 실무 — 레이어 구조 · UI→컴포넌트 표 · 코드 예시
-├── .claude/
-│   ├── skills/konacard-ds/SKILL.md  # 이 스킬 (아래 원문)
-│   └── agents/                      # 8개 subagent (트랙 A 화면 생산 / 트랙 B DS 유지관리)
-└── storybook/                       # React Storybook — 매핑된 컴포넌트 라이브러리
-```
+<FileTree
+  root={{
+    name: ".claude",
+    children: [
+      {
+        name: "skills",
+        children: [
+          {
+            name: "konacard-ds",
+            children: [
+              { name: "SKILL.md" },
+              {
+                name: "references",
+                children: [
+                  { name: "konacard-ds-foundation.md" },
+                  { name: "konacard-ds-components.md" },
+                  { name: "components.catalog.json" },
+                  { name: "konacard-ds-rule.md" },
+                  {
+                    name: "rules",
+                    children: [
+                      { name: "figma-guide.md" },
+                      { name: "patterns", children: [
+                        { name: "terms-notice.md" },
+                        { name: "popups.md" },
+                        { name: "konacon.md" },
+                        { name: "mycard.md" },
+                      ] },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "agents",
+        children: [
+          { name: "screen-spec-reader.md" },
+          { name: "screen-planner.md" },
+          { name: "figma-composer.md" },
+          { name: "screen-reviewer.md" },
+          { name: "ds-figma-inspector.md" },
+          { name: "ds-component-implementer.md" },
+          { name: "ds-publisher.md" },
+          { name: "ds-doc-curator.md" },
+        ],
+      },
+    ],
+  }}
+/>
 
 <table className={styles.table}>
   <thead>
-    <tr><th>파일</th><th>언제 읽나요</th></tr>
+    <tr><th>파일</th><th>언제 읽는가</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>SKILL.md</code></td><td><span className={styles.cellMain}>스킬을 부르면 가장 먼저</span><span className={styles.cellSub}>요청을 새 화면 · 기존 화면 바꾸기 · 디자인 시스템 관리로 나눠 다음에 열 파일과 담당 에이전트를 정해요</span></td></tr>
-    <tr><td><code>konacard-ds-foundation.md</code></td><td><span className={styles.cellMain}>색 · 글꼴 · 간격 값이 필요할 때</span></td></tr>
-    <tr><td><code>konacard-ds-components.md</code></td><td><span className={styles.cellMain}>컴포넌트를 고르거나 쓰는 법을 볼 때</span><span className={styles.cellSub}>⏳ 표시는 Figma 정리 전이라 바뀔 수 있어요</span></td></tr>
-    <tr><td><code>components.catalog.json</code></td><td><span className={styles.cellMain}>Figma 에 컴포넌트를 넣을 때</span><span className={styles.cellSub}>정리가 끝난 컴포넌트의 키와 variant 값</span></td></tr>
-    <tr><td><code>konacard-ds-rule.md</code></td><td><span className={styles.cellMain}>화면 종류를 판단하고 배치할 때</span><span className={styles.cellSub}>하지 말 것 목록으로 마지막 점검도 해요</span></td></tr>
-    <tr><td><code>{"rules/patterns/*.md"}</code></td><td><span className={styles.cellMain}>약관 · 팝업 · 코나콘 · 카드/홈 화면을 만들 때</span></td></tr>
-    <tr><td><code>rules/figma-guide.md</code></td><td><span className={styles.cellMain}>Figma 에 직접 조립할 때</span></td></tr>
-    <tr><td><code>{".claude/agents/*.md"}</code></td><td><span className={styles.cellMain}>단계별 작업을 맡길 때</span><span className={styles.cellSub}>위 "구성" 표의 8개 에이전트</span></td></tr>
+    <tr><td><code>SKILL.md</code></td><td>진입점. 요청을 새 화면 · 기존 화면 바꾸기 · 디자인 시스템 관리로 나누고, 다음에 열 파일과 맡길 에이전트를 정합니다</td></tr>
+    <tr><td><code>references/konacard-ds-foundation.md</code></td><td>색 · 글꼴 · 간격 · 모서리 · 그림자 토큰 값이 필요할 때</td></tr>
+    <tr><td><code>references/konacard-ds-components.md</code></td><td>컴포넌트를 고르고 쓰는 법 · 하지 말 것을 볼 때 (⏳ 표시는 Figma 정리 전)</td></tr>
+    <tr><td><code>references/components.catalog.json</code></td><td>Figma 에 컴포넌트를 넣을 때 — 정리가 끝난 컴포넌트의 키와 variant 값</td></tr>
+    <tr><td><code>references/konacard-ds-rule.md</code></td><td>화면 성격을 판단하고 배치할 때, 마지막에 하지 말 것 목록으로 점검할 때</td></tr>
+    <tr><td><code>references/rules/figma-guide.md</code></td><td>Figma 에 직접 조립할 때 — 레이어 구조 · UI→컴포넌트 표 · Plugin API 예시</td></tr>
+    <tr><td><code>{"references/rules/patterns/*.md"}</code></td><td>약관 · 팝업 · 코나콘 · 카드/홈 화면을 만들 때 (목차는 rule.md)</td></tr>
+    <tr><td><code>{"agents/screen-*.md"}</code> · <code>figma-composer.md</code></td><td>새 화면 만들기 — 기획서 정리 → 계획 → 조립 → 점검 순서로 맡깁니다</td></tr>
+    <tr><td><code>{"agents/ds-*.md"}</code></td><td>디자인 시스템 관리 — Figma 값 추출 · Storybook 컴포넌트 · Code Connect · 문서 정합성</td></tr>
   </tbody>
 </table>
 
