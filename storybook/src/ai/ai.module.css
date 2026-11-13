@@ -154,3 +154,13 @@
   flex: none;
   color: var(--color-font-secondary);
 }
+
+/* 섹션 제목(h2 · h3) 위 간격 — 문서 기본 20px 가 좁아 섹션이 붙어 보임.
+   .draft 상자 뒤에 오는 같은 층의 제목만 잡아 AI & Tools 페이지에만 적용 */
+.draft ~ :global(h2) {
+  margin-top: var(--spacing-display-medium) !important;
+}
+
+.draft ~ :global(h3) {
+  margin-top: var(--spacing-2xlarge) !important;
+}
